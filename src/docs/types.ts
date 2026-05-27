@@ -11,6 +11,11 @@ export type DocsPage = {
   path: string;
   sourceFile: string;
   group: string;
+  navTitle: string;
+  navDepth: number;
+  navParent: string | null;
+  navHasChildren: boolean;
+  navOrder: number;
   title: string;
   description: string;
   status: DocsStatus;
@@ -38,5 +43,10 @@ export type SearchEntry = {
 
 export type DocsNavGroup = {
   label: string;
-  pages: DocsPage[];
+  items: DocsNavItem[];
+};
+
+export type DocsNavItem = {
+  page: DocsPage;
+  children: DocsPage[];
 };

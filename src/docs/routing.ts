@@ -1,4 +1,5 @@
 import { docsPages } from "./generated/docsManifest";
+import type { DocsNavGroup, DocsNavItem } from "./types";
 
 const defaultPage = docsPages.find((page) => page.slug === "start") ?? docsPages[0];
 
@@ -23,11 +24,28 @@ export function getPageBySlug(slug: string | null) {
 }
 
 export function docsGroups() {
-  const groups = new Map<string, typeof docsPages>();
+  const groups = new Map<string, DocsNavGroup>();
+  const topLevelItems = new Map<string, DocsNavItem>();
+
   for (const page of docsPages) {
-    const pages = groups.get(page.group) ?? [];
-    pages.push(page);
-    groups.set(page.group, pages);
+    if (!groups.has(page.group)) groups.set(page.group, { label: page.group, items: [] });
+    const group = groups.get(page.group)!;
+    if (page.navDepth === 0 || !page.navParent) {
+      const item = { page, children: [] };
+      group.items.push(item);
+      topLevelItems.set(page.slug, item);
+    }
   }
-  return [...groups.entries()].map(([label, pages]) => ({ label, pages }));
+
+  for (const page of docsPages) {
+    if (!page.navParent) continue;
+    const parent = topLevelItems.get(page.navParent);
+    if (parent) parent.children.push(page);
+    else {
+      if (!groups.has(page.group)) groups.set(page.group, { label: page.group, items: [] });
+      groups.get(page.group)!.items.push({ page, children: [] });
+    }
+  }
+
+  return [...groups.values()];
 }

@@ -1,5 +1,5 @@
 ---
-title: "Start"
+title: "Terra Classic Documentation"
 description: "Start here for the independent Terra Classic documentation site, including user guides, developer references, and node operation material."
 status: draft
 reviewed: false

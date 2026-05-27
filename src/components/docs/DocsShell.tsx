@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type ReactNode } from "react";
-import type { DocsPage } from "../../docs/types";
-import { docsGroups, pagePath } from "../../docs/routing";
+import type { DocsNavItem, DocsPage } from "../../docs/types";
+import { docsGroups } from "../../docs/routing";
 import { searchIndex } from "../../docs/generated/searchIndex";
 
 const asset = (name: string) => `/assets/${name}`;
@@ -98,6 +98,63 @@ function DocsSidebar({
   onCollapse: (next: boolean) => void;
   onNavigate: () => void;
 }) {
+  const compact = collapsed && !drawerOpen;
+  const [expandedSlugs, setExpandedSlugs] = useState<Set<string>>(() => new Set());
+
+  useEffect(() => {
+    if (!activePage.navParent) return;
+    setExpandedSlugs((current) => new Set(current).add(activePage.navParent!));
+  }, [activePage.navParent]);
+
+  const toggleExpanded = (slug: string) => {
+    setExpandedSlugs((current) => {
+      const next = new Set(current);
+      if (next.has(slug)) next.delete(slug);
+      else next.add(slug);
+      return next;
+    });
+  };
+
+  const renderItem = (item: DocsNavItem, depth = 0) => {
+    const isActive = item.page.slug === activePage.slug;
+    const hasActiveChild = item.children.some((child) => child.slug === activePage.slug);
+    const hasChildren = item.children.length > 0;
+    const expanded = hasActiveChild || expandedSlugs.has(item.page.slug);
+
+    return (
+      <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
+        <div className="docs-nav-row-wrap">
+          <a
+            className={isActive ? "docs-nav-row docs-nav-row--active" : "docs-nav-row"}
+            href={item.page.path}
+            aria-current={isActive ? "page" : undefined}
+            title={compact ? item.page.navTitle : undefined}
+            onClick={onNavigate}
+          >
+            <span className="docs-nav-dot" aria-hidden="true" />
+            {!compact && <span>{item.page.navTitle}</span>}
+          </a>
+          {hasChildren && !compact && (
+            <button
+              className={`docs-nav-toggle ${expanded ? "docs-nav-toggle--open" : ""}`}
+              type="button"
+              aria-label={`${expanded ? "Collapse" : "Expand"} ${item.page.navTitle}`}
+              aria-expanded={expanded}
+              onClick={() => toggleExpanded(item.page.slug)}
+            >
+              <span aria-hidden="true">›</span>
+            </button>
+          )}
+        </div>
+        {hasChildren && !compact && expanded && (
+          <div className="docs-nav-children">
+            {item.children.map((child) => renderItem({ page: child, children: [] }, depth + 1))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   return (
     <aside className={`docs-sidebar ${collapsed ? "docs-sidebar--collapsed" : ""} ${drawerOpen ? "docs-sidebar--open" : ""}`}>
       <div className="docs-sidebar-inner">
@@ -111,26 +168,14 @@ function DocsSidebar({
           </button>
         </div>
 
-        {!collapsed && <SearchBox onNavigate={onNavigate} />}
+        {!compact && <SearchBox onNavigate={onNavigate} />}
 
         <nav className="docs-nav" aria-label="Docs navigation">
           {docsGroups().map((group) => (
             <section className="docs-nav-group" key={group.label}>
-              {!collapsed && <h2>{group.label}</h2>}
+              {!compact && <h2>{group.label}</h2>}
               <div className="docs-nav-rows">
-                {group.pages.map((page) => (
-                  <a
-                    className={page.slug === activePage.slug ? "docs-nav-row docs-nav-row--active" : "docs-nav-row"}
-                    href={page.path}
-                    key={page.slug}
-                    aria-current={page.slug === activePage.slug ? "page" : undefined}
-                    title={collapsed ? page.title : undefined}
-                    onClick={onNavigate}
-                  >
-                    <span className="docs-nav-dot" aria-hidden="true" />
-                    {!collapsed && <span>{page.title}</span>}
-                  </a>
-                ))}
+                {group.items.map((item) => renderItem(item))}
               </div>
             </section>
           ))}
