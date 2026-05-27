@@ -1,14 +1,14 @@
 ---
 title: "Galaxy Station Governance"
 description: "Open Galaxy Station and connect the extension or the mobile app via WalletConnect."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/galaxy-station/galaxy-station-governance.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 ## Vote on proposals
 

@@ -1,14 +1,14 @@
 ---
 title: "Write Smart Contract"
 description: "A smart contract can be considered an instance of a singleton object whose internal state is persisted on the blockchain. Users can trigger state..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/smart-contracts/write-smart-contract.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 > **Tip**
 >

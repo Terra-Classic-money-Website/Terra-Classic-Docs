@@ -1,14 +1,14 @@
 ---
 title: "Spec Feegrant"
-description: "Imported Terra Classic documentation page pending editorial review."
-status: imported
+description: "Terra Classic documentation page pending editorial review."
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/module-specifications/spec-feegrant.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 > Terra Classic uses the Cosmos SDK [`x/feegrant`](https://docs.cosmos.network/main/modules/feegrant/) module without custom logic. Grants, allowances, and CLI flows behave exactly as upstream.
 >

@@ -4,7 +4,7 @@ export type DocsHeading = {
   id: string;
 };
 
-export type DocsStatus = "imported" | "draft" | "reviewed";
+export type DocsStatus = "draft" | "reviewed";
 
 export type DocsPage = {
   slug: string;
@@ -25,7 +25,7 @@ export type DocsPage = {
   sourceRepo: string;
   sourceCommit: string;
   sourcePath: string;
-  importedAt: string;
+  sourceDate: string;
   headings: DocsHeading[];
   body: string;
   previousSlug: string | null;

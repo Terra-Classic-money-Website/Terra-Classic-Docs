@@ -15,7 +15,7 @@ npm run dev
 
 Markdown source lives in `content/docs`.
 
-Each page requires frontmatter with title, description, status, source attribution, source commit, and import date. Imported pages remain marked as `imported` until reviewed.
+Each page requires frontmatter with title, description, status, source attribution, source commit, and source date.
 
 ## Validation
 

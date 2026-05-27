@@ -1,14 +1,14 @@
 ---
 title: "Spec Tax"
 description: "x/tax powers Terra Classic’s burn-tax and gas price floor. It intercepts fee payment, deducts the configured burn rate, and routes proceeds between..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/module-specifications/spec-tax.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 `x/tax` powers Terra Classic’s burn-tax and gas price floor. It intercepts fee payment, deducts the configured burn rate, and routes proceeds between burn, oracle, and community pools while exposing governance control over rates and gas price suggestions.
 

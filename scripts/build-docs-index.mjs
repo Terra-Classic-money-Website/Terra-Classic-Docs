@@ -219,7 +219,7 @@ const pages = walkMarkdown().map((filePath) => {
     sourceRepo: parsed.metadata.sourceRepo,
     sourceCommit: parsed.metadata.sourceCommit,
     sourcePath: parsed.metadata.sourcePath,
-    importedAt: parsed.metadata.importedAt,
+    sourceDate: parsed.metadata.sourceDate,
     headings: extractHeadings(body),
     body,
   };

@@ -1,14 +1,14 @@
 ---
 title: "Spec Taxexemption"
 description: "x/taxexemption lets Terra Classic governance define address “zones” that are exempt from the burn tax. Transactions remain taxable by default unless..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/module-specifications/spec-taxexemption.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 `x/taxexemption` lets Terra Classic governance define address “zones” that are exempt from the burn tax. Transactions remain taxable by default unless all participants satisfy the zone rules stored in this module.
 

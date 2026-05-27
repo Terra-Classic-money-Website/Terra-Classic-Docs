@@ -1,14 +1,14 @@
 ---
 title: "1. Download the archive"
 description: "Running a full Terra node is a resource-intensive process that requires a persistent server. If you want to use the Terra Classic blockchain without..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "full-node/run-a-full-terra-node/system-config.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 > **Caution — Recommended operating systems**
 >

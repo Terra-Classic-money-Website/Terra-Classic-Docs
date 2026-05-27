@@ -1,14 +1,14 @@
 ---
 title: "Glossary"
 description: "Top validators that participate in consensus and earn rewards. If more than the configured maximum of validators want to join the active set, the..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/glossary.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 ## Active set
 

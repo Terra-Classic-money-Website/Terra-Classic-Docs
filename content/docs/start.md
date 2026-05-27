@@ -8,19 +8,13 @@ sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/terra-classic-money/terra-classic-docs/blob/main"
 sourceCommit: "bootstrap-2026-05-27"
 sourcePath: "content/docs/start.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 ## What this docs site is
 
 Terra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.
 
-It is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, visible page status, and a contribution model that can evolve through GitHub issues and pull requests.
-
-## Current content status
-
-Most pages were imported from the previous Terra Classic documentation source and are marked as imported until reviewed.
-
-Imported pages should be treated as useful starting material, not final authority. Technical claims, command examples, endpoint references, wallet flows, and module behavior should be checked before a page is marked reviewed.
+It is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.
 
 ## Main sections
 

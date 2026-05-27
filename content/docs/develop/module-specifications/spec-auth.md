@@ -1,14 +1,14 @@
 ---
 title: "Spec Auth"
 description: "x/auth is responsible for account state, signature and sequence checks, fee deduction, and ante-handler orchestration. Classic keeps legacy account..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/module-specifications/spec-auth.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 > **Note**
 >

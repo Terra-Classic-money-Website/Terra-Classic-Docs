@@ -1,14 +1,14 @@
 ---
 title: "Keplr Testnet"
 description: "The testnet support is integrated into Keplr. You can utilize the faucet by LuncGoblins or the Telegram bot to get some testnet LUNC."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/keplr/keplr-testnet.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 The testnet support is integrated into Keplr. You can utilize the [faucet by LuncGoblins](https://faucet.luncgoblins.com) or the [Telegram bot](https://t.me/tcrebelfaucet_bot) to get some testnet LUNC.
 

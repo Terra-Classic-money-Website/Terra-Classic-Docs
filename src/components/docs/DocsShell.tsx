@@ -68,7 +68,7 @@ function SearchBox({ onNavigate }: { onNavigate: () => void }) {
         id="docs-search-input"
         type="search"
         value={query}
-        placeholder="Search imported docs"
+        placeholder="Search docs"
         onChange={(event) => setQuery(event.target.value)}
       />
       {query.trim().length >= 2 && (
@@ -225,11 +225,6 @@ function TableOfContents({ page }: { page: DocsPage }) {
       </nav>
     </aside>
   );
-}
-
-export function StatusPill({ status }: { status: DocsPage["status"] }) {
-  const label = status === "reviewed" ? "Reviewed" : status === "draft" ? "Draft" : "Imported";
-  return <span className={`docs-status docs-status--${status}`}>{label}</span>;
 }
 
 export function DocsShell({ activePage, children }: { activePage: DocsPage; children: ReactNode }) {

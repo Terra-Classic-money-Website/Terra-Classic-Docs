@@ -1,14 +1,14 @@
 ---
 title: "Staking And Governance"
 description: "Delegating LUNC grants validators voting power proportional to their stake. Validators collect commission on rewards while delegators earn the..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/staking-and-governance.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 Delegating LUNC grants validators voting power proportional to their stake. Validators collect commission on rewards while delegators earn the remainder. Typical commission settings range between 2.5% and 20%.
 

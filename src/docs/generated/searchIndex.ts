@@ -7,7 +7,7 @@ export const searchIndex = [
     "title": "Terra Classic Documentation",
     "description": "Start here for the independent Terra Classic documentation site, including user guides, developer references, and node operation material.",
     "group": "Welcome",
-    "text": "What this docs site is Terra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders. It is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, visible page status, and a contribution model that can evolve through GitHub issues and pull requests. Current content status Most pages were imported from the previous Terra Classic documentation source and are marked as imported until reviewed. Imported pages should be treated as useful starting material, not final authority. Technical claims, command examples, endpoint references, wallet flows, and module behavior should be checked before a page is marked reviewed. Main sections Learn /learn/overview/ covers user-facing Terra Classic concepts, wallets, fees, staking, governance, and glossary material. Develop /develop/smart-contracts/overview/ covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications. Full Node /full-node/overview/ covers node operation, production setup, sync, troubleshooting, and validator-network guides. Contribution model The long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. Until the final public repository URL is confirmed, the edit links in this bootstrap build are placeholders."
+    "text": "What this docs site is Terra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders. It is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests. Main sections Learn /learn/overview/ covers user-facing Terra Classic concepts, wallets, fees, staking, governance, and glossary material. Develop /develop/smart-contracts/overview/ covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications. Full Node /full-node/overview/ covers node operation, production setup, sync, troubleshooting, and validator-network guides. Contribution model The long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. Until the final public repository URL is confirmed, the edit links in this bootstrap build are placeholders."
   },
   {
     "slug": "full-node/overview",
@@ -261,7 +261,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-consensus",
     "path": "/develop/module-specifications/spec-consensus/",
     "title": "Consensus params module (x/consensus)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic adopts the Cosmos SDK x/consensus module to manage Tendermint/CometBFT consensus parameters through governance. The module stores the active block, evidence, and validator parameter sets and exposes a single governance-controlled message to mutate them. Please see the upstream specification for x/consensus https://docs.cosmos.network/main/modules/consensus/ for more details."
   },
@@ -269,7 +269,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-crisis",
     "path": "/develop/module-specifications/spec-crisis/",
     "title": "Crisis module (x/crisis)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic adopts the Cosmos SDK x/crisis module to guard against invariant violations. Please see the upstream specification for x/crisis https://docs.cosmos.network/main/modules/crisis/ for more details."
   },
@@ -293,7 +293,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-evidence",
     "path": "/develop/module-specifications/spec-evidence/",
     "title": "Evidence module (x/evidence)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic uses the Cosmos SDK x/evidence https://docs.cosmos.network/main/modules/evidence/ module without modifications. Refer to the upstream specification for message formats, handlers, and state."
   },
@@ -301,7 +301,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-feegrant",
     "path": "/develop/module-specifications/spec-feegrant/",
     "title": "Feegrant module (x/feegrant)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic uses the Cosmos SDK x/feegrant https://docs.cosmos.network/main/modules/feegrant/ module without custom logic. Grants, allowances, and CLI flows behave exactly as upstream. Burn tax is charged in the ante handler custom/auth/ante/fee tax.go before fee allowances are applied. Grantees must ensure the granter account holds enough funds to cover both the burn tax and gas fees. Fee grants are often combined with tax-exemption lists for infrastructure wallets. Review x/taxexemption when configuring service accounts."
   },
@@ -309,7 +309,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-governance",
     "path": "/develop/module-specifications/spec-governance/",
     "title": "Governance module (x/gov)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic's Governance module inherits from Cosmos SDK's x/gov module. Please refer to the Cosmos SDK documentation https://docs.cosmos.network/main/modules/gov/ for a complete overview."
   },
@@ -317,7 +317,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-ibc",
     "path": "/develop/module-specifications/spec-ibc/",
     "title": "IBC core module (x/ibc)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic enables IBC routing through the Cosmos SDK core IBC module. Please refer to the upstream documentation https://ibc.cosmos.network/v7/ibc/overview/ for a complete overview."
   },
@@ -325,7 +325,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-ibc-fee",
     "path": "/develop/module-specifications/spec-ibc-fee/",
     "title": "IBC fee module (x/ibc-fee)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic enables ICS-29 fee middleware to incentivise relayers. Please refer to the ICS-29 fee middleware documentation https://ibc.cosmos.network/v7/middleware/ics29-fee/overview/ for a complete overview."
   },
@@ -333,7 +333,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-ibc-hooks",
     "path": "/develop/module-specifications/spec-ibc-hooks/",
     "title": "IBC hooks module (ibc-hooks)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic leverages the ibc-hooks middleware to trigger CosmWasm contract callbacks on IBC packets. Please refer to the upstream documentation https://ibc.cosmos.network/v7/ibc/overview/ for a complete overview."
   },
@@ -341,7 +341,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-ica",
     "path": "/develop/module-specifications/spec-ica/",
     "title": "Interchain accounts module (x/ica)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic runs the ICS-27 interchain accounts controller and host stacks. Please refer to the upstream documentation https://ibc.cosmos.network/v7/apps/interchain-accounts/overview/ for a complete overview."
   },
@@ -357,7 +357,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-mint",
     "path": "/develop/module-specifications/spec-mint/",
     "title": "Mint module (x/mint)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic retains the Cosmos SDK mint module for compatibility, but inflation is disabled on mainnet. Please refer to the upstream documentation https://docs.cosmos.network/main/modules/mint/ for a complete overview."
   },
@@ -373,7 +373,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-params",
     "path": "/develop/module-specifications/spec-params/",
     "title": "Params module (x/params)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Note The params module has been deprecated in favor of letting each module keep its own parameters in the app state. Some modules still use the params module for governance proposals, but this is not recommended. These modules, until migrated, use the params keeper to store module parameter sets under individual subspaces. Those parameters can be updated through parameter-change proposals. Please refer to the upstream documentation https://docs.cosmos.network/main/modules/params/ for more details."
   },
@@ -381,7 +381,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-slashing",
     "path": "/develop/module-specifications/spec-slashing/",
     "title": "Slashing module (x/slashing)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic inherits the Cosmos SDK slashing module to manage validator punishments. Please refer to the upstream documentation https://docs.cosmos.network/main/modules/slashing/ for a complete overview."
   },
@@ -389,7 +389,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-staking",
     "path": "/develop/module-specifications/spec-staking/",
     "title": "Staking module (x/staking)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic inherits the Cosmos SDK staking module to manage validator staking. Please refer to the upstream documentation https://docs.cosmos.network/main/modules/staking/ for a complete overview. Note Terra Classic has implemented a custom voting power cap to prevent validators from having too much influence on the network. This cap is set to 20% of the total voting power."
   },
@@ -421,7 +421,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-transfer",
     "path": "/develop/module-specifications/spec-transfer/",
     "title": "IBC transfer module (x/transfer)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic enables IBC routing through the IBC module. For more information, see the upstream documentation https://ibc.cosmos.network/v7/apps/transfer/overview/ ."
   },
@@ -429,7 +429,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-upgrade",
     "path": "/develop/module-specifications/spec-upgrade/",
     "title": "Upgrade module (x/upgrade)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic inherits the Cosmos SDK upstream upgrade module. Please refer to the upstream documentation https://docs.cosmos.network/main/modules/upgrade/ for details."
   },
@@ -437,7 +437,7 @@ export const searchIndex = [
     "slug": "develop/module-specifications/spec-vesting",
     "path": "/develop/module-specifications/spec-vesting/",
     "title": "Vesting module (x/vesting)",
-    "description": "Imported Terra Classic documentation page pending editorial review.",
+    "description": "Terra Classic documentation page pending editorial review.",
     "group": "Develop",
     "text": "Terra Classic at this point in time does not utilize vesting. The vesting module is still implemented for historical reasons and existing vesting accounts."
   },

@@ -1,14 +1,14 @@
 ---
 title: "Build Terra Dapp"
 description: "This tutorial is designed to acquaint you with everything you need to know to launch your own smart-contract powered applications on Terra Classic."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/smart-contracts/build-terra-dapp.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 This tutorial is designed to acquaint you with everything you need to know to launch your own smart-contract powered applications on Terra Classic.
 

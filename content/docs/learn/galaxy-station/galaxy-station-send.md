@@ -1,14 +1,14 @@
 ---
 title: "Galaxy Station Send"
 description: "Open the Galaxy Station extension or connect through WalletConnect."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/galaxy-station/galaxy-station-send.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 1. Open the Galaxy Station extension or connect through WalletConnect.
 2. Ensure Terra Classic is the active network.

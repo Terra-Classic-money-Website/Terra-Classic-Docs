@@ -1,14 +1,14 @@
 ---
 title: "Example additions to /etc/security/limits.conf"
 description: "Although terrad does not require a superuser account to run, you will need elevated privileges during installation. Create a dedicated system user..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "full-node/run-a-full-terra-node/set-up-production.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 ## Create a dedicated user
 

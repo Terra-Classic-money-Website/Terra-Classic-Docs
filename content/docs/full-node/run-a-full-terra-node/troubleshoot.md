@@ -1,14 +1,14 @@
 ---
 title: "Troubleshoot"
 description: "Occasionally you may need to reset your node to resolve configuration drift or data corruption. The steps below describe common recovery tasks."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "full-node/run-a-full-terra-node/troubleshoot.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 Occasionally you may need to reset your node to resolve configuration drift or data corruption. The steps below describe common recovery tasks.
 

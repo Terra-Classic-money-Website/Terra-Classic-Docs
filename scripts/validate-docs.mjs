@@ -18,7 +18,7 @@ const requiredFields = [
   "sourceRepo",
   "sourceCommit",
   "sourcePath",
-  "importedAt",
+  "sourceDate",
 ];
 
 const markdownFiles = walkMarkdown();
@@ -40,8 +40,8 @@ for (const filePath of markdownFiles) {
     }
   }
 
-  if (!["imported", "draft", "reviewed"].includes(String(parsed.metadata.status))) {
-    errors.push(`${relativePath}: status must be imported, draft, or reviewed`);
+  if (!["draft", "reviewed"].includes(String(parsed.metadata.status))) {
+    errors.push(`${relativePath}: status must be draft or reviewed`);
   }
 
   if (sourcePaths.has(parsed.metadata.sourcePath)) {

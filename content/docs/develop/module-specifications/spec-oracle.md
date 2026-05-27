@@ -1,14 +1,14 @@
 ---
 title: "Spec Oracle"
 description: "Terra Classic validators feed external exchange rates so that downstream modules (tax splits, analytics, historical tooling) continue to operate even..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/module-specifications/spec-oracle.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 Terra Classic validators feed external exchange rates so that downstream modules (tax splits, analytics, historical tooling) continue to operate even though algorithmic swaps are disabled. This module enforces the familiar prevote/vote handshake with slashing to keep price data honest.
 

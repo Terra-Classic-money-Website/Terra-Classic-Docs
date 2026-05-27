@@ -1,14 +1,14 @@
 ---
 title: "Join A Network"
 description: "Provision the host and build terrad by following the Build Terra Core prerequisites bundled inside each validator playbook."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "full-node/run-a-full-terra-node/join-a-network.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 ## Bootstrapping workflow
 

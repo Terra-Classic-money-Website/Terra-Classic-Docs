@@ -1,14 +1,14 @@
 ---
 title: "Terra Py"
 description: "This guide explains how to install the terra_classic_sdk Python SDK, connect to the recommended endpoints, and submit common transactions with typed..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/terra-py/terra-py.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 This guide explains how to install the `terra_classic_sdk` Python SDK, connect to the recommended endpoints, and submit common transactions with typed examples.
 

@@ -1,14 +1,14 @@
 ---
 title: "Build Terra Core"
 description: "Terra Classic core is the official implementation of the Terra Classic node software. Use this guide to install terrad, the command-line interface..."
-status: imported
+status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs Export"
+sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
 sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "full-node/run-a-full-terra-node/build-terra-core.md"
-importedAt: "2026-05-27"
+sourceDate: "2026-05-27"
 ---
 Terra Classic core is the official implementation of the Terra Classic node software. Use this guide to install `terrad`, the command-line interface and daemon that connects to Terra Classic and enables you to interact with the Terra Classic blockchain.
 
