@@ -85,6 +85,10 @@ function SearchBox({ onNavigate }: { onNavigate: () => void }) {
   );
 }
 
+function navItemContainsPage(item: DocsNavItem, slug: string): boolean {
+  return item.page.slug === slug || item.children.some((child) => navItemContainsPage(child, slug));
+}
+
 function DocsSidebar({
   activePage,
   collapsed,
@@ -100,10 +104,31 @@ function DocsSidebar({
 }) {
   const compact = collapsed && !drawerOpen;
   const [expandedSlugs, setExpandedSlugs] = useState<Set<string>>(() => new Set());
+  const groups = useMemo(() => docsGroups(), []);
+
+  const findNavItem = (slug: string) => {
+    const stack = groups.flatMap((group) => group.items);
+    while (stack.length > 0) {
+      const item = stack.shift()!;
+      if (item.page.slug === slug) return item;
+      stack.push(...item.children);
+    }
+    return null;
+  };
 
   useEffect(() => {
-    if (!activePage.navParent) return;
-    setExpandedSlugs((current) => new Set(current).add(activePage.navParent!));
+    const parents = new Set<string>();
+    let parentSlug = activePage.navParent;
+
+    while (parentSlug) {
+      const parent = findNavItem(parentSlug);
+      if (!parent) break;
+      parents.add(parentSlug);
+      parentSlug = parent.page.navParent;
+    }
+
+    if (parents.size === 0) return;
+    setExpandedSlugs((current) => new Set([...current, ...parents]));
   }, [activePage.navParent]);
 
   const toggleExpanded = (slug: string) => {
@@ -117,7 +142,7 @@ function DocsSidebar({
 
   const renderItem = (item: DocsNavItem, depth = 0) => {
     const isActive = item.page.slug === activePage.slug;
-    const hasActiveChild = item.children.some((child) => child.slug === activePage.slug);
+    const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
     const hasChildren = item.children.length > 0;
     const expanded = hasActiveChild || expandedSlugs.has(item.page.slug);
 
@@ -148,7 +173,7 @@ function DocsSidebar({
         </div>
         {hasChildren && !compact && expanded && (
           <div className="docs-nav-children">
-            {item.children.map((child) => renderItem({ page: child, children: [] }, depth + 1))}
+            {item.children.map((child) => renderItem(child, depth + 1))}
           </div>
         )}
       </div>
@@ -171,7 +196,7 @@ function DocsSidebar({
         {!compact && <SearchBox onNavigate={onNavigate} />}
 
         <nav className="docs-nav" aria-label="Docs navigation">
-          {docsGroups().map((group) => (
+          {groups.map((group) => (
             <section className="docs-nav-group" key={group.label}>
               {!compact && <h2>{group.label}</h2>}
               <div className="docs-nav-rows">

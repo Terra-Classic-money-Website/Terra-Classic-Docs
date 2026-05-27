@@ -267,6 +267,23 @@
   color: var(--color-white);
 }
 
+.docs-nav-node--depth-2 .docs-nav-row {
+  min-height: 32px;
+  color: var(--color-grey-700);
+  font-size: var(--tc-type-link-small-size);
+  line-height: var(--tc-type-link-small-line-height);
+  font-weight: 600;
+}
+
+.docs-nav-node--depth-2 .docs-nav-dot {
+  width: 4px;
+  height: 4px;
+}
+
+.docs-nav-node--depth-2 .docs-nav-row--active {
+  color: var(--color-white);
+}
+
 .docs-nav-row:hover,
 .docs-nav-row:focus-visible { background: var(--color-grey-50); color: var(--color-blue); }
 

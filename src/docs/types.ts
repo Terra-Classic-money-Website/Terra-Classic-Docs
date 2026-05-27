@@ -48,5 +48,5 @@ export type DocsNavGroup = {
 
 export type DocsNavItem = {
   page: DocsPage;
-  children: DocsPage[];
+  children: DocsNavItem[];
 };
