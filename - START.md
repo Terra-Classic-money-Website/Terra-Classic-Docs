@@ -1,4 +1,4 @@
-# Terra-Classic.money local runbook
+# Terra Classic Docs local runbook
 
 ## Prerequisites
 
@@ -11,132 +11,71 @@
 npm install
 ```
 
-For screenshot-based visual regression checks, install the bundled Chromium browser once:
-
-```bash
-npx playwright install chromium
-```
-
 ## Normal start
 
 ```bash
 npm run dev
 ```
 
-Vite prints the local URL, normally `http://127.0.0.1:5173/`.
-
-Open the Ecosystem subpage locally at:
+Vite prints the local URL, normally:
 
 ```text
-http://127.0.0.1:5173/ecosystem.html
+http://127.0.0.1:5173/
 ```
 
-Open the Decentralization subpage locally at:
-
-```text
-http://127.0.0.1:5173/decentralization.html
-```
-
-Open the Roadmap subpage locally at:
-
-```text
-http://127.0.0.1:5173/roadmap.html
-```
-
-Open the Markets subpage locally at:
-
-```text
-http://127.0.0.1:5173/markets.html
-```
-
-Open the Open Work subpage locally at:
-
-```text
-http://127.0.0.1:5173/open-work.html
-```
-
-Open the About terra-classic.money subpage locally at:
-
-```text
-http://127.0.0.1:5173/about.html
-```
-
-Open the Privacy Policy subpage locally at:
-
-```text
-http://127.0.0.1:5173/privacy.html
-```
-
-Open an Open Work detail page locally at:
-
-```text
-http://127.0.0.1:5173/open-work-detail.html?work=forex-protocol-implementation
-```
-
-Open the internal local design-system tool at:
+Open the local design-system tool at:
 
 ```text
 http://127.0.0.1:5173/designsystem.html
 ```
 
-`designsystem.html` is intentionally a local Vite-served tool. The GitHub Pages workflow uploads only `dist` from `npm run build`, and this page is not part of that production build.
+## Content workflow
+
+Docs markdown source lives in:
+
+```text
+content/docs
+```
+
+After adding, moving, or editing docs markdown, regenerate the manifest and search index:
+
+```bash
+npm run docs:index
+```
+
+Validate metadata, internal links, heading anchors, and local images:
+
+```bash
+npm run docs:validate
+```
+
+Run both docs content checks:
+
+```bash
+npm run docs:check
+```
 
 ## Build and checks
 
+Type-check the React/TypeScript app:
+
 ```bash
-npm run clean:metadata
-npm run assets:build
 npm run typecheck
-npm run build
-npm run perf:budget
 ```
 
-If new remote avatar URLs are added to the Ecosystem, Markets, or Roadmap data, localize them before handoff so GitHub Pages does not depend on third-party avatar hosts:
+Build the production GitHub Pages output:
 
 ```bash
-npm run assets:avatars
+npm run build
 ```
 
-Use the full local gate before handoff:
+Run the full local handoff gate:
 
 ```bash
 npm run check
 ```
 
-Run a local Lighthouse performance audit for all production pages:
-
-```bash
-npm run perf:audit
-```
-
-Reports are written to `.performance-reports`, which is intentionally ignored by Git. The audit command checks all production pages in the mobile Lighthouse profile, then runs desktop spot checks for Home, Decentralization, and About. Saved reports are checked against page-level Lighthouse budgets for performance score, FCP, LCP, TBT, CLS, transfer weight, and request count.
-
-To re-check the latest saved Lighthouse reports without running a fresh audit:
-
-```bash
-npm run perf:lh-budget
-```
-
-Run screenshot capture across the production pages and responsive breakpoints:
-
-```bash
-npm run visual:snapshots
-```
-
-Reports are written to `.visual-reports`, which is intentionally ignored by Git.
-
-To compare a change against a previously captured run:
-
-```bash
-VISUAL_OUTPUT_DIR=.visual-reports/before-change npm run visual:snapshots
-VISUAL_BASELINE_DIR=.visual-reports/before-change/screenshots VISUAL_OUTPUT_DIR=.visual-reports/after-change npm run visual:snapshots
-```
-
-Only update persistent baselines deliberately:
-
-```bash
-npm run visual:baseline
-```
+The full gate includes docs index generation, docs metadata validation, internal link validation, TypeScript typecheck, production build, and static route file generation.
 
 ## Preview production build
 
@@ -147,15 +86,30 @@ npm run preview
 
 ## GitHub Pages deployment
 
-Deployment is static-only through GitHub Pages. The workflow is `.github/workflows/deploy.yml` and runs from `main`.
+Deployment is static-only through GitHub Pages. The workflow is:
 
-The deployment build runs `npm run check`, so type checking, production build, image generation, metadata cleanup, and deterministic performance budgets must pass before GitHub Pages receives a new artifact.
+```text
+.github/workflows/deploy.yml
+```
 
-For the production domain `terra-classic.money`, use base path `/`. For temporary repository-path hosting, set the GitHub repository variable `VITE_BASE_PATH`, for example `/Terra-Classic.money/`.
+It runs from `main` and executes:
+
+```bash
+npm ci
+npm run check
+```
+
+The docs custom domain is:
+
+```text
+docs.terra-classic.money
+```
+
+The Vite base path is fixed to `/` because the site is intended to run on the custom subdomain, not under a repository subpath.
 
 ## Troubleshooting
 
-- If install fails, rerun `npm install` and send Codex the full terminal output.
-- If a page loads without images, run `npm run assets:build`, then `npm run build`, and send Codex the error output plus a screenshot.
-- If performance looks worse after an image-source change, run `FORCE_ASSET_BUILD=1 npm run assets:build`, then `npm run check`, and send Codex the full output.
+- If a docs page is missing, run `npm run docs:index`, then `npm run docs:validate`.
+- If a link fails validation, check whether the markdown still points to the old `/docs/...` route or a source page that was not imported.
 - If GitHub Pages deploy fails, open the failed Actions run and send Codex the failed step log.
+- If the layout looks broken on mobile, run `npm run preview` and inspect the route at desktop, tablet, and mobile widths before changing content.

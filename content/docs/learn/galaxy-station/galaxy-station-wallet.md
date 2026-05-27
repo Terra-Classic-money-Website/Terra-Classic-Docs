@@ -1,0 +1,35 @@
+---
+title: "Galaxy Station Wallet"
+description: "Open the Galaxy Station extension."
+status: imported
+reviewed: false
+sourceTitle: "Terra Classic Docs Export"
+sourceSite: "https://terra-classic.io/docs"
+sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
+sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
+sourcePath: "learn/galaxy-station/galaxy-station-wallet.md"
+importedAt: "2026-05-27"
+---
+## Create a new wallet (extension)
+
+1. Open the Galaxy Station extension.
+2. Click **Create**.
+3. Securely record your seed phrase.
+4. Set a wallet name and password.
+5. Complete the confirmation prompts.
+
+## Import an existing Station wallet
+
+1. Open Galaxy Station and choose **Import**.
+2. Enter your 24-word Station seed phrase.
+3. Set the wallet name and password.
+4. Confirm the Terra Classic address begins with `terra`.
+
+## Connect via WalletConnect
+
+1. In the dApp, choose **WalletConnect**.
+2. Select Galaxy Station (Hexxagon) when prompted.
+3. Approve the connection in the mobile app.
+
+> **Tip**
+> Galaxy Station supports multiple accounts; use the account selector to switch between them.

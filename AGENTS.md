@@ -1,17 +1,20 @@
 You are joining the "Terra Classic Docs" project.
 
 Project goal:
-Design and implement Documentation part of Terra-classic.money website that will use https://docs.terra-classic.money subdomain and will be hosted on seperate repo / Github.
+Design and maintain the custom documentation site for Terra Classic at `https://docs.terra-classic.money`.
+
+This repository was created by copying the Terra Classic Website project, but it must remain a dedicated docs repository. Do not rebuild it into a second copy of the marketing/information website.
 
 Before doing any work, read these files and inspect these project sources in the project root first, in this exact order:
 
 1. `-- 1. OG BRIEF - 2026.05.14.md`
-3. `DESIGN.md` - if it exists, especially before any design, front-end, page, subpage, section, component, content hierarchy, responsive, or motion work.
+3. `DESIGN.md` - if it exists, especially before any design, front-end, page, docs shell, docs navigation, component, content hierarchy, responsive, or motion work.
 4. `designsystem.html` - before any visual/front-end work, and whenever a task touches typography, colors, padding, component states, spacing, motion, interaction behavior, or breakpoints.
-5. The current homepage implementation before designing or implementing subpages, so new pages extend the existing site instead of drifting into isolated one-off layouts.
+5. The current docs shell and docs rendering implementation before designing or implementing pages, so new work extends the existing docs system instead of drifting into isolated one-off layouts.
 6. The supplied wireframe, brief, or page-specific material for the requested task, when provided.
-7. Then check the `- KNOWLEDGE` folder if it exists, and read the project-owner-provided materials relevant to the task before starting work.
-8. Then inspect the current validation setup before implementation:
+7. Then inspect `content/docs` and the imported source attribution relevant to the task.
+8. Then check the `- KNOWLEDGE` folder if it exists, and read the project-owner-provided materials relevant to the task before starting work.
+9. Then inspect the current validation setup before implementation:
    - test-related scripts in `package.json`
    - test runner config files
    - test folders and existing test files
@@ -22,21 +25,24 @@ What those sources mean:
 - `-- 1. OG BRIEF - 2026.05.14.md`: original product brief and target concept
 - `DESIGN.md`: written design execution contract for page composition, hierarchy, density, responsive expectations, reusable pattern discipline, and rendered QA requirements
 - `designsystem.html`: live visual and implementation source of truth for tokens, component states, motion, breakpoint behavior, and reusable UI pattern examples
-- homepage implementation: current canonical implementation example for design rhythm, density, responsive behavior, interaction quality, and how the design system is applied in production code
-- supplied wireframes or page-specific materials: task-specific content structure and intent that must be translated through the existing design system and homepage language
+- docs shell and docs rendering implementation: current canonical implementation example for design rhythm, density, responsive behavior, interaction quality, and how the design system is applied in production code
+- supplied wireframes or page-specific materials: task-specific content structure and intent that must be translated through the existing design system and docs language
 - `- KNOWLEDGE` folder: project-specific knowledge source provided by the project owner, which may contain documentation, articles, datasets, notes, specs, or other reference materials needed for correct execution
 - validation setup: the current test/check architecture, execution cost, and project-specific validation workflow that must be understood before making changes
 
 Important project constraints:
-- "Terra Classic Docs" will be hosted on Github Pages and Github Pages only. We will not be hosting any other parts of the website any other 3rd party infastructure / hosting. All that we build must utilize Github Pages
+- "Terra Classic Docs" will be hosted on GitHub Pages and GitHub Pages only. Do not add any other hosting/runtime infrastructure.
+- Use base path `/` because production runs on the custom subdomain `docs.terra-classic.money`.
+- Do not use Docusaurus, VitePress, Astro Starlight, Mintlify, Nextra, or any external docs framework.
+- Docs pages must be generated from markdown in `content/docs`; do not turn every docs page into a hand-written React component.
 - Do not change the core concept from the original brief by accident.
 - Do not treat validation as an afterthought. Understand how tests and checks are structured before implementation so you can run the right checks efficiently and avoid unnecessary full-suite cost during small scoped changes.
 
 ## Design & Front-end
 - `DESIGN.md` is the written design execution contract. Use it together with `designsystem.html`; do not treat it as a replacement for the live design system.
 - `designsystem.html` is the project source of truth for design and front-end implementation: typography, colors, component states, spacing, motion, and interaction behavior should be represented there first or kept in sync with it.
-- When building new subpages, sections, or components, always check `designsystem.html` and reuse or extend the existing design-system patterns instead of inventing isolated one-off UI behavior.
-- Before designing or implementing subpages, read `DESIGN.md`, inspect `designsystem.html`, inspect the homepage implementation, and translate the supplied wireframe through those constraints.
+- When building new docs pages, sections, or components, always check `designsystem.html` and reuse or extend the existing design-system patterns instead of inventing isolated one-off UI behavior.
+- Before designing or implementing docs pages, read `DESIGN.md`, inspect `designsystem.html`, inspect the docs shell implementation, and translate the supplied material through those constraints.
 - If a new reusable page, section, component, motion, or responsive pattern is introduced, represent it in `designsystem.html` in the same task so future agents can reuse it.
 - Do not duplicate token tables from `designsystem.html` into `DESIGN.md`. Tokens, exact values, and component examples belong in `designsystem.html` and the shared CSS/token files; `DESIGN.md` governs judgment, composition, hierarchy, workflow, and quality gates.
 - Any new or changed interactive element must include appropriate smooth motion and animation, matching the quality level established in `designsystem.html`: hover states, opening/closing states, expanded/collapsed states, icon swaps, color transitions, and component state changes should feel deliberate rather than instant or abrupt.

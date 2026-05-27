@@ -1,22 +1,18 @@
 {
-  "name": "terra-classic-money",
+  "name": "terra-classic-docs",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "clean:metadata": "node scripts/clean-local-metadata.mjs",
-    "assets:build": "node scripts/build-images.mjs",
-    "assets:avatars": "node scripts/localize-avatars.mjs",
-    "build": "npm run clean:metadata && npm run assets:build && tsc -b && vite build",
+    "dev": "npm run docs:index && vite --host 127.0.0.1",
+    "docs:index": "node scripts/build-docs-index.mjs",
+    "docs:validate": "node scripts/validate-docs.mjs",
+    "docs:routes": "node scripts/write-static-routes.mjs",
+    "docs:check": "npm run docs:index && npm run docs:validate",
     "typecheck": "tsc -b --pretty",
+    "build": "npm run docs:index && npm run docs:validate && tsc -b && vite build && npm run docs:routes",
     "preview": "vite preview --host 127.0.0.1",
-    "perf:budget": "node scripts/check-performance-budget.mjs",
-    "perf:lh-budget": "node scripts/check-lighthouse-budget.mjs",
-    "perf:audit": "node scripts/perf-audit.mjs && npm run perf:lh-budget",
-    "visual:snapshots": "npm run build && node scripts/visual-regression.mjs",
-    "visual:baseline": "npm run build && VISUAL_UPDATE_BASELINE=1 node scripts/visual-regression.mjs",
-    "check": "npm run build && npm run perf:budget"
+    "check": "npm run build"
   },
   "dependencies": {
     "react": "^19.1.0",
