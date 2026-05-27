@@ -370,17 +370,6 @@
   border-bottom: 1px solid var(--color-grey-100);
 }
 
-.docs-page-kicker {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--color-grey-700);
-  font-size: var(--tc-type-link-small-size);
-  line-height: var(--tc-type-link-small-line-height);
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
 .docs-page-header h1 {
   max-width: 760px;
   font-size: var(--tc-type-h1-size);
@@ -396,30 +385,6 @@
   font-weight: 600;
 }
 
-.docs-attribution {
-  margin: 24px 0;
-  padding: 16px;
-  border: 1px solid var(--color-grey-100);
-  border-radius: var(--radius-card);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 18px;
-  color: var(--color-grey-700);
-  font-size: var(--tc-type-body-small-size);
-  line-height: var(--tc-type-body-small-line-height);
-  font-weight: 600;
-}
-
-.docs-attribution div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 200px;
-}
-
-.docs-attribution strong { color: var(--color-black); }
-
-.docs-attribution a,
 .docs-edit-link,
 .docs-markdown a {
   color: var(--color-blue);
@@ -758,11 +723,6 @@
   .docs-page-header {
     gap: 20px;
     padding-bottom: 24px;
-  }
-
-  .docs-attribution {
-    display: grid;
-    gap: 10px;
   }
 
   .heading-anchor {
