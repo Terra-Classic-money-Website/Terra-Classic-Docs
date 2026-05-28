@@ -235,7 +235,7 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  gap: 48px;
+  gap: 32px;
   padding-right: 16px;
   margin-right: -16px;
   scrollbar-gutter: stable;
@@ -247,8 +247,7 @@
   flex: 0 0 auto;
   display: grid;
   gap: 32px;
-  margin-top: auto;
-  padding: 20px 0 0;
+  padding: 0;
 }
 
 .docs-sidebar-back {
