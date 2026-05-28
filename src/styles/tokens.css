@@ -26,8 +26,8 @@
   --tc-motion-base: 220ms;
   --tc-motion-slow: 320ms;
   --tc-motion-sidebar: 420ms;
-  --tc-motion-sidebar-color: 560ms;
-  --tc-motion-sidebar-spatial: 480ms;
+  --tc-motion-sidebar-color: 240ms;
+  --tc-motion-sidebar-spatial: 280ms;
   --tc-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --tc-ease-emphasized: cubic-bezier(.16, 1, .3, 1);
   --tc-space-0: 0px;
