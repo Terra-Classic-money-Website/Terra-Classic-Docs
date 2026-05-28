@@ -13,6 +13,7 @@
   z-index: 20;
   width: var(--sidebar-width-expanded);
   height: 100vh;
+  overflow: hidden;
   background: var(--color-white);
   transition: transform var(--tc-motion-slow) var(--tc-ease-emphasized);
 }
@@ -905,9 +906,7 @@
     height: calc(100vh - 64px);
   }
 
-  .docs-sidebar-brand {
-    display: flex;
-  }
+  .docs-sidebar-brand { display: none; }
 
   .docs-drawer-backdrop { inset: 64px 0 0; }
 

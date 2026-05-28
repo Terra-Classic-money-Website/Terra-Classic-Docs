@@ -296,8 +296,12 @@ export function DocsShell({ activePage, children }: { activePage: DocsPage; chil
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
+    document.documentElement.classList.toggle("docs-drawer-open", drawerOpen);
     document.body.classList.toggle("docs-drawer-open", drawerOpen);
-    return () => document.body.classList.remove("docs-drawer-open");
+    return () => {
+      document.documentElement.classList.remove("docs-drawer-open");
+      document.body.classList.remove("docs-drawer-open");
+    };
   }, [drawerOpen]);
 
   const closeDrawer = () => setDrawerOpen(false);
