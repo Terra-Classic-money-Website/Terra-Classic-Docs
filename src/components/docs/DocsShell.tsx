@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type { DocsNavItem, DocsPage } from "../../docs/types";
 import { docsGroups } from "../../docs/routing";
 import { searchIndex } from "../../docs/generated/searchIndex";
@@ -88,6 +88,94 @@ function navItemContainsPage(item: DocsNavItem, slug: string): boolean {
   return item.page.slug === slug || item.children.some((child) => navItemContainsPage(child, slug));
 }
 
+function DocsNavNode({
+  item,
+  depth = 0,
+  activePage,
+  expandedSlugs,
+  onToggleExpanded,
+  onNavigate,
+}: {
+  item: DocsNavItem;
+  depth?: number;
+  activePage: DocsPage;
+  expandedSlugs: Set<string>;
+  onToggleExpanded: (slug: string) => void;
+  onNavigate: () => void;
+}) {
+  const childrenInnerRef = useRef<HTMLDivElement>(null);
+  const [childrenHeight, setChildrenHeight] = useState(0);
+  const isActive = item.page.slug === activePage.slug;
+  const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
+  const hasChildren = item.children.length > 0;
+  const expanded = isActive || hasActiveChild || expandedSlugs.has(item.page.slug);
+
+  useLayoutEffect(() => {
+    if (!hasChildren || !childrenInnerRef.current) return;
+
+    const element = childrenInnerRef.current;
+    const updateHeight = () => setChildrenHeight(element.scrollHeight);
+    updateHeight();
+
+    if (typeof ResizeObserver === "undefined") return;
+
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [activePage.slug, expanded, expandedSlugs, hasChildren]);
+
+  const childrenStyle = {
+    "--docs-nav-children-height": `${childrenHeight}px`,
+  } as CSSProperties;
+
+  return (
+    <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
+      <a
+        className={[
+          "docs-nav-row",
+          isActive ? "docs-nav-row--active" : "",
+          hasChildren ? "docs-nav-row--branch" : "",
+          expanded ? "docs-nav-row--expanded" : "",
+        ].filter(Boolean).join(" ")}
+        href={item.page.path}
+        aria-current={isActive ? "page" : undefined}
+        aria-expanded={hasChildren ? expanded : undefined}
+        onClick={(event) => {
+          if (hasChildren) {
+            const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+            if (!isModifiedClick) onToggleExpanded(item.page.slug);
+          }
+          onNavigate();
+        }}
+      >
+        <span>{item.page.navTitle}</span>
+        {hasChildren && <NavClusterIcon variant="branch-down" />}
+      </a>
+      {hasChildren && (
+        <div
+          className={expanded ? "docs-nav-children docs-nav-children--open" : "docs-nav-children"}
+          aria-hidden={!expanded}
+          style={childrenStyle}
+        >
+          <div className="docs-nav-children-inner" ref={childrenInnerRef}>
+            {item.children.map((child) => (
+              <DocsNavNode
+                activePage={activePage}
+                depth={depth + 1}
+                expandedSlugs={expandedSlugs}
+                item={child}
+                key={child.page.slug}
+                onNavigate={onNavigate}
+                onToggleExpanded={onToggleExpanded}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 function DocsSidebar({
   activePage,
   drawerOpen,
@@ -134,49 +222,6 @@ function DocsSidebar({
     });
   };
 
-  const renderItem = (item: DocsNavItem, depth = 0) => {
-    const isActive = item.page.slug === activePage.slug;
-    const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
-    const hasChildren = item.children.length > 0;
-    const expanded = isActive || hasActiveChild || expandedSlugs.has(item.page.slug);
-
-    return (
-      <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
-        <a
-          className={[
-            "docs-nav-row",
-            isActive ? "docs-nav-row--active" : "",
-            hasChildren ? "docs-nav-row--branch" : "",
-            expanded ? "docs-nav-row--expanded" : "",
-          ].filter(Boolean).join(" ")}
-          href={item.page.path}
-          aria-current={isActive ? "page" : undefined}
-          aria-expanded={hasChildren ? expanded : undefined}
-          onClick={(event) => {
-            if (hasChildren) {
-              const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
-              if (!isModifiedClick) toggleExpanded(item.page.slug);
-            }
-            onNavigate();
-          }}
-        >
-          <span>{item.page.navTitle}</span>
-          {hasChildren && <NavClusterIcon variant="branch-down" />}
-        </a>
-        {hasChildren && (
-          <div
-            className={expanded ? "docs-nav-children docs-nav-children--open" : "docs-nav-children"}
-            aria-hidden={!expanded}
-          >
-            <div className="docs-nav-children-inner">
-              {item.children.map((child) => renderItem(child, depth + 1))}
-            </div>
-          </div>
-        )}
-      </div>
-    );
-  };
-
   return (
     <aside className={`docs-sidebar ${drawerOpen ? "docs-sidebar--open" : ""}`}>
       <div className="docs-sidebar-inner">
@@ -194,7 +239,16 @@ function DocsSidebar({
               <section className="docs-nav-group" key={group.label}>
                 <h2>{group.label}:</h2>
                 <div className="docs-nav-rows">
-                  {group.items.map((item) => renderItem(item))}
+                  {group.items.map((item) => (
+                    <DocsNavNode
+                      activePage={activePage}
+                      expandedSlugs={expandedSlugs}
+                      item={item}
+                      key={item.page.slug}
+                      onNavigate={onNavigate}
+                      onToggleExpanded={toggleExpanded}
+                    />
+                  ))}
                 </div>
               </section>
             ))}
