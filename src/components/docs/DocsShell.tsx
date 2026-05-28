@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent, type ReactNode } from "react";
 import type { DocsNavItem, DocsPage } from "../../docs/types";
 import { docsGroups } from "../../docs/routing";
 import { searchIndex } from "../../docs/generated/searchIndex";
@@ -127,32 +127,53 @@ function DocsNavNode({
   const childrenStyle = {
     "--docs-nav-children-height": `${childrenHeight}px`,
   } as CSSProperties;
+  const childrenId = `docs-nav-children-${item.page.slug.replace(/[^a-z0-9_-]/gi, "-")}`;
+  const rowClassName = [
+    "docs-nav-row",
+    isActive ? "docs-nav-row--active" : "",
+    hasChildren ? "docs-nav-row--branch" : "",
+    expanded ? "docs-nav-row--expanded" : "",
+  ].filter(Boolean).join(" ");
+
+  const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (hasChildren) {
+      const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+      const usesSplitControls = typeof window !== "undefined" && window.matchMedia("(max-width: 1299px)").matches;
+      if (!isModifiedClick && !usesSplitControls) onToggleExpanded(item.page.slug);
+    }
+    onNavigate();
+  };
 
   return (
     <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
-      <a
-        className={[
-          "docs-nav-row",
-          isActive ? "docs-nav-row--active" : "",
-          hasChildren ? "docs-nav-row--branch" : "",
-          expanded ? "docs-nav-row--expanded" : "",
-        ].filter(Boolean).join(" ")}
-        href={item.page.path}
-        aria-current={isActive ? "page" : undefined}
-        aria-expanded={hasChildren ? expanded : undefined}
-        onClick={(event) => {
-          if (hasChildren) {
-            const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
-            if (!isModifiedClick) onToggleExpanded(item.page.slug);
-          }
-          onNavigate();
-        }}
-      >
-        <span>{item.page.navTitle}</span>
-        {hasChildren && <NavClusterIcon variant="branch-down" />}
-      </a>
+      <div className={rowClassName}>
+        <a
+          className="docs-nav-link"
+          href={item.page.path}
+          aria-current={isActive ? "page" : undefined}
+          aria-expanded={hasChildren ? expanded : undefined}
+          aria-controls={hasChildren ? childrenId : undefined}
+          onClick={handleLinkClick}
+        >
+          <span>{item.page.navTitle}</span>
+          {hasChildren && <NavClusterIcon variant="branch-down" />}
+        </a>
+        {hasChildren && (
+          <button
+            className="docs-nav-toggle"
+            type="button"
+            aria-label={`${expanded ? "Collapse" : "Expand"} ${item.page.navTitle}`}
+            aria-expanded={expanded}
+            aria-controls={childrenId}
+            onClick={() => onToggleExpanded(item.page.slug)}
+          >
+            <NavClusterIcon variant="branch-down" />
+          </button>
+        )}
+      </div>
       {hasChildren && (
         <div
+          id={childrenId}
           className={expanded ? "docs-nav-children docs-nav-children--open" : "docs-nav-children"}
           aria-hidden={!expanded}
           style={childrenStyle}
