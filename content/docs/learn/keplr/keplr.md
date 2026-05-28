@@ -1,6 +1,6 @@
 ---
 title: "Keplr"
-description: "Keplr is one of the recommended wallets for Terra Classic. Use this section to install the extension, create or import wallets, and perform common..."
+description: "Install Keplr and access the core guides for Terra Classic users."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

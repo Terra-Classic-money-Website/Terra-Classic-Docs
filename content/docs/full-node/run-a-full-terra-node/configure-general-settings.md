@@ -1,6 +1,6 @@
 ---
 title: "Configure General Settings"
-description: "├─ addrbook.json # Peer registry"
+description: "This guide covers the most important configuration files found in `~/.terra/config/`. Review each file and update the defaults to match your infrastructure."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

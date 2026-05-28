@@ -1,6 +1,6 @@
 ---
 title: "Galaxy Station Wallet"
-description: "Open the Galaxy Station extension."
+description: "Set up new accounts or import Station mnemonics."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

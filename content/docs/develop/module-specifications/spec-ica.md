@@ -1,6 +1,6 @@
 ---
 title: "Spec Ica"
-description: "Terra Classic documentation page pending editorial review."
+description: "ICS-27 controller and host support on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

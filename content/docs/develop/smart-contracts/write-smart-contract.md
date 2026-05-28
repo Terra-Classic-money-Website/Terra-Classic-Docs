@@ -1,6 +1,6 @@
 ---
 title: "Write Smart Contract"
-description: "A smart contract can be considered an instance of a singleton object whose internal state is persisted on the blockchain. Users can trigger state..."
+description: "Author and test CosmWasm contracts with entry points and state management."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

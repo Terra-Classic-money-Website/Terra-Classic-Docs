@@ -1,6 +1,6 @@
 ---
 title: "Spec Capability"
-description: "x/capability provides scoped capability sub-keepers to modules that interact with external systems:"
+description: "Capability keeper for isolating inter-module access rights."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

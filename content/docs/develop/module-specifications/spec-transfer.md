@@ -1,6 +1,6 @@
 ---
 title: "Spec Transfer"
-description: "Terra Classic documentation page pending editorial review."
+description: "ICS-20 fungible token relay with tax integration."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

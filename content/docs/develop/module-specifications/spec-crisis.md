@@ -1,6 +1,6 @@
 ---
 title: "Spec Crisis"
-description: "Terra Classic documentation page pending editorial review."
+description: "Invariant checks and chain-halting safeguards."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

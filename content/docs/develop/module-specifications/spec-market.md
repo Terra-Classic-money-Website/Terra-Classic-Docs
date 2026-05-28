@@ -1,6 +1,6 @@
 ---
 title: "Spec Market"
-description: "**Swaps rejected.** Transaction handlers remain wired, yet governance decisions prevent reopening algorithmic swaps to avoid uncontrolled mint/burn..."
+description: "Historical swap mechanics and constant-product spread logic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

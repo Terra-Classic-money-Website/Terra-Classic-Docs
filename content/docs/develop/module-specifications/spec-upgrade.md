@@ -1,6 +1,6 @@
 ---
 title: "Spec Upgrade"
-description: "Terra Classic documentation page pending editorial review."
+description: "Coordinated chain upgrades and store migrations."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

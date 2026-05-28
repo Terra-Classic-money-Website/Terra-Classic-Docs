@@ -1,6 +1,6 @@
 ---
 title: "Keplr Wallet"
-description: "Open the Keplr extension."
+description: "Set up a new Keplr account or import Station mnemonics."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

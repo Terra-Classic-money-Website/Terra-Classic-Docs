@@ -1,6 +1,6 @@
 ---
 title: "Build Terra Core"
-description: "Terra Classic core is the official implementation of the Terra Classic node software. Use this guide to install terrad, the command-line interface..."
+description: "Fetch and compile the latest Terra Classic binaries from source."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

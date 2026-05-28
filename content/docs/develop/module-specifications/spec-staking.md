@@ -1,6 +1,6 @@
 ---
 title: "Spec Staking"
-description: "Terra Classic documentation page pending editorial review."
+description: "Validator set management, delegation, and bonding."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

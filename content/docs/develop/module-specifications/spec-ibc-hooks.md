@@ -1,6 +1,6 @@
 ---
 title: "Spec Ibc Hooks"
-description: "Terra Classic documentation page pending editorial review."
+description: "Middleware for wasm contract callbacks on IBC transfers."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

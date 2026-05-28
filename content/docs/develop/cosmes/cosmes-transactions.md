@@ -1,6 +1,6 @@
 ---
 title: "Cosmes Transactions"
-description: "import { MsgSend } from \"@goblinhunt/cosmes/client\";"
+description: "Compose and broadcast Common Terra Classic messages."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

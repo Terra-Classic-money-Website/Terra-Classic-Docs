@@ -1,6 +1,6 @@
 ---
 title: "Spec Taxexemption"
-description: "x/taxexemption lets Terra Classic governance define address “zones” that are exempt from the burn tax. Transactions remain taxable by default unless..."
+description: "Manage burn-tax exempt address lists for Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

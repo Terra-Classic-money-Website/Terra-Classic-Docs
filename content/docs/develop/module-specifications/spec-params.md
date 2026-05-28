@@ -1,6 +1,6 @@
 ---
 title: "Spec Params"
-description: "Terra Classic documentation page pending editorial review."
+description: "Parameter subspace management across modules."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

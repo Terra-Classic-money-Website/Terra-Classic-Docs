@@ -1,6 +1,6 @@
 ---
 title: "Keplr Governance"
-description: "Voting with Keplr is only possible through third-party websites. See the ecosystem page for more information."
+description: "Deposit and vote on proposals using Keplr."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

@@ -1,6 +1,6 @@
 ---
 title: "Spec Mint"
-description: "Terra Classic documentation page pending editorial review."
+description: "Inflation schedule and distribution handling (legacy on Classic)."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

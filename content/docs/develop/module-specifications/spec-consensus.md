@@ -1,6 +1,6 @@
 ---
 title: "Spec Consensus"
-description: "Terra Classic documentation page pending editorial review."
+description: "Governance-controlled Tendermint parameter updates."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

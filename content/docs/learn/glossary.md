@@ -1,6 +1,6 @@
 ---
 title: "Glossary"
-description: "Top validators that participate in consensus and earn rewards. If more than the configured maximum of validators want to join the active set, the..."
+description: "Terra Classic terminology reference for users, validators, and developers."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

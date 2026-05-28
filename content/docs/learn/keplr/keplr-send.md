@@ -1,6 +1,6 @@
 ---
 title: "Keplr Send"
-description: "Open the Keplr extension and select the Terra Classic network."
+description: "Send assets with Keplr on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

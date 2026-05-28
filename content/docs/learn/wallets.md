@@ -1,6 +1,6 @@
 ---
 title: "Wallets"
-description: "Use wallets that support Ledger or Trezor flows for production funds. Keep seed phrases offline and dedicate browser profiles to validator accounts."
+description: "Pick a trusted wallet to manage LUNC, delegate, and interact with dApps without highlighting legacy Station interfaces."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

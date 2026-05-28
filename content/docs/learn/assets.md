@@ -1,6 +1,6 @@
 ---
 title: "Assets"
-description: "You find the asset repository on GitHub."
+description: "Download Terra Classic logo assets for integrations and documentation."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

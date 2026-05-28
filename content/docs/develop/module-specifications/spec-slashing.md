@@ -1,6 +1,6 @@
 ---
 title: "Spec Slashing"
-description: "Terra Classic documentation page pending editorial review."
+description: "Downtime and double-signing penalties."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

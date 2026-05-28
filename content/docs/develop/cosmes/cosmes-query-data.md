@@ -1,6 +1,6 @@
 ---
 title: "Cosmes Query Data"
-description: "import { getNativeBalances } from \"@goblinhunt/cosmes/client\";"
+description: "Read balances and contract state via CosmES client helpers."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

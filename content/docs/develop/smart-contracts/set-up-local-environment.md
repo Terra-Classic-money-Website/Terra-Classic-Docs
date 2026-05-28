@@ -1,6 +1,6 @@
 ---
 title: "Set Up Local Environment"
-description: "As a smart contract developer, you will need to write, compile, upload, and test your contracts before deploying them on the Columbus-5 mainnet. The..."
+description: "Install toolchains and prepare LocalTerra for contract development."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

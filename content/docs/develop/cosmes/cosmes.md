@@ -1,6 +1,6 @@
 ---
 title: "Cosmes"
-description: "CosmES is a modern, tree-shakeable, pure-ESM SDK for Cosmos SDK chains. Use the @goblinhunt/cosmes fork for Terra Classic projects."
+description: "Use @goblinhunt/cosmes for Terra Classic TypeScript apps."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

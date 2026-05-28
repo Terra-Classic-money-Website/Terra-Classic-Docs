@@ -1,6 +1,6 @@
 ---
 title: "Spec Ibc Fee"
-description: "Terra Classic documentation page pending editorial review."
+description: "ICS-29 relayer incentivisation for Classic IBC packets."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

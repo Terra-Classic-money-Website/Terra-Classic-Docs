@@ -1,6 +1,6 @@
 ---
 title: "Builder Tooling"
-description: "Terra Classic supports CosmWasm smart contracts, IBC integrations, and a growing ecosystem of TypeScript tooling. Use modern CI/CD workflows and..."
+description: "Essential SDKs and references for building Terra Classic dApps with modern tooling."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

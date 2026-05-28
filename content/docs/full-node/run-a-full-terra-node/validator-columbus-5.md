@@ -1,6 +1,6 @@
 ---
 title: "Validator Columbus 5"
-description: "Linux server (Ubuntu or Debian recommended)"
+description: "End-to-end instructions for running a Terra Classic mainnet validator."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

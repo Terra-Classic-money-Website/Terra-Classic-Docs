@@ -1,6 +1,6 @@
 ---
 title: "Module Specifications"
-description: "Terra Classic Core is the Golang implementation of the Terra Classic protocol, built on top of the Cosmos SDK and CometBFT. Use these module..."
+description: "Explore Terra Classic Core modules, parameters, and Classic-specific behaviour."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

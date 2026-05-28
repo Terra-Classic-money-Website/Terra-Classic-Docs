@@ -1,6 +1,6 @@
 ---
 title: "Interact With Smart Contract"
-description: "Make sure you have set up the local network and that it is up and running:"
+description: "Store, instantiate, execute, and query contracts using `terrad`."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

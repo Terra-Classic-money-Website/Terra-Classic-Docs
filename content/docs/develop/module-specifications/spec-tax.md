@@ -1,6 +1,6 @@
 ---
 title: "Spec Tax"
-description: "x/tax powers Terra Classic’s burn-tax and gas price floor. It intercepts fee payment, deducts the configured burn rate, and routes proceeds between..."
+description: "Burn tax collection, splits, and effective gas price handling."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

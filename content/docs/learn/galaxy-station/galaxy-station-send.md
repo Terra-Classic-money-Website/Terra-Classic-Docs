@@ -1,6 +1,6 @@
 ---
 title: "Galaxy Station Send"
-description: "Open the Galaxy Station extension or connect through WalletConnect."
+description: "Transfer assets using Galaxy Station or WalletConnect."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

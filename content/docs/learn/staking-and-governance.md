@@ -1,6 +1,6 @@
 ---
 title: "Staking And Governance"
-description: "Delegating LUNC grants validators voting power proportional to their stake. Validators collect commission on rewards while delegators earn the..."
+description: "How validator economics, rewards, and voting power align the Terra Classic network."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

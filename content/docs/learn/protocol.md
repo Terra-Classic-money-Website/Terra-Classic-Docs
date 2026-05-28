@@ -1,6 +1,6 @@
 ---
 title: "Protocol"
-description: "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact."
+description: "How Terra Classic stablecoins, LUNC, staking, and governance interconnect."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

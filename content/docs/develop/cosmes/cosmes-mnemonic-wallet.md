@@ -1,6 +1,6 @@
 ---
 title: "Cosmes Mnemonic Wallet"
-description: "Use MnemonicWallet when you need to sign and broadcast transactions from scripts, backends, or test suites without a browser wallet."
+description: "Use `MnemonicWallet` to sign transactions from backends or scripts."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

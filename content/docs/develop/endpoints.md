@@ -1,6 +1,6 @@
 ---
 title: "Endpoints"
-description: "Terra Classic chain ID: columbus-5."
+description: "Public endpoints for Terra Classic infrastructure."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

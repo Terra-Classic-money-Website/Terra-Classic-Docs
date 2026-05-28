@@ -1,6 +1,6 @@
 ---
 title: "Spec Ibc"
-description: "Terra Classic documentation page pending editorial review."
+description: "IBC routing, channel management, and light client integration."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

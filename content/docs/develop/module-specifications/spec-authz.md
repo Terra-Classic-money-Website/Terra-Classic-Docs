@@ -1,6 +1,6 @@
 ---
 title: "Spec Authz"
-description: "Authorization enables an account (granter) to allow another account (grantee) to execute specific messages on their behalf. The grant can be..."
+description: "Delegate message execution permissions with fine-grained controls."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

@@ -1,6 +1,6 @@
 ---
 title: "Terra Py"
-description: "This guide explains how to install the terra_classic_sdk Python SDK, connect to the recommended endpoints, and submit common transactions with typed..."
+description: "Install terra_sdk, connect to trusted endpoints, and broadcast Python transactions."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

@@ -1,6 +1,6 @@
 ---
 title: "1. Download the archive"
-description: "Running a full Terra node is a resource-intensive process that requires a persistent server. If you want to use the Terra Classic blockchain without..."
+description: "Hardware, OS, and networking prerequisites pulled from the Classic runbook."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

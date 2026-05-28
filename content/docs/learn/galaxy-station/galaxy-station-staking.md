@@ -1,6 +1,6 @@
 ---
 title: "Galaxy Station Staking"
-description: "Open Galaxy Station and connect the extension or the mobile app via WalletConnect."
+description: "Delegate, redelegate, and undelegate LUNC in Galaxy Station."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

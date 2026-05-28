@@ -1,6 +1,6 @@
 ---
 title: "Smart Contracts"
-description: "A smart contract is a contract whose terms are expressed as a computer program with logic and state persisted on the blockchain. Smart contracts can..."
+description: "End-to-end tutorials for building and deploying CosmWasm dApps on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

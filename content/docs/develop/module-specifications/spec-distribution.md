@@ -1,6 +1,6 @@
 ---
 title: "Spec Distribution"
-description: "**Burn-tax inflow.** custom/auth/ante/fee_tax.go forwards the burn-tax portion of every transaction to the fee collector. x/distribution allocates..."
+description: "Reward distribution to validators, delegators, and the community pool."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

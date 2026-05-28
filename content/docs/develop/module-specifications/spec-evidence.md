@@ -1,6 +1,6 @@
 ---
 title: "Spec Evidence"
-description: "Terra Classic documentation page pending editorial review."
+description: "Evidence handling for consensus faults and slashing workflows."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

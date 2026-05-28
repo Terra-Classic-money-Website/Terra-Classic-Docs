@@ -1,6 +1,6 @@
 ---
 title: "Keplr Testnet"
-description: "The testnet support is integrated into Keplr. You can utilize the faucet by LuncGoblins or the Telegram bot to get some testnet LUNC."
+description: "Use Keplr on the rebel-2 testnet and request faucet funds."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

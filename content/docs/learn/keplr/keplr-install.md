@@ -1,6 +1,6 @@
 ---
 title: "Keplr Install"
-description: "Open the Chrome Web Store."
+description: "Install Keplr in Chrome, Brave, or Firefox."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

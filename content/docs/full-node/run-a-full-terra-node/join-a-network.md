@@ -1,6 +1,6 @@
 ---
 title: "Join A Network"
-description: "Provision the host and build terrad by following the Build Terra Core prerequisites bundled inside each validator playbook."
+description: "Use this overview to choose the right walkthrough for connecting a Terra Classic node to the network."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

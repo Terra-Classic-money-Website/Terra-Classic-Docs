@@ -1,6 +1,6 @@
 ---
 title: "Example additions to /etc/security/limits.conf"
-description: "Although terrad does not require a superuser account to run, you will need elevated privileges during installation. Create a dedicated system user..."
+description: "Use this checklist to prepare a production-grade Terra Classic node."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

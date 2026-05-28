@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-description: "Terra Classic is a delegated proof-of-stake network powered by LUNC. Validators produce blocks, delegators secure the network through staking, and..."
+description: "High-level walkthrough of the Terra Classic protocol, token utility, and where to dive deeper."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

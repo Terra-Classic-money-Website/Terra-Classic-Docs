@@ -1,6 +1,6 @@
 ---
 title: "Spec Bank"
-description: "x/bank maintains account balances and handles token transfers. Classic extends it via custom/bank to:"
+description: "Account balances, token transfers, and supply tracking."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

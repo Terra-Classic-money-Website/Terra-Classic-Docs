@@ -1,6 +1,6 @@
 ---
 title: "Build Terra Dapp"
-description: "This tutorial is designed to acquaint you with everything you need to know to launch your own smart-contract powered applications on Terra Classic."
+description: "Overview of the CosmWasm template workflow from idea to deployment."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

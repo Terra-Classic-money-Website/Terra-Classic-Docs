@@ -1,6 +1,6 @@
 ---
 title: "Spec Wasm"
-description: "The WASM module implements the execution environment for WebAssembly smart contracts, powered by CosmWasm."
+description: "CosmWasm contract execution, message bindings, and migrations."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

@@ -1,6 +1,6 @@
 ---
 title: "Spec Governance"
-description: "Terra Classic documentation page pending editorial review."
+description: "Proposal lifecycle, deposits, voting, and parameter control."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

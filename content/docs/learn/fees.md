@@ -1,6 +1,6 @@
 ---
 title: "Fees"
-description: "All Terra Classic transactions consume gas. Some legacy transaction types also reference historical fees such as Tobin and spread taxes; these are..."
+description: "Understand gas, burn tax, and legacy swap fees on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

@@ -1,6 +1,6 @@
 ---
 title: "Manage Cw20 Tokens"
-description: "According to the official documentation"
+description: "Deploy and operate CW20 token contracts on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

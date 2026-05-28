@@ -1,6 +1,6 @@
 ---
 title: "Galaxy Station"
-description: "Galaxy Station by Hexxagon offers a WalletConnect-capable browser extension for Terra Classic. Use this section to install the wallet, manage..."
+description: "Install Galaxy Station (Hexxagon) and manage Terra Classic accounts."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

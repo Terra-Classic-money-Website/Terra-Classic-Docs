@@ -1,6 +1,6 @@
 ---
 title: "Spec Auth"
-description: "x/auth is responsible for account state, signature and sequence checks, fee deduction, and ante-handler orchestration. Classic keeps legacy account..."
+description: "Ante handler, vesting accounts, and transaction gas parameters."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

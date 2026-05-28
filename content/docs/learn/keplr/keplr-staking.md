@@ -1,6 +1,6 @@
 ---
 title: "Keplr Staking"
-description: "Staking with Keplr is only possible through third-party websites or the Keplr Dashboard."
+description: "Delegate, redelegate, and undelegate LUNC with Keplr."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

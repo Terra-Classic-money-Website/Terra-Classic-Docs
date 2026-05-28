@@ -1,6 +1,6 @@
 ---
 title: "Classic Transaction Behavior"
-description: "Terra Classic follows standard Cosmos transaction flows, but several chain-specific rules affect how applications should build, simulate, and..."
+description: "Practical guidance for burn tax, Tax2Gas, tax-free contract funding, and safe Terra Classic transaction flows."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

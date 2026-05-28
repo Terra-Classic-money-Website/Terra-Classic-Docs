@@ -1,6 +1,6 @@
 ---
 title: "Sync"
-description: "Clear ~/.terra/data or use terrad tendermint unsafe-reset-all to remove historic blocks."
+description: "Snapshots, manual replay, and verification steps."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

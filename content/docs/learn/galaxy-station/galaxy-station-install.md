@@ -1,6 +1,6 @@
 ---
 title: "Galaxy Station Install"
-description: "Open the Chrome Web Store."
+description: "Install the extension on Chrome, Brave, or Firefox."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

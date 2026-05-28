@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot"
-description: "Occasionally you may need to reset your node to resolve configuration drift or data corruption. The steps below describe common recovery tasks."
+description: "Recover from configuration drift, replace genesis files, and verify node health."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

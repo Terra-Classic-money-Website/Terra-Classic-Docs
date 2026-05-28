@@ -1,6 +1,6 @@
 ---
 title: "Spec Vesting"
-description: "Terra Classic documentation page pending editorial review."
+description: "Legacy vesting account types preserved on Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

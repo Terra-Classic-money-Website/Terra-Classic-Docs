@@ -1,6 +1,6 @@
 ---
 title: "Spec Dyncomm"
-description: "**Dynamic floor.** Every epoch (end block), the module computes a recommended minimum commission based on the StrathCole formula using four..."
+description: "Dynamic validator commission band control for Classic staking."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

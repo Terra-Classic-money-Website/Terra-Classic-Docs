@@ -1,6 +1,6 @@
 ---
 title: "Overview"
-description: "Terra Classic full nodes replicate the entire blockchain. They expose LCD and RPC interfaces, relay gossip, and participate in consensus when..."
+description: "Understand hardware expectations, supported platforms, and the lifecycle of running a Terra Classic node."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

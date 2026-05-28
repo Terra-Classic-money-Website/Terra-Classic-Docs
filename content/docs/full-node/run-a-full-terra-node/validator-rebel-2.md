@@ -1,6 +1,6 @@
 ---
 title: "Validator Rebel 2"
-description: "Linux server (Ubuntu/Debian recommended)"
+description: "Spin up a Terra Classic testnet validator and join coordination channels."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

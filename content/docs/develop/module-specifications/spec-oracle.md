@@ -1,6 +1,6 @@
 ---
 title: "Spec Oracle"
-description: "Terra Classic validators feed external exchange rates so that downstream modules (tax splits, analytics, historical tooling) continue to operate even..."
+description: "Exchange-rate voting, reward weighting, and oracle slashing."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

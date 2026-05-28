@@ -1,6 +1,6 @@
 ---
 title: "Terra Core Localnet"
-description: "git, make, Docker, and Docker Compose (depending on your setup)"
+description: "Spin up a multi-validator Terra Classic Core network locally with `make localnet-start`."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

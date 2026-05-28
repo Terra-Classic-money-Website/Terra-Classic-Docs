@@ -1,6 +1,6 @@
 ---
 title: "Cosmes Getting Started"
-description: "TypeScript project configured for ESM"
+description: "Install the SDK, configure TypeScript, and connect wallets."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

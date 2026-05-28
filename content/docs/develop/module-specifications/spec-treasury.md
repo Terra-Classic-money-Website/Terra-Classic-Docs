@@ -1,6 +1,6 @@
 ---
 title: "Spec Treasury"
-description: "The Treasury module acts as the \"central bank\" of the Terra economy, measuring macroeconomic activity by observing indicators and adjusting monetary..."
+description: "Epoch-based tax rate, reward weight, and seigniorage handling."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"

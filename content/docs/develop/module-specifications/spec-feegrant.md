@@ -1,6 +1,6 @@
 ---
 title: "Spec Feegrant"
-description: "Terra Classic documentation page pending editorial review."
+description: "Allow trusted accounts to pay fees on behalf of other users."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"
