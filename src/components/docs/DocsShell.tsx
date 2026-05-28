@@ -13,7 +13,7 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-function NavClusterIcon({ variant = "branch-down" }: { variant?: "branch-down" | "branch-up" | "back" }) {
+function NavClusterIcon({ variant = "branch-down" }: { variant?: "branch-down" | "back" }) {
   return <span className={`docs-nav-cluster docs-nav-cluster--${variant}`} aria-hidden="true" />;
 }
 
@@ -161,11 +161,16 @@ function DocsSidebar({
           }}
         >
           <span>{item.page.navTitle}</span>
-          {hasChildren && <NavClusterIcon variant={expanded ? "branch-up" : "branch-down"} />}
+          {hasChildren && <NavClusterIcon variant="branch-down" />}
         </a>
-        {hasChildren && expanded && (
-          <div className="docs-nav-children">
-            {item.children.map((child) => renderItem(child, depth + 1))}
+        {hasChildren && (
+          <div
+            className={expanded ? "docs-nav-children docs-nav-children--open" : "docs-nav-children"}
+            aria-hidden={!expanded}
+          >
+            <div className="docs-nav-children-inner">
+              {item.children.map((child) => renderItem(child, depth + 1))}
+            </div>
           </div>
         )}
       </div>

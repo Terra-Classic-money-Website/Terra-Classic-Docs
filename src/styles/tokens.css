@@ -25,6 +25,7 @@
   --tc-motion-fast: 160ms;
   --tc-motion-base: 220ms;
   --tc-motion-slow: 320ms;
+  --tc-motion-sidebar: 420ms;
   --tc-ease-standard: cubic-bezier(.2, 0, 0, 1);
   --tc-ease-emphasized: cubic-bezier(.16, 1, .3, 1);
   --tc-space-0: 0px;
