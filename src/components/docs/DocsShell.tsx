@@ -13,12 +13,8 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-function CollapseIcon({ collapsed }: { collapsed: boolean }) {
-  return (
-    <span className={`docs-collapse-icon ${collapsed ? "docs-collapse-icon--collapsed" : ""}`} aria-hidden="true">
-      <span /><span /><span /><span /><span /><span />
-    </span>
-  );
+function NavClusterIcon() {
+  return <span className="docs-nav-cluster" aria-hidden="true" />;
 }
 
 function segmentLabel(slug: string) {
@@ -63,14 +59,17 @@ function SearchBox({ onNavigate }: { onNavigate: () => void }) {
 
   return (
     <div className="docs-search">
-      <label htmlFor="docs-search-input">Search docs</label>
-      <input
-        id="docs-search-input"
-        type="search"
-        value={query}
-        placeholder="Search docs"
-        onChange={(event) => setQuery(event.target.value)}
-      />
+      <div className="docs-search-control">
+        <span className="docs-search-icon" aria-hidden="true" />
+        <input
+          id="docs-search-input"
+          type="search"
+          value={query}
+          aria-label="Search docs"
+          placeholder="Search docs"
+          onChange={(event) => setQuery(event.target.value)}
+        />
+      </div>
       {query.trim().length >= 2 && (
         <div className="docs-search-results">
           {results.length > 0 ? results.map(({ entry }) => (
@@ -91,18 +90,13 @@ function navItemContainsPage(item: DocsNavItem, slug: string): boolean {
 
 function DocsSidebar({
   activePage,
-  collapsed,
   drawerOpen,
-  onCollapse,
   onNavigate,
 }: {
   activePage: DocsPage;
-  collapsed: boolean;
   drawerOpen: boolean;
-  onCollapse: (next: boolean) => void;
   onNavigate: () => void;
 }) {
-  const compact = collapsed && !drawerOpen;
   const [expandedSlugs, setExpandedSlugs] = useState<Set<string>>(() => new Set());
   const groups = useMemo(() => docsGroups(), []);
 
@@ -148,30 +142,28 @@ function DocsSidebar({
 
     return (
       <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
-        <div className="docs-nav-row-wrap">
+        <div className={hasChildren ? "docs-nav-row-wrap docs-nav-row-wrap--branch" : "docs-nav-row-wrap"}>
           <a
             className={isActive ? "docs-nav-row docs-nav-row--active" : "docs-nav-row"}
             href={item.page.path}
             aria-current={isActive ? "page" : undefined}
-            title={compact ? item.page.navTitle : undefined}
             onClick={onNavigate}
           >
-            <span className="docs-nav-dot" aria-hidden="true" />
-            {!compact && <span>{item.page.navTitle}</span>}
+            <span>{item.page.navTitle}</span>
           </a>
-          {hasChildren && !compact && (
+          {hasChildren && (
             <button
-              className={`docs-nav-toggle ${expanded ? "docs-nav-toggle--open" : ""}`}
+              className="docs-nav-toggle"
               type="button"
               aria-label={`${expanded ? "Collapse" : "Expand"} ${item.page.navTitle}`}
               aria-expanded={expanded}
               onClick={() => toggleExpanded(item.page.slug)}
             >
-              <span aria-hidden="true">›</span>
+              <NavClusterIcon />
             </button>
           )}
         </div>
-        {hasChildren && !compact && expanded && (
+        {hasChildren && expanded && (
           <div className="docs-nav-children">
             {item.children.map((child) => renderItem(child, depth + 1))}
           </div>
@@ -181,30 +173,44 @@ function DocsSidebar({
   };
 
   return (
-    <aside className={`docs-sidebar ${collapsed ? "docs-sidebar--collapsed" : ""} ${drawerOpen ? "docs-sidebar--open" : ""}`}>
+    <aside className={`docs-sidebar ${drawerOpen ? "docs-sidebar--open" : ""}`}>
       <div className="docs-sidebar-inner">
         <div className="docs-sidebar-brand">
           <a className="docs-brand-lockup" href="/" aria-label="Terra Classic Docs home" onClick={onNavigate}>
             <img className="docs-brand-full" src={asset("sidebar-logo.svg")} alt="" />
-            <img className="docs-brand-icon" src={asset("sidebar-logo-icon.svg")} alt="" />
           </a>
-          <button className="docs-collapse-button" type="button" aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"} onClick={() => onCollapse(!collapsed)}>
-            <CollapseIcon collapsed={collapsed} />
-          </button>
         </div>
 
-        {!compact && <SearchBox onNavigate={onNavigate} />}
+        <SearchBox onNavigate={onNavigate} />
 
-        <nav className="docs-nav" aria-label="Docs navigation">
-          {groups.map((group) => (
-            <section className="docs-nav-group" key={group.label}>
-              {!compact && <h2>{group.label}</h2>}
-              <div className="docs-nav-rows">
-                {group.items.map((item) => renderItem(item))}
-              </div>
-            </section>
-          ))}
-        </nav>
+        <div className="docs-sidebar-scroll">
+          <nav className="docs-nav" aria-label="Docs navigation">
+            {groups.map((group) => (
+              <section className="docs-nav-group" key={group.label}>
+                <h2>{group.label}:</h2>
+                <div className="docs-nav-rows">
+                  {group.items.map((item) => renderItem(item))}
+                </div>
+              </section>
+            ))}
+          </nav>
+
+          <footer className="docs-sidebar-footer">
+            <a className="docs-sidebar-back" href="https://terra-classic.money/">
+              <NavClusterIcon />
+              <span>Back to Terra-Classic.money</span>
+            </a>
+            <div className="docs-sidebar-disclaimer">
+              <strong>Disclaimers:</strong>
+              <p>
+                Terra-Classic.money is not the official website of Terra Classic. Just as no one owns the technology behind email, no one owns the Terra Classic blockchain. Accordingly, no single entity can speak with authority on behalf of Terra Classic.
+              </p>
+              <p>
+                This website is provided for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any securities, tokens, or other financial instruments. The content presented is intended to offer insight into the Terra Classic blockchain and its native assets (LUNC and USTC), and should not be interpreted as legal or financial guidance. Visitors are strongly encouraged to conduct their own independent research, and to consult with qualified legal and financial professionals before making any investment decisions. The authors, contributors, and affiliated entities expressly disclaim all liability for any actions taken based on the content of this website.
+              </p>
+            </div>
+          </footer>
+        </div>
       </div>
     </aside>
   );
@@ -228,12 +234,7 @@ function TableOfContents({ page }: { page: DocsPage }) {
 }
 
 export function DocsShell({ activePage, children }: { activePage: DocsPage; children: ReactNode }) {
-  const [collapsed, setCollapsed] = useState(() => localStorage.getItem("tc-docs-sidebar-collapsed") === "true");
   const [drawerOpen, setDrawerOpen] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("tc-docs-sidebar-collapsed", String(collapsed));
-  }, [collapsed]);
 
   useEffect(() => {
     document.body.classList.toggle("docs-drawer-open", drawerOpen);
@@ -243,7 +244,7 @@ export function DocsShell({ activePage, children }: { activePage: DocsPage; chil
   const closeDrawer = () => setDrawerOpen(false);
 
   return (
-    <div className={`docs-app ${collapsed ? "docs-app--collapsed" : ""}`}>
+    <div className="docs-app">
       <header className="docs-mobile-topbar">
         <button className="docs-mobile-menu" type="button" aria-label={drawerOpen ? "Close docs navigation" : "Open docs navigation"} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
           <MenuIcon open={drawerOpen} />
@@ -254,7 +255,13 @@ export function DocsShell({ activePage, children }: { activePage: DocsPage; chil
         <span className="docs-mobile-status">Docs</span>
       </header>
 
-      <DocsSidebar activePage={activePage} collapsed={collapsed} drawerOpen={drawerOpen} onCollapse={setCollapsed} onNavigate={closeDrawer} />
+      <DocsSidebar activePage={activePage} drawerOpen={drawerOpen} onNavigate={closeDrawer} />
+      <button
+        className="docs-drawer-backdrop"
+        type="button"
+        aria-label="Close docs navigation"
+        onClick={closeDrawer}
+      />
 
       <main className="docs-main">
         <div className="docs-content-grid">
