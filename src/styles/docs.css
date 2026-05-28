@@ -22,7 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 32px 16px 32px 32px;
+  padding: 32px;
 }
 
 .docs-sidebar-brand {
@@ -61,32 +61,20 @@
 .docs-search-control {
   height: 32px;
   display: grid;
-  grid-template-columns: 12px minmax(0, 1fr);
+  grid-template-columns: 14px minmax(0, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   border-radius: var(--radius-pill);
   background: var(--color-grey-50);
   padding: 0 16px;
 }
 
 .docs-search-icon {
-  width: 12px;
-  height: 12px;
-  border: 2px solid var(--color-grey-500);
-  border-radius: 999px;
-  position: relative;
-}
-
-.docs-search-icon::after {
-  content: "";
-  position: absolute;
-  right: -5px;
-  bottom: -4px;
-  width: 6px;
-  height: 2px;
-  border-radius: 999px;
+  width: 14px;
+  height: 14px;
   background: var(--color-grey-500);
-  transform: rotate(45deg);
+  -webkit-mask: url("/assets/docs-search.svg") center / contain no-repeat;
+  mask: url("/assets/docs-search.svg") center / contain no-repeat;
 }
 
 .docs-search input {
@@ -207,6 +195,7 @@
 .docs-nav-toggle {
   width: 10px;
   height: 32px;
+  padding: 0;
   border-radius: 0;
   background: transparent;
   color: var(--color-black);
@@ -233,7 +222,7 @@
 }
 
 .docs-nav-node--depth-1 .docs-nav-row--active {
-  color: var(--color-white);
+  color: var(--color-blue);
 }
 
 .docs-nav-node--depth-2 .docs-nav-row {
@@ -245,28 +234,32 @@
 }
 
 .docs-nav-node--depth-2 .docs-nav-row--active {
-  color: var(--color-white);
+  color: var(--color-blue);
 }
 
 .docs-nav-row:hover,
 .docs-nav-row:focus-visible { color: var(--color-blue); }
 
 .docs-nav-row--active {
-  background: var(--color-black);
-  color: var(--color-white);
-  padding: 0 14px;
+  background: transparent;
+  color: var(--color-blue);
+  padding: 0;
 }
 
 .docs-nav-row--active:hover,
-.docs-nav-row--active:focus-visible { background: var(--color-black); color: var(--color-white); }
+.docs-nav-row--active:focus-visible { background: transparent; color: var(--color-blue); }
 
 .docs-sidebar-scroll {
   min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   gap: 48px;
+  padding-right: 16px;
+  margin-right: -16px;
+  scrollbar-gutter: stable;
   scrollbar-color: var(--color-grey-700) transparent;
   scrollbar-width: thin;
 }
@@ -292,6 +285,11 @@
 
 .docs-sidebar-back:hover,
 .docs-sidebar-back:focus-visible {
+  color: var(--color-black);
+}
+
+.docs-sidebar-back:hover .docs-nav-cluster,
+.docs-sidebar-back:focus-visible .docs-nav-cluster {
   color: var(--color-blue);
 }
 
@@ -333,14 +331,24 @@
 }
 
 .docs-nav-cluster {
-  width: 10px;
-  height: 9px;
   flex: 0 0 10px;
   display: block;
   color: currentColor;
   background: currentColor;
+}
+
+.docs-nav-cluster--branch {
+  width: 10px;
+  height: 9px;
   -webkit-mask: url("/assets/docs-nav-arrow.svg") center / contain no-repeat;
   mask: url("/assets/docs-nav-arrow.svg") center / contain no-repeat;
+}
+
+.docs-nav-cluster--back {
+  width: 9px;
+  height: 10px;
+  -webkit-mask: url("/assets/docs-nav-back.svg") center / contain no-repeat;
+  mask: url("/assets/docs-nav-back.svg") center / contain no-repeat;
 }
 
 .docs-main {

@@ -13,8 +13,8 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-function NavClusterIcon() {
-  return <span className="docs-nav-cluster" aria-hidden="true" />;
+function NavClusterIcon({ variant = "branch" }: { variant?: "branch" | "back" }) {
+  return <span className={`docs-nav-cluster docs-nav-cluster--${variant}`} aria-hidden="true" />;
 }
 
 function segmentLabel(slug: string) {
@@ -197,7 +197,7 @@ function DocsSidebar({
 
           <footer className="docs-sidebar-footer">
             <a className="docs-sidebar-back" href="https://terra-classic.money/">
-              <NavClusterIcon />
+              <NavClusterIcon variant="back" />
               <span>Back to Terra-Classic.money</span>
             </a>
             <div className="docs-sidebar-disclaimer">
