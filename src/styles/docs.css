@@ -668,23 +668,40 @@
     position: fixed;
     inset: 0 0 auto;
     z-index: 40;
-    height: 80px;
+    height: 96px;
     display: flex;
     align-items: center;
-    gap: 24px;
+    justify-content: space-between;
+    gap: 32px;
     padding: 0 24px;
     background: var(--color-white);
     border-bottom: 1px solid var(--color-grey-100);
   }
 
+  .docs-mobile-brand-group {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
   .docs-mobile-menu {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     display: grid;
     place-items: center;
-    border-radius: var(--radius-pill);
-    background: var(--color-grey-50);
+    flex: 0 0 32px;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
     cursor: pointer;
+  }
+
+  .docs-mobile-separator {
+    width: 1px;
+    height: 48px;
+    flex: 0 0 1px;
+    background: var(--color-grey-100);
   }
 
   .docs-menu-icon {
@@ -713,6 +730,18 @@
   .docs-mobile-menu:hover .docs-menu-icon span,
   .docs-mobile-menu:focus-visible .docs-menu-icon span { background: var(--color-black); }
 
+  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(1),
+  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(2),
+  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(1),
+  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(2) {
+    background: var(--color-grey-100);
+  }
+
+  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(3),
+  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(3) {
+    background: var(--color-grey-500);
+  }
+
   .docs-mobile-brand img {
     display: block;
     width: 221px;
@@ -720,33 +749,48 @@
     max-width: 100%;
   }
 
-  .docs-mobile-status {
+  .docs-mobile-back {
     margin-left: auto;
     min-height: 32px;
     display: inline-flex;
     align-items: center;
-    padding: 0 14px;
-    border-radius: var(--radius-pill);
-    background: var(--color-grey-50);
-    font-size: var(--tc-type-link-small-size);
-    line-height: var(--tc-type-link-small-line-height);
-    font-weight: 800;
+    gap: 10px;
+    color: var(--color-black);
+    font-size: var(--tc-type-link-normal-size);
+    line-height: var(--tc-type-link-normal-line-height);
+    font-weight: 700;
+    transition: color var(--tc-motion-sidebar-color) var(--tc-ease-standard);
+  }
+
+  .docs-mobile-back:hover,
+  .docs-mobile-back:focus-visible {
+    color: var(--color-blue);
+  }
+
+  .docs-mobile-back .docs-nav-cluster {
+    transition-property: color, background-color;
+    transition-duration: var(--tc-motion-sidebar-color);
+    transition-timing-function: var(--tc-ease-standard);
   }
 
   .docs-sidebar {
-    top: 80px;
+    top: 96px;
     width: min(var(--sidebar-width-expanded), 100vw);
-    height: calc(100vh - 80px);
+    height: calc(100vh - 96px);
     transform: translateX(-100%);
+  }
+
+  .docs-sidebar-brand {
+    display: none;
   }
 
   .docs-drawer-backdrop {
     position: fixed;
-    inset: 80px 0 0;
+    inset: 96px 0 0;
     z-index: 15;
     display: block;
     pointer-events: none;
-    background: var(--color-white);
+    background: transparent;
     opacity: 0;
     transition: opacity var(--tc-motion-slow) var(--tc-ease-standard);
   }
@@ -762,7 +806,7 @@
 
   .docs-main {
     margin-left: 0;
-    padding: 80px 16px 16px;
+    padding: 96px 16px 16px;
   }
 
   .docs-content-grid {
@@ -776,13 +820,28 @@
 @media (max-width: 767px) {
   .docs-mobile-topbar {
     height: 64px;
-    gap: 12px;
-    padding: 0 12px;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .docs-mobile-brand-group {
+    min-width: 0;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    gap: 16px;
   }
 
   .docs-mobile-brand {
     min-width: 0;
-    flex: 1 1 auto;
+    order: 1;
+  }
+
+  .docs-mobile-menu {
+    order: 3;
+  }
+
+  .docs-mobile-separator {
+    display: none;
   }
 
   .docs-mobile-brand img {
@@ -790,11 +849,16 @@
     height: 32px;
   }
 
-  .docs-mobile-status { display: none; }
+  .docs-mobile-back { display: none; }
 
   .docs-sidebar {
     top: 64px;
+    width: 100vw;
     height: calc(100vh - 64px);
+  }
+
+  .docs-sidebar-brand {
+    display: flex;
   }
 
   .docs-drawer-backdrop { inset: 64px 0 0; }

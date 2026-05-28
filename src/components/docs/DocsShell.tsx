@@ -305,13 +305,19 @@ export function DocsShell({ activePage, children }: { activePage: DocsPage; chil
   return (
     <div className="docs-app">
       <header className="docs-mobile-topbar">
-        <button className="docs-mobile-menu" type="button" aria-label={drawerOpen ? "Close docs navigation" : "Open docs navigation"} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
-          <MenuIcon open={drawerOpen} />
-        </button>
-        <a className="docs-mobile-brand" href="/" onClick={closeDrawer} aria-label="Terra Classic Docs home">
-          <img src={asset("sidebar-logo.svg")} alt="" />
+        <div className="docs-mobile-brand-group">
+          <button className="docs-mobile-menu" type="button" aria-label={drawerOpen ? "Close docs navigation" : "Open docs navigation"} aria-expanded={drawerOpen} onClick={() => setDrawerOpen((open) => !open)}>
+            <MenuIcon open={drawerOpen} />
+          </button>
+          <span className="docs-mobile-separator" aria-hidden="true" />
+          <a className="docs-mobile-brand" href="/" onClick={closeDrawer} aria-label="Terra Classic Docs home">
+            <img src={asset("sidebar-logo.svg")} alt="" />
+          </a>
+        </div>
+        <a className="docs-mobile-back" href="https://terra-classic.money/">
+          <NavClusterIcon variant="back" />
+          <span>Back to Terra-Classic.money</span>
         </a>
-        <span className="docs-mobile-status">Docs</span>
       </header>
 
       <DocsSidebar activePage={activePage} drawerOpen={drawerOpen} onNavigate={closeDrawer} />
