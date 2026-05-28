@@ -13,7 +13,7 @@ function MenuIcon({ open }: { open: boolean }) {
   );
 }
 
-function NavClusterIcon({ variant = "branch" }: { variant?: "branch" | "back" }) {
+function NavClusterIcon({ variant = "branch-down" }: { variant?: "branch-down" | "branch-up" | "back" }) {
   return <span className={`docs-nav-cluster docs-nav-cluster--${variant}`} aria-hidden="true" />;
 }
 
@@ -138,31 +138,31 @@ function DocsSidebar({
     const isActive = item.page.slug === activePage.slug;
     const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
     const hasChildren = item.children.length > 0;
-    const expanded = hasActiveChild || expandedSlugs.has(item.page.slug);
+    const expanded = isActive || hasActiveChild || expandedSlugs.has(item.page.slug);
 
     return (
       <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
-        <div className={hasChildren ? "docs-nav-row-wrap docs-nav-row-wrap--branch" : "docs-nav-row-wrap"}>
-          <a
-            className={isActive ? "docs-nav-row docs-nav-row--active" : "docs-nav-row"}
-            href={item.page.path}
-            aria-current={isActive ? "page" : undefined}
-            onClick={onNavigate}
-          >
-            <span>{item.page.navTitle}</span>
-          </a>
-          {hasChildren && (
-            <button
-              className="docs-nav-toggle"
-              type="button"
-              aria-label={`${expanded ? "Collapse" : "Expand"} ${item.page.navTitle}`}
-              aria-expanded={expanded}
-              onClick={() => toggleExpanded(item.page.slug)}
-            >
-              <NavClusterIcon />
-            </button>
-          )}
-        </div>
+        <a
+          className={[
+            "docs-nav-row",
+            isActive ? "docs-nav-row--active" : "",
+            hasChildren ? "docs-nav-row--branch" : "",
+            expanded ? "docs-nav-row--expanded" : "",
+          ].filter(Boolean).join(" ")}
+          href={item.page.path}
+          aria-current={isActive ? "page" : undefined}
+          aria-expanded={hasChildren ? expanded : undefined}
+          onClick={(event) => {
+            if (hasChildren) {
+              const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
+              if (!isModifiedClick) toggleExpanded(item.page.slug);
+            }
+            onNavigate();
+          }}
+        >
+          <span>{item.page.navTitle}</span>
+          {hasChildren && <NavClusterIcon variant={expanded ? "branch-up" : "branch-down"} />}
+        </a>
         {hasChildren && expanded && (
           <div className="docs-nav-children">
             {item.children.map((child) => renderItem(child, depth + 1))}
