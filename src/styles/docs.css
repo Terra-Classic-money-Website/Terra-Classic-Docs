@@ -720,26 +720,72 @@
   .docs-menu-icon span:nth-child(7) { left: 0; top: 0; }
   .docs-menu-icon span:nth-child(8) { left: 0; top: 14px; background: var(--color-grey-500); }
   .docs-menu-icon span:nth-child(9) { left: 0; top: 28px; }
-  .docs-menu-icon--open span:nth-child(4),
-  .docs-menu-icon--open span:nth-child(5),
-  .docs-menu-icon--open span:nth-child(6) { left: 0; }
-  .docs-menu-icon--open span:nth-child(7),
-  .docs-menu-icon--open span:nth-child(8),
-  .docs-menu-icon--open span:nth-child(9) { left: 28px; }
 
-  .docs-mobile-menu:hover .docs-menu-icon span,
-  .docs-mobile-menu:focus-visible .docs-menu-icon span { background: var(--color-black); }
+  .docs-menu-icon--open span:nth-child(3) {
+    background: var(--color-grey-500);
+  }
 
-  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(1),
-  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(2),
-  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(1),
-  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(2) {
+  .docs-menu-icon--open span:nth-child(4) {
+    left: 0;
+    background: var(--color-grey-500);
+  }
+
+  .docs-menu-icon--open span:nth-child(5) {
+    left: 0;
     background: var(--color-grey-100);
   }
 
-  .docs-mobile-menu:hover .docs-menu-icon span:nth-child(3),
-  .docs-mobile-menu:focus-visible .docs-menu-icon span:nth-child(3) {
+  .docs-menu-icon--open span:nth-child(6) {
+    left: 0;
     background: var(--color-grey-500);
+  }
+
+  .docs-menu-icon--open span:nth-child(7) {
+    left: 28px;
+    background: var(--color-grey-500);
+  }
+
+  .docs-menu-icon--open span:nth-child(8) {
+    left: 28px;
+    background: var(--color-grey-100);
+  }
+
+  .docs-menu-icon--open span:nth-child(9) {
+    left: 28px;
+    background: var(--color-grey-500);
+  }
+
+  .docs-mobile-menu:hover .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(3),
+  .docs-mobile-menu:hover .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(5),
+  .docs-mobile-menu:hover .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(8),
+  .docs-mobile-menu:focus-visible .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(3),
+  .docs-mobile-menu:focus-visible .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(5),
+  .docs-mobile-menu:focus-visible .docs-menu-icon:not(.docs-menu-icon--open) span:nth-child(8) {
+    background: var(--color-black);
+  }
+
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(3),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(4),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(6),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(7),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(9),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(3),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(4),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(6),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(7),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(9) {
+    background: var(--color-black);
+  }
+
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(1),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(2),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(5),
+  .docs-mobile-menu:hover .docs-menu-icon--open span:nth-child(8),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(1),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(2),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(5),
+  .docs-mobile-menu:focus-visible .docs-menu-icon--open span:nth-child(8) {
+    background: var(--color-grey-100);
   }
 
   .docs-mobile-brand img {
@@ -759,6 +805,7 @@
     font-size: var(--tc-type-link-normal-size);
     line-height: var(--tc-type-link-normal-line-height);
     font-weight: 700;
+    white-space: nowrap;
     transition: color var(--tc-motion-sidebar-color) var(--tc-ease-standard);
   }
 
@@ -811,6 +858,7 @@
 
   .docs-content-grid {
     grid-template-columns: minmax(0, var(--docs-page-max));
+    justify-content: center;
     padding: 56px 32px 80px;
   }
 
