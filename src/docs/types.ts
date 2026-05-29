@@ -26,6 +26,7 @@ export type DocsPage = {
   sourceCommit: string;
   sourcePath: string;
   sourceDate: string;
+  tocDepth: number | null;
   headings: DocsHeading[];
   body: string;
   previousSlug: string | null;

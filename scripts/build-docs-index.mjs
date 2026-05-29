@@ -59,6 +59,7 @@ const navSections = [
   {
     label: "Develop",
     items: [
+      { slug: "develop/quick-start-guide", title: "Quick start guide" },
       { slug: "develop/how-to/localnet/terra-core-localnet", title: "Run Terra Classic localnet" },
       { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
       {
@@ -223,6 +224,7 @@ const pages = walkMarkdown().map((filePath) => {
     sourceCommit: parsed.metadata.sourceCommit,
     sourcePath: parsed.metadata.sourcePath,
     sourceDate: parsed.metadata.sourceDate,
+    tocDepth: parsed.metadata.tocDepth ? Number(parsed.metadata.tocDepth) : null,
     headings: extractHeadings(body),
     body,
   };

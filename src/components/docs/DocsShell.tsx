@@ -297,7 +297,8 @@ function DocsSidebar({
 }
 
 function TableOfContents({ page }: { page: DocsPage }) {
-  const headings = page.headings.filter((heading) => heading.depth <= 3);
+  const maxDepth = page.tocDepth ?? 3;
+  const headings = page.headings.filter((heading) => heading.depth <= maxDepth);
   if (headings.length === 0) return null;
   return (
     <aside className="docs-toc" aria-label="On this page">
