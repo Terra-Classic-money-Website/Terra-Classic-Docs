@@ -21,8 +21,7 @@ const navSections = [
   {
     label: "Learn Terra Classic",
     items: [
-      { slug: "learn/overview", title: "Start here" },
-      { slug: "learn/protocol", title: "Terra Classic protocol" },
+      { slug: "learn/protocol", title: "About Terra Classic" },
       {
         slug: "learn/wallets",
         title: "Wallets",
@@ -55,8 +54,6 @@ const navSections = [
       },
       { slug: "learn/staking-and-governance", title: "Staking and governance" },
       { slug: "learn/fees", title: "Fees" },
-      { slug: "learn/glossary", title: "Glossary" },
-      { slug: "learn/assets", title: "Brand assets" },
     ],
   },
   {
@@ -147,6 +144,12 @@ const navSections = [
         ],
       },
       { slug: "develop/endpoints", title: "Public Network Endpoints" },
+    ],
+  },
+  {
+    label: "Appendices",
+    items: [
+      { slug: "appendices/glossary", title: "Glossary" },
     ],
   },
 ];

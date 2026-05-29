@@ -1,5 +1,5 @@
 ---
-title: "Protocol"
+title: "About Terra Classic"
 description: "How Terra Classic stablecoins, LUNC, staking, and governance interconnect."
 status: draft
 reviewed: false

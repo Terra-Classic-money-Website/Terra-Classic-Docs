@@ -22,7 +22,7 @@ DApps such as DEXes can charge additional protocol fees on top of network fees.
 
 ## Gas
 
-[Gas](/docs/learn/glossary#fees) covers validator compute and storage. Validators configure minimum gas prices; transactions must include fees meeting or exceeding that implied price.
+[Gas](/appendices/glossary/#fees) covers validator compute and storage. Validators configure minimum gas prices; transactions must include fees meeting or exceeding that implied price.
 
 Key behaviour on Terra Classic:
 

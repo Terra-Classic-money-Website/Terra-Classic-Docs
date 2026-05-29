@@ -104,7 +104,7 @@ Time window measured in blocks. Governance epochs last 100,800 blocks (~7.7 days
 - **Spread fee**: Historical fee on Terra↔LUNC swaps.
 - **Tobin tax**: Historical fee on Terra stablecoin swaps.
 
-Refer to the [fees guide](./fees.md).
+Refer to the [fees guide](/learn/fees/).
 
 ## Fiat currency
 
