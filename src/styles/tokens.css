@@ -1,0 +1,82 @@
+:root {
+  --lunc-black: #101010;
+  --lunc-white: #ffffff;
+  --lunc-ultra-light-gray: #f3f3f3;
+  --lunc-light-gray: #e7e7e7;
+  --lunc-gray: #a9a9a9;
+  --lunc-dark-gray: #737373;
+  --lunc-orange: #ee7730;
+  --lunc-yellow: #f9d85e;
+  --lunc-light-blue: #5493f7;
+  --lunc-dark-blue: #0e3ca5;
+  --color-white: var(--lunc-white);
+  --color-black: var(--lunc-black);
+  --color-navy: #020a1b;
+  --color-blue: var(--lunc-light-blue);
+  --color-yellow: var(--lunc-yellow);
+  --color-grey-50: var(--lunc-ultra-light-gray);
+  --color-grey-100: var(--lunc-light-gray);
+  --color-grey-500: var(--lunc-gray);
+  --color-grey-700: var(--lunc-dark-gray);
+  --radius-card: 16px;
+  --radius-pill: 64px;
+  --sidebar-width-expanded: 320px;
+  --font-family: "Figtree", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --tc-motion-fast: 160ms;
+  --tc-motion-base: 220ms;
+  --tc-motion-slow: 320ms;
+  --tc-motion-sidebar: 420ms;
+  --tc-motion-sidebar-color: 140ms;
+  --tc-motion-sidebar-spatial: 200ms;
+  --tc-ease-standard: cubic-bezier(.2, 0, 0, 1);
+  --tc-ease-emphasized: cubic-bezier(.16, 1, .3, 1);
+  --tc-space-0: 0px;
+  --tc-space-8: 8px;
+  --tc-space-16: 16px;
+  --tc-space-24: 24px;
+  --tc-space-32: 32px;
+  --tc-space-48: 48px;
+  --tc-space-64: 64px;
+  --tc-space-96: 96px;
+  --tc-space-120: 120px;
+  --tc-type-h1-size: 56px;
+  --tc-type-h1-line-height: 60px;
+  --tc-type-h2-size: 32px;
+  --tc-type-h2-line-height: 40px;
+  --tc-type-h3-size: 24px;
+  --tc-type-h3-line-height: 32px;
+  --tc-type-h4-size: 20px;
+  --tc-type-h4-line-height: 28px;
+  --tc-type-body-size: 16px;
+  --tc-type-body-line-height: 26px;
+  --tc-type-body-small-size: 14px;
+  --tc-type-body-small-line-height: 22px;
+  --tc-type-link-normal-size: 14px;
+  --tc-type-link-normal-line-height: 16px;
+  --tc-type-link-small-size: 12px;
+  --tc-type-link-small-line-height: 16px;
+  --docs-page-max: 820px;
+}
+
+@media (min-width: 1500px) {
+  :root {
+    --tc-type-h1-size: 64px;
+    --tc-type-h1-line-height: 68px;
+    --docs-page-max: 900px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --tc-type-h1-size: 40px;
+    --tc-type-h1-line-height: 44px;
+    --tc-type-h2-size: 28px;
+    --tc-type-h2-line-height: 36px;
+    --tc-type-h3-size: 22px;
+    --tc-type-h3-line-height: 30px;
+    --tc-type-body-size: 15px;
+    --tc-type-body-line-height: 24px;
+    --tc-type-body-small-size: 13px;
+    --tc-type-body-small-line-height: 20px;
+  }
+}
