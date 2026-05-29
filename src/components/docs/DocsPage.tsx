@@ -2,8 +2,10 @@ import type { DocsPage as DocsPageType } from "../../docs/types";
 import { getPageBySlug } from "../../docs/routing";
 import { MarkdownContent } from "../../docs/markdown";
 
-function editPlaceholder(page: DocsPageType) {
-  return `https://github.com/terra-classic-money/terra-classic-docs/edit/main/${page.sourceFile}`;
+const DOCS_REPOSITORY_URL = "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs";
+
+function getEditUrl(page: DocsPageType) {
+  return `${DOCS_REPOSITORY_URL}/edit/main/${page.sourceFile}`;
 }
 
 export function DocsPage({ page }: { page: DocsPageType }) {
@@ -20,7 +22,7 @@ export function DocsPage({ page }: { page: DocsPageType }) {
       <MarkdownContent markdown={page.body} />
 
       <footer className="docs-page-footer">
-        <a className="docs-edit-link" href={editPlaceholder(page)} target="_blank" rel="noopener noreferrer">
+        <a className="docs-edit-link" href={getEditUrl(page)} target="_blank" rel="noopener noreferrer">
           Edit on GitHub
         </a>
         <nav className="docs-page-neighbors" aria-label="Previous and next pages">

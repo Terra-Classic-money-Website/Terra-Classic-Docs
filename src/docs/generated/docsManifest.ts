@@ -17,7 +17,7 @@ export const docsPages = [
     "reviewed": false,
     "sourceTitle": "Terra Classic Docs repository",
     "sourceSite": "https://docs.terra-classic.money",
-    "sourceRepo": "https://github.com/terra-classic-money/terra-classic-docs/blob/main",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
     "sourceCommit": "bootstrap-2026-05-27",
     "sourcePath": "content/docs/start.md",
     "sourceDate": "2026-05-27",
@@ -38,7 +38,7 @@ export const docsPages = [
         "id": "contribution-model"
       }
     ],
-    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, fees, staking, and governance material.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub.\n\nUntil the final public repository URL is confirmed, the edit links in this bootstrap build are placeholders.\n",
+    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, fees, staking, and governance material.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. The edit link on each page opens its source markdown file in the public docs repository.\n",
     "previousSlug": null,
     "nextSlug": "learn/protocol"
   },
