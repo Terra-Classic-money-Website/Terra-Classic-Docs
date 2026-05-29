@@ -41,7 +41,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    document.title = `${page.title} - Terra Classic Docs`;
+    document.title = `${page.title} - Independent Documentation for Terra Classic, LUNC & USTC`;
     document.querySelector('meta[name="description"]')?.setAttribute("content", page.description);
   }, [page]);
 
