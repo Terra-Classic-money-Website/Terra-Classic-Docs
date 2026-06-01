@@ -67,7 +67,7 @@ Terra Classic governance lets stakers steer protocol policy.
 2. **Voting period**: Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator's vote.
 3. **Execution**: Passed proposals trigger automatic handlers or human follow-up depending on the proposal type. Deposits, quorum, threshold, veto, and voting-period parameters are governance-controlled and should be queried before relying on a fixed value.
 
-Common proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Staking Protocol governance guide](/staking-protocol/governance/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.
+Common proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Governance guide](/governance/overview/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.
 
 ## Fees and rewards
 

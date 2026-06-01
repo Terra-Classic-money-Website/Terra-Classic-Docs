@@ -15,6 +15,8 @@ Validator choice is the most important decision a delegator makes in Staking Pro
 
 You are not only choosing an APR. You are choosing who receives your voting power, whose infrastructure risk you accept, and who represents your stake by default in governance.
 
+For the governance-specific side of this decision, also read [Voting power and delegation](/governance/voting-power-and-delegation/) and [Validator accountability](/governance/validator-accountability/).
+
 ## The short version
 
 A strong validator should be:
@@ -147,3 +149,5 @@ Be careful with validators that:
 ## Delegator responsibility
 
 Delegators are not passive passengers. If a validator becomes unreliable, stops voting, or behaves against your interests, use [redelegation](/staking-protocol/delegate-lunc/) to move your stake.
+
+For a broader governance framework, see [Risks and safeguards](/governance/risks-and-safeguards/).

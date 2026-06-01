@@ -1,13 +1,34 @@
 ---
 title: "Keplr Governance"
-description: "Deposit and vote on proposals using Keplr."
+description: "How Keplr users should approach Terra Classic governance voting when using supported governance interfaces."
 status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs repository"
-sourceSite: "https://terra-classic.io/docs"
-sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
-sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
-sourcePath: "learn/keplr/keplr-governance.md"
-sourceDate: "2026-05-27"
+sourceTitle: "Terra Classic Docs Governance section"
+sourceSite: "https://docs.terra-classic.money"
+sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
+sourceCommit: "governance-section-2026-06-01"
+sourcePath: "content/docs/learn/keplr/keplr-governance.md"
+sourceDate: "2026-06-01"
 ---
-Voting with Keplr is only possible through third-party websites. See the [ecosystem page](/) for more information.
+Keplr can hold Terra Classic accounts, but governance availability depends on the interface you use with the wallet.
+
+If the active Keplr interface you are using does not expose Terra Classic governance directly, use a supported Terra Classic governance interface that connects to Keplr.
+
+Before voting, read the general [How to vote](/governance/how-to-vote/) guide and the [Vote options](/governance/vote-options/) guide.
+
+## Practical flow
+
+1. Open a supported Terra Classic governance interface.
+2. Connect Keplr.
+3. Confirm that Terra Classic is selected.
+4. Open the proposal.
+5. Review the proposal text, deadline, current tally, and discussion links.
+6. Choose `Yes`, `No`, `NoWithVeto`, or `Abstain`.
+7. Confirm the transaction in Keplr.
+8. Verify that your vote was recorded.
+
+## Safety
+
+Never enter your Keplr seed phrase into a governance website.
+
+Keplr should ask you to approve a transaction. It should not ask you to reveal your recovery phrase.

@@ -70,11 +70,10 @@ const navSections = [
         ],
       },
       {
-        id: "staking-protocol/validators-and-governance",
-        title: "Validators and governance",
+        id: "staking-protocol/validators",
+        title: "Validators",
         children: [
           { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
-          { slug: "staking-protocol/governance", title: "Governance" },
           { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
         ],
       },
@@ -146,6 +145,37 @@ const navSections = [
         title: "Technical reference",
         children: [
           { slug: "forex-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Governance",
+    items: [
+      { slug: "governance/overview", title: "Governance" },
+      {
+        id: "governance/understand-governance",
+        title: "Understand governance",
+        children: [
+          { slug: "governance/voting-power-and-delegation", title: "Voting power and delegation" },
+          { slug: "governance/proposal-lifecycle", title: "Proposal lifecycle" },
+          { slug: "governance/vote-options", title: "Vote options" },
+        ],
+      },
+      {
+        id: "governance/use-governance",
+        title: "Use governance",
+        children: [
+          { slug: "governance/how-to-vote", title: "How to vote" },
+          { slug: "governance/how-to-evaluate-proposals", title: "How to evaluate proposals" },
+        ],
+      },
+      {
+        id: "governance/accountability-and-risk",
+        title: "Accountability and risk",
+        children: [
+          { slug: "governance/validator-accountability", title: "Validator accountability" },
+          { slug: "governance/risks-and-safeguards", title: "Risks and safeguards" },
         ],
       },
     ],

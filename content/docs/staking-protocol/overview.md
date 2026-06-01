@@ -71,7 +71,7 @@ This is why the docs should not describe staking only as a passive APR feature. 
 - [Rewards and APR](/staking-protocol/rewards-and-apr/) explains where rewards come from and why APR changes.
 - [Choose a validator](/staking-protocol/choose-a-validator/) gives a decision framework for delegators.
 - [Risks and unstaking](/staking-protocol/risks-and-unstaking/) covers slashing, lockups, redelegation limits, and operational risk.
-- [Governance](/staking-protocol/governance/) explains how staked LUNC becomes governance power.
+- [Governance](/governance/overview/) explains how staked LUNC becomes governance power and how proposals are reviewed and voted on.
 - [Validator responsibilities](/staking-protocol/validator-responsibilities/) explains what responsible validators should provide.
 - [Developer reference](/staking-protocol/developer-reference/) gives module, message, query, and endpoint references.
 

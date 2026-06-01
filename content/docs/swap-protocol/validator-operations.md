@@ -119,4 +119,4 @@ Bad communication overpromises volume, burns, repeg, or guaranteed availability.
 
 - [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/)
 - [Oracle module spec](/develop/module-specifications/spec-oracle/)
-- [Validator responsibilities](/staking-protocol/validator-responsibilities/)
+- [Validator accountability](/governance/validator-accountability/)

@@ -90,6 +90,8 @@ If you do not vote, your validator's vote applies to your delegated stake by def
 
 Governance can also change protocol parameters, funding decisions, module behavior, tax rules, upgrade timing, and other chain-level settings.
 
+For the full governance workflow, see [Governance](/governance/overview/), [Voting power and delegation](/governance/voting-power-and-delegation/), and [How to vote](/governance/how-to-vote/).
+
 ## Market risk
 
 Staking rewards do not remove price risk.

@@ -53,6 +53,8 @@ In consensus, voting power decides how much weight a validator has when blocks a
 
 Terra Classic has also implemented a custom validator voting-power cap documented in the [staking module spec](/develop/module-specifications/spec-staking/). The purpose is to reduce the risk that one validator accumulates too much influence.
 
+For a user-facing governance explanation, see [Voting power and delegation](/governance/voting-power-and-delegation/).
+
 ## Delegation shares
 
 When you delegate, the staking module tracks your position as delegation shares against a validator, not as a separate pile of untouched tokens.

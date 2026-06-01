@@ -141,17 +141,12 @@ export const docsNavBlueprint = [
       },
       {
         "type": "label",
-        "id": "staking-protocol/validators-and-governance",
-        "title": "Validators and governance",
+        "id": "staking-protocol/validators",
+        "title": "Validators",
         "children": [
           {
             "type": "page",
             "slug": "staking-protocol/choose-a-validator",
-            "children": []
-          },
-          {
-            "type": "page",
-            "slug": "staking-protocol/governance",
             "children": []
           },
           {
@@ -306,6 +301,72 @@ export const docsNavBlueprint = [
           {
             "type": "page",
             "slug": "forex-protocol/developer-reference",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "label": "Governance",
+    "items": [
+      {
+        "type": "page",
+        "slug": "governance/overview",
+        "children": []
+      },
+      {
+        "type": "label",
+        "id": "governance/understand-governance",
+        "title": "Understand governance",
+        "children": [
+          {
+            "type": "page",
+            "slug": "governance/voting-power-and-delegation",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "governance/proposal-lifecycle",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "governance/vote-options",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "governance/use-governance",
+        "title": "Use governance",
+        "children": [
+          {
+            "type": "page",
+            "slug": "governance/how-to-vote",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "governance/how-to-evaluate-proposals",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "governance/accountability-and-risk",
+        "title": "Accountability and risk",
+        "children": [
+          {
+            "type": "page",
+            "slug": "governance/validator-accountability",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "governance/risks-and-safeguards",
             "children": []
           }
         ]
