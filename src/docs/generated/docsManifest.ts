@@ -334,7 +334,7 @@ export const docsPages = [
     "navHasChildren": false,
     "navOrder": 7,
     "title": "What Terra Classic is not",
-    "description": "A boundary-setting guide to avoid overclaiming Terra Classic functionality, USTC status, proposed products, and institutional readiness.",
+    "description": "A clear explanation of common Terra Classic misconceptions, including Terra 2.0, old Terra mechanics, USTC, centralization, and stablecoin assumptions.",
     "status": "reviewed",
     "reviewed": true,
     "sourceTitle": "Terra Classic Docs content audit",
@@ -347,8 +347,13 @@ export const docsPages = [
     "headings": [
       {
         "depth": 2,
-        "title": "Not old Terra",
-        "id": "not-old-terra"
+        "title": "Not Terra 2.0",
+        "id": "not-terra-20"
+      },
+      {
+        "depth": 2,
+        "title": "Not the old algorithmic stablecoin system",
+        "id": "not-the-old-algorithmic-stablecoin-system"
       },
       {
         "depth": 2,
@@ -357,13 +362,13 @@ export const docsPages = [
       },
       {
         "depth": 2,
-        "title": "Not a live product just because it has a name",
-        "id": "not-a-live-product-just-because-it-has-a-name"
+        "title": "Not a centrally operated product",
+        "id": "not-a-centrally-operated-product"
       },
       {
         "depth": 2,
-        "title": "Not an analytics site",
-        "id": "not-an-analytics-site"
+        "title": "Not a finished institutional stablecoin stack",
+        "id": "not-a-finished-institutional-stablecoin-stack"
       },
       {
         "depth": 2,
@@ -376,7 +381,7 @@ export const docsPages = [
         "id": "source-and-verification"
       }
     ],
-    "body": "Clear docs should say what Terra Classic is and what it is not.\n\nThis protects users, developers, validators, institutions, and the community from confused product claims.\n\n## Not old Terra\n\nTerra Classic is the continuation of the original chain, but it should not be described as if the old Terra product model still applies unchanged.\n\nHistorical mint/burn mechanics, old stablecoin assumptions, and pre-collapse product promises should be treated as historical context unless a current page clearly documents a redesigned live mechanism.\n\n## Not a guaranteed USTC repeg\n\nTerra Classic docs should not imply that USTC is guaranteed to return to 1 USD.\n\nUSTC is a legacy market-priced asset. Proposed products may involve USTC, but a proposal does not create a guaranteed peg, redemption right, or risk-free stablecoin.\n\n## Not a live product just because it has a name\n\nProduct names make docs easier to read, but a named product is not automatically live.\n\nExamples:\n\n- Staking Protocol describes live staking behavior.\n- Forex Protocol is documented as a proposed collateralized stable-asset system.\n- Swap Protocol describes the Market Module 2.0 no-mint swap design and must be read with its governance/status page.\n\nAlways check status language.\n\n## Not an analytics site\n\nThis docs site should not replace:\n\n- explorers\n- validator dashboards\n- staking dashboards\n- burn trackers\n- liquidity dashboards\n- market-data websites\n- governance vote trackers\n\nThe docs should explain what these tools mean and link to them where useful.\n\n## Not investment advice\n\nTerra Classic documentation explains protocol mechanics and product status.\n\nIt does not tell anyone whether to buy, sell, hold, stake, swap, trade, arbitrage, or integrate any asset.\n\n## Source and verification\n\nLast verified: 2026-06-01\n\nThis page was created from the docs content audit as a positioning and trust boundary for future writing.\n",
+    "body": "Terra Classic is easiest to understand when several common misconceptions are removed first.\n\nThis page defines what Terra Classic should not be confused with. It is not a warning against the chain. It is a clarity layer for readers who are trying to separate current Terra Classic from old Terra assumptions, market speculation, and future product ambition.\n\n## Not Terra 2.0\n\nTerra Classic is not Terra 2.0.\n\nTerra Classic is the continuation of the original Terra chain. Its mainnet chain ID is `columbus-5`, and its native staking and governance asset is LUNC.\n\nTerra 2.0 is a separate chain with a separate asset, ecosystem, governance path, and product history.\n\nThat distinction matters because old Terra history, Terra Classic recovery work, and Terra 2.0 development are often mixed together in public discussion.\n\n## Not the old algorithmic stablecoin system\n\nTerra Classic is not a restart of the old algorithmic stablecoin model.\n\nThe pre-2022 Terra model depended on algorithmic mint/burn relationships and peg assumptions that failed under stress. Terra Classic still carries the historical chain state and assets, but current product work should not be understood as a simple return to that old model.\n\nWhen Terra Classic proposes new stable-asset or swap designs, the important question is whether the design avoids the old failure modes:\n\n- uncontrolled minting\n- hard peg assumptions without redemption backing\n- unlimited swap capacity\n- weak oracle safety\n- unclear governance responsibility\n\nThat is why proposed products such as Forex Protocol and Market Module 2.0 are documented around collateral, finite liquidity, oracle controls, and implementation status.\n\n## Not a guaranteed USTC repeg\n\nTerra Classic does not guarantee that USTC will return to 1 USD.\n\nUSTC is a legacy market-priced Terra Classic asset. It may be transferred, traded, discussed in governance, or referenced in proposed product designs, but those facts do not create a guaranteed peg, redemption right, or stable settlement promise.\n\nA credible Terra Classic stable-asset strategy has to be explicit about collateral, redemption, liquidity, oracle design, risk controls, and governance execution. It cannot rely on repeating the old UST promise.\n\n## Not a centrally operated product\n\nTerra Classic is not a centrally operated fintech app.\n\nIt is a public blockchain governed through validators, delegators, proposals, software releases, community coordination, and infrastructure providers. No single website, wallet, validator, developer group, or community channel should be treated as the sole operator of the chain.\n\nThis decentralized structure is a strength, but it also creates execution complexity. Product delivery depends on governance alignment, software implementation, validator readiness, public tooling, and clear communication.\n\n## Not a finished institutional stablecoin stack\n\nTerra Classic has institutional product potential, especially around native assets, staking, governance, payment rails, and proposed collateralized stable assets.\n\nBut potential is not the same as finished institutional readiness.\n\nAn institution evaluating Terra Classic should distinguish:\n\n- live chain capabilities\n- historical assets\n- proposed products\n- governance-accepted concepts\n- implemented production systems\n- external liquidity and market access\n- legal, custody, collateral, and compliance assumptions\n\nThat distinction strengthens Terra Classic's credibility. It prevents serious opportunities from being weakened by overclaiming.\n\n## Not investment advice\n\nTerra Classic is not an investment recommendation.\n\nLUNC, USTC, and other Terra Classic-related assets can be volatile and risky. Documentation can explain protocol mechanics, product status, and historical context. It cannot tell anyone whether to buy, sell, hold, stake, swap, trade, arbitrage, or integrate an asset.\n\n## Source and verification\n\nLast verified: 2026-06-01\n\nThis page was rewritten after review to focus strictly on Terra Classic misconceptions, not on the role of this docs website or the main Terra Classic website.\n",
     "previousSlug": "learn/history-after-the-collapse",
     "nextSlug": "learn/strengths"
   },
