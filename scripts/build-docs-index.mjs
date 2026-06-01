@@ -22,6 +22,7 @@ const navSections = [
     label: "Learn Terra Classic",
     items: [
       { slug: "learn/protocol", title: "About Terra Classic" },
+      { slug: "learn/strengths", title: "Terra Classic Strengths" },
       {
         slug: "learn/wallets",
         title: "Wallets",

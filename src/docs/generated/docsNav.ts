@@ -21,6 +21,11 @@ export const docsNavBlueprint = [
       },
       {
         "type": "page",
+        "slug": "learn/strengths",
+        "children": []
+      },
+      {
+        "type": "page",
         "slug": "learn/wallets",
         "children": [
           {
