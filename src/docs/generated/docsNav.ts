@@ -184,44 +184,65 @@ export const docsNavBlueprint = [
         "children": []
       },
       {
-        "type": "page",
-        "slug": "swap-protocol/how-it-works",
-        "children": []
+        "type": "label",
+        "id": "swap-protocol/use-swap-protocol",
+        "title": "Use Swap Protocol",
+        "children": [
+          {
+            "type": "page",
+            "slug": "swap-protocol/how-it-works",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/swap-lunc-and-ustc",
+            "children": []
+          }
+        ]
       },
       {
-        "type": "page",
-        "slug": "swap-protocol/swap-lunc-and-ustc",
-        "children": []
+        "type": "label",
+        "id": "swap-protocol/economics-and-safety",
+        "title": "Economics and safety",
+        "children": [
+          {
+            "type": "page",
+            "slug": "swap-protocol/fees-burns-and-liquidity",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/oracles-and-safety-controls",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/scenarios-and-examples",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/risks-and-limitations",
+            "children": []
+          }
+        ]
       },
       {
-        "type": "page",
-        "slug": "swap-protocol/fees-burns-and-liquidity",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "swap-protocol/oracles-and-safety-controls",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "swap-protocol/scenarios-and-examples",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "swap-protocol/risks-and-limitations",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "swap-protocol/validator-operations",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "swap-protocol/developer-reference",
-        "children": []
+        "type": "label",
+        "id": "swap-protocol/technical-reference",
+        "title": "Technical reference",
+        "children": [
+          {
+            "type": "page",
+            "slug": "swap-protocol/validator-operations",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/developer-reference",
+            "children": []
+          }
+        ]
       }
     ]
   },

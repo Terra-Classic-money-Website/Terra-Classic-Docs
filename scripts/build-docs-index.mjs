@@ -91,14 +91,32 @@ const navSections = [
     label: "Swap Protocol",
     items: [
       { slug: "swap-protocol/overview", title: "Swap Protocol" },
-      { slug: "swap-protocol/how-it-works", title: "How it works" },
-      { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
-      { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
-      { slug: "swap-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
-      { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
-      { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
-      { slug: "swap-protocol/validator-operations", title: "Validator operations" },
-      { slug: "swap-protocol/developer-reference", title: "Developer reference" },
+      {
+        id: "swap-protocol/use-swap-protocol",
+        title: "Use Swap Protocol",
+        children: [
+          { slug: "swap-protocol/how-it-works", title: "How it works" },
+          { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
+        ],
+      },
+      {
+        id: "swap-protocol/economics-and-safety",
+        title: "Economics and safety",
+        children: [
+          { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
+          { slug: "swap-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
+          { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
+        ],
+      },
+      {
+        id: "swap-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "swap-protocol/validator-operations", title: "Validator operations" },
+          { slug: "swap-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
     ],
   },
   {
