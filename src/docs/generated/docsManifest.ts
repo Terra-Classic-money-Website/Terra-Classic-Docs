@@ -2998,7 +2998,7 @@ export const docsPages = [
     "navHasChildren": false,
     "navOrder": 63,
     "title": "Quick start guide",
-    "description": "A practical first pass for building on Terra Classic: networks, endpoints, transactions, SDKs, localnet, smart contracts, and production checks.",
+    "description": "Choose the right Terra Classic developer path, connect safely, and know which deeper guide to use next.",
     "status": "draft",
     "reviewed": false,
     "sourceTitle": "Terra Classic Docs owner-provided draft",
@@ -3011,233 +3011,78 @@ export const docsPages = [
     "headings": [
       {
         "depth": 2,
-        "title": "What you can build on Terra Classic",
-        "id": "what-you-can-build-on-terra-classic"
+        "title": "What Terra Classic is for developers",
+        "id": "what-terra-classic-is-for-developers"
       },
       {
         "depth": 2,
-        "title": "The three main developer paths",
-        "id": "the-three-main-developer-paths"
-      },
-      {
-        "depth": 3,
-        "title": "1. Frontend dApp developer",
-        "id": "1-frontend-dapp-developer"
-      },
-      {
-        "depth": 3,
-        "title": "2. Smart contract developer",
-        "id": "2-smart-contract-developer"
-      },
-      {
-        "depth": 3,
-        "title": "3. Backend / automation developer",
-        "id": "3-backend-automation-developer"
+        "title": "Choose your developer path",
+        "id": "choose-your-developer-path"
       },
       {
         "depth": 2,
-        "title": "Network basics",
-        "id": "network-basics"
+        "title": "Before you send a transaction",
+        "id": "before-you-send-a-transaction"
+      },
+      {
+        "depth": 3,
+        "title": "Burn tax can affect transfers",
+        "id": "burn-tax-can-affect-transfers"
+      },
+      {
+        "depth": 3,
+        "title": "Tax exemptions exist",
+        "id": "tax-exemptions-exist"
+      },
+      {
+        "depth": 3,
+        "title": "Public endpoints are not production infrastructure",
+        "id": "public-endpoints-are-not-production-infrastructure"
+      },
+      {
+        "depth": 3,
+        "title": "Legacy market-swap assumptions are dangerous",
+        "id": "legacy-market-swap-assumptions-are-dangerous"
+      },
+      {
+        "depth": 3,
+        "title": "Simulation is part of the product",
+        "id": "simulation-is-part-of-the-product"
       },
       {
         "depth": 2,
-        "title": "Public endpoints",
-        "id": "public-endpoints"
-      },
-      {
-        "depth": 3,
-        "title": "Mainnet: columbus-5",
-        "id": "mainnet-columbus-5"
-      },
-      {
-        "depth": 3,
-        "title": "Testnet: rebel-2",
-        "id": "testnet-rebel-2"
+        "title": "First 30-minute path",
+        "id": "first-30-minute-path"
       },
       {
         "depth": 2,
-        "title": "Terra Classic-specific behavior developers must understand",
-        "id": "terra-classic-specific-behavior-developers-must-understand"
-      },
-      {
-        "depth": 3,
-        "title": "1. Burn tax can affect transfers",
-        "id": "1-burn-tax-can-affect-transfers"
-      },
-      {
-        "depth": 3,
-        "title": "2. Some addresses can be tax-exempt",
-        "id": "2-some-addresses-can-be-tax-exempt"
-      },
-      {
-        "depth": 3,
-        "title": "3. Legacy mint/burn market swaps are disabled",
-        "id": "3-legacy-mintburn-market-swaps-are-disabled"
-      },
-      {
-        "depth": 3,
-        "title": "4. Contract calls with attached funds behave differently from simple transfers",
-        "id": "4-contract-calls-with-attached-funds-behave-differently-from-simple-transfers"
-      },
-      {
-        "depth": 3,
-        "title": "5. Public infrastructure is for development, not production",
-        "id": "5-public-infrastructure-is-for-development-not-production"
+        "title": "Minimal TypeScript starter",
+        "id": "minimal-typescript-starter"
       },
       {
         "depth": 2,
-        "title": "Recommended quick transaction flow",
-        "id": "recommended-quick-transaction-flow"
+        "title": "Local development",
+        "id": "local-development"
       },
       {
         "depth": 2,
-        "title": "Build with TypeScript and CosmES",
-        "id": "build-with-typescript-and-cosmes"
-      },
-      {
-        "depth": 3,
-        "title": "Connect Keplr",
-        "id": "connect-keplr"
-      },
-      {
-        "depth": 3,
-        "title": "Query native balances",
-        "id": "query-native-balances"
-      },
-      {
-        "depth": 3,
-        "title": "Send LUNC",
-        "id": "send-lunc"
-      },
-      {
-        "depth": 2,
-        "title": "Use a mnemonic wallet for scripts and backends",
-        "id": "use-a-mnemonic-wallet-for-scripts-and-backends"
-      },
-      {
-        "depth": 2,
-        "title": "Build with Python",
-        "id": "build-with-python"
-      },
-      {
-        "depth": 2,
-        "title": "Run a local Terra Classic network",
-        "id": "run-a-local-terra-classic-network"
-      },
-      {
-        "depth": 2,
-        "title": "Build CosmWasm smart contracts",
-        "id": "build-cosmwasm-smart-contracts"
-      },
-      {
-        "depth": 3,
-        "title": "Install Rust and tooling",
-        "id": "install-rust-and-tooling"
-      },
-      {
-        "depth": 3,
-        "title": "Start from a CosmWasm template",
-        "id": "start-from-a-cosmwasm-template"
-      },
-      {
-        "depth": 3,
-        "title": "Build the contract",
-        "id": "build-the-contract"
-      },
-      {
-        "depth": 2,
-        "title": "Upload, instantiate, execute, and query a contract",
-        "id": "upload-instantiate-execute-and-query-a-contract"
-      },
-      {
-        "depth": 3,
-        "title": "1. Add or recover a local key",
-        "id": "1-add-or-recover-a-local-key"
-      },
-      {
-        "depth": 3,
-        "title": "2. Store contract code",
-        "id": "2-store-contract-code"
-      },
-      {
-        "depth": 3,
-        "title": "3. Instantiate the contract",
-        "id": "3-instantiate-the-contract"
-      },
-      {
-        "depth": 3,
-        "title": "4. Execute the contract",
-        "id": "4-execute-the-contract"
-      },
-      {
-        "depth": 3,
-        "title": "5. Query the contract",
-        "id": "5-query-the-contract"
-      },
-      {
-        "depth": 2,
-        "title": "Interact with CW20 tokens",
-        "id": "interact-with-cw20-tokens"
-      },
-      {
-        "depth": 3,
-        "title": "Query CW20 balance with CosmES",
-        "id": "query-cw20-balance-with-cosmes"
-      },
-      {
-        "depth": 3,
-        "title": "Transfer CW20 tokens",
-        "id": "transfer-cw20-tokens"
-      },
-      {
-        "depth": 2,
-        "title": "Build DEX and swap integrations carefully",
-        "id": "build-dex-and-swap-integrations-carefully"
-      },
-      {
-        "depth": 2,
-        "title": "Use IBC only with known channels and relayer assumptions",
-        "id": "use-ibc-only-with-known-channels-and-relayer-assumptions"
-      },
-      {
-        "depth": 2,
-        "title": "Terra Classic module map for developers",
-        "id": "terra-classic-module-map-for-developers"
-      },
-      {
-        "depth": 2,
-        "title": "Production checklist",
-        "id": "production-checklist"
-      },
-      {
-        "depth": 3,
-        "title": "Network and infrastructure",
-        "id": "network-and-infrastructure"
-      },
-      {
-        "depth": 3,
-        "title": "Transactions",
-        "id": "transactions"
-      },
-      {
-        "depth": 3,
-        "title": "Burn tax and fees",
-        "id": "burn-tax-and-fees"
-      },
-      {
-        "depth": 3,
         "title": "Smart contracts",
         "id": "smart-contracts"
       },
       {
-        "depth": 3,
-        "title": "Wallet UX",
-        "id": "wallet-ux"
+        "depth": 2,
+        "title": "Python and backend automation",
+        "id": "python-and-backend-automation"
       },
       {
-        "depth": 3,
-        "title": "Security",
-        "id": "security"
+        "depth": 2,
+        "title": "Native swaps, DEX routes, CW20, and IBC",
+        "id": "native-swaps-dex-routes-cw20-and-ibc"
+      },
+      {
+        "depth": 2,
+        "title": "Before mainnet",
+        "id": "before-mainnet"
       },
       {
         "depth": 2,
@@ -3246,56 +3091,36 @@ export const docsPages = [
       },
       {
         "depth": 3,
-        "title": "Treating Terra Classic like old Terra Classic documentation",
-        "id": "treating-terra-classic-like-old-terra-classic-documentation"
+        "title": "Treating Terra Classic as old Terra documentation",
+        "id": "treating-terra-classic-as-old-terra-documentation"
       },
       {
         "depth": 3,
-        "title": "Hardcoding gas prices",
-        "id": "hardcoding-gas-prices"
+        "title": "Treating public endpoints as reliable production infrastructure",
+        "id": "treating-public-endpoints-as-reliable-production-infrastructure"
       },
       {
         "depth": 3,
-        "title": "Ignoring burn tax",
-        "id": "ignoring-burn-tax"
+        "title": "Hardcoding fees and tax behavior",
+        "id": "hardcoding-fees-and-tax-behavior"
       },
       {
         "depth": 3,
-        "title": "Assuming every transfer behaves the same",
-        "id": "assuming-every-transfer-behaves-the-same"
+        "title": "Skipping simulation",
+        "id": "skipping-simulation"
       },
       {
         "depth": 3,
-        "title": "Trusting public infrastructure for production",
-        "id": "trusting-public-infrastructure-for-production"
-      },
-      {
-        "depth": 3,
-        "title": "Broadcasting without simulation",
-        "id": "broadcasting-without-simulation"
-      },
-      {
-        "depth": 3,
-        "title": "Forgetting that Terra Classic is governance-controlled",
-        "id": "forgetting-that-terra-classic-is-governance-controlled"
+        "title": "Building swap flows from memory",
+        "id": "building-swap-flows-from-memory"
       },
       {
         "depth": 2,
-        "title": "Recommended build path for a first Terra Classic dApp",
-        "id": "recommended-build-path-for-a-first-terra-classic-dapp"
-      },
-      {
-        "depth": 2,
-        "title": "Minimal mental model",
-        "id": "minimal-mental-model"
-      },
-      {
-        "depth": 2,
-        "title": "Related docs",
-        "id": "related-docs"
+        "title": "Where to go next",
+        "id": "where-to-go-next"
       }
     ],
-    "body": "This guide gives developers a fast, practical overview of how to build on Terra Classic without reading the full documentation first.\n\nUse it to understand the network, choose a development path, connect to endpoints, build transactions, test locally, deploy smart contracts, and avoid the most common Terra Classic-specific mistakes.\n\n> **Important**\n>\n> Terra Classic is a community-maintained blockchain. Public infrastructure, tools, SDKs, wallets, and documentation can change over time. Always verify current chain parameters, endpoint health, tax behavior, and wallet support before deploying production applications.\n\n## What you can build on Terra Classic\n\nTerra Classic is a Cosmos SDK / CometBFT blockchain with CosmWasm smart contract support, IBC connectivity, staking, governance, oracle infrastructure, and Terra Classic-specific modules such as burn tax, tax exemptions, and dynamic validator commission.\n\nDevelopers can build:\n\n- dApps using CosmWasm smart contracts\n- wallets and portfolio tools\n- dashboards and analytics products\n- DEX frontends and routing tools\n- staking and governance interfaces\n- payment and transfer flows\n- bots, scripts, and backend services\n- CW20 token tools\n- IBC-aware applications\n- integrations with Terra Classic wallets and infrastructure\n\nTerra Classic is not an EVM chain. If you are coming from Ethereum, the closest mental model is:\n\n| Ethereum-style concept | Terra Classic equivalent |\n| --- | --- |\n| Solidity smart contract | CosmWasm smart contract written mostly in Rust |\n| ERC20 token | CW20 token |\n| MetaMask | Keplr, Galaxy Station, Orbitar, Cosmostation, LUNC Dash |\n| Web3.js / ethers.js | CosmES, Terra Classic SDK, LCD/RPC/gRPC APIs |\n| Ganache / local chain | Terra Classic localnet |\n| Contract deployment | Store WASM code, then instantiate contract |\n| Contract call | `MsgExecuteContract` |\n| Native token transfer | `MsgSend` |\n| Cross-chain transfer | IBC transfer |\n\n## The three main developer paths\n\nMost Terra Classic builders fall into one of three paths.\n\n### 1. Frontend dApp developer\n\nChoose this path if you want users to connect a wallet, read balances, sign transactions, interact with contracts, or use Terra Classic dApps in a browser.\n\nRecommended stack:\n\n- TypeScript\n- CosmES SDK\n- Keplr and/or Galaxy Station\n- RPC endpoint\n- LCD endpoint for tax and chain queries\n- FCD endpoint for gas prices\n\nUse this path for wallets, dashboards, staking pages, DEX interfaces, governance interfaces, and consumer-facing dApps.\n\n### 2. Smart contract developer\n\nChoose this path if you want to write on-chain logic.\n\nRecommended stack:\n\n- Rust\n- CosmWasm\n- Terra Classic localnet\n- `terrad`\n- Docker\n- CosmWasm optimizer\n- CW20 / CW721 standards where needed\n\nUse this path for DeFi protocols, vaults, token contracts, routing contracts, escrow systems, gaming logic, governance tooling, and on-chain automation primitives.\n\n### 3. Backend / automation developer\n\nChoose this path if you want to build bots, indexers, backend services, scripts, monitoring tools, integrations, or transaction automation.\n\nRecommended stack:\n\n- Python with `terra-classic-sdk`\n- or TypeScript with CosmES\n- private or dedicated RPC/LCD infrastructure\n- secure secret management\n- transaction simulation\n- retries and monitoring\n\nUse this path for analytics, alerts, scheduled jobs, treasury automation, validator tooling, integrations, and backend services.\n\n## Network basics\n\nTerra Classic mainnet is:\n\n```text\nChain ID: columbus-5\nAddress prefix: terra\nNative staking / governance asset: LUNC\nOn-chain micro-denom: uluna\n```\n\nAmounts are usually represented in micro-denominations on-chain.\n\n```text\n1 LUNC = 1,000,000 uluna\n```\n\nFor example:\n\n```text\n1000000uluna = 1 LUNC\n```\n\nThe main Terra Classic testnet used in the docs is:\n\n```text\nChain ID: rebel-2\n```\n\nLocal development usually runs on:\n\n```text\nlocalterra\n```\n\nor another local chain ID shown by your localnet output.\n\n## Public endpoints\n\nPublic endpoints are useful for development, testing, and light workloads. Do not depend on public endpoints for production systems that need uptime, rate-limit control, or predictable latency.\n\n### Mainnet: columbus-5\n\n```text\nLCD:\nhttps://terra-classic-lcd.publicnode.com\nhttps://api-lunc-lcd.binodes.com\nhttps://lcd.terra-classic.hexxagon.io\n\nRPC:\nhttps://terra-classic-rpc.publicnode.com\nhttps://api-lunc-rpc.binodes.com\nhttps://rpc.terra-classic.hexxagon.io\n\nFCD:\nhttps://terra-classic-fcd.publicnode.com\n\nGas prices:\nhttps://terra-classic-fcd.publicnode.com/v1/txs/gas_prices\n\ngRPC:\ngrpc+https://terra-classic-grpc.publicnode.com\ngrpc+https://grpc.terra-classic.hexxagon.io\n```\n\n### Testnet: rebel-2\n\n```text\nLCD:\nhttps://lcd.luncblaze.com\nhttps://lcd.terra-classic.hexxagon.dev\n\nRPC:\nhttps://rpc.luncblaze.com\nhttps://rpc.terra-classic.hexxagon.dev\n\nFCD:\nhttps://fcd.luncblaze.com\n\ngRPC:\ngrpc+https://grpc.terra-classic.hexxagon.dev\n```\n\nFor the maintained endpoint list, see [Public Network Endpoints](/develop/endpoints/). For production, run your own node or use a dedicated infrastructure provider.\n\n## Terra Classic-specific behavior developers must understand\n\nTerra Classic follows standard Cosmos transaction patterns, but it has several chain-specific behaviors that can break integrations if ignored.\n\n### 1. Burn tax can affect transfers\n\nTerra Classic uses the `x/tax` module to apply burn tax to many taxable transfers.\n\nThis means:\n\n- the receiver may receive less than the sender entered\n- tax behavior can depend on transaction type\n- some routes can use Tax2Gas / reverse-charge handling\n- governance can change tax parameters\n- apps should not hardcode tax assumptions forever\n\nFor basic transfers, the chain handles deduction. For good UX, your app should query current parameters and show the user an estimated received amount before confirmation.\n\nUseful endpoints:\n\n```text\nTax params:\nhttps://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params\n\nCurrent burn tax rate:\nhttps://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate\n```\n\n### 2. Some addresses can be tax-exempt\n\nTerra Classic has a tax exemption registry. Some addresses or zones can be exempt from burn tax.\n\nThis matters for:\n\n- exchanges\n- custody flows\n- treasury wallets\n- smart contract workflows\n- service wallets\n- internal app transfers\n\nUseful endpoints:\n\n```text\nZones:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones\n\nZone addresses:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/{zonename}/addresses\n\nTaxable check:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{to}\n```\n\nIf your UX shows exact fees or exact received amounts, check taxability before the final confirmation screen.\n\n### 3. Legacy mint/burn market swaps are disabled\n\nDo not build new app flows that depend on pre-2022 algorithmic mint/burn market swaps.\n\nAvoid assuming that these old flows are active:\n\n- stablecoin to stablecoin market swaps\n- algorithmic mint/burn swap behavior\n- pre-2022 Terra Classic market-module assumptions\n\nNative LUNC and USTC swaps are available through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0. That route uses no-mint protocol liquidity, oracle-aware pricing, finite epoch capacity, and safety controls.\n\nFor DEX swaps, build against DEX contracts and always include slippage protection such as `max_spread` or `minimum_receive`. For native LUNC and USTC swaps, read the [Swap Protocol developer reference](/swap-protocol/developer-reference/) before integrating.\n\n### 4. Contract calls with attached funds behave differently from simple transfers\n\nSending funds to a contract is not always the same as a wallet-to-wallet bank transfer.\n\nIf your app sends funds into a CosmWasm contract, treat that flow separately in your fee and tax UX. Simulate transactions and verify actual chain behavior before showing users final cost or received-amount estimates.\n\n### 5. Public infrastructure is for development, not production\n\nPublic RPC/LCD/FCD endpoints are helpful, but production systems should not depend on a single public endpoint.\n\nBackend services should:\n\n- use retries with exponential backoff\n- support multiple endpoints\n- monitor endpoint failures\n- log transaction hashes, raw logs, gas used, and error codes\n- alert on repeated failed broadcasts\n- run dedicated infrastructure when reliability matters\n\n## Recommended quick transaction flow\n\nA safe Terra Classic transaction flow looks like this:\n\n1. Choose the correct network: `columbus-5` for mainnet, `rebel-2` for testnet, or `localterra`/the local chain ID shown by localnet.\n2. Fetch gas prices.\n3. Fetch current tax parameters if your UX depends on fees or received amounts.\n4. Check tax exemption status if the sender or recipient may be exempt.\n5. Build the unsigned transaction.\n6. Simulate the transaction.\n7. Apply a gas adjustment margin.\n8. Show the user an estimated cost and expected result.\n9. Ask the wallet to sign.\n10. Broadcast.\n11. Poll or subscribe for confirmation.\n12. Store the transaction hash and raw logs for debugging.\n\n## Build with TypeScript and CosmES\n\nCosmES is the recommended modern TypeScript SDK path for many Terra Classic frontend and integration projects.\n\nInstall it:\n\n```bash\nyarn add @goblinhunt/cosmes\n```\n\nRecommended TypeScript config:\n\n```json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\nIf you use Vite and need WalletConnect compatibility, add:\n\n```ts\n// vite.config.ts\nimport { defineConfig } from \"vite\";\n\nexport default defineConfig({\n  define: { global: \"window\" },\n});\n```\n\n### Connect Keplr\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function connectKeplr(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n  console.log(\"Connected address:\", connected?.address);\n}\n```\n\n### Query native balances\n\n```ts\nimport { getNativeBalances } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function readBalances(): Promise<void> {\n  const balances = await getNativeBalances(RPC, {\n    address: \"terra1...\",\n  });\n\n  console.log(balances);\n}\n```\n\n### Send LUNC\n\n```ts\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function sendLunc(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n\n  if (!connected) {\n    throw new Error(\"Failed to connect wallet\");\n  }\n\n  const msg = new MsgSend({\n    fromAddress: connected.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"1000000\" }],\n  });\n\n  const unsigned = {\n    msgs: [msg],\n    memo: \"hello from Terra Classic\",\n  };\n\n  const fee = await connected.estimateFee(unsigned, 1.2);\n  const txHash = await connected.broadcastTx(unsigned, fee);\n\n  console.log(\"txhash:\", txHash);\n}\n```\n\n## Use a mnemonic wallet for scripts and backends\n\nFor scripts, automated jobs, tests, or backend services, use a programmatic wallet.\n\nNever commit mnemonics. Never log mnemonics. Use environment variables or a secure secret manager.\n\n```ts\nimport { MnemonicWallet } from \"@goblinhunt/cosmes/wallet\";\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\n\nconst wallet = new MnemonicWallet({\n  mnemonic: process.env.MNEMONIC ?? \"\",\n  bech32Prefix: \"terra\",\n  chainId: \"columbus-5\",\n  rpc: \"https://terra-classic-rpc.publicnode.com\",\n  gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  coinType: 330,\n  index: 0,\n});\n\nasync function sendFromBackend(): Promise<void> {\n  const msg = new MsgSend({\n    fromAddress: wallet.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"1000000\" }],\n  });\n\n  const unsigned = {\n    msgs: [msg],\n    memo: \"backend send\",\n  };\n\n  const fee = await wallet.estimateFee(unsigned, 1.2);\n  const txHash = await wallet.broadcastTx(unsigned, fee);\n\n  console.log(\"txhash:\", txHash);\n}\n```\n\n## Build with Python\n\nFor Python scripts and backends, use the Terra Classic SDK package.\n\nSet up a virtual environment:\n\n```bash\npython3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install --upgrade pip\npip install --upgrade terra-classic-sdk\n```\n\nConnect to mainnet:\n\n```python\nfrom terra_classic_sdk.client.lcd import LCDClient\nfrom terra_classic_sdk.key.mnemonic import MnemonicKey\n\nLCD_URL = \"https://terra-classic-lcd.publicnode.com\"\nCHAIN_ID = \"columbus-5\"\nMNEMONIC = \"<STORE THIS SECURELY>\"\n\nterra = LCDClient(url=LCD_URL, chain_id=CHAIN_ID)\nwallet = terra.wallet(MnemonicKey(mnemonic=MNEMONIC))\n\nprint(wallet.key.acc_address)\n```\n\nFetch gas prices:\n\n```python\nfrom typing import Dict\nimport requests\n\nGAS_PRICE_ENDPOINT = \"https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices\"\n\ndef fetch_gas_prices(endpoint: str = GAS_PRICE_ENDPOINT) -> Dict[str, str]:\n    response = requests.get(endpoint, timeout=10)\n    response.raise_for_status()\n    return response.json()\n\ngas_prices = fetch_gas_prices()\nprint(gas_prices[\"uluna\"])\n```\n\nSend LUNC:\n\n```python\nfrom typing import Dict\nfrom terra_classic_sdk.client.lcd import LCDClient\nfrom terra_classic_sdk.client.lcd.api.tx import CreateTxOptions\nfrom terra_classic_sdk.core import Coins, Coin\nfrom terra_classic_sdk.core.bank import MsgSend\nfrom terra_classic_sdk.key.mnemonic import MnemonicKey\n\nlcd = LCDClient(\n    url=\"https://terra-classic-lcd.publicnode.com\",\n    chain_id=\"columbus-5\",\n)\n\nwallet = lcd.wallet(MnemonicKey(mnemonic=\"<SECURE MNEMONIC>\"))\ngas_prices: Dict[str, str] = fetch_gas_prices()\n\nmsg = MsgSend(\n    from_address=wallet.key.acc_address,\n    to_address=\"terra1...\",\n    amount=Coins([Coin(\"uluna\", 1_000_000)]),\n)\n\ntx = wallet.create_and_sign_tx(\n    options=CreateTxOptions(\n        msgs=[msg],\n        gas=\"auto\",\n        gas_prices=Coins(gas_prices),\n        fee_denoms=\"uluna\",\n        gas_adjustment=1.4,\n    )\n)\n\nresult = lcd.tx.broadcast(tx)\nprint(result.txhash)\n```\n\nPython is especially useful for:\n\n- analytics\n- bots\n- scheduled jobs\n- monitoring tools\n- indexer support\n- treasury operations\n- backend integrations\n\n## Run a local Terra Classic network\n\nUse localnet when you want a private chain that you can reset, test against, and break safely.\n\nPrerequisites:\n\n- git\n- make\n- Docker\n- Docker Compose\n- 16-32 GB RAM recommended\n\nClone Terra Classic Core:\n\n```bash\ngit clone https://github.com/classic-terra/core.git terra-core\ncd terra-core\n```\n\nStart localnet:\n\n```bash\nmake localnet-start\n```\n\nTypical local endpoints:\n\n```text\nRPC:  http://localhost:26657\nLCD:  http://localhost:1317\ngRPC: http://localhost:9090\n```\n\nTypical local chain ID:\n\n```text\nlocalterra\n```\n\nor:\n\n```text\nlocalnet\n```\n\nCheck your terminal output and use the exact chain ID shown by your local setup.\n\nUse localnet for:\n\n- contract development\n- integration testing\n- frontend testing\n- transaction simulation\n- module experiments\n- demos\n- reproducible QA\n\nFor the dedicated walkthrough, see [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/).\n\n## Build CosmWasm smart contracts\n\nTerra Classic supports CosmWasm smart contracts.\n\nA CosmWasm contract usually has three core entry points:\n\n```text\ninstantiate()\nexecute()\nquery()\n```\n\nOptionally, upgradeable contracts can also implement:\n\n```text\nmigrate()\n```\n\n### Install Rust and tooling\n\nInstall Rust, then add the WASM target:\n\n```bash\nrustup default 1.82.0\nrustup target add wasm32-unknown-unknown\n```\n\nInstall `cargo-generate`:\n\n```bash\ncargo install cargo-generate --features vendored-openssl\n```\n\nInstall `wasm-opt`:\n\n```bash\ncargo install wasm-opt\n```\n\n### Start from a CosmWasm template\n\n```bash\ncargo generate --git https://github.com/CosmWasm/cw-template.git --branch 1.5 --name my-first-contract\ncd my-first-contract\n```\n\nThe basic contract structure includes:\n\n```text\nsrc/contract.rs\nsrc/msg.rs\nsrc/state.rs\n```\n\nCommon message types:\n\n```text\nInstantiateMsg\nExecuteMsg\nQueryMsg\n```\n\nCommon contract state helpers:\n\n```text\nItem\nMap\n```\n\n### Build the contract\n\n```bash\ncargo wasm\n```\n\nOptimize it:\n\n```bash\ndocker run --rm -v \"$(pwd)\":/code \\\n  --mount type=volume,source=\"$(basename \"$(pwd)\")_cache\",target=/code/target \\\n  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \\\n  cosmwasm/workspace-optimizer:0.14.0\n```\n\nFor ARM machines:\n\n```bash\ndocker run --rm -v \"$(pwd)\":/code \\\n  --mount type=volume,source=\"$(basename \"$(pwd)\")_cache\",target=/code/target \\\n  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \\\n  cosmwasm/workspace-optimizer-arm64:0.14.0\n```\n\nThis creates an optimized `.wasm` artifact that can be uploaded to the chain.\n\n## Upload, instantiate, execute, and query a contract\n\nOnce localnet is running and your optimized `.wasm` file is ready, use `terrad`.\n\n### 1. Add or recover a local key\n\n```bash\nterrad keys add test1 --recover\n```\n\n### 2. Store contract code\n\n```bash\nterrad tx wasm store artifacts/my_first_contract.wasm \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --gas=auto \\\n  --gas-prices=28.325uluna \\\n  --broadcast-mode=sync\n```\n\nThe result includes a `code_id`.\n\n### 3. Instantiate the contract\n\n```bash\nterrad tx wasm instantiate 1 '{\"count\":0}' \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --fees=28.325uluna \\\n  --gas=auto \\\n  --broadcast-mode=sync\n```\n\nThe result includes a `contract_address`.\n\n### 4. Execute the contract\n\n```bash\nterrad tx wasm execute terra1... '{\"increment\":{}}' \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --gas=auto \\\n  --fees=28.325uluna \\\n  --broadcast-mode=sync\n```\n\n### 5. Query the contract\n\n```bash\nterrad query wasm contract-store terra1... '{\"get_count\":{}}'\n```\n\n## Interact with CW20 tokens\n\nCW20 is the CosmWasm fungible token standard, broadly similar to ERC20.\n\n### Query CW20 balance with CosmES\n\n```ts\nimport { getCw20Balance } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\nconst token = \"<tokenContractAddress>\";\nconst wallet = \"<walletAddress>\";\n\nconst balance = await getCw20Balance(RPC, {\n  address: wallet,\n  token,\n});\n\nconsole.log(balance.toString());\n```\n\n### Transfer CW20 tokens\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst execMsg = {\n  transfer: {\n    recipient: \"terra1...\",\n    amount: \"1000000\",\n  },\n};\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"<tokenContractAddress>\",\n  msg: execMsg,\n  funds: [],\n});\n\nconst unsigned = {\n  msgs: [msg],\n  memo: \"cw20 transfer\",\n};\n\nconst fee = await connected.estimateFee(unsigned, 1.2);\nconst txHash = await connected.broadcastTx(unsigned, fee);\n```\n\nUse `transfer` when moving CW20 balance to a wallet.\n\nUse `send` when sending CW20 tokens to another contract and triggering a message on that receiving contract.\n\n## Build DEX and swap integrations carefully\n\nTerra Classic supports native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/). For general token swaps, CW20 routes, pair contracts, and router behavior, use DEX smart contracts.\n\nA typical DEX swap is a `MsgExecuteContract` against a pair or router contract.\n\nExample shape:\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...pair\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"1000000\",\n      },\n      belief_price: \"0.000123\",\n      max_spread: \"0.005\",\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"1000000\" }],\n});\n```\n\nAlways:\n\n- use the DEX's published schemas\n- verify contract addresses\n- query factory contracts for pair addresses\n- set `max_spread` or `minimum_receive`\n- simulate before broadcasting\n- show clear slippage and received-amount estimates\n- never assume liquidity depth\n\n## Use IBC only with known channels and relayer assumptions\n\nTerra Classic supports IBC routing. IBC can be used for cross-chain transfers and integrations with other Cosmos ecosystems.\n\nA typical IBC transfer uses `MsgIbcTransfer`.\n\n```ts\nimport { MsgIbcTransfer } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgIbcTransfer({\n  sourcePort: \"transfer\",\n  sourceChannel: \"channel-XXXX\",\n  token: { denom: \"uluna\", amount: \"1000000\" },\n  sender: connected.address,\n  receiver: \"cosmos1...dest\",\n  timeoutHeight: { revisionNumber: \"0\", revisionHeight: \"0\" },\n  timeoutTimestamp: \"0\",\n});\n```\n\nBefore shipping IBC flows:\n\n- verify the channel\n- verify the destination chain\n- verify relayer activity\n- show timeout and recovery information\n- test on testnet or with small amounts first\n- do not assume every historical channel is active\n\n## Terra Classic module map for developers\n\nYou do not need to understand every module before building. But you should know where to look.\n\n| Module | Why it matters |\n| --- | --- |\n| `x/auth` | Accounts, signatures, ante-handler, fees, memo limits, burn-tax integration |\n| `x/bank` | Native token balances and transfers |\n| `x/wasm` | CosmWasm smart contract upload, instantiate, execute, query, migrate |\n| `x/tax` | Burn tax, gas price floor, tax splits |\n| `x/taxexemption` | Tax-exempt zones and addresses |\n| `x/staking` | Validators, delegations, validator set |\n| `x/distribution` | Rewards, commissions, community pool flows |\n| `x/gov` | Proposals, voting, parameter changes |\n| `x/oracle` | Exchange-rate voting and oracle slashing |\n| `x/market` | Legacy market logic; swaps disabled on current Terra Classic |\n| `x/ibc` / `x/transfer` | Cross-chain packet routing and token transfer |\n| `ibc-hooks` | Contract callbacks on IBC packets |\n| `x/authz` | Delegated message execution |\n| `x/feegrant` | Fee allowances |\n| `x/dyncomm` | Dynamic validator commission logic |\n| `x/upgrade` | Coordinated chain upgrades |\n\nMost application builders will mainly interact with:\n\n```text\nx/bank\nx/wasm\nx/tax\nx/taxexemption\nx/gov\nx/staking\nx/ibc\n```\n\n## Production checklist\n\nBefore deploying a Terra Classic app to production, confirm the following.\n\n### Network and infrastructure\n\n- You use the correct chain ID.\n- You have backup RPC/LCD endpoints.\n- You do not depend on one public endpoint.\n- You monitor endpoint health.\n- You log tx hashes, raw logs, gas used, and errors.\n- You have retry and timeout handling.\n\n### Transactions\n\n- You fetch live gas prices.\n- You simulate before broadcast.\n- You apply a gas adjustment margin.\n- You handle wallet rejection separately from broadcast failure.\n- You handle out-of-gas and insufficient-fee errors.\n- You do not hardcode long-term tax behavior.\n\n### Burn tax and fees\n\n- You query current tax parameters when UX accuracy matters.\n- You check tax exemption status when needed.\n- You show estimated received amounts clearly.\n- You understand that governance can change parameters.\n\n### Smart contracts\n\n- You test locally.\n- You test on testnet if possible.\n- You optimize WASM before upload.\n- You generate and publish schemas.\n- You verify contract addresses.\n- You document admin / migration permissions.\n- You audit or peer-review contract logic before mainnet.\n\n### Wallet UX\n\n- You support at least one widely used wallet.\n- You show the network clearly.\n- You display amounts in LUNC but sign microunits.\n- You warn users before mainnet transactions.\n- You avoid confusing legacy stablecoin behavior with current active behavior.\n\n### Security\n\n- You never expose mnemonics.\n- You use environment variables or secret managers.\n- You use hardware wallets for treasury or validator funds.\n- You limit backend hot-wallet balances.\n- You monitor suspicious failures and unexpected parameter changes.\n- You treat third-party contracts, endpoints, and dApps as external dependencies.\n\n## Common mistakes\n\n### Treating Terra Classic like old Terra Classic documentation\n\nSome old materials describe legacy behavior that is not active today. Always verify current Terra Classic behavior before building.\n\nMost importantly: legacy mint/burn market swaps are disabled. Swap Protocol is the current native LUNC and USTC route and has different no-mint liquidity, oracle, and safety assumptions.\n\n### Hardcoding gas prices\n\nGas prices can change. Fetch live gas prices or maintain a controlled production configuration that you update deliberately.\n\n### Ignoring burn tax\n\nIf your app shows transfer previews, balances after transfer, accounting data, or received amounts, you must understand burn tax behavior.\n\n### Assuming every transfer behaves the same\n\nWallet-to-wallet transfers, contract executions with funds, CW20 transfers, DEX swaps, IBC transfers, and tax-exempt routes can behave differently.\n\n### Trusting public infrastructure for production\n\nPublic endpoints are useful for development. Production apps need redundancy, monitoring, and preferably dedicated infrastructure.\n\n### Broadcasting without simulation\n\nSimulation catches many gas, fee, message, and contract errors before the user signs or before the backend submits a transaction.\n\n### Forgetting that Terra Classic is governance-controlled\n\nMany important parameters can change through governance. Build apps that can adapt to current chain state instead of assuming fixed behavior.\n\n## Recommended build path for a first Terra Classic dApp\n\nIf you are new to Terra Classic, follow this order:\n\n1. Install a supported wallet such as Keplr or Galaxy Station.\n2. Connect to `columbus-5` with CosmES and read a wallet balance.\n3. Send a small test transaction.\n4. Query tax parameters and gas prices.\n5. Run localnet.\n6. Create a simple CosmWasm contract from the template.\n7. Build and optimize the contract.\n8. Store and instantiate it on localnet.\n9. Query and execute it from the CLI.\n10. Connect a TypeScript frontend to the contract.\n11. Add transaction simulation and error handling.\n12. Test with testnet or small mainnet amounts.\n13. Replace public endpoints with production-grade infrastructure.\n14. Publish your contract addresses, schemas, assumptions, and risks.\n\n## Minimal mental model\n\nTerra Classic development becomes much easier once you remember this:\n\n- Use `columbus-5` for mainnet.\n- Use `uluna` for on-chain LUNC amounts.\n- Use CosmES for TypeScript apps.\n- Use `terra-classic-sdk` for Python scripts.\n- Use Rust and CosmWasm for smart contracts.\n- Use localnet before mainnet.\n- Use Swap Protocol for native LUNC/USTC market-module swaps; use DEX contracts for general token swap integrations.\n- Simulate transactions before broadcasting.\n- Check gas, tax, and tax exemptions when UX accuracy matters.\n- Do not rely on public endpoints for serious production workloads.\n- Expect governance-controlled parameters to change over time.\n\nTerra Classic already has the core pieces a developer needs: a running Cosmos-based chain, smart contracts, wallets, public endpoints, IBC, staking, governance, and community-maintained tooling. The opportunity is to turn those pieces into clear, useful products that people can actually use.\n\n## Related docs\n\n- [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/)\n- [Tx best practices](/develop/classic-transaction-behavior/)\n- [Builder tooling](/learn/builder-tooling/)\n- [CosmES SDK](/develop/cosmes/cosmes/)\n- [Smart contracts](/develop/smart-contracts/overview/)\n- [Module specifications](/develop/module-specifications/module-specifications/)\n- [Public Network Endpoints](/develop/endpoints/)\n",
+    "body": "This guide is the first pass for developers who want to build on Terra Classic without reading every reference page first.\n\nUse it to understand the chain, choose your path, make your first safe integration decision, and move into the dedicated guides when you need exact commands or deeper examples.\n\n> **Important**\n>\n> Terra Classic is a community-maintained blockchain. Public infrastructure, SDK support, wallet behavior, tax parameters, and governance-controlled settings can change. Verify live chain state before deploying production applications.\n\n## What Terra Classic is for developers\n\nTerra Classic is a Cosmos SDK / CometBFT blockchain with CosmWasm smart contracts, IBC connectivity, staking, governance, oracle infrastructure, and Terra Classic-specific tax behavior.\n\nThe practical developer constants are:\n\n| Concept | Terra Classic value |\n| --- | --- |\n| Mainnet chain ID | `columbus-5` |\n| Mainnet address prefix | `terra` |\n| Native staking and governance asset | LUNC |\n| On-chain LUNC denomination | `uluna` |\n| Unit conversion | `1 LUNC = 1,000,000 uluna` |\n| Common testnet | `rebel-2` |\n| Common local chain ID | `localterra` or `localnet` |\n\nIf you are coming from Ethereum, use this mental model:\n\n| Ethereum-style concept | Terra Classic equivalent |\n| --- | --- |\n| Solidity smart contract | CosmWasm contract, usually written in Rust |\n| ERC20 token | CW20 token |\n| MetaMask | Keplr, Galaxy Station, Orbitar, Cosmostation, LUNC Dash |\n| Web3.js / ethers.js | CosmES, Terra Classic SDK, LCD/RPC/gRPC APIs |\n| Ganache / local chain | Terra Classic localnet |\n| Contract deployment | Store WASM code, then instantiate contract |\n| Contract call | `MsgExecuteContract` |\n| Native token transfer | `MsgSend` |\n| Cross-chain transfer | IBC transfer |\n\n## Choose your developer path\n\nMost builders should start with one of these paths.\n\n| Path | Use it when you want to build | Start here |\n| --- | --- | --- |\n| Frontend dApp | Wallet connection, balances, signing, staking, governance, DEX, or contract UX | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Smart contract | On-chain logic, vaults, token contracts, DeFi primitives, escrow, games, or governance tools | [Smart contracts](/develop/smart-contracts/overview/) |\n| Backend or automation | Bots, scripts, indexers, monitoring, treasury jobs, analytics, or integrations | [Terra Py](/develop/terra-py/terra-py/) |\n| Infrastructure | Nodes, endpoints, validator tooling, local testing, or production-grade RPC/LCD access | [Run a full Terra node](/full-node/overview/) |\n\nIf you are not sure which path fits, start with a frontend read-only integration. Reading a balance through an RPC endpoint teaches you the network model without risking funds.\n\n## Before you send a transaction\n\nTerra Classic follows standard Cosmos transaction patterns, but several chain-specific details can break naive integrations.\n\n### Burn tax can affect transfers\n\nTerra Classic uses the `x/tax` module. Some transfers can be taxed, and the receiver may receive less than the entered send amount.\n\nDo not hardcode tax assumptions. Query current parameters or simulate when your app shows fees, accounting values, or expected received amounts.\n\nRead the detailed guide: [Tx best practices](/develop/classic-transaction-behavior/).\n\n### Tax exemptions exist\n\nSome addresses or zones can be exempt from burn tax. This matters for exchanges, custody flows, treasury wallets, smart contract workflows, and service wallets.\n\nIf the final received amount matters, check taxability before the user confirms.\n\n### Public endpoints are not production infrastructure\n\nPublic RPC, LCD, FCD, and gRPC endpoints are useful for development and light workloads. Production apps need redundancy, monitoring, and preferably dedicated infrastructure.\n\nUse the maintained endpoint list: [Public Network Endpoints](/develop/endpoints/).\n\n### Legacy market-swap assumptions are dangerous\n\nDo not build against pre-2022 algorithmic mint/burn behavior or old Terra market-swap assumptions.\n\nNative LUNC and USTC swaps are documented under [Swap Protocol](/swap-protocol/overview/). General token swaps should use active DEX contracts and explicit slippage controls.\n\n### Simulation is part of the product\n\nBefore broadcasting, simulate transactions when the app needs reliable gas estimates, fee previews, or clearer failure handling.\n\nAt minimum, production flows should log:\n\n- transaction hash\n- raw log\n- gas used\n- endpoint used\n- chain ID\n- wallet or backend account\n- failure code and message\n\n## First 30-minute path\n\nThis is the shortest useful path for a developer new to Terra Classic.\n\n1. Pick `columbus-5` for mainnet, `rebel-2` for testnet, or a local chain ID from localnet output.\n2. Use a public endpoint only for development.\n3. Connect with CosmES or Terra Py.\n4. Read a wallet balance.\n5. Convert display units correctly: `1000000uluna` is `1 LUNC`.\n6. Fetch current gas prices before sending.\n7. Read the transaction behavior guide before showing final fee or received-amount estimates.\n8. Send only a small test transaction first.\n9. Run localnet before contract development or repeatable integration testing.\n10. Move deeper into the exact guide for your path.\n\n## Minimal TypeScript starter\n\nInstall CosmES:\n\n```bash\nyarn add @goblinhunt/cosmes\n```\n\nFor TypeScript projects, use modern module resolution:\n\n```json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\nRead a native balance:\n\n```ts\nimport { getNativeBalances } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\nconst address = \"terra1...\";\n\nasync function main(): Promise<void> {\n  const balances = await getNativeBalances(RPC, { address });\n  console.log(balances);\n}\n\nmain().catch(console.error);\n```\n\nConnect Keplr:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function connect(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n  console.log(\"address\", connected?.address);\n}\n\nconnect().catch(console.error);\n```\n\nFor signing, broadcasting, mnemonic wallets, and wallet-specific setup, continue with [CosmES SDK](/develop/cosmes/cosmes/).\n\n## Local development\n\nUse localnet when you need a private chain you can reset, test against, and break safely.\n\nLocalnet is useful for:\n\n- contract development\n- integration testing\n- frontend transaction testing\n- module experiments\n- reproducible QA\n- demos\n\nDo not keep localnet setup details in your head from this page. Use the dedicated guide: [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/).\n\n## Smart contracts\n\nTerra Classic supports CosmWasm smart contracts.\n\nA typical contract workflow is:\n\n1. Install Rust and CosmWasm tooling.\n2. Start from a CosmWasm template.\n3. Build and optimize the WASM artifact.\n4. Store code on localnet or testnet.\n5. Instantiate a contract.\n6. Execute and query it.\n7. Publish schemas, addresses, admin permissions, and risk assumptions.\n\nUse the dedicated smart contract section for exact commands: [Smart contracts](/develop/smart-contracts/overview/).\n\n## Python and backend automation\n\nUse Python when you are building scripts, scheduled jobs, analytics, monitoring, treasury automation, or backend services.\n\nStart with [Terra Py](/develop/terra-py/terra-py/).\n\nBackend services should also read [Tx best practices](/develop/classic-transaction-behavior/) before broadcasting transactions automatically.\n\n## Native swaps, DEX routes, CW20, and IBC\n\nThese are not first-step integrations. They need more careful assumptions.\n\n| Integration type | Read first |\n| --- | --- |\n| Native LUNC and USTC swaps | [Swap Protocol developer reference](/swap-protocol/developer-reference/) |\n| General DEX routes | DEX contract documentation and [Tx best practices](/develop/classic-transaction-behavior/) |\n| CW20 tokens | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| IBC transfers | [IBC module specification](/develop/module-specifications/spec-ibc/) and current channel data |\n| Tax-sensitive flows | [Tx best practices](/develop/classic-transaction-behavior/) and [Fees](/learn/fees/) |\n\nFor IBC, verify the channel, destination chain, relayer activity, timeout behavior, and recovery path. A historical channel existing does not prove that the route is healthy today.\n\n## Before mainnet\n\nBefore shipping a Terra Classic app to production, confirm:\n\n- the app uses the correct chain ID\n- display amounts and micro-denom amounts are separated\n- gas prices are refreshed or deliberately configured\n- transaction simulation is used where accuracy matters\n- tax behavior is understood for the transaction type\n- tax exemption status is checked where needed\n- public endpoints are not a single point of failure\n- tx hash, raw logs, gas used, and errors are persisted\n- wallet rejection and broadcast failure are handled separately\n- smart contracts have been tested locally and reviewed\n- contract addresses, schemas, admin permissions, and risk assumptions are documented\n- users can see when they are using mainnet\n\n## Common mistakes\n\n### Treating Terra Classic as old Terra documentation\n\nSome old Terra materials describe behavior that is not active on Terra Classic today. Verify current chain behavior before building.\n\n### Treating public endpoints as reliable production infrastructure\n\nPublic endpoints are best-effort access surfaces. Production systems need redundancy and monitoring.\n\n### Hardcoding fees and tax behavior\n\nGas prices, tax parameters, and governance-controlled settings can change. Build apps that can adapt to current chain state.\n\n### Skipping simulation\n\nSimulation catches many gas, fee, message, and contract errors before a user signs or before a backend submits a transaction.\n\n### Building swap flows from memory\n\nNative Swap Protocol, DEX contracts, CW20 transfers, and IBC transfers have different assumptions. Use the relevant docs and verify live state.\n\n## Where to go next\n\n| Need | Guide |\n| --- | --- |\n| Maintained endpoint list | [Public Network Endpoints](/develop/endpoints/) |\n| Safe transaction behavior | [Tx best practices](/develop/classic-transaction-behavior/) |\n| TypeScript SDK path | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Python SDK path | [Terra Py](/develop/terra-py/terra-py/) |\n| Local private chain | [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/) |\n| Contract development | [Smart contracts](/develop/smart-contracts/overview/) |\n| CW20 token workflows | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| Native LUNC and USTC swaps | [Swap Protocol](/swap-protocol/overview/) |\n| Module-level behavior | [Module specifications](/develop/module-specifications/module-specifications/) |\n| Builder overview | [Builder tooling](/learn/builder-tooling/) |\n\nTerra Classic already has the core pieces a developer needs: a running Cosmos-based chain, smart contracts, wallets, public endpoints, IBC, staking, governance, and community-maintained tooling. The goal is to turn those pieces into clear products that users can actually understand and use.\n",
     "previousSlug": "governance/risks-and-safeguards",
     "nextSlug": "develop/how-to/localnet/terra-core-localnet"
   },
@@ -3328,21 +3153,46 @@ export const docsPages = [
       },
       {
         "depth": 2,
-        "title": "Steps",
-        "id": "steps"
+        "title": "Clone Terra Classic Core",
+        "id": "clone-terra-classic-core"
       },
       {
         "depth": 2,
-        "title": "Using with CosmES",
-        "id": "using-with-cosmes"
+        "title": "Start localnet",
+        "id": "start-localnet"
+      },
+      {
+        "depth": 2,
+        "title": "Typical local endpoints",
+        "id": "typical-local-endpoints"
+      },
+      {
+        "depth": 2,
+        "title": "Chain ID",
+        "id": "chain-id"
+      },
+      {
+        "depth": 2,
+        "title": "Using localnet with CosmES",
+        "id": "using-localnet-with-cosmes"
+      },
+      {
+        "depth": 2,
+        "title": "Using localnet for contracts",
+        "id": "using-localnet-for-contracts"
       },
       {
         "depth": 2,
         "title": "Tips",
         "id": "tips"
+      },
+      {
+        "depth": 2,
+        "title": "Related docs",
+        "id": "related-docs"
       }
     ],
-    "body": "## Prerequisites\n\n- git, make, Docker, and Docker Compose (depending on your setup)\n- 16-32 GB RAM recommended\n\n## Steps\n\n1. Clone the repository:\n\n   ```bash\n   git clone https://github.com/classic-terra/core.git terra-core\n   cd terra-core\n   ```\n\n2. Start a localnet:\n\n   ```bash\n   make localnet-start\n   ```\n\n   This spins up a multi-validator local network with RPC and LCD endpoints. Keep it running in the background while you develop.\n\n3. Endpoints (typical defaults):\n\n   - RPC: `http://localhost:26657`\n   - LCD: `http://localhost:1317`\n   - gRPC: `http://localhost:9090`\n\n4. Chain ID:\n\n   - Usually `localterra` or `localnet` (check the console output). Use this in your SDK configuration.\n\n## Using with CosmES\n\nExample Keplr setup against localnet:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\nconst wallets = await controller.connect(WalletType.EXTENSION, [\n  {\n    chainId: \"localterra\", // or \"localnet\"\n    rpc: \"http://localhost:26657\",\n    gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  },\n]);\nconst connected = wallets.get(\"localterra\");\nconsole.log(\"address\", connected?.address);\n```\n\n> **Warning**\n>\n> Make sure to add the chain information to keplr before connecting.\n\n## Tips\n\n- If ports conflict, stop other chain processes or change ports in Terra Core configs.\n- For contract workflows, use the same `Msg*` transactions in CosmES as on mainnet or testnet—only the endpoints and chain ID change.\n",
+    "body": "Use localnet when you want a private Terra Classic network that you can reset, test against, and break safely.\n\nLocalnet is the right environment for contract development, integration testing, transaction simulation, demos, and reproducible QA. It is not a replacement for testnet or mainnet validation.\n\n## Prerequisites\n\nInstall:\n\n- git\n- make\n- Docker\n- Docker Compose\n\nUse a machine with 16-32 GB RAM when possible. Local multi-validator networks can be heavy on smaller machines.\n\n## Clone Terra Classic Core\n\n```bash\ngit clone https://github.com/classic-terra/core.git terra-core\ncd terra-core\n```\n\n## Start localnet\n\n```bash\nmake localnet-start\n```\n\nThis starts a multi-validator local Terra Classic network with RPC, LCD, and gRPC endpoints. Keep the process running while you develop.\n\n## Typical local endpoints\n\n```text\nRPC:  http://localhost:26657\nLCD:  http://localhost:1317\ngRPC: http://localhost:9090\n```\n\nIf these ports are already in use, stop the conflicting process or change the Terra Core localnet configuration.\n\n## Chain ID\n\nCommon local chain IDs are:\n\n```text\nlocalterra\n```\n\nor:\n\n```text\nlocalnet\n```\n\nCheck your terminal output and use the exact chain ID shown by your local setup. SDK and wallet configuration must match the running local chain.\n\n## Using localnet with CosmES\n\nExample Keplr setup against localnet:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\nconst wallets = await controller.connect(WalletType.EXTENSION, [\n  {\n    chainId: \"localterra\",\n    rpc: \"http://localhost:26657\",\n    gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  },\n]);\n\nconst connected = wallets.get(\"localterra\");\nconsole.log(\"address\", connected?.address);\n```\n\n> **Warning**\n>\n> Add the local chain information to Keplr before connecting. If Keplr has a different chain ID, RPC URL, or denomination configured, wallet connection and signing can fail.\n\n## Using localnet for contracts\n\nFor contract workflows, use the same `Msg*` transactions as on mainnet or testnet. Only the chain ID, endpoints, and local keys change.\n\nTypical flow:\n\n1. Start localnet.\n2. Confirm the local chain ID.\n3. Build and optimize the contract.\n4. Store code with `terrad tx wasm store`.\n5. Instantiate the contract.\n6. Execute and query the contract.\n7. Reset localnet when you need a clean state.\n\nFor contract setup and deployment steps, continue with [Smart contracts](/develop/smart-contracts/overview/).\n\n## Tips\n\n- Keep localnet running in a separate terminal while developing.\n- Use localnet for repeatable tests before using testnet or mainnet.\n- Do not assume local gas, tax, liquidity, or oracle behavior exactly matches public networks.\n- If a wallet cannot connect, verify chain ID, RPC URL, address prefix, and gas denom.\n- If transaction behavior matters, test the same flow on `rebel-2` or with tiny mainnet amounts before production release.\n\n## Related docs\n\n- [Quick start guide](/develop/quick-start-guide/)\n- [Tx best practices](/develop/classic-transaction-behavior/)\n- [CosmES SDK](/develop/cosmes/cosmes/)\n- [Smart contracts](/develop/smart-contracts/overview/)\n",
     "previousSlug": "develop/quick-start-guide",
     "nextSlug": "develop/classic-transaction-behavior"
   },
