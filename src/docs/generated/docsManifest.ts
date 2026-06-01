@@ -103,6 +103,93 @@ export const docsPages = [
     ],
     "body": "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact.\n\n> **Important**\n>\n> Since May 2022, Terra Classic has no pegged stablecoins. TerraUSD (UST) has depegged and is currently considered a speculative asset.\n>\n> References to **stablecoins** in this document refer to the historical algorithmic operation of Terra.\n\n## Terra and LUNC\n\n- **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.\n- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC. On Classic, the old mint/burn swap path was disabled after 2022; native LUNC and USTC swaps are now handled through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0's no-mint pool design.\n\n## Stablecoin mechanics (historical)\n\nTerra was designed around two supply pools—Terra and LUNC. The market module encouraged arbitrage to expand or contract stablecoin supply and keep prices near their pegs.\n\n- **Expansion**: When Terra traded above the peg, burning LUNC to mint Terra increased supply and reduced the premium.\n- **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.\n\n> **Important**\n> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset. Native LUNC and USTC swaps now use [Swap Protocol](/swap-protocol/overview/), which avoids minting new supply and prices USTC through oracle-reported market data.\n\n## Validators and consensus\n\nValidators run full nodes, propose blocks, and vote during Tendermint consensus.\n\n1. A proposer is selected (weighted by stake) and broadcasts a block.\n2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.\n3. Fees from the block enter the distribution module and are later shared with delegators.\n\nLearn more in the validator guides under `Run a full node` and the [Staking Protocol overview](/staking-protocol/overview/).\n\n## Staking lifecycle\n\n- **Delegating**: Delegators bond LUNC to a validator to earn rewards. Staked LUNC contributes to validator voting power but always belongs to the delegator.\n- **Bonded / unbonded / unbonding**: LUNC exists in three phases. Unbonding takes 21 days and does not accrue rewards.\n- **Redelegation**: Move bonded stake between validators without waiting the unbonding period (subject to a 21-day cooldown per source/target pair).\n\n### Slashing\n\nMisbehaving validators are penalised by the slashing module:\n\n- **Double-signing**: Signing conflicting blocks at the same height.\n- **Downtime**: Failing to participate in consensus.\n- **Oracle faults**: Missing required oracle votes (`x/oracle`).\n\nEvery slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.\n\n## Governance\n\nTerra Classic governance lets stakers steer protocol policy.\n\n1. **Deposit period**: Community members deposit LUNC on a proposal until the minimum threshold is reached or the maximum deposit period expires.\n2. **Voting period**: Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator's vote.\n3. **Execution**: Passed proposals trigger automatic handlers or human follow-up depending on the proposal type. Deposits, quorum, threshold, veto, and voting-period parameters are governance-controlled and should be queried before relying on a fixed value.\n\nCommon proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Governance guide](/governance/overview/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.\n\n## Fees and rewards\n\n- **Gas** pays validator compute and storage costs (`x/auth`).\n- **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.\n- **Swap Protocol spread fees** apply to native LUNC and USTC swaps through Market Module 2.0. The protocol charges a 0.35% spread fee when swaps are enabled and capacity remains; the fee routes 50% to burn and 50% to the Oracle Pool.\n\nRewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [Staking Protocol rewards guide](/staking-protocol/rewards-and-apr/), the [Swap Protocol fees guide](/swap-protocol/fees-burns-and-liquidity/), and the [fees guide](/learn/fees/) for related mechanics.\n",
     "previousSlug": "start",
+    "nextSlug": "learn/strengths"
+  },
+  {
+    "slug": "learn/strengths",
+    "path": "/learn/strengths/",
+    "sourceFile": "content/docs/learn/strengths.md",
+    "group": "Learn Terra Classic",
+    "navTitle": "Terra Classic Strengths",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 2,
+    "title": "Terra Classic Strengths",
+    "description": "A detailed, evidence-aware explanation of Terra Classic's core strengths: decentralization, fast block times, deflationary mechanics, reliability, low-cost development, community, interconnectivity, and revival narrative.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic knowledge corpus and State of the Chain report",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "terra-classic-strengths-2026-06-01",
+    "sourcePath": "content/docs/learn/strengths.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Strengths at a glance",
+        "id": "strengths-at-a-glance"
+      },
+      {
+        "depth": 2,
+        "title": "Decentralization",
+        "id": "decentralization"
+      },
+      {
+        "depth": 2,
+        "title": "6s block time",
+        "id": "6s-block-time"
+      },
+      {
+        "depth": 2,
+        "title": "Deflationary ecosystem",
+        "id": "deflationary-ecosystem"
+      },
+      {
+        "depth": 2,
+        "title": "Superior uptime and reliability",
+        "id": "superior-uptime-and-reliability"
+      },
+      {
+        "depth": 2,
+        "title": "Low cost of development",
+        "id": "low-cost-of-development"
+      },
+      {
+        "depth": 2,
+        "title": "Unmatched community",
+        "id": "unmatched-community"
+      },
+      {
+        "depth": 2,
+        "title": "Interconnectivity",
+        "id": "interconnectivity"
+      },
+      {
+        "depth": 2,
+        "title": "Revival narrative",
+        "id": "revival-narrative"
+      },
+      {
+        "depth": 2,
+        "title": "What makes the strengths credible",
+        "id": "what-makes-the-strengths-credible"
+      },
+      {
+        "depth": 2,
+        "title": "How these strengths connect to the roadmap",
+        "id": "how-these-strengths-connect-to-the-roadmap"
+      },
+      {
+        "depth": 2,
+        "title": "Responsible reading",
+        "id": "responsible-reading"
+      }
+    ],
+    "body": "Terra Classic's strongest case is not that it is flawless. It is that it remains a live, community-governed Layer 1 after one of the largest failures in crypto history, while still carrying useful infrastructure, market attention, low-cost execution, Cosmos compatibility, and a clear path back toward real products.\n\nThe right way to understand Terra Classic is:\n\n- It is operationally alive.\n- It is community-governed rather than company-operated.\n- It has fast, low-cost base-layer execution.\n- It has active supply-reduction mechanics.\n- It has a rare post-collapse revival narrative.\n- It still needs stronger governance discipline, deeper on-chain liquidity, better documentation, more developer throughput, and more product execution.\n\nThat combination matters. Most failed chains do not keep block production, validators, wallets, exchanges, community media, governance, developers, and product proposals moving for years after a collapse.\n\n## Strengths at a glance\n\n| Strength | What it means | Why it matters |\n| --- | --- | --- |\n| Decentralization | Terra Classic is maintained through validators, delegators, governance, and independent contributors rather than a single company. | The chain can survive the loss of its original founding operator and continue evolving through public coordination. |\n| 6s block time | Blocks finalize in roughly six seconds under normal conditions. | Wallet actions, swaps, governance interactions, and application flows can feel responsive. |\n| Deflationary ecosystem | LUNC and USTC have burn mechanisms at protocol and ecosystem level. | Supply can decline over time when usage, tax routing, exchange burns, protocol fees, and voluntary burns generate enough flow. |\n| Superior uptime and reliability | The chain has continued producing blocks, coordinating upgrades, and maintaining a functioning validator set. | Users and builders need a base layer that keeps running even while strategy and governance are debated. |\n| Low cost of development | Terra Classic inherits Cosmos SDK, CosmWasm, low fees, and familiar tooling patterns. | Builders can test, deploy, and operate applications with low transaction overhead. |\n| Unmatched community | The ecosystem includes long-term holders, validators, builders, media, researchers, and independent contributors. | Community persistence is the reason the chain still has attention, governance, and public-good work. |\n| Interconnectivity | Terra Classic is Cosmos-based and has IBC connectivity. | Assets, users, and liquidity can connect to a wider multi-chain environment when routes and relayers are maintained. |\n| Revival narrative | Terra Classic is a live attempt to rebuild decentralized money infrastructure after the 2022 collapse. | The story is rare, emotionally powerful, and product-relevant if it is connected to real execution. |\n\n## Decentralization\n\nTerra Classic is no longer primarily a company-led chain. After the 2022 collapse and the launch of Terra 2.0, the original chain continued as Terra Classic through validators, delegators, governance, independent developers, infrastructure operators, and community contributors.\n\nThat is a real strength. A chain abandoned by its original operator normally dies. Terra Classic did not.\n\nThe practical decentralization case is:\n\n- Blocks are produced by a validator set rather than a single server or company.\n- LUNC holders can delegate stake and influence validator voting power.\n- Governance can approve upgrades, parameter changes, funding, and signaling proposals.\n- Core infrastructure has been maintained by community-led teams and contributors.\n- Wallets, explorers, dashboards, documentation, media, and project surfaces can be built independently.\n\nThis gives Terra Classic resilience against single-company failure. It also makes the ecosystem harder to censor or shut down through one corporate control point.\n\nBut decentralization is not automatically good execution. The project source material repeatedly flags governance participation problems, validator concentration, low deliberation quality, and weak accountability. So the honest statement is:\n\n> Terra Classic's decentralization is strongest as survival infrastructure. It becomes a strategic advantage only when paired with transparent governance, active validator participation, professional execution, and public accountability.\n\nSee also [Governance](/governance/overview/) and [Staking Protocol](/staking-protocol/overview/).\n\n## 6s block time\n\nTerra Classic is built on Cosmos SDK and Tendermint/CometBFT-style proof-of-stake consensus. Under normal conditions, the chain targets fast block production, commonly understood around the six-second range.\n\nFor users, this matters because common actions can settle quickly:\n\n- wallet transfers\n- staking and redelegation transactions\n- governance votes\n- smart-contract interactions\n- DEX transactions\n- future native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/)\n\nFast block time is not just a technical vanity metric. It affects product feel.\n\nA chain can have interesting tokenomics and still feel unusable if users wait too long for actions to confirm. Terra Classic's speed gives builders a workable base for responsive wallets, dashboards, trading flows, staking tools, and consumer-style applications.\n\nThe caveat is that block time alone does not create adoption. It is enabling infrastructure. The chain still needs applications, liquidity, reliable endpoints, documentation, and user trust for speed to turn into real usage.\n\n## Deflationary ecosystem\n\nTerra Classic's supply story is one of its most visible strengths, but it must be explained carefully.\n\nAfter the May 2022 collapse, LUNC supply expanded massively. Since then, the ecosystem has used burns to reduce supply pressure. Burn mechanisms include:\n\n- protocol-level burn tax on eligible transfers\n- voluntary burns from users and projects\n- exchange-supported burns\n- application-level burns from ecosystem activity\n- proposed or active product fees that route part of value to burns\n- [Swap Protocol](/swap-protocol/fees-burns-and-liquidity/) spread fees that route 50% to burn when swaps are enabled\n\nThe strategic value is not that burns alone can fix everything. The knowledge corpus is clear on this point: small burns can be psychologically important but economically limited against trillions of supply. Meaningful long-term impact requires both supply reduction and demand.\n\nThe stronger framing is:\n\n> Terra Classic has deflationary rails already built into its ecosystem. Those rails become powerful only when paired with real usage, liquidity, applications, and sustainable fee flow.\n\nThis matters for product strategy because burns can connect network activity to long-term scarcity. A DEX, swap route, stable-asset product, lending product, or payment product can be more useful if a portion of its activity also supports LUNC or USTC supply reduction.\n\nThe risk is over-focusing on burns while ignoring utility. A burn-only strategy can become a distraction if it reduces liquidity, increases friction, or substitutes for actual product development.\n\n## Superior uptime and reliability\n\nTerra Classic has continued to operate for years after the collapse. The State of the Chain material classifies the chain as operationally stable but strategically fragile. That distinction is important.\n\nOperationally stable means:\n\n- the chain is producing blocks\n- validators continue to secure the network\n- governance can coordinate software upgrades\n- wallets and explorers can interact with the chain\n- users can transfer, stake, vote, and use available applications\n- core software continues to receive releases and compatibility work\n\nStrategically fragile means the chain still faces serious risks:\n\n- concentrated validator power\n- low staking ratio relative to ideal security posture\n- limited on-chain DeFi depth\n- thin DEX liquidity\n- heavy dependence on off-chain exchange liquidity\n- low fee revenue compared with larger Layer 1s\n- reputational and regulatory overhang from the 2022 collapse\n- limited core developer bandwidth\n\nThis makes reliability a strength, not a victory lap. Terra Classic has proven it can keep running under adverse historical conditions. The next step is proving it can convert that base reliability into compounding product usage.\n\nFor node and validator context, see [Full Node](/full-node/overview/) and [Validator responsibilities](/staking-protocol/validator-responsibilities/).\n\n## Low cost of development\n\nTerra Classic remains attractive for builders because experimentation can be relatively low-cost.\n\nThe developer advantages include:\n\n- Cosmos SDK architecture\n- CosmWasm smart-contract support\n- low transaction fees\n- familiar wallet and validator patterns\n- IBC compatibility\n- existing LCD, RPC, and API surfaces\n- open-source code and public governance context\n- native staking, governance, tax, oracle, wasm, market, and distribution modules\n\nLow-cost development matters because early ecosystems need fast iteration. Builders should be able to test ideas, deploy contracts, integrate wallets, query chain data, and run small experiments without requiring expensive infrastructure or high transaction spend.\n\nThis is especially relevant for:\n\n- wallets\n- dashboards\n- staking tools\n- governance tools\n- DEX and liquidity interfaces\n- analytics products\n- documentation tools\n- stable-asset experiments\n- compliance or identity tooling\n- small consumer applications\n\nThe weakness is not the base chain cost. The weakness is discoverability and execution support. Terra Classic still needs stronger docs, maintained SDK examples, better app templates, current integration guides, and clearer product roadmaps to convert low cost into more builders.\n\nStart with [Builder Tooling](/learn/builder-tooling/) and [Developer Quick Start](/develop/quick-start-guide/).\n\n## Unmatched community\n\nTerra Classic's community is one of its clearest advantages.\n\nThe chain still has:\n\n- long-term LUNC and USTC holders\n- validators and delegators\n- independent media and research projects\n- public governance contributors\n- developers maintaining core and application code\n- ecosystem projects building DEXes, wallets, dashboards, games, NFTs, and DeFi products\n- external exchange visibility\n- community-led documentation, reports, and websites\n\nThis is not normal for a post-collapse chain. The reason Terra Classic still has a future path is that people kept showing up after the original product failed.\n\nThe community also creates a distribution advantage. A product shipped on Terra Classic can reach a pre-existing audience that already understands LUNC, USTC, staking, burns, governance, and the revival story.\n\nBut community alone is not product-market fit. The project source material also documents drama, validator inactivity, fragmented decision-making, weak roadmap ownership, and repeated debates that did not ship enough product. The durable strength is not \"the community is loud.\" It is:\n\n> Terra Classic has a persistent community that can become a real growth engine if energy is routed into shipped products, reliable documentation, transparent governance, and measurable outcomes.\n\n## Interconnectivity\n\nTerra Classic is part of the Cosmos technical family. That gives it a natural path into a broader multi-chain environment through IBC and Cosmos-compatible tooling.\n\nInterconnectivity matters because isolated chains struggle to grow. Builders and users increasingly expect assets, liquidity, wallets, and applications to move across ecosystems.\n\nTerra Classic's interconnectivity strengths include:\n\n- Cosmos SDK foundations\n- IBC channel support\n- compatibility work through ongoing core upgrades\n- potential access to broader Cosmos liquidity routes\n- wallet compatibility through Cosmos-style account and signing patterns\n- future-ready positioning for cross-chain products\n\nThe strategic opportunity is clear: Terra Classic can become more useful if it is treated as a connected execution environment rather than an isolated revival token.\n\nExamples of product directions that benefit from interconnectivity:\n\n- LUNC and USTC liquidity routes across Cosmos\n- IBC-connected DEX liquidity\n- cross-chain dashboards\n- cross-chain staking and governance tooling\n- stable-asset liquidity routes\n- integrations with wallets that already support Cosmos chains\n\nThe caveat is operational. IBC is only valuable when relayers, endpoints, liquidity, and user interfaces are maintained. A channel that exists but has little volume is not a growth strategy by itself.\n\nSee [Endpoints](/develop/endpoints/) and [IBC module spec](/develop/module-specifications/spec-ibc/).\n\n## Revival narrative\n\nTerra Classic has one of the most unusual stories in crypto.\n\nBefore May 2022, Terra was a top-tier ecosystem built around decentralized money, stablecoins, DeFi, payments, and applications such as Anchor, Mirror, and CHAI. The collapse destroyed confidence, created massive LUNC supply expansion, and left the original chain with reputational, legal, economic, and technical damage.\n\nTerra Classic's revival narrative comes from what happened next:\n\n- the original chain continued\n- staking and governance returned\n- validators kept producing blocks\n- community contributors maintained infrastructure\n- burn mechanisms were introduced\n- wallets and independent tools emerged\n- L2 and app-layer projects appeared\n- core upgrades continued\n- documentation and public information surfaces began to improve\n- new L1 product concepts such as [Swap Protocol](/swap-protocol/overview/) and [Forex Protocol](/forex-protocol/overview/) emerged\n\nThat story is valuable because it is not generic marketing. It is a real recovery attempt.\n\nBut the narrative only stays credible if it is tied to execution. Terra Classic cannot rely forever on \"we survived.\" Survival is the foundation. The stronger future story is:\n\n> Terra Classic is trying to turn post-collapse persistence into a functioning, source-aware, community-governed Layer 1 with real products, real liquidity, and transparent public infrastructure.\n\nThat is why docs, governance clarity, developer onboarding, and product pages matter. They are not cosmetic. They are part of rebuilding institutional trust.\n\n## What makes the strengths credible\n\nTerra Classic's strengths are strongest when stated with discipline:\n\n- Decentralization is credible because the chain survived without the original company, but it still needs better governance participation.\n- Fast block time is credible because the chain can feel responsive, but speed needs useful applications.\n- Deflation is credible because burn rails exist, but burns require demand to become economically meaningful.\n- Reliability is credible because the chain keeps operating, but reliability must be matched by stronger security and release assurance.\n- Low-cost development is credible because the technical base is builder-friendly, but docs and tooling need continued improvement.\n- Community is credible because people keep building and governing, but energy must convert into shipped work.\n- Interconnectivity is credible because Cosmos and IBC paths exist, but volume and relayer assurance need growth.\n- Revival narrative is credible because the chain is still alive, but recovery requires product execution rather than nostalgia.\n\nThis is the product truth: Terra Classic has real strengths, but they compound only when the ecosystem stops treating them as slogans and starts treating them as operating advantages.\n\n## How these strengths connect to the roadmap\n\nThe strongest Terra Classic roadmap is not \"burn more and hope.\" It is a product roadmap that uses the chain's existing strengths:\n\n- Use fast, low-cost execution for better wallets, staking, swaps, dashboards, and governance tooling.\n- Use deflationary mechanics as a product-aligned fee and scarcity layer, not as a substitute for demand.\n- Use community distribution to attract developers, reviewers, researchers, and operators.\n- Use IBC and Cosmos compatibility to reconnect Terra Classic to multi-chain liquidity.\n- Use Swap Protocol to restore native LUNC and USTC swap utility without returning to uncontrolled minting.\n- Use Forex Protocol research to explore collateral-backed stable assets rather than repeating the old algorithmic failure.\n- Use docs, source attribution, public governance records, and diagnostics to rebuild trust.\n\nIf those pieces are executed, Terra Classic's strengths become a coherent product position:\n\n> A resilient, community-governed Cosmos Layer 1 for low-cost execution, transparent governance, native staking, deflationary token mechanics, and future stable-asset utility.\n\n## Responsible reading\n\nThis page is not financial advice and does not claim that LUNC or USTC will increase in value.\n\nTerra Classic remains high-risk. Users and builders should understand validator concentration, liquidity limits, governance risks, regulatory overhang, smart-contract risks, oracle dependencies, bridge and IBC risks, and the difference between live products and proposed products.\n\nThe strengths are real. The hard part is execution.\n",
+    "previousSlug": "learn/protocol",
     "nextSlug": "learn/wallets"
   },
   {
@@ -114,7 +201,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 2,
+    "navOrder": 3,
     "title": "Wallets",
     "description": "Pick a trusted wallet to manage LUNC, delegate, and interact with dApps without highlighting legacy Station interfaces.",
     "status": "draft",
@@ -134,7 +221,7 @@ export const docsPages = [
       }
     ],
     "body": "Use wallets that support Ledger or Trezor flows for production funds. Keep seed phrases offline and dedicate browser profiles to validator accounts.\n\n## List of Wallets\n\n- [Keplr](https://www.keplr.app) — Browser extension and mobile wallet with Ledger support, staking, governance, and IBC transfers.\n- [Galaxy Station (Hexxagon)](https://station.hexxagon.io) — Successor to Station featuring streamlined signing, WalletConnect, and validator tooling.\n- [Orbitar Wallet](https://orbitar.app) — Community wallet with Terra Classic focus, dApp catalogue, and staking flows.\n- [Cosmostation](https://www.cosmostation.io) — Mobile-first wallet with Ledger integration and governance reminders.\n- [LUNC Dash](https://luncdash.com) — Lightweight mobile wallet tailored for Terra Classic community members.\n",
-    "previousSlug": "learn/protocol",
+    "previousSlug": "learn/strengths",
     "nextSlug": "learn/keplr/keplr"
   },
   {
@@ -146,7 +233,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/wallets",
     "navHasChildren": true,
-    "navOrder": 3,
+    "navOrder": 4,
     "title": "Keplr",
     "description": "Install Keplr and access the core guides for Terra Classic users.",
     "status": "draft",
@@ -172,7 +259,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 4,
+    "navOrder": 5,
     "title": "Keplr install",
     "description": "Install Keplr in Chrome, Brave, or Firefox.",
     "status": "draft",
@@ -214,7 +301,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 5,
+    "navOrder": 6,
     "title": "Keplr wallet",
     "description": "Set up a new Keplr account or import Station mnemonics.",
     "status": "draft",
@@ -251,7 +338,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 6,
+    "navOrder": 7,
     "title": "Keplr send",
     "description": "Send assets with Keplr on Terra Classic.",
     "status": "draft",
@@ -277,7 +364,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 7,
+    "navOrder": 8,
     "title": "Keplr staking",
     "description": "Delegate, redelegate, and undelegate LUNC with Keplr.",
     "status": "draft",
@@ -303,7 +390,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 8,
+    "navOrder": 9,
     "title": "Keplr governance",
     "description": "How Keplr users should approach Terra Classic governance voting when using supported governance interfaces.",
     "status": "draft",
@@ -340,7 +427,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/keplr/keplr",
     "navHasChildren": false,
-    "navOrder": 9,
+    "navOrder": 10,
     "title": "Keplr testnet",
     "description": "Use Keplr on the rebel-2 testnet and request faucet funds.",
     "status": "draft",
@@ -377,7 +464,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/wallets",
     "navHasChildren": true,
-    "navOrder": 10,
+    "navOrder": 11,
     "title": "Galaxy Station",
     "description": "Install Galaxy Station (Hexxagon) and manage Terra Classic accounts.",
     "status": "draft",
@@ -403,7 +490,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 11,
+    "navOrder": 12,
     "title": "Galaxy Station install",
     "description": "Install the extension on Chrome, Brave, or Firefox.",
     "status": "draft",
@@ -445,7 +532,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 12,
+    "navOrder": 13,
     "title": "Galaxy Station wallet",
     "description": "Set up new accounts or import Station mnemonics.",
     "status": "draft",
@@ -487,7 +574,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 13,
+    "navOrder": 14,
     "title": "Galaxy Station send",
     "description": "Transfer assets using Galaxy Station or WalletConnect.",
     "status": "draft",
@@ -513,7 +600,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 14,
+    "navOrder": 15,
     "title": "Galaxy Station staking",
     "description": "Delegate, redelegate, and undelegate LUNC in Galaxy Station.",
     "status": "draft",
@@ -539,7 +626,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 15,
+    "navOrder": 16,
     "title": "Galaxy Station governance",
     "description": "Deposit and vote on proposals via Galaxy Station.",
     "status": "draft",
@@ -576,7 +663,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "learn/galaxy-station/galaxy-station",
     "navHasChildren": false,
-    "navOrder": 16,
+    "navOrder": 17,
     "title": "Galaxy Station testnet",
     "description": "LCD: https://lcd.luncblaze.com",
     "status": "draft",
@@ -618,7 +705,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 17,
+    "navOrder": 18,
     "title": "Fees",
     "description": "Understand gas, burn tax, Swap Protocol spread fees, and historical Terra swap fees on Terra Classic.",
     "status": "draft",
@@ -670,7 +757,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 18,
+    "navOrder": 19,
     "title": "Staking Protocol",
     "description": "The user-facing staking layer for Terra Classic: delegate LUNC, secure the network, earn protocol rewards, and participate in governance.",
     "status": "draft",
@@ -732,7 +819,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/use-staking-protocol",
     "navHasChildren": false,
-    "navOrder": 20,
+    "navOrder": 21,
     "title": "How it works",
     "description": "A practical explanation of delegation, validator power, bonding states, redelegation, unbonding, and current Terra Classic staking parameters.",
     "status": "draft",
@@ -799,7 +886,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/use-staking-protocol",
     "navHasChildren": false,
-    "navOrder": 21,
+    "navOrder": 22,
     "title": "Delegate LUNC",
     "description": "A practical delegator guide for staking LUNC through Staking Protocol using supported Terra Classic wallets.",
     "status": "draft",
@@ -866,7 +953,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/use-staking-protocol",
     "navHasChildren": false,
-    "navOrder": 22,
+    "navOrder": 23,
     "title": "Rewards and APR",
     "description": "How Staking Protocol rewards are generated, distributed, claimed, and interpreted without treating APR as a fixed promise.",
     "status": "draft",
@@ -933,7 +1020,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/use-staking-protocol",
     "navHasChildren": false,
-    "navOrder": 23,
+    "navOrder": 24,
     "title": "Risks and unstaking",
     "description": "The main Staking Protocol risks: unbonding, redelegation cooldowns, slashing, validator failures, governance exposure, wallet security, and market risk.",
     "status": "draft",
@@ -1005,7 +1092,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/validators",
     "navHasChildren": false,
-    "navOrder": 25,
+    "navOrder": 26,
     "title": "Choose a validator",
     "description": "A practical validator-selection framework for Terra Classic delegators who want rewards, accountability, and better network decentralization.",
     "status": "draft",
@@ -1087,7 +1174,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/validators",
     "navHasChildren": false,
-    "navOrder": 26,
+    "navOrder": 27,
     "title": "Validator responsibilities",
     "description": "What responsible Terra Classic validators should provide to delegators, developers, governance participants, and the wider network.",
     "status": "draft",
@@ -1159,7 +1246,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "staking-protocol/technical-reference",
     "navHasChildren": false,
-    "navOrder": 28,
+    "navOrder": 29,
     "title": "Developer reference",
     "description": "Modules, messages, queries, endpoints, CLI examples, and integration notes for building Terra Classic staking and governance tooling.",
     "status": "draft",
@@ -1231,7 +1318,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 29,
+    "navOrder": 30,
     "title": "Swap Protocol",
     "description": "The native L1 swap layer for exchanging LUNC and USTC through Market Module 2.0 without minting new supply.",
     "status": "draft",
@@ -1293,7 +1380,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/use-swap-protocol",
     "navHasChildren": false,
-    "navOrder": 31,
+    "navOrder": 32,
     "title": "How it works",
     "description": "How Swap Protocol uses Market Module 2.0 pools, oracle prices, epochs, fees, and safety controls.",
     "status": "draft",
@@ -1360,7 +1447,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/use-swap-protocol",
     "navHasChildren": false,
-    "navOrder": 32,
+    "navOrder": 33,
     "title": "Swap LUNC and USTC",
     "description": "How to think through a LUNC and USTC swap through Swap Protocol before signing the transaction.",
     "status": "draft",
@@ -1422,7 +1509,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/economics-and-safety",
     "navHasChildren": false,
-    "navOrder": 34,
+    "navOrder": 35,
     "title": "Fees, burns, and liquidity",
     "description": "How Swap Protocol funds liquidity, charges spread fees, burns remaining balances, and routes oracle funding.",
     "status": "draft",
@@ -1494,7 +1581,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/economics-and-safety",
     "navHasChildren": false,
-    "navOrder": 35,
+    "navOrder": 36,
     "title": "Oracles and safety controls",
     "description": "The oracle, quorum, TWAP, route, liquidity, and governance controls that protect Swap Protocol.",
     "status": "draft",
@@ -1566,7 +1653,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/economics-and-safety",
     "navHasChildren": false,
-    "navOrder": 36,
+    "navOrder": 37,
     "title": "Scenarios and examples",
     "description": "Illustrative examples of how Swap Protocol behaves under balanced usage, one-sided flow, and oracle stress.",
     "status": "draft",
@@ -1628,7 +1715,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/economics-and-safety",
     "navHasChildren": false,
-    "navOrder": 37,
+    "navOrder": 38,
     "title": "Risks and limitations",
     "description": "The main risks, limitations, and expectation controls for Swap Protocol and Market Module 2.0.",
     "status": "draft",
@@ -1705,7 +1792,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/technical-reference",
     "navHasChildren": false,
-    "navOrder": 39,
+    "navOrder": 40,
     "title": "Validator operations",
     "description": "Operational responsibilities for validators and oracle feeder operators supporting Swap Protocol.",
     "status": "draft",
@@ -1772,7 +1859,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "swap-protocol/technical-reference",
     "navHasChildren": false,
-    "navOrder": 40,
+    "navOrder": 41,
     "title": "Developer reference",
     "description": "Technical reference for building around Swap Protocol and Market Module 2.0.",
     "status": "draft",
@@ -1844,7 +1931,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 41,
+    "navOrder": 42,
     "title": "Forex Protocol",
     "description": "The proposed Terra Classic L1 product for collateral-backed, fiat-pegged stable assets, built around the Collateralized Stablecoin Module.",
     "status": "draft",
@@ -1916,7 +2003,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/status-and-model",
     "navHasChildren": false,
-    "navOrder": 43,
+    "navOrder": 44,
     "title": "Governance and status",
     "description": "The governance-approved status of Forex Protocol, what Proposal 12209 accepted, and what still needs to be built.",
     "status": "draft",
@@ -1983,7 +2070,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/status-and-model",
     "navHasChildren": false,
-    "navOrder": 44,
+    "navOrder": 45,
     "title": "How it is proposed to work",
     "description": "A plain-English walkthrough of the proposed Forex Protocol minting, redemption, reserve, buyback, vault, and liquidity flow.",
     "status": "draft",
@@ -2065,7 +2152,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/collateral-and-safety",
     "navHasChildren": false,
-    "navOrder": 46,
+    "navOrder": 47,
     "title": "Collateral and stable assets",
     "description": "How EUTC, EURC, USDC, premiums, collateral ratios, secondary collateral, and vault accounting are described in the Forex Protocol source.",
     "status": "draft",
@@ -2142,7 +2229,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/collateral-and-safety",
     "navHasChildren": false,
-    "navOrder": 47,
+    "navOrder": 48,
     "title": "Fees, buybacks, and liquidity",
     "description": "How the Forex Protocol source describes mint and redemption fees, secondary collateral, LUNC buybacks, vaulting, and DEX liquidity.",
     "status": "draft",
@@ -2219,7 +2306,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/collateral-and-safety",
     "navHasChildren": false,
-    "navOrder": 48,
+    "navOrder": 49,
     "title": "Oracles and safety controls",
     "description": "The proposed fiat oracle, redemption cap, vault, rebalancing, and emergency-control requirements for Forex Protocol.",
     "status": "draft",
@@ -2301,7 +2388,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/collateral-and-safety",
     "navHasChildren": false,
-    "navOrder": 49,
+    "navOrder": 50,
     "title": "Risks and open questions",
     "description": "The unresolved risks, product questions, governance issues, and implementation gaps in the proposed Forex Protocol design.",
     "status": "draft",
@@ -2393,7 +2480,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "forex-protocol/technical-reference",
     "navHasChildren": false,
-    "navOrder": 51,
+    "navOrder": 52,
     "title": "Developer reference",
     "description": "Builder-facing reference for the proposed Forex Protocol and Collateralized Stablecoin Module implementation.",
     "status": "draft",
@@ -2500,7 +2587,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 52,
+    "navOrder": 53,
     "title": "Governance",
     "description": "A user-first guide to Terra Classic governance: what it controls, why it matters, and how LUNC holders can participate responsibly.",
     "status": "draft",
@@ -2557,7 +2644,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/understand-governance",
     "navHasChildren": false,
-    "navOrder": 54,
+    "navOrder": 55,
     "title": "Voting power and delegation",
     "description": "How staked LUNC becomes governance power, how validator votes work, and how delegators can override validator votes.",
     "status": "draft",
@@ -2609,7 +2696,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/understand-governance",
     "navHasChildren": false,
-    "navOrder": 55,
+    "navOrder": 56,
     "title": "Proposal lifecycle",
     "description": "How Terra Classic proposals move through deposit, voting, tallying, and execution, and which governance parameters users should understand.",
     "status": "draft",
@@ -2666,7 +2753,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/understand-governance",
     "navHasChildren": false,
-    "navOrder": 56,
+    "navOrder": 57,
     "title": "Vote options",
     "description": "What Yes, No, NoWithVeto, and Abstain mean in Terra Classic governance, and how users should think about each option.",
     "status": "draft",
@@ -2728,7 +2815,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/use-governance",
     "navHasChildren": false,
-    "navOrder": 58,
+    "navOrder": 59,
     "title": "How to vote",
     "description": "A practical voting workflow for Terra Classic users who want to review proposals, cast votes, and verify the result.",
     "status": "draft",
@@ -2790,7 +2877,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/use-governance",
     "navHasChildren": false,
-    "navOrder": 59,
+    "navOrder": 60,
     "title": "How to evaluate proposals",
     "description": "A practical proposal-review framework for Terra Classic users, delegators, and investors.",
     "status": "draft",
@@ -2857,7 +2944,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/accountability-and-risk",
     "navHasChildren": false,
-    "navOrder": 61,
+    "navOrder": 62,
     "title": "Validator accountability",
     "description": "How Terra Classic delegators can judge validator governance behavior, communication, conflicts, and accountability.",
     "status": "draft",
@@ -2924,7 +3011,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "governance/accountability-and-risk",
     "navHasChildren": false,
-    "navOrder": 62,
+    "navOrder": 63,
     "title": "Risks and safeguards",
     "description": "The main governance risks on Terra Classic and practical safeguards for voters, delegators, and community members.",
     "status": "draft",
@@ -2985,6 +3072,679 @@ export const docsPages = [
     ],
     "body": "Governance is powerful because it can change the chain.\n\nThat same power creates risk. A good governance system needs user participation, validator accountability, serious proposal standards, and public proof after decisions pass.\n\n## Low turnout risk\n\nLow turnout means fewer active participants shape the result.\n\nThis can make governance legally valid but socially weak. It also makes it easier for a small active group to define direction while most delegators remain passive.\n\nSafeguards:\n\n- vote directly on important proposals\n- delegate to validators that vote consistently\n- review turnout before treating a result as broad consensus\n- encourage proposal summaries that normal users can understand\n\n## Validator concentration risk\n\nIf too much voting power sits with a small number of validators, governance becomes easier to coordinate, capture, or block.\n\nSafeguards:\n\n- avoid blindly delegating to the largest validators\n- split large delegations across credible validators\n- review validator voting behavior before delegating\n- support reliable mid-size validators where appropriate\n\n## Text proposal theater\n\nText and signaling proposals can be useful, but they can also create the illusion of progress.\n\nA text proposal can pass without code, funding, ownership, testing, or delivery. That does not make it worthless, but it does mean voters must be clear about what passed.\n\nSafeguards:\n\n- separate direction from implementation\n- ask for owners, milestones, and proof artifacts\n- track follow-up after the vote\n- avoid treating passed text as completed work\n\n## Community pool misuse risk\n\nCommunity pool spending can fund public goods. It can also become a credibility sink if proposals lack scope, milestones, custody clarity, or acceptance criteria.\n\nSafeguards:\n\n- require budgets to match deliverables\n- prefer milestone-based funding\n- verify receiving addresses and multisigs\n- require public updates\n- ask what happens if delivery fails\n\n## Rushed upgrade risk\n\nSoftware upgrades can improve the chain, but rushed upgrades can create halt, version mismatch, validator coordination, and exchange maintenance risk.\n\nSafeguards:\n\n- look for release notes\n- look for testnet or dry-run evidence\n- check whether validators and exchanges have upgrade instructions\n- ask whether rollback or incident plans exist\n- avoid approving high-impact upgrades only because they sound urgent\n\n## Parameter risk\n\nGovernance can change parameters that affect fees, taxes, staking, slashing, deposits, voting periods, and modules.\n\nSmall parameter changes can have large second-order effects.\n\nSafeguards:\n\n- ask for before-and-after values\n- ask who is affected\n- ask whether the change is reversible\n- ask what data supports the change\n- avoid parameter changes without scenario analysis\n\n## Stablecoin and market mechanism risk\n\nStablecoin, oracle, swap, market module, and collateral proposals carry higher risk than ordinary text proposals.\n\nThey can affect user funds, liquidity, exchange perception, regulatory posture, and chain credibility.\n\nSafeguards:\n\n- require clear status labels: proposed, accepted, funded, built, audited, live\n- separate governance acceptance from production launch\n- require oracle and liquidity assumptions to be explicit\n- ask for security review before mainnet risk\n- avoid claims that imply guaranteed peg, profit, or price outcome\n\n## Information integrity risk\n\nUsers often encounter Terra Classic information through social media, chat groups, dashboards, wallets, validators, and third-party sites.\n\nConflicting or unofficial information can confuse users and create phishing or misdirection risk.\n\nSafeguards:\n\n- verify links before connecting wallets\n- prefer source-linked docs and governance pages\n- treat screenshots as secondary evidence\n- check proposal IDs directly\n- never enter seed phrases into governance sites\n\n## The practical standard\n\nFor important governance decisions, use this rule:\n\n> No narratives without evidence. No funding without proof loops. No authority without a clear mandate.\n\nThat standard protects users and makes Terra Classic easier to trust.\n",
     "previousSlug": "governance/validator-accountability",
+    "nextSlug": "institutions/overview"
+  },
+  {
+    "slug": "institutions/overview",
+    "path": "/institutions/overview/",
+    "sourceFile": "content/docs/institutions/overview.md",
+    "group": "For Institutions",
+    "navTitle": "For Institutions",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 64,
+    "title": "For Institutions",
+    "description": "How institutions can evaluate Terra Classic, its decentralized operating model, and its native product rails.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs institutional section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/overview.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The core institutional idea",
+        "id": "the-core-institutional-idea"
+      },
+      {
+        "depth": 2,
+        "title": "Current product rails",
+        "id": "current-product-rails"
+      },
+      {
+        "depth": 2,
+        "title": "Main use cases",
+        "id": "main-use-cases"
+      },
+      {
+        "depth": 3,
+        "title": "Multi-currency settlement",
+        "id": "multi-currency-settlement"
+      },
+      {
+        "depth": 3,
+        "title": "Payment gateway integration",
+        "id": "payment-gateway-integration"
+      },
+      {
+        "depth": 3,
+        "title": "Native swap routing",
+        "id": "native-swap-routing"
+      },
+      {
+        "depth": 3,
+        "title": "Collateralized stable assets",
+        "id": "collateralized-stable-assets"
+      },
+      {
+        "depth": 3,
+        "title": "Infrastructure and data",
+        "id": "infrastructure-and-data"
+      },
+      {
+        "depth": 2,
+        "title": "The contact reality",
+        "id": "the-contact-reality"
+      },
+      {
+        "depth": 2,
+        "title": "How to use this section",
+        "id": "how-to-use-this-section"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial, legal, or commercial advice",
+        "id": "not-financial-legal-or-commercial-advice"
+      }
+    ],
+    "body": "This section is for institutions evaluating Terra Classic as a decentralized Layer 1 blockchain.\n\nIt is written for banks, fintech companies, payment providers, exchanges, custodians, market makers, asset managers, corporate treasuries, family offices, registered advisers, infrastructure providers, and other professional organizations that need more than a retail explanation.\n\nTerra Classic is not a company, issuer, foundation, vendor, or contracting counterparty. It is a public blockchain governed by staked LUNC through on-chain governance and maintained by independent validators, developers, contributors, and community participants.\n\nThat operating model is powerful, but it changes how institutions should approach integration.\n\n## The core institutional idea\n\nInstitutions can use Terra Classic in three different ways:\n\n| Use path | What it means |\n| --- | --- |\n| Build on existing rails | Use Terra Classic transactions, wallets, public endpoints, smart contracts, staking, governance data, and existing assets where appropriate. |\n| Integrate proposed L1 products | Prepare for products such as Swap Protocol and Forex Protocol if they are implemented, activated, audited, and supported by wallets and infrastructure. |\n| Propose new network work | Bring a serious proposal to public discussion and governance when the institution needs protocol changes, new asset support, funding, or ecosystem-wide coordination. |\n\nThese are different paths. An integration that only reads chain data does not need the same process as a new collateralized asset rollout.\n\n## Current product rails\n\nThe institutional story should be grounded in what exists and what is proposed.\n\n| Rail | Institutional relevance | Status discipline |\n| --- | --- | --- |\n| LUNC | Native staking, governance, gas, and speculative network asset. | Live asset. Volatile crypto asset. |\n| USTC | Legacy Terra Classic stable asset, now market-priced and speculative. | Live asset. Not a guaranteed stablecoin. |\n| Staking Protocol | Delegation, validator selection, governance power, and network security. | Live protocol. |\n| Governance | Public mechanism for proposals, parameters, upgrades, funding, and signaling. | Live protocol. |\n| Swap Protocol | Proposed native L1 swap route for LUNC and USTC through Market Module 2.0. | Proposed product. Not live unless activated by implementation and governance. |\n| Forex Protocol | Proposed collateralized stable-asset system, starting with EUTC. | Governance-accepted concept. Not live. |\n| Multi-currency assets | Proposed staged suite of Terra Classic-denominated fiat-pegged assets. | Roadmap direction. Not a live 20+ redeemable stablecoin suite. |\n\nThe strongest institutional framing is not that every product is already ready. The strongest framing is that Terra Classic has a serious path toward decentralized payment, swap, and collateralized stable-asset infrastructure if implementation, liquidity, governance, and risk controls are handled professionally.\n\n## Main use cases\n\n### Multi-currency settlement\n\nInstitutions can evaluate Terra Classic's multi-currency design direction through [Multi-currency suite](/institutions/multi-currency-suite/) and [Native assets](/institutions/native-assets/).\n\nThe defensible position is:\n\n> Terra Classic has a native multi-asset design heritage and a proposed collateralized path for new fiat-pegged assets, but institutional-grade use depends on implementation, collateral, oracles, audits, liquidity, wallet support, and governance approval.\n\n### Payment gateway integration\n\nPayment providers, merchants, fintechs, and crypto-native businesses can evaluate Terra Classic as a low-fee settlement network through [Payment gateway](/institutions/payment-gateway/).\n\nThe practical architecture can begin with basic LUNC or USTC transfers, but a serious fiat-denominated payment gateway depends on stable settlement assets, liquidity, reconciliation tooling, custody design, and clear user disclosures.\n\n### Native swap routing\n\nWallets, exchanges, market makers, and payment applications can evaluate [Native swap rails](/institutions/native-swap-rails/) as a future routing layer if Swap Protocol is implemented.\n\nSwap Protocol should be treated as bounded infrastructure: no minting, finite liquidity, oracle-aware pricing, spread fees, and safety controls.\n\n### Collateralized stable assets\n\nInstitutions interested in issuing, supporting, collateralizing, or integrating future Terra Classic stable assets should read [Collateralized stable assets](/institutions/collateralized-stable-assets/).\n\nThis path is most relevant to regulated fintechs, stablecoin issuers, payment companies, liquidity providers, and organizations that can support collateral, compliance, reserves, or market access.\n\n### Infrastructure and data\n\nInstitutions can also contribute by operating reliable infrastructure: full nodes, endpoints, indexers, explorers, analytics, monitoring, incident reporting, and governance tooling.\n\nSee [Integration architecture](/institutions/integration-architecture/) for the practical integration model.\n\n## The contact reality\n\nTerra Classic has no central entity that can sign contracts, promise outcomes, or represent the network.\n\nThat does not mean institutions cannot engage. It means engagement must be routed correctly:\n\n- public discussion through the [Terra Classic forum](https://agora.terra-classic.io/)\n- code and implementation work through relevant repositories and maintainers\n- validator and community coordination for feedback, review, and support\n- on-chain governance when protocol changes, funding, parameters, or official network decisions are required\n- direct contracts only with specific legal entities or contributors, not with \"Terra Classic\" as a whole\n\nRead [Requirements and contact](/institutions/requirements-and-contact/) before treating any community member, validator, developer, or website as an official representative.\n\n## How to use this section\n\n- [Multi-currency suite](/institutions/multi-currency-suite/) explains the institutional value of the 20+ asset direction.\n- [Payment gateway](/institutions/payment-gateway/) explains how a Terra Classic payment product could be structured.\n- [Requirements and contact](/institutions/requirements-and-contact/) explains the decentralized engagement model.\n- [Native assets](/institutions/native-assets/) explains LUNC, USTC, EUTC, and the planned Terra Classic-denominated assets.\n- [Native swap rails](/institutions/native-swap-rails/) explains Swap Protocol and Market Module 2.0 from an institutional perspective.\n- [Collateralized stable assets](/institutions/collateralized-stable-assets/) explains Forex Protocol and the proposed CSM model.\n- [Integration architecture](/institutions/integration-architecture/) maps technical integration options.\n- [Risk and due diligence](/institutions/risk-and-due-diligence/) gives the checklist institutions should complete before serious use.\n\n## Not financial, legal, or commercial advice\n\nThis section explains Terra Classic's decentralized operating model and product possibilities. It does not recommend buying, selling, holding, staking, issuing, integrating, or trading any asset. Institutions should perform their own legal, compliance, technical, custody, liquidity, and risk review.\n",
+    "previousSlug": "governance/risks-and-safeguards",
+    "nextSlug": "institutions/multi-currency-suite"
+  },
+  {
+    "slug": "institutions/multi-currency-suite",
+    "path": "/institutions/multi-currency-suite/",
+    "sourceFile": "content/docs/institutions/multi-currency-suite.md",
+    "group": "For Institutions",
+    "navTitle": "Multi-currency suite",
+    "navDepth": 1,
+    "navParent": "institutions/use-cases",
+    "navHasChildren": false,
+    "navOrder": 66,
+    "title": "Multi-currency suite",
+    "description": "How institutions should understand Terra Classic's proposed 20+ native asset suite and the path from concept to institutional-grade settlement.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic native assets and Forex Protocol source material",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/multi-currency-suite.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "What the suite is meant to become",
+        "id": "what-the-suite-is-meant-to-become"
+      },
+      {
+        "depth": 2,
+        "title": "Current status",
+        "id": "current-status"
+      },
+      {
+        "depth": 2,
+        "title": "Why institutions may care",
+        "id": "why-institutions-may-care"
+      },
+      {
+        "depth": 2,
+        "title": "What must be true for institutional use",
+        "id": "what-must-be-true-for-institutional-use"
+      },
+      {
+        "depth": 2,
+        "title": "Suggested rollout logic",
+        "id": "suggested-rollout-logic"
+      },
+      {
+        "depth": 2,
+        "title": "How this connects to payment gateways",
+        "id": "how-this-connects-to-payment-gateways"
+      },
+      {
+        "depth": 2,
+        "title": "The institutional claim to make",
+        "id": "the-institutional-claim-to-make"
+      },
+      {
+        "depth": 2,
+        "title": "Related pages",
+        "id": "related-pages"
+      }
+    ],
+    "body": "Terra Classic's multi-currency suite is the institutional idea behind native Terra Classic-denominated fiat assets.\n\nThe main website presents this as a 20+ asset direction. The docs must describe it precisely:\n\n> Terra Classic has a native multi-denom design heritage and a proposed path to progressively collateralize fiat-pegged assets on-chain, but it does not currently offer a live institutional-grade 20+ currency redemption suite.\n\nThat distinction matters. Institutions will test every claim against custody, reserves, liquidity, audits, governance, legal responsibility, and operational support.\n\n## What the suite is meant to become\n\nThe institutional value proposition is a native multi-currency settlement surface on a decentralized public blockchain.\n\nIf built correctly, the suite could support:\n\n- fiat-denominated settlement assets\n- regional payment products\n- merchant checkout in local units\n- treasury accounting in multiple currencies\n- cross-border routing between digital settlement assets\n- liquidity and FX-style market making\n- wallet and exchange support for native Terra Classic assets\n\nThe proposed first step is [Forex Protocol](/forex-protocol/overview/), beginning with EUTC.\n\n## Current status\n\nThe correct current-state summary is:\n\n| Item | Status |\n| --- | --- |\n| LUNC | Live native asset. |\n| USTC | Live legacy asset, market-priced and speculative. |\n| EUTC | Proposed first Forex Protocol stable asset. Not live. |\n| 20+ local-currency assets | Roadmap direction. Not live as redeemable collateralized stable assets. |\n| Forex Protocol / CSM | Governance-accepted concept. Requires implementation, audit, liquidity, and activation. |\n| Institutional redemption | Not available today through Terra Classic as a legal issuer. |\n\nInstitutions should not treat planned assets as live balances, redeemable claims, or issued securities without a completed legal and technical structure.\n\n## Why institutions may care\n\nThe multi-currency suite is relevant because payments and treasury operations are rarely single-currency problems.\n\nPotential institutional uses include:\n\n| Institution type | Possible use |\n| --- | --- |\n| Payment providers | Local-currency checkout and settlement flows. |\n| Fintech companies | Multi-currency wallet balances and remittance-style user flows. |\n| Corporate treasuries | On-chain settlement experiments with currency-specific accounting. |\n| Market makers | Liquidity provision between LUNC, USTC, EUTC, and future assets. |\n| Exchanges | Native asset listing, routing, and withdrawal/deposit support if assets become live. |\n| Stablecoin issuers | Collateral, reserve, or liquidity participation in future Forex Protocol assets. |\n| Public-sector or institutional partners | Research into decentralized settlement rails where governance, transparency, and public auditability matter. |\n\nThe opportunity is real, but it is conditional.\n\n## What must be true for institutional use\n\nA serious institution should require more than a symbol list.\n\nAt minimum, each supported currency asset needs:\n\n- clear issuer or protocol model\n- collateral source and custody model\n- reserve accounting\n- mint and redeem rules\n- redemption limits\n- oracle design\n- liquidity depth\n- emergency controls\n- audit history\n- wallet support\n- explorer and indexer support\n- governance approval where protocol behavior changes\n- legal and regulatory review in the institution's jurisdiction\n\nFor Forex Protocol specifically, see [Collateralized stable assets](/institutions/collateralized-stable-assets/).\n\n## Suggested rollout logic\n\nThe staged asset direction shown on the main website should be treated as an implementation roadmap, not a promise that every asset is ready at once.\n\n| Phase | Institutional meaning |\n| --- | --- |\n| Phase 1 | Prove the model with EUTC first. Validate collateral, mint, redeem, reserve accounting, oracle logic, liquidity, and user interfaces. |\n| Phase 2 | Add a small number of additional currencies only after the first asset has enough operational evidence. |\n| Phase 3 | Expand coverage where there is real user demand, reliable oracle data, and liquidity support. |\n| Phase 4 | Treat USTC-related design with extra caution because USTC carries legacy collapse, market, and regulatory baggage. |\n\nThis is the disciplined path. Launching 20+ weak assets would be worse than launching one credible asset.\n\n## How this connects to payment gateways\n\nThe multi-currency suite becomes most valuable when paired with payment flows.\n\nA payment gateway could:\n\n1. quote a local-currency amount\n2. accept a supported Terra Classic asset\n3. route through native swaps or external liquidity where available\n4. settle to the merchant's preferred asset\n5. reconcile invoices, refunds, and transaction hashes\n\nToday, that is an architecture path, not a complete production promise. See [Payment gateway](/institutions/payment-gateway/) for the operational model.\n\n## The institutional claim to make\n\nThe defensible claim is:\n\n> Terra Classic can be evaluated as a decentralized base layer for a future collateralized multi-currency asset suite, with Forex Protocol as the proposed first product path.\n\nThe claim to avoid is:\n\n> Terra Classic already offers 20+ institutional-ready redeemable fiat stablecoins.\n\nThat second claim is not true today and would weaken trust.\n\n## Related pages\n\n- [Native assets](/institutions/native-assets/)\n- [Collateralized stable assets](/institutions/collateralized-stable-assets/)\n- [Payment gateway](/institutions/payment-gateway/)\n- [Requirements and contact](/institutions/requirements-and-contact/)\n- [Risk and due diligence](/institutions/risk-and-due-diligence/)\n",
+    "previousSlug": "institutions/overview",
+    "nextSlug": "institutions/payment-gateway"
+  },
+  {
+    "slug": "institutions/payment-gateway",
+    "path": "/institutions/payment-gateway/",
+    "sourceFile": "content/docs/institutions/payment-gateway.md",
+    "group": "For Institutions",
+    "navTitle": "Payment gateway",
+    "navDepth": 1,
+    "navParent": "institutions/use-cases",
+    "navHasChildren": false,
+    "navOrder": 67,
+    "title": "Payment gateway",
+    "description": "How institutions can evaluate a Terra Classic payment gateway using native transfers, future swap routing, and collateralized stable assets.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs institutional payment gateway section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/payment-gateway.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The basic model",
+        "id": "the-basic-model"
+      },
+      {
+        "depth": 2,
+        "title": "What can be built today",
+        "id": "what-can-be-built-today"
+      },
+      {
+        "depth": 2,
+        "title": "What improves with Swap Protocol",
+        "id": "what-improves-with-swap-protocol"
+      },
+      {
+        "depth": 2,
+        "title": "What improves with Forex Protocol",
+        "id": "what-improves-with-forex-protocol"
+      },
+      {
+        "depth": 2,
+        "title": "Gateway architecture",
+        "id": "gateway-architecture"
+      },
+      {
+        "depth": 2,
+        "title": "Required user states",
+        "id": "required-user-states"
+      },
+      {
+        "depth": 2,
+        "title": "Institutional requirements",
+        "id": "institutional-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Recommended first product",
+        "id": "recommended-first-product"
+      },
+      {
+        "depth": 2,
+        "title": "Related pages",
+        "id": "related-pages"
+      }
+    ],
+    "body": "A Terra Classic payment gateway is an application layer built by an institution, fintech, payment provider, merchant, wallet, or developer.\n\nTerra Classic does not provide a centralized payment processor. The chain can provide settlement rails. The gateway provider is responsible for product design, compliance, custody, merchant onboarding, support, reconciliation, and user disclosures.\n\n## The basic model\n\nA payment gateway can use Terra Classic to:\n\n- create payment requests\n- accept wallet payments\n- verify on-chain settlement\n- reconcile invoices against transactions\n- route assets through available swap or liquidity rails\n- support merchant settlement policies\n- expose receipts, hashes, and explorer links\n- handle refunds, underpayments, overpayments, and failed payments\n\nThe gateway itself may be custodial, non-custodial, hybrid, or merchant-directed. That is a product and legal decision made by the gateway operator.\n\n## What can be built today\n\nInstitutions can build a basic Terra Classic payment flow around live chain functionality:\n\n| Capability | Current reality |\n| --- | --- |\n| LUNC transfers | Live on Terra Classic. |\n| USTC transfers | Live, but USTC is market-priced and not a guaranteed stablecoin. |\n| Wallet signing | Possible through supported wallets and integrations. |\n| On-chain confirmation | Possible through nodes, indexers, explorers, and transaction queries. |\n| Merchant reconciliation | Application-level responsibility. |\n| Stable fiat settlement | Not natively solved by Terra Classic today. |\n\nThis can support experiments, crypto-native checkout, internal settlement, or niche merchant flows. It should not be marketed as a complete regulated fiat payment network without the required legal, custody, liquidity, and stable-asset infrastructure.\n\n## What improves with Swap Protocol\n\nIf [Swap Protocol](/swap-protocol/overview/) is implemented and activated, a payment gateway could use it as a native L1 route between LUNC and USTC.\n\nPossible uses:\n\n- quote a LUNC amount for a USTC-denominated invoice\n- accept one asset and settle another\n- route small user payments through protocol liquidity\n- display native spread fees and estimated output\n- fail gracefully when oracle or liquidity checks stop the route\n\nThe gateway must still account for:\n\n- finite liquidity\n- oracle availability\n- disabled routes\n- spread fees\n- transaction fees\n- user slippage expectations\n- USTC market volatility\n\nSwap Protocol is not a stablecoin redemption mechanism and not a guarantee of payment final value.\n\n## What improves with Forex Protocol\n\nIf [Forex Protocol](/forex-protocol/overview/) is implemented, audited, collateralized, and supported by wallets and liquidity providers, a payment gateway could use assets such as EUTC for local-currency settlement.\n\nPossible uses:\n\n- Euro-denominated invoices using EUTC\n- merchant settlement into EUTC or another supported asset\n- regional payment products using future collateralized assets\n- stable-asset checkout for users who do not want LUNC price exposure\n- multi-currency treasury reporting\n\nThis depends on Forex Protocol becoming live and institutionally credible. A payment gateway should not assume EUTC or future Terra Classic currency assets exist until they are deployed, collateralized, liquid, indexed, and usable in wallets.\n\n## Gateway architecture\n\nA serious payment gateway should separate the payment workflow from the blockchain workflow.\n\n| Layer | Responsibilities |\n| --- | --- |\n| Checkout | Create invoice, asset options, amount, expiry, and user payment instructions. |\n| Quote engine | Convert fiat, LUNC, USTC, EUTC, or other assets using trusted price sources and route availability. |\n| Wallet layer | Support wallet connection, address generation, signing, and user transaction flow. |\n| Chain watcher | Monitor mempool, committed transactions, confirmations, failures, and reorg assumptions. |\n| Settlement policy | Decide whether the merchant holds, swaps, routes, or withdraws assets. |\n| Reconciliation | Match invoices to hashes, amounts, sender data where available, timestamps, and settlement status. |\n| Risk engine | Enforce limits, blocked jurisdictions, asset availability, volatility controls, and fraud controls. |\n| Operator dashboard | Show payments, exceptions, refunds, balances, exports, and diagnostics. |\n\nTerra Classic provides chain settlement. The gateway provider provides the product.\n\n## Required user states\n\nDo not collapse all failures into \"payment failed.\"\n\nExpose clear states:\n\n| State | Meaning |\n| --- | --- |\n| Awaiting payment | Invoice exists but no matching transaction has settled. |\n| Seen on-chain | A transaction has been detected but final confirmation policy is not complete. |\n| Confirmed | Payment meets the gateway's confirmation rule. |\n| Underpaid | Received amount is below the required amount after fees and tolerance. |\n| Overpaid | Received amount exceeds the invoice amount. |\n| Expired | Invoice deadline passed before valid payment. |\n| Refund required | Operator or merchant action is needed. |\n| Swap unavailable | Native routing is unavailable because of liquidity, oracle, or protocol state. |\n| Asset unavailable | Requested stable asset or currency route is not live or supported. |\n\nThese states are basic trust infrastructure for merchants and institutions.\n\n## Institutional requirements\n\nBefore launching a production gateway, the operator should define:\n\n- supported countries and blocked countries\n- supported assets\n- custody model\n- merchant settlement policy\n- compliance and monitoring obligations\n- transaction confirmation policy\n- refund policy\n- fee model\n- liquidity routing policy\n- price-source policy\n- incident response process\n- support responsibility\n- data export format for accounting and audits\n\nTerra Classic governance will not do this work for the gateway operator.\n\n## Recommended first product\n\nThe strongest first version is not a universal payment network.\n\nA credible first version would be:\n\n> A transparent Terra Classic crypto checkout and settlement gateway for selected assets, with clear risk disclosures, transaction verification, reconciliation exports, and optional future routing through Swap Protocol and Forex Protocol when those products become live.\n\nThat is narrow enough to ship and serious enough to extend.\n\n## Related pages\n\n- [Multi-currency suite](/institutions/multi-currency-suite/)\n- [Native swap rails](/institutions/native-swap-rails/)\n- [Collateralized stable assets](/institutions/collateralized-stable-assets/)\n- [Integration architecture](/institutions/integration-architecture/)\n- [Risk and due diligence](/institutions/risk-and-due-diligence/)\n",
+    "previousSlug": "institutions/multi-currency-suite",
+    "nextSlug": "institutions/requirements-and-contact"
+  },
+  {
+    "slug": "institutions/requirements-and-contact",
+    "path": "/institutions/requirements-and-contact/",
+    "sourceFile": "content/docs/institutions/requirements-and-contact.md",
+    "group": "For Institutions",
+    "navTitle": "Requirements and contact",
+    "navDepth": 1,
+    "navParent": "institutions/use-cases",
+    "navHasChildren": false,
+    "navOrder": 68,
+    "title": "Requirements and contact",
+    "description": "How institutions should engage with Terra Classic when there is no central legal entity that can represent the chain.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic decentralized operating model and governance contact path",
+    "sourceSite": "https://agora.terra-classic.io/",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/requirements-and-contact.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The short answer",
+        "id": "the-short-answer"
+      },
+      {
+        "depth": 2,
+        "title": "What nobody can promise",
+        "id": "what-nobody-can-promise"
+      },
+      {
+        "depth": 2,
+        "title": "What community members can do",
+        "id": "what-community-members-can-do"
+      },
+      {
+        "depth": 2,
+        "title": "When governance is required",
+        "id": "when-governance-is-required"
+      },
+      {
+        "depth": 2,
+        "title": "What to prepare before contact",
+        "id": "what-to-prepare-before-contact"
+      },
+      {
+        "depth": 2,
+        "title": "Suggested public engagement path",
+        "id": "suggested-public-engagement-path"
+      },
+      {
+        "depth": 3,
+        "title": "1. Research first",
+        "id": "1-research-first"
+      },
+      {
+        "depth": 3,
+        "title": "2. Post a public concept",
+        "id": "2-post-a-public-concept"
+      },
+      {
+        "depth": 3,
+        "title": "3. Collect feedback",
+        "id": "3-collect-feedback"
+      },
+      {
+        "depth": 3,
+        "title": "4. Move to governance if needed",
+        "id": "4-move-to-governance-if-needed"
+      },
+      {
+        "depth": 3,
+        "title": "5. Contract separately",
+        "id": "5-contract-separately"
+      },
+      {
+        "depth": 2,
+        "title": "Contact language to use",
+        "id": "contact-language-to-use"
+      },
+      {
+        "depth": 2,
+        "title": "What this page protects",
+        "id": "what-this-page-protects"
+      }
+    ],
+    "body": "Terra Classic is a decentralized public blockchain.\n\nIt has no central company, foundation, issuer, business development department, account manager, legal representative, or commercial authority that can sign contracts on behalf of the network.\n\nThis is the most important fact for institutional engagement.\n\n## The short answer\n\nIf your institution wants to build on, integrate with, or propose something for Terra Classic:\n\n1. Use the [Terra Classic forum](https://agora.terra-classic.io/) for public discussion.\n2. Speak with relevant validators, developers, contributors, and community members for feedback and support.\n3. Use on-chain governance if the request needs a network decision.\n4. Contract only with specific legal entities or service providers, not with \"Terra Classic\" as a whole.\n\nCommunity members and validators can support the process. They cannot officially represent Terra Classic unless they are speaking only for themselves or their own legal entity.\n\n## What nobody can promise\n\nNo individual participant can promise:\n\n- that Terra Classic governance will approve a proposal\n- that validators will vote in a specific way\n- that the chain will change parameters\n- that a new asset will be listed, supported, or collateralized\n- that a wallet or exchange will integrate a feature\n- that a protocol product will be implemented by a certain date\n- that an institution has official Terra Classic endorsement\n- that \"Terra Classic\" has signed or accepted a commercial contract\n\nThis is not a customer-success environment. It is a public blockchain environment.\n\n## What community members can do\n\nCommunity members, validators, developers, and ecosystem participants can still provide useful support:\n\n| Support type | What they can do |\n| --- | --- |\n| Orientation | Explain the chain, product status, governance process, risks, and ecosystem resources. |\n| Technical review | Review integration plans, endpoint strategy, wallet flows, module behavior, and operational assumptions. |\n| Proposal feedback | Help improve a forum post or governance proposal before it goes on-chain. |\n| Validator outreach | Share an initiative with validators and delegators for review. |\n| Implementation work | Build software if hired directly by an institution or funded through governance. |\n| Infrastructure support | Provide nodes, indexing, monitoring, analytics, or operational services under their own legal terms. |\n\nThey support the process. They do not become the chain.\n\n## When governance is required\n\nGovernance is likely required when an institutional initiative needs:\n\n- protocol parameter changes\n- new module activation\n- chain software upgrades\n- community pool funding\n- official signaling from staked LUNC governance\n- Forex Protocol rollout decisions\n- Swap Protocol activation or parameter changes\n- tax, fee, or oracle-policy changes\n- network-wide asset support\n- public-good infrastructure funding\n\nGovernance may not be required for:\n\n- reading public chain data\n- running a full node\n- building an independent wallet or payment gateway\n- listing LUNC or USTC on a private platform\n- building a private analytics product\n- contracting directly with a validator, developer, auditor, market maker, or infrastructure provider\n\nThe difference is simple: private integrations can usually proceed independently; network decisions need governance.\n\n## What to prepare before contact\n\nAn institutional approach should be specific. Vague \"partnership\" messages waste time and create weak expectations.\n\nPrepare:\n\n| Requirement | Why it matters |\n| --- | --- |\n| Entity identity | Community participants need to know who is approaching the ecosystem. |\n| Jurisdiction | Legal, stablecoin, custody, payment, and securities rules vary by region. |\n| Use case | Payment gateway, custody, asset issuance, liquidity, treasury, data, research, or infrastructure. |\n| Requested support | Clarify whether you need technical feedback, governance support, funding, validators, liquidity, or public discussion. |\n| Product status | Say whether the institution is researching, prototyping, seeking governance, or ready to build. |\n| Asset model | Name the assets involved and whether they are live, proposed, collateralized, or speculative. |\n| Collateral model | Required for stable-asset or Forex Protocol related proposals. |\n| Liquidity plan | Needed for swaps, payments, stable assets, and listings. |\n| Risk controls | Include custody, audits, oracle assumptions, limits, monitoring, and incident handling. |\n| Legal boundary | Make clear who can sign contracts and who is only providing public-chain coordination. |\n\nFor payment products, also read [Payment gateway](/institutions/payment-gateway/). For stable assets, read [Collateralized stable assets](/institutions/collateralized-stable-assets/).\n\n## Suggested public engagement path\n\nUse a staged process.\n\n### 1. Research first\n\nRead:\n\n- [For Institutions](/institutions/overview/)\n- [Risk and due diligence](/institutions/risk-and-due-diligence/)\n- [Governance](/governance/overview/)\n- [Swap Protocol](/swap-protocol/overview/)\n- [Forex Protocol](/forex-protocol/overview/)\n\n### 2. Post a public concept\n\nOpen a clear forum topic on the [Terra Classic forum](https://agora.terra-classic.io/).\n\nThe topic should include:\n\n- who you are\n- what you want to build or propose\n- what chain support you need\n- what assets or modules are involved\n- what benefits and risks the community should evaluate\n- what is already funded by your institution\n- what would require governance funding or approval\n\n### 3. Collect feedback\n\nGive validators, developers, delegators, community members, and independent critics time to respond.\n\nDo not treat silence from the forum as approval.\n\n### 4. Move to governance if needed\n\nIf the idea requires a network decision, prepare an on-chain governance proposal with:\n\n- clear scope\n- implementation owner\n- milestones\n- budget if funding is requested\n- deliverables\n- risk controls\n- audit or review plan\n- success metrics\n- rollback or emergency process where relevant\n\n### 5. Contract separately\n\nIf your institution hires contributors, validators, auditors, developers, liquidity providers, or infrastructure companies, contract with those parties directly.\n\nA private contract with one contributor does not bind Terra Classic governance.\n\n## Contact language to use\n\nUse this framing:\n\n> We are seeking public feedback and potential ecosystem support for an initiative involving Terra Classic. We understand Terra Classic has no central legal entity and that validators or community members cannot represent the chain as a whole. If network-level support is required, we expect to use the public forum and governance process.\n\nAvoid this framing:\n\n> We want to partner with Terra Classic and need someone official to approve it.\n\nThere may be no such person.\n\n## What this page protects\n\nThis page protects both sides.\n\nIt protects institutions from assuming that a Telegram chat, validator conversation, website, or community member creates official network approval.\n\nIt protects Terra Classic from false claims that one actor can sell, sign, license, endorse, or commercially represent a decentralized chain.\n\nThe correct operating model is public, transparent, proposal-driven, and governance-aware.\n",
+    "previousSlug": "institutions/payment-gateway",
+    "nextSlug": "institutions/native-assets"
+  },
+  {
+    "slug": "institutions/native-assets",
+    "path": "/institutions/native-assets/",
+    "sourceFile": "content/docs/institutions/native-assets.md",
+    "group": "For Institutions",
+    "navTitle": "Native assets",
+    "navDepth": 1,
+    "navParent": "institutions/product-rails",
+    "navHasChildren": false,
+    "navOrder": 70,
+    "title": "Native assets",
+    "description": "How institutions should understand LUNC, USTC, EUTC, and the planned Terra Classic multi-currency asset suite.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic native assets and Forex Protocol source material",
+    "sourceSite": "https://terra-classic.money/",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/native-assets.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Status categories",
+        "id": "status-categories"
+      },
+      {
+        "depth": 2,
+        "title": "LUNC",
+        "id": "lunc"
+      },
+      {
+        "depth": 2,
+        "title": "USTC",
+        "id": "ustc"
+      },
+      {
+        "depth": 2,
+        "title": "EUTC",
+        "id": "eutc"
+      },
+      {
+        "depth": 2,
+        "title": "Planned multi-currency assets",
+        "id": "planned-multi-currency-assets"
+      },
+      {
+        "depth": 2,
+        "title": "Institutional asset questions",
+        "id": "institutional-asset-questions"
+      },
+      {
+        "depth": 2,
+        "title": "Product discipline",
+        "id": "product-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Related pages",
+        "id": "related-pages"
+      }
+    ],
+    "body": "Terra Classic native assets should be understood by status, not only by symbol.\n\nAn asset symbol on a website or roadmap is not the same thing as a live, liquid, collateralized, redeemable, institution-ready asset.\n\n## Status categories\n\nUse these categories when evaluating Terra Classic assets:\n\n| Category | Meaning |\n| --- | --- |\n| Live native asset | Exists and can be transferred on Terra Classic mainnet. |\n| Live legacy asset | Exists on-chain but may no longer behave like its original product promise. |\n| Proposed collateralized asset | Described in product or governance material but not live until implemented. |\n| Roadmap asset | Part of a staged product direction, not currently available as a production asset. |\n| Institution-ready asset | Has live issuance, collateral, redemption, liquidity, oracle support, wallet support, audits, and legal/compliance clarity. |\n\nMost institutional confusion comes from mixing these categories.\n\n## LUNC\n\nLUNC is the native staking, governance, and gas asset of Terra Classic.\n\nInstitutional relevance:\n\n- pays transaction fees\n- secures the network through staking\n- provides governance voting power when staked\n- can be delegated to validators\n- is listed on external markets\n- can be held, transferred, staked, or integrated like other volatile crypto assets\n\nLUNC is not a stable asset. It is a volatile crypto asset.\n\n## USTC\n\nUSTC is a live Terra Classic legacy asset.\n\nIt should not be described as a guaranteed 1 USD stablecoin. After the 2022 collapse, USTC became a market-priced speculative asset. It can still be transferred and may be involved in proposed product paths, but institutions should treat it with extra caution.\n\nInstitutional relevance:\n\n- live on-chain asset\n- possible swap route in Swap Protocol if implemented\n- possible future role in stable-asset discussions\n- high disclosure burden because of its history\n\nUSTC-related products should avoid any language that implies a guaranteed peg, redemption right, or risk-free stable settlement.\n\n## EUTC\n\nEUTC is the proposed first Forex Protocol stable asset.\n\nThe source design describes EUTC as a Euro-pegged Terra Classic asset backed by approved collateral such as EURC or USDC, with mint and redemption fees, reserve logic, oracle requirements, and redemption controls.\n\nCurrent institutional status:\n\n| Item | Status |\n| --- | --- |\n| EUTC concept | Defined in Forex Protocol source material. |\n| Governance direction | Forex Protocol concept accepted by governance as Proposal 12209. |\n| Mainnet asset | Not live. |\n| Minting | Not live. |\n| Redemption | Not live. |\n| Institutional readiness | Depends on implementation, audit, collateral, liquidity, wallets, and governance execution. |\n\nEUTC should be presented as a proposed first asset, not as a live Euro stablecoin.\n\n## Planned multi-currency assets\n\nThe main website presents a staged multi-currency suite. Institutions should treat it as a roadmap direction tied to Forex Protocol or future collateralized asset work.\n\n| Display asset | Reference currency |\n| --- | --- |\n| HKTC | Hong Kong Dollar |\n| NOTC | Norwegian Krone |\n| PHTC | Philippine Peso |\n| AUTC | Australian Dollar |\n| CATC | Canadian Dollar |\n| CHTC | Swiss Franc |\n| CNTC | Chinese Yuan Renminbi |\n| DKTC | Danish Krone |\n| GBTC | British Pound Sterling |\n| INTC | Indian Rupee |\n| IDTC | Indonesian Rupiah |\n| JPTC | Japanese Yen |\n| KRTC | South Korean Won |\n| MNTC | Mongolian Togrog |\n| MYTC | Malaysian Ringgit |\n| SDTC | Special Drawing Rights |\n| SETC | Swedish Krona |\n| SGTC | Singapore Dollar |\n| THTC | Thai Baht |\n| TWTC | New Taiwan Dollar |\n| USTC | US Dollar reference asset, but currently a legacy market-priced asset |\n\nThese names describe the intended Terra Classic-denominated asset family. They do not prove current collateral, redemption, liquidity, regulatory status, or wallet support.\n\n## Institutional asset questions\n\nBefore using or supporting any Terra Classic asset, an institution should ask:\n\n- Does this asset exist on mainnet?\n- Is it transferable?\n- Is it supported by wallets and explorers?\n- Is it supported by exchanges or DEX liquidity?\n- Is it collateralized?\n- Who controls or verifies collateral?\n- Is redemption available?\n- What are the mint and redeem rules?\n- What happens during oracle failure?\n- What happens during liquidity failure?\n- Has the implementation been audited?\n- Is there a legal issuer, or is this purely protocol-defined?\n- Does using the asset create regulatory obligations?\n\nIf those answers are unclear, the asset is not institution-ready.\n\n## Product discipline\n\nThe multi-currency story is one of Terra Classic's most interesting institutional opportunities. It is also one of the easiest stories to damage through overclaiming.\n\nThe correct message is:\n\n> Terra Classic can pursue a native multi-currency asset suite through collateralized protocol design, beginning with EUTC as the first proposed Forex Protocol asset.\n\nThe incorrect message is:\n\n> Terra Classic already has 20+ fully working institutional fiat stablecoins.\n\nDo not use the incorrect message.\n\n## Related pages\n\n- [Multi-currency suite](/institutions/multi-currency-suite/)\n- [Collateralized stable assets](/institutions/collateralized-stable-assets/)\n- [Payment gateway](/institutions/payment-gateway/)\n- [Risk and due diligence](/institutions/risk-and-due-diligence/)\n",
+    "previousSlug": "institutions/requirements-and-contact",
+    "nextSlug": "institutions/native-swap-rails"
+  },
+  {
+    "slug": "institutions/native-swap-rails",
+    "path": "/institutions/native-swap-rails/",
+    "sourceFile": "content/docs/institutions/native-swap-rails.md",
+    "group": "For Institutions",
+    "navTitle": "Native swap rails",
+    "navDepth": 1,
+    "navParent": "institutions/product-rails",
+    "navHasChildren": false,
+    "navOrder": 71,
+    "title": "Native swap rails",
+    "description": "How institutions should evaluate Swap Protocol and Market Module 2.0 as a native Terra Classic routing layer.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/native-swap-rails.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Institutional value",
+        "id": "institutional-value"
+      },
+      {
+        "depth": 2,
+        "title": "What makes it different",
+        "id": "what-makes-it-different"
+      },
+      {
+        "depth": 2,
+        "title": "What institutions should not assume",
+        "id": "what-institutions-should-not-assume"
+      },
+      {
+        "depth": 2,
+        "title": "Payment gateway use",
+        "id": "payment-gateway-use"
+      },
+      {
+        "depth": 2,
+        "title": "Treasury use",
+        "id": "treasury-use"
+      },
+      {
+        "depth": 2,
+        "title": "Required integration states",
+        "id": "required-integration-states"
+      },
+      {
+        "depth": 2,
+        "title": "Read the product docs",
+        "id": "read-the-product-docs"
+      },
+      {
+        "depth": 2,
+        "title": "Institutional conclusion",
+        "id": "institutional-conclusion"
+      }
+    ],
+    "body": "Native swap rails describe the institutional use of [Swap Protocol](/swap-protocol/overview/).\n\nSwap Protocol is the product name. Market Module 2.0 is the underlying no-mint market-module design.\n\nIt is proposed as a native L1 route for LUNC and USTC swaps using prefilled protocol liquidity, oracle-aware pricing, spread fees, burns, and safety controls.\n\n## Institutional value\n\nIf implemented and activated, Swap Protocol could matter to:\n\n| Institution type | Possible use |\n| --- | --- |\n| Wallets | Native LUNC and USTC swap interface with protocol-level states. |\n| Payment gateways | Route between invoice asset and settlement asset where liquidity allows. |\n| Exchanges | Monitor native swap prices, capacity, and market signals. |\n| Market makers | Arbitrage or liquidity strategy around protocol swap routes and external markets. |\n| Analytics providers | Track route availability, spread fees, burns, oracle participation, and pool exhaustion. |\n| Treasury operators | Rebalance small positions through native rails when capacity and risk limits permit. |\n\nThis is infrastructure, not a magic liquidity source.\n\n## What makes it different\n\nMarket Module 2.0 is designed to avoid the most dangerous part of the old Terra market module: uncontrolled minting.\n\nThe proposed design uses:\n\n- no new LUNC or USTC minting during swaps\n- prefilled protocol liquidity pools\n- live oracle-aware pricing\n- finite route capacity\n- 0.35% spread fee\n- 50% spread-fee burn\n- 50% spread-fee routing to the Oracle Pool\n- epoch-based burn logic for remaining pool balances\n- oracle quorum and sanity checks\n\nFor institutions, the key word is bounded.\n\n## What institutions should not assume\n\nSwap Protocol does not provide:\n\n- USTC repeg\n- guaranteed swap availability\n- unlimited liquidity\n- fixed USTC value\n- stablecoin redemption\n- institutional market depth by itself\n- guaranteed execution during oracle failure\n- legal settlement finality beyond blockchain settlement\n\nAny integration should expose failure states clearly.\n\n## Payment gateway use\n\nA payment gateway could use Swap Protocol as a routing option after it is live.\n\nExample:\n\n1. Merchant creates a USTC-denominated invoice.\n2. User wants to pay with LUNC.\n3. Gateway quotes an estimated LUNC-to-USTC route through Swap Protocol.\n4. Gateway checks route status, oracle state, pool capacity, and fees.\n5. User signs the transaction.\n6. Gateway confirms settlement and reconciles the invoice.\n\nThis workflow is useful only if the route has sufficient liquidity and safe oracle state at the time of payment.\n\n## Treasury use\n\nA treasury desk could use Swap Protocol for controlled LUNC/USTC rebalancing when:\n\n- route liquidity is sufficient\n- the desired size is within risk limits\n- external market prices are checked\n- oracle state is healthy\n- execution failure is acceptable\n- final balances can be reconciled\n\nLarge institutions should assume external liquidity venues and OTC relationships may still be required.\n\n## Required integration states\n\nInstitutional software should model:\n\n| State | Why it matters |\n| --- | --- |\n| Route enabled | The module route can be attempted. |\n| Route disabled | Governance, safety logic, or implementation state prevents use. |\n| Insufficient liquidity | The output side cannot satisfy the requested amount. |\n| Oracle quorum failure | Validator price participation is below required threshold. |\n| TWAP sanity failure | Price input is outside the allowed safety range. |\n| Fee estimate changed | Quote should be refreshed before signing. |\n| Transaction failed | The gateway must explain whether the failure was wallet, chain, liquidity, or oracle related. |\n\nBad error handling will make the product look unreliable even when the protocol is behaving correctly.\n\n## Read the product docs\n\nBefore integrating, read:\n\n- [Swap Protocol](/swap-protocol/overview/)\n- [How it works](/swap-protocol/how-it-works/)\n- [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/)\n- [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/)\n- [Developer reference](/swap-protocol/developer-reference/)\n\n## Institutional conclusion\n\nSwap Protocol should be positioned as a native routing layer with hard constraints.\n\nThat is a better institutional story than pretending it solves liquidity, repeg, or payment stability by itself.\n",
+    "previousSlug": "institutions/native-assets",
+    "nextSlug": "institutions/collateralized-stable-assets"
+  },
+  {
+    "slug": "institutions/collateralized-stable-assets",
+    "path": "/institutions/collateralized-stable-assets/",
+    "sourceFile": "content/docs/institutions/collateralized-stable-assets.md",
+    "group": "For Institutions",
+    "navTitle": "Collateralized stable assets",
+    "navDepth": 1,
+    "navParent": "institutions/product-rails",
+    "navHasChildren": false,
+    "navOrder": 72,
+    "title": "Collateralized stable assets",
+    "description": "How institutions should evaluate Forex Protocol, EUTC, collateral, reserves, liquidity, and stable-asset rollout requirements.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/collateralized-stable-assets.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The product thesis",
+        "id": "the-product-thesis"
+      },
+      {
+        "depth": 2,
+        "title": "Current status",
+        "id": "current-status"
+      },
+      {
+        "depth": 2,
+        "title": "Why institutions may care",
+        "id": "why-institutions-may-care"
+      },
+      {
+        "depth": 2,
+        "title": "Minimum institutional requirements",
+        "id": "minimum-institutional-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Collateral and redemption questions",
+        "id": "collateral-and-redemption-questions"
+      },
+      {
+        "depth": 2,
+        "title": "Governance and legal boundary",
+        "id": "governance-and-legal-boundary"
+      },
+      {
+        "depth": 2,
+        "title": "What good implementation would look like",
+        "id": "what-good-implementation-would-look-like"
+      },
+      {
+        "depth": 2,
+        "title": "Relation to the multi-currency suite",
+        "id": "relation-to-the-multi-currency-suite"
+      },
+      {
+        "depth": 2,
+        "title": "Related pages",
+        "id": "related-pages"
+      }
+    ],
+    "body": "Collateralized stable assets are the proposed institutional path for bringing fiat-pegged settlement assets back to Terra Classic without returning to the failed algorithmic model.\n\nThe relevant product is [Forex Protocol](/forex-protocol/overview/). The underlying proposed technology is the Collateralized Stablecoin Module, or CSM.\n\n## The product thesis\n\nForex Protocol aims to support stable assets backed by external collateral.\n\nThe first proposed asset is EUTC, a Euro-pegged Terra Classic asset backed by collateral such as EURC or USDC according to the source design.\n\nThe institutional thesis is:\n\n> Terra Classic can support decentralized stable-asset utility only if new assets are backed by credible collateral, transparent accounting, safe mint and redemption rules, reliable oracles, sufficient liquidity, audits, and governance-controlled rollout.\n\nThat is the opposite of \"turn the old algorithmic stablecoin back on.\"\n\n## Current status\n\nForex Protocol is not live.\n\n| Area | Status |\n| --- | --- |\n| Governance concept | Accepted as Proposal 12209. |\n| EUTC | Proposed first stable asset. |\n| CSM implementation | Not live on mainnet. |\n| Minting | Not available. |\n| Redemption | Not available. |\n| Production liquidity | Not established. |\n| Audit | Required before serious institutional use. |\n| Wallet support | Required before user-facing use. |\n\nInstitutions should treat this as a proposed product path, not as current settlement infrastructure.\n\n## Why institutions may care\n\nCollateralized stable assets could matter to:\n\n| Institution type | Possible role |\n| --- | --- |\n| Stablecoin issuers | Collateral participation, asset support, liquidity, or integrations. |\n| Payment providers | Local-currency settlement assets for checkout and merchant settlement. |\n| Fintech companies | Multi-currency wallet and remittance-style products. |\n| Market makers | Liquidity between EUTC, LUNC, USTC, USDC, EURC, and external venues. |\n| Custodians | Support for institutional wallets, reserve assets, and reporting. |\n| Exchanges | Listing, deposit, withdrawal, and market support if assets become live. |\n| Corporate treasuries | On-chain currency-denominated balances, subject to risk and compliance review. |\n\nThe opportunity is not just a token. It is the operating system around issuance, reserves, liquidity, compliance, and reporting.\n\n## Minimum institutional requirements\n\nBefore any institution treats a Terra Classic stable asset as production-ready, it should require:\n\n- live audited implementation\n- clear collateral assets\n- clear collateral custody and control model\n- public reserve accounting\n- mint and redeem rules\n- redemption limits and queue behavior\n- oracle source policy\n- emergency pause policy\n- liquidity venues and depth\n- wallet and explorer support\n- accounting and reconciliation tooling\n- governance authority boundaries\n- legal analysis in relevant jurisdictions\n\nIf an asset lacks these, it may still be a useful experiment, but it is not institution-ready.\n\n## Collateral and redemption questions\n\nThe Forex Protocol source describes EURC and USDC collateral paths for EUTC, plus mint and redemption fees.\n\nInstitutions should ask:\n\n- who or what controls the collateral\n- how collateral is verified\n- whether collateral is segregated by asset\n- whether redemptions return same-kind collateral\n- how EUR/USD pricing affects USDC-backed EUTC\n- how mint and redemption fees are accounted for\n- how redemption caps behave during stress\n- how emergency controls are governed\n- whether reserve reports can be independently verified\n\nThese questions are not paperwork. They are the product.\n\n## Governance and legal boundary\n\nTerra Classic governance can approve or reject protocol changes. It does not automatically create a legal issuer, regulated payment institution, fiduciary, trustee, or redemption counterparty.\n\nIf an institutional stable-asset product needs a legal issuer, custodian, reserve administrator, market maker, auditor, or payment institution, those roles must be defined separately.\n\nValidators and community members cannot silently become those legal roles by voting on a proposal.\n\n## What good implementation would look like\n\nA serious Forex Protocol rollout should be staged:\n\n1. publish implementation specification\n2. define collateral custody and accounting\n3. define oracle sources and failure behavior\n4. build testnet implementation\n5. run public tests\n6. complete security review or audit\n7. publish liquidity plan\n8. publish wallet and explorer requirements\n9. submit activation proposal\n10. monitor live performance with public dashboards\n\nSkipping these steps would make institutional adoption unlikely.\n\n## Relation to the multi-currency suite\n\nThe proposed 20+ asset suite should not launch as a symbol list.\n\nEach asset should earn its way into production with:\n\n- real use case\n- collateral support\n- liquidity plan\n- oracle support\n- compliance review\n- operating support\n- governance approval if required\n\nEUTC should be the proof point before broad expansion.\n\n## Related pages\n\n- [Forex Protocol](/forex-protocol/overview/)\n- [Collateral and stable assets](/forex-protocol/collateral-and-stable-assets/)\n- [Multi-currency suite](/institutions/multi-currency-suite/)\n- [Native assets](/institutions/native-assets/)\n- [Requirements and contact](/institutions/requirements-and-contact/)\n",
+    "previousSlug": "institutions/native-swap-rails",
+    "nextSlug": "institutions/integration-architecture"
+  },
+  {
+    "slug": "institutions/integration-architecture",
+    "path": "/institutions/integration-architecture/",
+    "sourceFile": "content/docs/institutions/integration-architecture.md",
+    "group": "For Institutions",
+    "navTitle": "Integration architecture",
+    "navDepth": 1,
+    "navParent": "institutions/integration-and-risk",
+    "navHasChildren": false,
+    "navOrder": 74,
+    "title": "Integration architecture",
+    "description": "Technical integration model for institutions building wallets, payment gateways, analytics, custody, infrastructure, or product support on Terra Classic.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs integration architecture",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/integration-architecture.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Integration paths",
+        "id": "integration-paths"
+      },
+      {
+        "depth": 2,
+        "title": "Recommended production stack",
+        "id": "recommended-production-stack"
+      },
+      {
+        "depth": 2,
+        "title": "Payment integration layers",
+        "id": "payment-integration-layers"
+      },
+      {
+        "depth": 2,
+        "title": "Custody and wallet architecture",
+        "id": "custody-and-wallet-architecture"
+      },
+      {
+        "depth": 2,
+        "title": "Chain data requirements",
+        "id": "chain-data-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Observability requirements",
+        "id": "observability-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Diagnostics institutions should expose",
+        "id": "diagnostics-institutions-should-expose"
+      },
+      {
+        "depth": 2,
+        "title": "Security expectations",
+        "id": "security-expectations"
+      },
+      {
+        "depth": 2,
+        "title": "Related pages",
+        "id": "related-pages"
+      }
+    ],
+    "body": "Institutions should treat Terra Classic integration as a production system, not as a wallet button.\n\nThe right architecture depends on whether the institution is building payments, custody, analytics, asset support, exchange infrastructure, treasury tooling, or developer services.\n\n## Integration paths\n\n| Path | Typical institution | Governance needed? |\n| --- | --- | --- |\n| Read-only data integration | Analytics providers, risk teams, research desks. | Usually no. |\n| Wallet support | Wallets, custodians, fintech apps. | Usually no, unless protocol changes are requested. |\n| Payment gateway | PSPs, merchants, fintechs, crypto-native businesses. | Usually no for private gateway logic; yes for protocol-level changes. |\n| Exchange or custody support | Exchanges, custodians, prime brokers. | Usually no for listing/support decisions. |\n| Full-node or endpoint operation | Infrastructure providers, validators, data platforms. | No, unless seeking community funding or official signaling. |\n| Swap Protocol integration | Wallets, gateways, market tools. | Depends on whether the protocol is live and what changes are needed. |\n| Forex Protocol or asset issuance | Stablecoin issuers, fintechs, liquidity providers. | Likely yes for protocol activation, parameters, or asset rollout. |\n\nDo not overuse governance. Private products should not ask governance for permission when they can simply build.\n\n## Recommended production stack\n\nA serious integration should include:\n\n- at least one self-operated node or paid infrastructure provider\n- fallback public endpoints\n- chain status monitoring\n- transaction broadcaster\n- indexer or data pipeline\n- wallet or custody integration\n- transaction reconciliation\n- alerting and incident workflow\n- exportable diagnostics for support\n- compliance and risk controls where relevant\n\nPublic endpoints are useful, but institutions should avoid making one community endpoint a single point of failure.\n\nSee [Public Network Endpoints](/develop/endpoints/) and [Run a Full Node](/full-node/overview/) for baseline infrastructure references.\n\n## Payment integration layers\n\nFor payment gateway builders, split the system into these layers:\n\n| Layer | Responsibility |\n| --- | --- |\n| Product API | Invoice creation, merchant config, refund workflow, and dashboard access. |\n| Pricing | Asset quotes, expiry windows, conversion rates, fees, and spread assumptions. |\n| Wallet | User payment flow, address handling, signing, and transaction broadcast. |\n| Chain monitor | Transaction detection, confirmation, errors, and final settlement state. |\n| Routing | Optional swap or liquidity routing when available. |\n| Reconciliation | Match invoices, hashes, amounts, timestamps, and settlement assets. |\n| Risk | Limits, velocity, suspicious behavior, jurisdiction blocks, and asset disable switches. |\n| Reporting | Merchant exports, audit logs, accounting files, and diagnostics. |\n\nThe blockchain is one layer. The institution still owns the product.\n\n## Custody and wallet architecture\n\nInstitutions should choose an explicit custody model:\n\n| Model | Description |\n| --- | --- |\n| Non-custodial | User signs with their own wallet. Operator never controls user funds. |\n| Custodial | Operator controls user balances and must handle custody, compliance, and internal accounting. |\n| Merchant-directed | User pays directly to merchant-controlled addresses. |\n| Hybrid | Operator coordinates flow but settlement goes to controlled merchant or treasury addresses. |\n\nEach model changes legal obligations, support burden, security requirements, and user risk.\n\n## Chain data requirements\n\nAt minimum, institutional systems usually need:\n\n- latest block height\n- node sync status\n- account balances\n- transaction broadcast status\n- transaction inclusion and result\n- fee estimation\n- staking and delegation state if staking is supported\n- governance proposals and votes if governance is shown\n- oracle and market state if Swap Protocol is integrated\n- collateral and vault state if Forex Protocol becomes live\n\nUse live chain queries where possible rather than static assumptions.\n\n## Observability requirements\n\nInstitutions should monitor:\n\n- node sync height and peer health\n- endpoint error rates\n- transaction broadcast failures\n- average confirmation time\n- fee changes\n- indexer lag\n- wallet provider failures\n- explorer mismatch\n- chain upgrade announcements\n- governance proposals affecting integrated modules\n- oracle participation for swap or stable-asset products\n\nOperational visibility is part of institutional trust.\n\n## Diagnostics institutions should expose\n\nBecause Terra Classic is decentralized, debugging often crosses organizations. A good integration should produce a short diagnostics bundle that can be shared with developers, infrastructure providers, or community support.\n\nInclude:\n\n- timestamp\n- app version\n- network\n- node endpoint\n- latest observed block height\n- transaction hash\n- account address where safe to share\n- error code\n- raw broadcast response\n- indexed transaction result\n- relevant module state\n- browser or device details for wallet issues\n\nThis reduces support chaos and makes community help more effective.\n\n## Security expectations\n\nInstitutions should not rely on community enthusiasm as a security model.\n\nRequired controls may include:\n\n- key management policy\n- hardware signing or custody provider\n- role-based access\n- withdrawal limits\n- transaction simulation\n- address allowlists\n- audit logs\n- dependency scanning\n- incident response plan\n- third-party security review for user-facing products\n\nFor protocol-level products, security review should happen before mainnet activation, not after users discover edge cases.\n\n## Related pages\n\n- [Payment gateway](/institutions/payment-gateway/)\n- [Requirements and contact](/institutions/requirements-and-contact/)\n- [Native swap rails](/institutions/native-swap-rails/)\n- [Collateralized stable assets](/institutions/collateralized-stable-assets/)\n- [Risk and due diligence](/institutions/risk-and-due-diligence/)\n",
+    "previousSlug": "institutions/collateralized-stable-assets",
+    "nextSlug": "institutions/risk-and-due-diligence"
+  },
+  {
+    "slug": "institutions/risk-and-due-diligence",
+    "path": "/institutions/risk-and-due-diligence/",
+    "sourceFile": "content/docs/institutions/risk-and-due-diligence.md",
+    "group": "For Institutions",
+    "navTitle": "Risk and due diligence",
+    "navDepth": 1,
+    "navParent": "institutions/integration-and-risk",
+    "navHasChildren": false,
+    "navOrder": 75,
+    "title": "Risk and due diligence",
+    "description": "Institutional diligence checklist for Terra Classic decentralization, governance, security, liquidity, assets, and integration risk.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Four Years After: State of the Chain Report (2022-2026)",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "institutions-section-2026-06-01",
+    "sourcePath": "content/docs/institutions/risk-and-due-diligence.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Core diligence position",
+        "id": "core-diligence-position"
+      },
+      {
+        "depth": 2,
+        "title": "Decentralization risk",
+        "id": "decentralization-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Governance risk",
+        "id": "governance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Security assurance risk",
+        "id": "security-assurance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Liquidity risk",
+        "id": "liquidity-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Asset risk",
+        "id": "asset-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Legal and compliance risk",
+        "id": "legal-and-compliance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Infrastructure risk",
+        "id": "infrastructure-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Due diligence checklist",
+        "id": "due-diligence-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "What good institutional engagement looks like",
+        "id": "what-good-institutional-engagement-looks-like"
+      },
+      {
+        "depth": 2,
+        "title": "Institutional conclusion",
+        "id": "institutional-conclusion"
+      }
+    ],
+    "body": "Institutional evaluation of Terra Classic should be honest.\n\nThe chain has meaningful strengths: it is still live, decentralized, community-governed, exchange-visible, technically maintained, and connected to a persistent global community. It also has serious institutional gaps around governance quality, security assurance, liquidity depth, operating ownership, and legal representation.\n\nThis page is a diligence checklist, not a rejection letter.\n\n## Core diligence position\n\nTerra Classic should be evaluated as:\n\n> A live decentralized Layer 1 with durable community survival and proposed L1 product paths, but not a company-backed institutional platform with centralized contracts, guaranteed support, or mature institutional assurance.\n\nThat positioning is credible. Pretending otherwise is not.\n\n## Decentralization risk\n\nTerra Classic has no central legal body.\n\nImplications:\n\n- no official sales team\n- no central account manager\n- no entity that can sign on behalf of the chain\n- no single authority that can guarantee governance outcomes\n- no foundation balance sheet standing behind institutional integrations\n- no unified support desk\n\nThis is normal for decentralized chains, but institutions must design around it.\n\nRead [Requirements and contact](/institutions/requirements-and-contact/) before approaching the ecosystem.\n\n## Governance risk\n\nTerra Classic governance is live and powerful, but governance quality is uneven.\n\nRisks include:\n\n- validator-weighted decision making\n- delegator passivity\n- low-signal proposal volume\n- proposal churn\n- weak post-approval accountability\n- missed validator votes\n- funding requests without execution discipline\n- text proposals that create expectations without implementation\n\nInstitutions should not treat a forum comment or informal validator conversation as governance approval.\n\nFor network-level changes, require:\n\n- public proposal discussion\n- clear implementation owner\n- budget and milestone discipline\n- measurable deliverables\n- security and rollback plan\n- final on-chain governance outcome where required\n\n## Security assurance risk\n\nTerra Classic is operationally live, but institutional-grade assurance requires more than uptime.\n\nInstitutions should ask:\n\n- Has the relevant code path been audited after 2022?\n- Is there a public bug bounty?\n- Who maintains the module?\n- What testnet coverage exists?\n- What happens during failed upgrade or chain halt?\n- Who monitors incidents?\n- Where are known risks documented?\n- Which dependencies are critical?\n- Which validators or infrastructure providers are operationally important?\n\nIf an institution is integrating Swap Protocol, Forex Protocol, custody, payments, or new asset support, it should expect additional review.\n\n## Liquidity risk\n\nTerra Classic has market visibility, but institutional liquidity should be tested, not assumed.\n\nInstitutions should evaluate:\n\n- centralized exchange liquidity\n- on-chain DEX liquidity\n- slippage at intended transaction size\n- withdrawal and deposit availability\n- market-maker participation\n- volatility during stress\n- stable-asset liquidity if Forex Protocol launches\n- route capacity if Swap Protocol launches\n\nSmall proof-of-concept payments and institutional treasury flows have very different liquidity needs.\n\n## Asset risk\n\nLUNC, USTC, EUTC, and planned multi-currency assets have different risk profiles.\n\n| Asset type | Main risk |\n| --- | --- |\n| LUNC | Volatile native crypto asset. |\n| USTC | Legacy asset with depeg history and no guaranteed stable redemption. |\n| EUTC | Proposed stable asset, not live today. |\n| Future currency assets | Roadmap direction, not institution-ready assets today. |\n\nInstitutions should not treat roadmap assets as live collateralized stablecoins.\n\nRead [Native assets](/institutions/native-assets/) and [Collateralized stable assets](/institutions/collateralized-stable-assets/).\n\n## Legal and compliance risk\n\nTerra Classic documentation does not provide legal advice.\n\nInstitutions should independently review:\n\n- digital asset classification\n- stablecoin regulation\n- payment services regulation\n- securities or commodities treatment\n- custody obligations\n- sanctions screening\n- AML and transaction monitoring\n- tax and accounting treatment\n- user disclosures\n- jurisdiction-specific restrictions\n\nThe fact that Terra Classic is decentralized does not remove obligations from companies that build products on top of it.\n\n## Infrastructure risk\n\nInstitutions should avoid depending entirely on one endpoint, explorer, wallet, validator, or community maintainer.\n\nReview:\n\n- RPC and LCD redundancy\n- indexer reliability\n- full-node option\n- validator concentration\n- oracle participation\n- relayer dependencies\n- wallet support\n- explorer availability\n- upgrade monitoring\n- incident communication path\n\nFor serious products, run or contract infrastructure instead of relying only on public endpoints.\n\n## Due diligence checklist\n\nBefore serious institutional use, answer:\n\n| Question | Required answer |\n| --- | --- |\n| What exactly are we using Terra Classic for? | Payment, custody, settlement, staking, data, liquidity, governance, or research. |\n| Which assets are involved? | LUNC, USTC, proposed EUTC, or future assets. |\n| Are those assets live? | Confirm mainnet status and wallet support. |\n| Are we relying on stable value? | If yes, identify collateral, redemption, liquidity, and legal structure. |\n| Do we need governance? | If yes, prepare public forum discussion and proposal materials. |\n| Who can sign contracts? | Only specific legal entities, not Terra Classic as a network. |\n| What infrastructure do we control? | Nodes, endpoints, indexers, monitoring, custody, backups. |\n| What are our failure states? | Failed transaction, route disabled, oracle failure, liquidity exhaustion, wallet failure. |\n| What disclosures are required? | Asset volatility, stablecoin limits, custody model, fees, and no official endorsement. |\n| What support path exists? | Internal support first, then infrastructure providers, developers, validators, and public forum. |\n\nIf these answers are weak, the integration is not ready.\n\n## What good institutional engagement looks like\n\nGood engagement is:\n\n- public where network-level legitimacy is needed\n- specific about what is being built\n- honest about what support is requested\n- clear about who funds what\n- explicit about legal responsibility\n- measurable in milestones\n- realistic about liquidity and security\n- prepared for governance rejection or revision\n\nWeak engagement is:\n\n- vague partnership language\n- private promises from people who cannot represent the chain\n- claims of official approval without governance\n- stablecoin marketing without collateral and redemption clarity\n- payment promises without liquidity and compliance design\n- use of Terra Classic's brand without public process\n\n## Institutional conclusion\n\nTerra Classic can be a serious institutional discussion only if its decentralization is explained honestly.\n\nThe opportunity is not \"trust us.\" The opportunity is transparent public infrastructure, public governance, inspectable transactions, and protocol-level products that can become useful if implemented with professional discipline.\n",
+    "previousSlug": "institutions/integration-architecture",
     "nextSlug": "develop/quick-start-guide"
   },
   {
@@ -2996,7 +3756,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 63,
+    "navOrder": 76,
     "title": "Quick start guide",
     "description": "Choose the right Terra Classic developer path, connect safely, and know which deeper guide to use next.",
     "status": "draft",
@@ -3121,7 +3881,7 @@ export const docsPages = [
       }
     ],
     "body": "This guide is the first pass for developers who want to build on Terra Classic without reading every reference page first.\n\nUse it to understand the chain, choose your path, make your first safe integration decision, and move into the dedicated guides when you need exact commands or deeper examples.\n\n> **Important**\n>\n> Terra Classic is a community-maintained blockchain. Public infrastructure, SDK support, wallet behavior, tax parameters, and governance-controlled settings can change. Verify live chain state before deploying production applications.\n\n## What Terra Classic is for developers\n\nTerra Classic is a Cosmos SDK / CometBFT blockchain with CosmWasm smart contracts, IBC connectivity, staking, governance, oracle infrastructure, and Terra Classic-specific tax behavior.\n\nThe practical developer constants are:\n\n| Concept | Terra Classic value |\n| --- | --- |\n| Mainnet chain ID | `columbus-5` |\n| Mainnet address prefix | `terra` |\n| Native staking and governance asset | LUNC |\n| On-chain LUNC denomination | `uluna` |\n| Unit conversion | `1 LUNC = 1,000,000 uluna` |\n| Common testnet | `rebel-2` |\n| Common local chain ID | `localterra` or `localnet` |\n\nIf you are coming from Ethereum, use this mental model:\n\n| Ethereum-style concept | Terra Classic equivalent |\n| --- | --- |\n| Solidity smart contract | CosmWasm contract, usually written in Rust |\n| ERC20 token | CW20 token |\n| MetaMask | Keplr, Galaxy Station, Orbitar, Cosmostation, LUNC Dash |\n| Web3.js / ethers.js | CosmES, Terra Classic SDK, LCD/RPC/gRPC APIs |\n| Ganache / local chain | Terra Classic localnet |\n| Contract deployment | Store WASM code, then instantiate contract |\n| Contract call | `MsgExecuteContract` |\n| Native token transfer | `MsgSend` |\n| Cross-chain transfer | IBC transfer |\n\n## Choose your developer path\n\nMost builders should start with one of these paths.\n\n| Path | Use it when you want to build | Start here |\n| --- | --- | --- |\n| Frontend dApp | Wallet connection, balances, signing, staking, governance, DEX, or contract UX | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Smart contract | On-chain logic, vaults, token contracts, DeFi primitives, escrow, games, or governance tools | [Smart contracts](/develop/smart-contracts/overview/) |\n| Backend or automation | Bots, scripts, indexers, monitoring, treasury jobs, analytics, or integrations | [Terra Py](/develop/terra-py/terra-py/) |\n| Infrastructure | Nodes, endpoints, validator tooling, local testing, or production-grade RPC/LCD access | [Run a full Terra node](/full-node/overview/) |\n\nIf you are not sure which path fits, start with a frontend read-only integration. Reading a balance through an RPC endpoint teaches you the network model without risking funds.\n\n## Before you send a transaction\n\nTerra Classic follows standard Cosmos transaction patterns, but several chain-specific details can break naive integrations.\n\n### Burn tax can affect transfers\n\nTerra Classic uses the `x/tax` module. Some transfers can be taxed, and the receiver may receive less than the entered send amount.\n\nDo not hardcode tax assumptions. Query current parameters or simulate when your app shows fees, accounting values, or expected received amounts.\n\nRead the detailed guide: [Tx best practices](/develop/classic-transaction-behavior/).\n\n### Tax exemptions exist\n\nSome addresses or zones can be exempt from burn tax. This matters for exchanges, custody flows, treasury wallets, smart contract workflows, and service wallets.\n\nIf the final received amount matters, check taxability before the user confirms.\n\n### Public endpoints are not production infrastructure\n\nPublic RPC, LCD, FCD, and gRPC endpoints are useful for development and light workloads. Production apps need redundancy, monitoring, and preferably dedicated infrastructure.\n\nUse the maintained endpoint list: [Public Network Endpoints](/develop/endpoints/).\n\n### Legacy market-swap assumptions are dangerous\n\nDo not build against pre-2022 algorithmic mint/burn behavior or old Terra market-swap assumptions.\n\nNative LUNC and USTC swaps are documented under [Swap Protocol](/swap-protocol/overview/). General token swaps should use active DEX contracts and explicit slippage controls.\n\n### Simulation is part of the product\n\nBefore broadcasting, simulate transactions when the app needs reliable gas estimates, fee previews, or clearer failure handling.\n\nAt minimum, production flows should log:\n\n- transaction hash\n- raw log\n- gas used\n- endpoint used\n- chain ID\n- wallet or backend account\n- failure code and message\n\n## First 30-minute path\n\nThis is the shortest useful path for a developer new to Terra Classic.\n\n1. Pick `columbus-5` for mainnet, `rebel-2` for testnet, or a local chain ID from localnet output.\n2. Use a public endpoint only for development.\n3. Connect with CosmES or Terra Py.\n4. Read a wallet balance.\n5. Convert display units correctly: `1000000uluna` is `1 LUNC`.\n6. Fetch current gas prices before sending.\n7. Read the transaction behavior guide before showing final fee or received-amount estimates.\n8. Send only a small test transaction first.\n9. Run localnet before contract development or repeatable integration testing.\n10. Move deeper into the exact guide for your path.\n\n## Minimal TypeScript starter\n\nInstall CosmES:\n\n```bash\nyarn add @goblinhunt/cosmes\n```\n\nFor TypeScript projects, use modern module resolution:\n\n```json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\nRead a native balance:\n\n```ts\nimport { getNativeBalances } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\nconst address = \"terra1...\";\n\nasync function main(): Promise<void> {\n  const balances = await getNativeBalances(RPC, { address });\n  console.log(balances);\n}\n\nmain().catch(console.error);\n```\n\nConnect Keplr:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function connect(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n  console.log(\"address\", connected?.address);\n}\n\nconnect().catch(console.error);\n```\n\nFor signing, broadcasting, mnemonic wallets, and wallet-specific setup, continue with [CosmES SDK](/develop/cosmes/cosmes/).\n\n## Local development\n\nUse localnet when you need a private chain you can reset, test against, and break safely.\n\nLocalnet is useful for:\n\n- contract development\n- integration testing\n- frontend transaction testing\n- module experiments\n- reproducible QA\n- demos\n\nDo not keep localnet setup details in your head from this page. Use the dedicated guide: [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/).\n\n## Smart contracts\n\nTerra Classic supports CosmWasm smart contracts.\n\nA typical contract workflow is:\n\n1. Install Rust and CosmWasm tooling.\n2. Start from a CosmWasm template.\n3. Build and optimize the WASM artifact.\n4. Store code on localnet or testnet.\n5. Instantiate a contract.\n6. Execute and query it.\n7. Publish schemas, addresses, admin permissions, and risk assumptions.\n\nUse the dedicated smart contract section for exact commands: [Smart contracts](/develop/smart-contracts/overview/).\n\n## Python and backend automation\n\nUse Python when you are building scripts, scheduled jobs, analytics, monitoring, treasury automation, or backend services.\n\nStart with [Terra Py](/develop/terra-py/terra-py/).\n\nBackend services should also read [Tx best practices](/develop/classic-transaction-behavior/) before broadcasting transactions automatically.\n\n## Native swaps, DEX routes, CW20, and IBC\n\nThese are not first-step integrations. They need more careful assumptions.\n\n| Integration type | Read first |\n| --- | --- |\n| Native LUNC and USTC swaps | [Swap Protocol developer reference](/swap-protocol/developer-reference/) |\n| General DEX routes | DEX contract documentation and [Tx best practices](/develop/classic-transaction-behavior/) |\n| CW20 tokens | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| IBC transfers | [IBC module specification](/develop/module-specifications/spec-ibc/) and current channel data |\n| Tax-sensitive flows | [Tx best practices](/develop/classic-transaction-behavior/) and [Fees](/learn/fees/) |\n\nFor IBC, verify the channel, destination chain, relayer activity, timeout behavior, and recovery path. A historical channel existing does not prove that the route is healthy today.\n\n## Before mainnet\n\nBefore shipping a Terra Classic app to production, confirm:\n\n- the app uses the correct chain ID\n- display amounts and micro-denom amounts are separated\n- gas prices are refreshed or deliberately configured\n- transaction simulation is used where accuracy matters\n- tax behavior is understood for the transaction type\n- tax exemption status is checked where needed\n- public endpoints are not a single point of failure\n- tx hash, raw logs, gas used, and errors are persisted\n- wallet rejection and broadcast failure are handled separately\n- smart contracts have been tested locally and reviewed\n- contract addresses, schemas, admin permissions, and risk assumptions are documented\n- users can see when they are using mainnet\n\n## Common mistakes\n\n### Treating Terra Classic as old Terra documentation\n\nSome old Terra materials describe behavior that is not active on Terra Classic today. Verify current chain behavior before building.\n\n### Treating public endpoints as reliable production infrastructure\n\nPublic endpoints are best-effort access surfaces. Production systems need redundancy and monitoring.\n\n### Hardcoding fees and tax behavior\n\nGas prices, tax parameters, and governance-controlled settings can change. Build apps that can adapt to current chain state.\n\n### Skipping simulation\n\nSimulation catches many gas, fee, message, and contract errors before a user signs or before a backend submits a transaction.\n\n### Building swap flows from memory\n\nNative Swap Protocol, DEX contracts, CW20 transfers, and IBC transfers have different assumptions. Use the relevant docs and verify live state.\n\n## Where to go next\n\n| Need | Guide |\n| --- | --- |\n| Maintained endpoint list | [Public Network Endpoints](/develop/endpoints/) |\n| Safe transaction behavior | [Tx best practices](/develop/classic-transaction-behavior/) |\n| TypeScript SDK path | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Python SDK path | [Terra Py](/develop/terra-py/terra-py/) |\n| Local private chain | [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/) |\n| Contract development | [Smart contracts](/develop/smart-contracts/overview/) |\n| CW20 token workflows | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| Native LUNC and USTC swaps | [Swap Protocol](/swap-protocol/overview/) |\n| Module-level behavior | [Module specifications](/develop/module-specifications/module-specifications/) |\n| Builder overview | [Builder tooling](/learn/builder-tooling/) |\n\nTerra Classic already has the core pieces a developer needs: a running Cosmos-based chain, smart contracts, wallets, public endpoints, IBC, staking, governance, and community-maintained tooling. The goal is to turn those pieces into clear products that users can actually understand and use.\n",
-    "previousSlug": "governance/risks-and-safeguards",
+    "previousSlug": "institutions/risk-and-due-diligence",
     "nextSlug": "develop/how-to/localnet/terra-core-localnet"
   },
   {
@@ -3133,7 +3893,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 64,
+    "navOrder": 77,
     "title": "Run Terra Classic localnet",
     "description": "Spin up a multi-validator Terra Classic Core network locally with `make localnet-start`.",
     "status": "draft",
@@ -3205,7 +3965,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 65,
+    "navOrder": 78,
     "title": "Tx best practices",
     "description": "Practical guidance for burn tax, Tax2Gas, tax-free contract funding, and safe Terra Classic transaction flows.",
     "status": "draft",
@@ -3332,7 +4092,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 66,
+    "navOrder": 79,
     "title": "Builder tooling",
     "description": "Essential SDKs and references for building Terra Classic dApps with modern tooling.",
     "status": "draft",
@@ -3364,7 +4124,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": true,
-    "navOrder": 67,
+    "navOrder": 80,
     "title": "CosmES SDK",
     "description": "Use @goblinhunt/cosmes for Terra Classic TypeScript apps.",
     "status": "draft",
@@ -3416,7 +4176,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 68,
+    "navOrder": 81,
     "title": "Get started",
     "description": "Install the SDK, configure TypeScript, and connect wallets.",
     "status": "draft",
@@ -3483,7 +4243,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 69,
+    "navOrder": 82,
     "title": "Query data",
     "description": "Read balances and contract state via CosmES client helpers.",
     "status": "draft",
@@ -3525,7 +4285,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 70,
+    "navOrder": 83,
     "title": "Programmatic wallet",
     "description": "Use `MnemonicWallet` to sign transactions from backends or scripts.",
     "status": "draft",
@@ -3562,7 +4322,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 71,
+    "navOrder": 84,
     "title": "Transactions",
     "description": "Compose and broadcast Common Terra Classic messages.",
     "status": "draft",
@@ -3629,7 +4389,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": false,
-    "navOrder": 72,
+    "navOrder": 85,
     "title": "Terra.py on Terra Classic",
     "description": "Install terra_sdk, connect to trusted endpoints, and broadcast Python transactions.",
     "status": "draft",
@@ -3716,7 +4476,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 73,
+    "navOrder": 86,
     "title": "Smart contracts",
     "description": "End-to-end tutorials for building and deploying CosmWasm dApps on Terra Classic.",
     "status": "draft",
@@ -3778,7 +4538,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 74,
+    "navOrder": 87,
     "title": "Build a Terra Classic dApp",
     "description": "Overview of the CosmWasm template workflow from idea to deployment.",
     "status": "draft",
@@ -3810,7 +4570,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 75,
+    "navOrder": 88,
     "title": "Set up local environment",
     "description": "Install toolchains and prepare LocalTerra for contract development.",
     "status": "draft",
@@ -3847,7 +4607,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 76,
+    "navOrder": 89,
     "title": "Write smart contract",
     "description": "Author and test CosmWasm contracts with entry points and state management.",
     "status": "draft",
@@ -3974,7 +4734,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 77,
+    "navOrder": 90,
     "title": "Interact with contracts",
     "description": "Store, instantiate, execute, and query contracts using `terrad`.",
     "status": "draft",
@@ -4041,7 +4801,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 78,
+    "navOrder": 91,
     "title": "Manage CW20 tokens",
     "description": "Deploy and operate CW20 token contracts on Terra Classic.",
     "status": "draft",
@@ -4088,7 +4848,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 79,
+    "navOrder": 92,
     "title": "Module specifications",
     "description": "Explore Terra Classic Core modules, parameters, and Classic-specific behaviour.",
     "status": "draft",
@@ -4150,7 +4910,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 80,
+    "navOrder": 93,
     "title": "Auth module (x/auth)",
     "description": "Ante handler, vesting accounts, and transaction gas parameters.",
     "status": "draft",
@@ -4202,7 +4962,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 81,
+    "navOrder": 94,
     "title": "Authz module (x/authz)",
     "description": "Delegate message execution permissions with fine-grained controls.",
     "status": "draft",
@@ -4259,7 +5019,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 82,
+    "navOrder": 95,
     "title": "Bank module (x/bank)",
     "description": "Account balances, token transfers, and supply tracking.",
     "status": "draft",
@@ -4326,7 +5086,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 83,
+    "navOrder": 96,
     "title": "Capability module (x/capability)",
     "description": "Capability keeper for isolating inter-module access rights.",
     "status": "draft",
@@ -4373,7 +5133,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 84,
+    "navOrder": 97,
     "title": "Consensus params module (x/consensus)",
     "description": "Governance-controlled Tendermint parameter updates.",
     "status": "draft",
@@ -4399,7 +5159,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 85,
+    "navOrder": 98,
     "title": "Crisis module (x/crisis)",
     "description": "Invariant checks and chain-halting safeguards.",
     "status": "draft",
@@ -4425,7 +5185,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 86,
+    "navOrder": 99,
     "title": "Distribution module (x/distribution)",
     "description": "Reward distribution to validators, delegators, and the community pool.",
     "status": "draft",
@@ -4472,7 +5232,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 87,
+    "navOrder": 100,
     "title": "DynComm module (x/dyncomm)",
     "description": "Dynamic validator commission band control for Classic staking.",
     "status": "draft",
@@ -4519,7 +5279,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 88,
+    "navOrder": 101,
     "title": "Evidence module (x/evidence)",
     "description": "Evidence handling for consensus faults and slashing workflows.",
     "status": "draft",
@@ -4545,7 +5305,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 89,
+    "navOrder": 102,
     "title": "Feegrant module (x/feegrant)",
     "description": "Allow trusted accounts to pay fees on behalf of other users.",
     "status": "draft",
@@ -4571,7 +5331,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 90,
+    "navOrder": 103,
     "title": "Governance module (x/gov)",
     "description": "Proposal lifecycle, deposits, voting, and parameter control.",
     "status": "draft",
@@ -4597,7 +5357,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 91,
+    "navOrder": 104,
     "title": "IBC core module (x/ibc)",
     "description": "IBC routing, channel management, and light client integration.",
     "status": "draft",
@@ -4623,7 +5383,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 92,
+    "navOrder": 105,
     "title": "IBC fee module (x/ibc-fee)",
     "description": "ICS-29 relayer incentivisation for Classic IBC packets.",
     "status": "draft",
@@ -4649,7 +5409,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 93,
+    "navOrder": 106,
     "title": "IBC hooks module (ibc-hooks)",
     "description": "Middleware for wasm contract callbacks on IBC transfers.",
     "status": "draft",
@@ -4675,7 +5435,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 94,
+    "navOrder": 107,
     "title": "Interchain accounts module (x/ica)",
     "description": "ICS-27 controller and host support on Terra Classic.",
     "status": "draft",
@@ -4701,7 +5461,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 95,
+    "navOrder": 108,
     "title": "Market module (x/market)",
     "description": "Market Module 2.0 swap mechanics, no-mint liquidity, and historical constant-product spread context.",
     "status": "draft",
@@ -4753,7 +5513,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 96,
+    "navOrder": 109,
     "title": "Mint module (x/mint)",
     "description": "Inflation schedule and distribution handling (legacy on Classic).",
     "status": "draft",
@@ -4779,7 +5539,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 97,
+    "navOrder": 110,
     "title": "Oracle module (x/oracle)",
     "description": "Exchange-rate voting, reward weighting, oracle slashing, and Swap Protocol price-feed responsibilities.",
     "status": "draft",
@@ -4841,7 +5601,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 98,
+    "navOrder": 111,
     "title": "Params module (x/params)",
     "description": "Parameter subspace management across modules.",
     "status": "draft",
@@ -4867,7 +5627,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 99,
+    "navOrder": 112,
     "title": "Slashing module (x/slashing)",
     "description": "Downtime and double-signing penalties.",
     "status": "draft",
@@ -4893,7 +5653,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 100,
+    "navOrder": 113,
     "title": "Staking module (x/staking)",
     "description": "Validator set management, delegation, and bonding.",
     "status": "draft",
@@ -4919,7 +5679,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 101,
+    "navOrder": 114,
     "title": "Tax module (x/tax)",
     "description": "Burn tax collection, splits, and effective gas price handling.",
     "status": "draft",
@@ -4961,7 +5721,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 102,
+    "navOrder": 115,
     "title": "Tax exemption module (x/taxexemption)",
     "description": "Manage burn-tax exempt address lists for Classic.",
     "status": "draft",
@@ -5018,7 +5778,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 103,
+    "navOrder": 116,
     "title": "Treasury module (x/treasury)",
     "description": "Epoch-based tax rate, reward weight, and seigniorage handling.",
     "status": "draft",
@@ -5220,7 +5980,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 104,
+    "navOrder": 117,
     "title": "IBC transfer module (x/transfer)",
     "description": "ICS-20 fungible token relay with tax integration.",
     "status": "draft",
@@ -5246,7 +6006,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 105,
+    "navOrder": 118,
     "title": "Upgrade module (x/upgrade)",
     "description": "Coordinated chain upgrades and store migrations.",
     "status": "draft",
@@ -5272,7 +6032,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 106,
+    "navOrder": 119,
     "title": "Vesting module (x/vesting)",
     "description": "Legacy vesting account types preserved on Classic.",
     "status": "draft",
@@ -5298,7 +6058,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 107,
+    "navOrder": 120,
     "title": "Wasm module (x/wasm)",
     "description": "CosmWasm contract execution, message bindings, and migrations.",
     "status": "draft",
@@ -5490,7 +6250,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 108,
+    "navOrder": 121,
     "title": "Overview",
     "description": "Understand hardware expectations, supported platforms, and the lifecycle of running a Terra Classic node.",
     "status": "draft",
@@ -5532,7 +6292,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 109,
+    "navOrder": 122,
     "title": "System configuration",
     "description": "Hardware, OS, and networking prerequisites pulled from the Classic runbook.",
     "status": "draft",
@@ -5579,7 +6339,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 110,
+    "navOrder": 123,
     "title": "Build Terra core",
     "description": "Fetch and compile the latest Terra Classic binaries from source.",
     "status": "draft",
@@ -5611,7 +6371,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 111,
+    "navOrder": 124,
     "title": "Configure general settings",
     "description": "This guide covers the most important configuration files found in `~/.terra/config/`. Review each file and update the defaults to match your infrastructure.",
     "status": "draft",
@@ -5663,7 +6423,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 112,
+    "navOrder": 125,
     "title": "Set up a production environment",
     "description": "Use this checklist to prepare a production-grade Terra Classic node.",
     "status": "draft",
@@ -5720,7 +6480,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 113,
+    "navOrder": 126,
     "title": "Join a network",
     "description": "Use this overview to choose the right walkthrough for connecting a Terra Classic node to the network.",
     "status": "draft",
@@ -5772,7 +6532,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 114,
+    "navOrder": 127,
     "title": "Sync",
     "description": "Snapshots, manual replay, and verification steps.",
     "status": "draft",
@@ -5824,7 +6584,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 115,
+    "navOrder": 128,
     "title": "Validate on columbus-5",
     "description": "End-to-end instructions for running a Terra Classic mainnet validator.",
     "status": "draft",
@@ -5891,7 +6651,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 116,
+    "navOrder": 129,
     "title": "Validate on rebel-2",
     "description": "Spin up a Terra Classic testnet validator and join coordination channels.",
     "status": "draft",
@@ -5958,7 +6718,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 117,
+    "navOrder": 130,
     "title": "Reset and troubleshooting",
     "description": "Recover from configuration drift, replace genesis files, and verify node health.",
     "status": "draft",
@@ -6005,7 +6765,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 118,
+    "navOrder": 131,
     "title": "Public Network Endpoints",
     "description": "Public endpoints for Terra Classic infrastructure.",
     "status": "draft",
@@ -6052,7 +6812,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 119,
+    "navOrder": 132,
     "title": "Glossary",
     "description": "Terra Classic terminology reference for users, validators, and developers.",
     "status": "draft",
