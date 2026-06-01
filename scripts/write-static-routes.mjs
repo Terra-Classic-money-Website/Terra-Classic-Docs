@@ -7,6 +7,8 @@ const manifestPath = path.join(root, "src/docs/generated/docsManifest.ts");
 const indexPath = path.join(dist, "index.html");
 const siteUrl = "https://docs.terra-classic.money";
 const titleSuffix = "Independent Documentation for Terra Classic, LUNC & USTC";
+const notFoundTitle = `Page not found - ${titleSuffix}`;
+const notFoundDescription = "The requested Terra Classic Docs page could not be found. Use search or return to the documentation start page.";
 
 if (!fs.existsSync(indexPath)) {
   throw new Error("dist/index.html does not exist. Run vite build first.");
@@ -56,6 +58,24 @@ function withPageMetadata(sourceHtml, page) {
     .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonical}" />`);
 }
 
+function withNotFoundMetadata(sourceHtml) {
+  const title = escapeHtml(notFoundTitle);
+  const description = escapeHtml(notFoundDescription);
+  const canonical = escapeHtml(absoluteUrl("/404.html"));
+  const withMetadata = sourceHtml
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
+    .replace(/<meta name="description" content="[^"]*" \/>/, `<meta name="description" content="${description}" />`)
+    .replace(/<meta property="og:title" content="[^"]*" \/>/, `<meta property="og:title" content="${title}" />`)
+    .replace(/<meta property="og:description" content="[^"]*" \/>/, `<meta property="og:description" content="${description}" />`)
+    .replace(/<meta property="og:url" content="[^"]*" \/>/, `<meta property="og:url" content="${canonical}" />`)
+    .replace(/<meta name="twitter:title" content="[^"]*" \/>/, `<meta name="twitter:title" content="${title}" />`)
+    .replace(/<meta name="twitter:description" content="[^"]*" \/>/, `<meta name="twitter:description" content="${description}" />`)
+    .replace(/<link rel="canonical" href="[^"]*" \/>/, `<link rel="canonical" href="${canonical}" />`);
+
+  if (withMetadata.includes('<meta name="robots"')) return withMetadata;
+  return withMetadata.replace("</head>", `    <meta name="robots" content="noindex" />\n  </head>`);
+}
+
 function writeTextFile(filePath, content) {
   fs.writeFileSync(filePath, `${content.trim()}\n`);
 }
@@ -69,7 +89,7 @@ for (const page of pages) {
   fs.writeFileSync(path.join(routeDir, "index.html"), withPageMetadata(html, page));
 }
 
-fs.writeFileSync(path.join(dist, "404.html"), withPageMetadata(html, defaultPage));
+fs.writeFileSync(path.join(dist, "404.html"), withNotFoundMetadata(html));
 
 const sitemapUrls = [
   absoluteUrl("/"),

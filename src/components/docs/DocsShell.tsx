@@ -106,7 +106,7 @@ function DocsNavNode({
 }: {
   item: DocsNavItem;
   depth?: number;
-  activePage: DocsPage;
+  activePage: DocsPage | null;
   expandedSlugs: Set<string>;
   onToggleExpanded: (slug: string) => void;
   onNavigate: () => void;
@@ -115,8 +115,8 @@ function DocsNavNode({
   const [childrenHeight, setChildrenHeight] = useState(0);
   const itemId = navItemId(item);
   const itemTitle = navItemTitle(item);
-  const isActive = item.type === "page" && item.page.slug === activePage.slug;
-  const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
+  const isActive = item.type === "page" && item.page.slug === activePage?.slug;
+  const hasActiveChild = activePage ? item.children.some((child) => navItemContainsPage(child, activePage.slug)) : false;
   const hasChildren = item.children.length > 0;
   const expanded = isActive || hasActiveChild || expandedSlugs.has(itemId);
 
@@ -132,7 +132,7 @@ function DocsNavNode({
     const observer = new ResizeObserver(updateHeight);
     observer.observe(element);
     return () => observer.disconnect();
-  }, [activePage.slug, expanded, expandedSlugs, hasChildren]);
+  }, [activePage?.slug, expanded, expandedSlugs, hasChildren]);
 
   const childrenStyle = {
     "--docs-nav-children-height": `${childrenHeight}px`,
@@ -226,7 +226,7 @@ function DocsSidebar({
   drawerOpen,
   onNavigate,
 }: {
-  activePage: DocsPage;
+  activePage: DocsPage | null;
   drawerOpen: boolean;
   onNavigate: () => void;
 }) {
@@ -244,6 +244,8 @@ function DocsSidebar({
   };
 
   useEffect(() => {
+    if (!activePage) return;
+
     const parents = new Set<string>();
     let parentSlug = activePage.navParent;
 
@@ -256,7 +258,7 @@ function DocsSidebar({
 
     if (parents.size === 0) return;
     setExpandedSlugs((current) => new Set([...current, ...parents]));
-  }, [activePage.navParent]);
+  }, [activePage]);
 
   const toggleExpanded = (slug: string) => {
     setExpandedSlugs((current) => {
@@ -338,7 +340,7 @@ function TableOfContents({ page }: { page: DocsPage }) {
   );
 }
 
-export function DocsShell({ activePage, children }: { activePage: DocsPage; children: ReactNode }) {
+export function DocsShell({ activePage, children }: { activePage: DocsPage | null; children: ReactNode }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
@@ -381,10 +383,10 @@ export function DocsShell({ activePage, children }: { activePage: DocsPage; chil
       <main className="docs-main">
         <div className="docs-content-grid">
           <article className="docs-article">
-            <Breadcrumbs page={activePage} />
+            {activePage && <Breadcrumbs page={activePage} />}
             {children}
           </article>
-          <TableOfContents page={activePage} />
+          {activePage && <TableOfContents page={activePage} />}
         </div>
       </main>
     </div>

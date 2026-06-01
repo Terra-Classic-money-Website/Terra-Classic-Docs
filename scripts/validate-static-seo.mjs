@@ -5,6 +5,7 @@ const root = process.cwd();
 const dist = path.join(root, "dist");
 const manifestPath = path.join(root, "src/docs/generated/docsManifest.ts");
 const siteUrl = "https://docs.terra-classic.money";
+const notFoundTitle = "Page not found - Independent Documentation for Terra Classic, LUNC & USTC";
 
 function read(filePath) {
   return fs.readFileSync(filePath, "utf8");
@@ -26,6 +27,10 @@ function canonicalPath(page) {
 
 function extractCanonical(html) {
   return html.match(/<link rel="canonical" href="([^"]+)" \/>/)?.[1] ?? null;
+}
+
+function extractTitle(html) {
+  return html.match(/<title>([\s\S]*?)<\/title>/)?.[1]?.replaceAll("&amp;", "&") ?? null;
 }
 
 if (!fs.existsSync(dist)) fail("dist does not exist. Run npm run build first.");
@@ -65,6 +70,14 @@ if (sitemapUrls.includes(absoluteUrl("/start/"))) fail("sitemap must not include
 
 const rootCanonical = extractCanonical(read(path.join(dist, "index.html")));
 if (rootCanonical !== absoluteUrl("/")) fail(`root canonical mismatch: ${rootCanonical}`);
+
+const notFoundPath = path.join(dist, "404.html");
+if (!fs.existsSync(notFoundPath)) fail("404.html is missing.");
+
+const notFoundHtml = read(notFoundPath);
+if (extractTitle(notFoundHtml) !== notFoundTitle) fail("404.html title metadata is missing or incorrect.");
+if (!notFoundHtml.includes('<meta name="robots" content="noindex" />')) fail("404.html must include noindex robots metadata.");
+if (extractCanonical(notFoundHtml) !== absoluteUrl("/404.html")) fail("404.html canonical mismatch.");
 
 for (const page of pages) {
   const routeHtmlPath = path.join(dist, page.slug, "index.html");
