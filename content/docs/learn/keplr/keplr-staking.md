@@ -42,4 +42,4 @@ For the full staking lifecycle, validator-selection criteria, rewards model, and
 
 Last verified: 2026-06-01
 
-This page was expanded during the docs content-remediation pass. Use wallet interfaces and external staking tools for live validator and delegation data.
+Verify live validator and delegation data through wallet interfaces and external staking tools.

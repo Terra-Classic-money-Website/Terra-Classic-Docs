@@ -119,4 +119,4 @@ See [Swap Protocol oracles and safety](/swap-protocol/oracles-and-safety-control
 
 Last verified: 2026-06-01
 
-This page describes the Market Module 2.0 source design. It should be paired with [Implementation status](/swap-protocol/implementation-status/) before any production claim is made.
+Market Module 2.0 production claims should be checked against [Implementation status](/swap-protocol/implementation-status/) and current external verification sources.

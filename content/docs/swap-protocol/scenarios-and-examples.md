@@ -108,4 +108,4 @@ The examples exist to show behavioral boundaries. The product remains market-dep
 
 Last verified: 2026-06-01
 
-These examples are illustrative and source-derived. They are not live forecasts, live pool data, or production availability proof.
+Examples are illustrative and source-derived. They are not live forecasts, live pool data, or production availability proof.

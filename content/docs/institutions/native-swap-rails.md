@@ -133,4 +133,4 @@ That is a better institutional story than pretending it solves liquidity, repeg,
 
 Last verified: 2026-06-01
 
-This page describes potential institutional use of the Market Module 2.0 source design. It is not a live-data page and does not prove production route availability. Use current releases, governance records, wallets, explorers, and market tools for future verification.
+Market Module 2.0 production availability should be verified through current releases, governance records, wallets, explorers, and market tools.

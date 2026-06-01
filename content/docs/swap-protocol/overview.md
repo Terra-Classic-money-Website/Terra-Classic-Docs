@@ -100,7 +100,7 @@ The strongest version of the product story is not hype. It is the fact that Terr
 
 Last verified: 2026-06-01
 
-This page explains the Market Module 2.0 source design. It should not be read as proof that a production route is live. Use current Terra Classic releases, governance records, wallet interfaces, and explorers to verify future implementation status.
+Market Module 2.0 production availability should be verified through current Terra Classic releases, governance records, wallet interfaces, and explorers.
 
 ## Not financial advice
 

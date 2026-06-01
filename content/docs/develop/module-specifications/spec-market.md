@@ -59,4 +59,4 @@ These calls are useful for backwards compatibility tooling and implementation re
 
 Last verified: 2026-06-01
 
-This page was source-reviewed during the docs content-remediation pass to remove live-product claims from Market Module 2.0 documentation. Use current Terra Classic core releases, governance records, wallet support, and explorers to verify future production availability.
+Use current Terra Classic core releases, governance records, wallet support, and explorers to verify production availability.

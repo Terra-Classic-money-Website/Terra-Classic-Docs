@@ -3,10 +3,10 @@ title: "Source and verification guide"
 description: "How institutional readers should verify Terra Classic Docs claims without treating the docs site as a live analytics platform."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/institutions/source-and-verification-guide.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -57,4 +57,4 @@ For any Terra Classic integration, separate four questions:
 
 Last verified: 2026-06-01
 
-This page was created from the docs content audit to keep institutional documentation useful without turning the docs website into a duplicate analytics product.
+Confirm live operational, market, validator, governance, and liquidity data through appropriate external sources.

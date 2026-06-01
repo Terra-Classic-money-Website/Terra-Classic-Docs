@@ -3,10 +3,10 @@ title: "Source and review model"
 description: "How Terra Classic Docs should handle draft status, reviewed status, source visibility, corrections, and external live-data resources."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/appendices/source-and-review-model.md"
 sourceDate: "2026-06-01"
 tocDepth: 2

@@ -3,10 +3,10 @@ title: "Burns, tax, and supply"
 description: "A conceptual guide to Terra Classic burn, tax, and supply language without turning docs into a live data dashboard."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/learn/burns-tax-and-supply.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -78,4 +78,4 @@ When reading proposed product pages, separate:
 
 Last verified: 2026-06-01
 
-This page is a conceptual explanation created from the docs content audit. For live values, use Terra Classic explorers, burn trackers, governance records, wallets, or direct chain queries.
+For live values, use Terra Classic explorers, burn trackers, governance records, wallets, or direct chain queries.

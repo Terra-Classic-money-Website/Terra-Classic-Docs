@@ -39,4 +39,4 @@ For the full staking lifecycle, validator-selection criteria, rewards model, and
 
 Last verified: 2026-06-01
 
-This page was expanded during the docs content-remediation pass. Use Galaxy Station and external staking tools for live validator and delegation data.
+Verify live validator and delegation data through Galaxy Station and external staking tools.

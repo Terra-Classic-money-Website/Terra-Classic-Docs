@@ -42,4 +42,4 @@ Before voting:
 
 Last verified: 2026-06-01
 
-This page was reviewed during the docs content-remediation pass. Use governance interfaces and explorers for live proposal status and final vote results.
+Verify live proposal status and final vote results through governance interfaces and explorers.

@@ -6,7 +6,7 @@ reviewed: true
 sourceTitle: "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff"
 sourceSite: "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/forex-protocol/launch-readiness.md"
 sourceDate: "2025-12-07"
 tocDepth: 2

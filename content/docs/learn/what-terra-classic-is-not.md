@@ -3,10 +3,10 @@ title: "What Terra Classic is not"
 description: "A clear explanation of common Terra Classic misconceptions, including Terra 2.0, old Terra mechanics, USTC, centralization, and stablecoin assumptions."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/learn/what-terra-classic-is-not.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -85,4 +85,4 @@ LUNC, USTC, and other Terra Classic-related assets can be volatile and risky. Do
 
 Last verified: 2026-06-01
 
-This page was rewritten after review to focus strictly on Terra Classic misconceptions, not on the role of this docs website or the main Terra Classic website.
+Verify live chain behavior and asset status through current ecosystem tools.

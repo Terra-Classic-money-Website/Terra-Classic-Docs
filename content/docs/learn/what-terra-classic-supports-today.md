@@ -3,10 +3,10 @@ title: "What Terra Classic supports today"
 description: "A plain-language status guide for live, proposed, disabled, and historical Terra Classic functionality."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/learn/what-terra-classic-supports-today.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -79,6 +79,4 @@ The docs should help you understand what those tools mean. They should not repla
 
 Last verified: 2026-06-01
 
-This page was created during the docs content-remediation pass to establish conservative status language across the documentation site.
-
-If a product page conflicts with live chain behavior or current governance implementation records, treat the live chain behavior and implementation records as authoritative and report the docs issue.
+Verify live product availability through current chain behavior, governance records, releases, wallets, and ecosystem tools.

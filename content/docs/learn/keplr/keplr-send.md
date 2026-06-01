@@ -40,4 +40,4 @@ Use this page as a practical checklist. Keplr interface labels can change, so al
 
 Last verified: 2026-06-01
 
-This page was expanded during the docs content-remediation pass to improve practical user guidance. Use Keplr and external explorers for live transaction state.
+Verify live transaction state through Keplr and external explorers.
