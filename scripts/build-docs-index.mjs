@@ -22,11 +22,17 @@ const navSections = [
     label: "Learn Terra Classic",
     items: [
       { slug: "learn/protocol", title: "About Terra Classic" },
-      { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
-      { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
-      { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
-      { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
-      { slug: "learn/what-terra-classic-is-not", title: "What Terra Classic is not" },
+      {
+        id: "learn/context-and-status",
+        title: "Context and status",
+        children: [
+          { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
+          { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
+          { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
+          { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
+          { slug: "learn/what-terra-classic-is-not", title: "What Terra Classic is not" },
+        ],
+      },
       { slug: "learn/strengths", title: "Terra Classic Strengths" },
       {
         slug: "learn/wallets",

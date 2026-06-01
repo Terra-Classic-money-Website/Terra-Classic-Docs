@@ -20,29 +20,36 @@ export const docsNavBlueprint = [
         "children": []
       },
       {
-        "type": "page",
-        "slug": "learn/what-terra-classic-supports-today",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "learn/lunc-and-ustc",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "learn/burns-tax-and-supply",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "learn/history-after-the-collapse",
-        "children": []
-      },
-      {
-        "type": "page",
-        "slug": "learn/what-terra-classic-is-not",
-        "children": []
+        "type": "label",
+        "id": "learn/context-and-status",
+        "title": "Context and status",
+        "children": [
+          {
+            "type": "page",
+            "slug": "learn/what-terra-classic-supports-today",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "learn/lunc-and-ustc",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "learn/burns-tax-and-supply",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "learn/history-after-the-collapse",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "learn/what-terra-classic-is-not",
+            "children": []
+          }
+        ]
       },
       {
         "type": "page",
