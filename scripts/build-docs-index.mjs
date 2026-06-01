@@ -120,6 +120,37 @@ const navSections = [
     ],
   },
   {
+    label: "Forex Protocol",
+    items: [
+      { slug: "forex-protocol/overview", title: "Forex Protocol" },
+      {
+        id: "forex-protocol/status-and-model",
+        title: "Status and model",
+        children: [
+          { slug: "forex-protocol/governance-and-status", title: "Governance and status" },
+          { slug: "forex-protocol/how-it-is-proposed-to-work", title: "How it is proposed to work" },
+        ],
+      },
+      {
+        id: "forex-protocol/collateral-and-safety",
+        title: "Collateral and safety",
+        children: [
+          { slug: "forex-protocol/collateral-and-stable-assets", title: "Collateral and stable assets" },
+          { slug: "forex-protocol/fees-buybacks-and-liquidity", title: "Fees, buybacks, and liquidity" },
+          { slug: "forex-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "forex-protocol/risks-and-open-questions", title: "Risks and open questions" },
+        ],
+      },
+      {
+        id: "forex-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "forex-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
+    ],
+  },
+  {
     label: "Develop",
     items: [
       { slug: "develop/quick-start-guide", title: "Quick start guide" },

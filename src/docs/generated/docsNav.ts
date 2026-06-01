@@ -247,6 +247,72 @@ export const docsNavBlueprint = [
     ]
   },
   {
+    "label": "Forex Protocol",
+    "items": [
+      {
+        "type": "page",
+        "slug": "forex-protocol/overview",
+        "children": []
+      },
+      {
+        "type": "label",
+        "id": "forex-protocol/status-and-model",
+        "title": "Status and model",
+        "children": [
+          {
+            "type": "page",
+            "slug": "forex-protocol/governance-and-status",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/how-it-is-proposed-to-work",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "forex-protocol/collateral-and-safety",
+        "title": "Collateral and safety",
+        "children": [
+          {
+            "type": "page",
+            "slug": "forex-protocol/collateral-and-stable-assets",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/fees-buybacks-and-liquidity",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/oracles-and-safety-controls",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/risks-and-open-questions",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "forex-protocol/technical-reference",
+        "title": "Technical reference",
+        "children": [
+          {
+            "type": "page",
+            "slug": "forex-protocol/developer-reference",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "Develop",
     "items": [
       {
