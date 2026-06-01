@@ -1,8 +1,8 @@
 ---
 title: "Governance and status"
 description: "The governance-approved status of Forex Protocol, what Proposal 12209 accepted, and what still needs to be built."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff"
 sourceSite: "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -135,7 +135,7 @@ Forex Protocol needs a team capable of turning the accepted concept into a deplo
 - documentation deliverables
 - post-launch monitoring and incident response
 
-See [Developer reference](/forex-protocol/developer-reference/) for the builder-facing implementation surface.
+See [Forex Protocol developer reference](/forex-protocol/developer-reference/) for the builder-facing implementation surface.
 
 ## Governance should still protect users
 
@@ -154,3 +154,13 @@ Before any production launch, governance and validators should expect evidence o
 - user-facing risk documentation
 
 This is not bureaucracy. It is the minimum trust standard for a stable-asset product after Terra Classic's history.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+Primary source:
+
+- [LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff](https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290)
+
+This page was reviewed during the docs content-remediation pass for product-status discipline. It intentionally preserves the distinction between governance acceptance and production deployment.

@@ -1,5 +1,5 @@
 ---
-title: "Oracles and safety controls"
+title: "Swap Protocol oracles and safety"
 description: "The oracle, quorum, TWAP, route, liquidity, and governance controls that protect Swap Protocol."
 status: draft
 reviewed: false
@@ -19,9 +19,9 @@ The protocol cannot safely price USTC if validators are not reporting current ma
 
 The historical market module assumed Terra stablecoins could be valued against their pegs. That assumption is not acceptable for USTC after the 2022 collapse.
 
-Market Module 2.0 removes the fixed 1 USD assumption and uses live oracle-reported market pricing instead.
+Market Module 2.0 removes the fixed 1 USD assumption and is designed to use oracle-reported market pricing instead.
 
-That means:
+That means the design expects:
 
 - USTC is treated as a market-priced asset
 - validators must provide usable price data
@@ -88,6 +88,12 @@ Safety controls can create frustrating user outcomes:
 - integrations may need to show protocol-disabled states
 
 That is still better than the old alternative: satisfying unsafe demand by expanding supply.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page describes safety controls from the Market Module 2.0 source design. It should be paired with [Swap Protocol governance and status](/swap-protocol/governance-and-status/) before any production claim is made.
 
 ## Integration impact
 

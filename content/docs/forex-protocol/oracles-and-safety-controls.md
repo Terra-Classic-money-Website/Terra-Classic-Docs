@@ -1,5 +1,5 @@
 ---
-title: "Oracles and safety controls"
+title: "Forex Protocol oracles and safety"
 description: "The proposed fiat oracle, redemption cap, vault, rebalancing, and emergency-control requirements for Forex Protocol."
 status: draft
 reviewed: false

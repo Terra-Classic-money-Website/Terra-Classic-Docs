@@ -1,8 +1,8 @@
 ---
 title: "Swap Protocol"
 description: "The native L1 swap layer for exchanging LUNC and USTC through Market Module 2.0 without minting new supply."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Market-Module 2.0"
 sourceSite: "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -11,15 +11,17 @@ sourcePath: "content/docs/swap-protocol/overview.md"
 sourceDate: "2025-06-25"
 tocDepth: 2
 ---
-Swap Protocol is Terra Classic's native L1 swap product for exchanging LUNC and USTC.
+Swap Protocol is the product name used in these docs for the Market Module 2.0 no-mint LUNC and USTC swap design.
 
 It is powered by Market Module 2.0, a no-mint version of the historical market module design. The product name is **Swap Protocol**. The underlying technology is **Market Module 2.0**.
 
-Swap Protocol exists to restore native swap utility without returning to the uncontrolled mint/burn behavior that helped damage Terra Classic in 2022.
+Swap Protocol exists to describe how Terra Classic could restore native swap utility without returning to the uncontrolled mint/burn behavior that helped damage Terra Classic in 2022.
+
+Read [Governance and status](/swap-protocol/governance-and-status/) before treating Swap Protocol as a live mainnet route. The design is useful, but design documentation is not the same as production availability.
 
 Use this section if you are:
 
-- a user who wants to understand LUNC and USTC swaps before signing a transaction
+- a user who wants to understand the proposed LUNC and USTC swap route before relying on it
 - a LUNC or USTC holder evaluating the protocol's burn, liquidity, and risk mechanics
 - a validator responsible for oracle price feeds and chain safety
 - a developer integrating swap status, routing, pricing, or module data
@@ -29,11 +31,11 @@ Use this section if you are:
 
 Swap Protocol is not a new token, not a DEX pool, not a centralized exchange bridge, and not a USTC repeg mechanism.
 
-It is a native protocol route for LUNC and USTC swaps. Instead of minting tokens during swaps, Market Module 2.0 uses prefilled protocol liquidity pools. The pools are funded from tax proceeds allocated for the module, and remaining pool balances are burned at the start of the next 30-day epoch.
+It is designed as a native protocol route for LUNC and USTC swaps. Instead of minting tokens during swaps, Market Module 2.0 uses prefilled protocol liquidity pools. The pools are funded from tax proceeds allocated for the module, and remaining pool balances are burned at the start of the next 30-day epoch.
 
 The product promise should stay narrow:
 
-> Swap LUNC and USTC through Terra Classic's native L1 market route using protocol liquidity, oracle-aware pricing, spread fees, and hard safety controls.
+> Enable bounded LUNC and USTC swaps through Terra Classic's native L1 market route using protocol liquidity, oracle-aware pricing, spread fees, and hard safety controls.
 
 ## Why it exists
 
@@ -41,7 +43,7 @@ The original Terra market module depended on minting and burning between LUNC an
 
 Market Module 2.0 changes the design constraints:
 
-- swaps use prefilled pools instead of minting new supply
+- swaps are designed to use prefilled pools instead of minting new supply
 - USTC is valued by live oracle prices, not by a fixed 1 USD assumption
 - swap capacity is bounded by the available pool and epoch rules
 - safety guards can stop swaps when oracle conditions are not reliable
@@ -53,8 +55,8 @@ That makes Swap Protocol a utility and infrastructure product, not a promise tha
 
 | Capability | What it means |
 | --- | --- |
-| LUNC to USTC swaps | Users can exchange LUNC for USTC through protocol liquidity when the route has capacity. |
-| USTC to LUNC swaps | Users can exchange USTC for LUNC through protocol liquidity when the route has capacity. |
+| LUNC to USTC swaps | The design supports exchanging LUNC for USTC through protocol liquidity when the route has capacity. |
+| USTC to LUNC swaps | The design supports exchanging USTC for LUNC through protocol liquidity when the route has capacity. |
 | Oracle-aware pricing | Swap pricing uses validator-reported market prices instead of a fixed USTC peg assumption. |
 | No-mint execution | Tokens are taken from and added to prefilled pools instead of minted during execution. |
 | Spread fee | Enabled swaps collect a 0.35% spread fee in the output asset. |
@@ -78,19 +80,27 @@ If liquidity is exhausted, oracle quorum fails, sanity checks fail, or governanc
 ## How this section is organized
 
 - [How it works](/swap-protocol/how-it-works/) explains the no-mint pool design, oracle pricing, epochs, and module lifecycle.
+- [Governance and status](/swap-protocol/governance-and-status/) explains why design status and production availability must stay separate.
+- [Implementation status](/swap-protocol/implementation-status/) lists what must be proven before live language is used.
 - [Swap LUNC and USTC](/swap-protocol/swap-lunc-and-ustc/) gives a practical decision framework for using the protocol.
 - [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/) explains spread fees, pool funding, burn routing, and finite capacity.
-- [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) covers price feeds, quorum, TWAP checks, disabled routes, and emergency controls.
+- [Swap Protocol oracles and safety](/swap-protocol/oracles-and-safety-controls/) covers price feeds, quorum, TWAP checks, disabled routes, and emergency controls.
 - [Scenarios and examples](/swap-protocol/scenarios-and-examples/) translates source examples into user-readable behavior.
 - [Risks and limitations](/swap-protocol/risks-and-limitations/) lists the risks that should stay visible in any serious product explanation.
 - [Validator operations](/swap-protocol/validator-operations/) explains oracle-feeder responsibilities and operational expectations.
-- [Developer reference](/swap-protocol/developer-reference/) gives a technical reference for builders.
+- [Swap Protocol developer reference](/swap-protocol/developer-reference/) gives a technical reference for builders.
 
 ## Product discipline
 
 Swap Protocol should be presented as serious chain infrastructure.
 
 The strongest version of the product story is not hype. It is the fact that Terra Classic can expose native LUNC and USTC swaps while avoiding the two design failures that matter most: uncontrolled minting and stale fixed-peg pricing.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page explains the Market Module 2.0 source design. It should not be read as proof that a production route is live. Use current Terra Classic releases, governance records, wallet interfaces, and explorers to verify future implementation status.
 
 ## Not financial advice
 

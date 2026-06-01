@@ -1,6 +1,6 @@
 ---
 title: "Swap LUNC and USTC"
-description: "How to think through a LUNC and USTC swap through Swap Protocol before signing the transaction."
+description: "How to think through the proposed LUNC and USTC Swap Protocol route before relying on it."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Market-Module 2.0"
@@ -11,13 +11,15 @@ sourcePath: "content/docs/swap-protocol/swap-lunc-and-ustc.md"
 sourceDate: "2025-06-25"
 tocDepth: 2
 ---
-Swap Protocol supports native swaps between LUNC and USTC.
+Swap Protocol is designed to support native swaps between LUNC and USTC.
 
-This page explains what to check before using the protocol. It does not document a specific wallet interface because wallet support and interface labels can change. Always review the transaction details shown by your wallet before signing.
+This page explains what to check before relying on the protocol design. It does not document a live wallet interface because production support and interface labels can change. Always review the transaction details shown by your wallet before signing any transaction.
+
+Read [Governance and status](/swap-protocol/governance-and-status/) first. If a production route is not documented and verified, treat this as design guidance, not a live user guide.
 
 ## Supported route
 
-Swap Protocol is designed for:
+The Swap Protocol design is scoped to:
 
 - LUNC to USTC
 - USTC to LUNC
@@ -37,7 +39,7 @@ Check four things before signing:
 
 ## Basic flow
 
-The practical flow is:
+If a supported production interface exists, the practical flow would be:
 
 1. Connect or open a wallet that supports Terra Classic transactions.
 2. Choose LUNC or USTC as the input asset.
@@ -47,7 +49,7 @@ The practical flow is:
 6. Sign and broadcast the transaction if the terms are acceptable.
 7. Confirm the final on-chain result in your wallet or explorer.
 
-The exact interface can differ by wallet or application. The protocol mechanics are the same: the module receives the input asset and releases the output asset from its available pool.
+The exact interface can differ by wallet or application. The intended protocol mechanics are the same: the module receives the input asset and releases the output asset from its available pool.
 
 ## Why a swap can fail
 
@@ -73,7 +75,7 @@ Because oracle prices update on-chain by voting period, the quoted route can dif
 
 ## Fees
 
-Enabled swaps collect a 0.35% spread fee in the output asset.
+Under the source design, enabled swaps collect a 0.35% spread fee in the output asset.
 
 That means:
 
@@ -95,4 +97,10 @@ Before signing:
 - keep enough LUNC for transaction fees
 - never sign a transaction you do not understand
 
-Swap Protocol restores native swap utility, but it does not remove market risk.
+Swap Protocol is designed to restore native swap utility, but it does not remove market risk.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page is design guidance. It should not be read as confirmation that a live wallet route exists. Use current wallets, releases, governance records, and explorers to verify future availability.

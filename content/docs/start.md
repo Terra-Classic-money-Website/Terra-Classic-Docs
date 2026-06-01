@@ -20,7 +20,7 @@ It is separate from the main Terra Classic Website. The docs site is built aroun
 
 - [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, and fees.
 - [Staking Protocol](/staking-protocol/overview/) covers LUNC delegation, rewards, validator selection, unstaking risks, validator responsibilities, and developer integration.
-- [Swap Protocol](/swap-protocol/overview/) covers native LUNC and USTC swaps through Market Module 2.0, including no-mint liquidity, oracle pricing, fees, burns, validator operations, and developer integration.
+- [Swap Protocol](/swap-protocol/overview/) covers the proposed no-mint Market Module 2.0 route for native LUNC and USTC swaps, including liquidity design, oracle pricing, fees, burns, validator operations, and implementation-status requirements.
 - [Forex Protocol](/forex-protocol/overview/) covers the proposed Terra Classic L1 stable-asset system, including EUTC, collateral design, minting and redemption model, fees, liquidity, oracle controls, risks, and implementation requirements.
 - [Governance](/governance/overview/) covers proposal voting, voting power, vote options, proposal review, validator accountability, and governance risks.
 - [For Institutions](/institutions/overview/) covers institutional use cases, multi-currency assets, payment gateway architecture, decentralized contact requirements, integration paths, and due diligence.

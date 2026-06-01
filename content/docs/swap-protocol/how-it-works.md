@@ -11,7 +11,9 @@ sourcePath: "content/docs/swap-protocol/how-it-works.md"
 sourceDate: "2025-06-25"
 tocDepth: 3
 ---
-Swap Protocol is built on Market Module 2.0.
+Swap Protocol is designed around Market Module 2.0.
+
+This page explains source-defined mechanics. Read [Governance and status](/swap-protocol/governance-and-status/) before treating these mechanics as live mainnet behavior.
 
 The key design change is simple: swaps do not mint new LUNC or USTC. They move existing tokens between user balances and protocol swap pools.
 
@@ -26,11 +28,11 @@ That model became dangerous because:
 - UST was treated as if it still had a hard 1 USD peg
 - minting could run faster than market demand could absorb
 
-Market Module 2.0 keeps the useful part of the market route but removes minting from swap execution.
+Market Module 2.0 is designed to keep the useful part of the market route while removing minting from swap execution.
 
 ## The no-mint pool model
 
-Swap Protocol uses distinct protocol pools for LUNC and USTC.
+Swap Protocol is designed to use distinct protocol pools for LUNC and USTC.
 
 At the start of a 30-day epoch, token balances allocated to the market-module liquidity pool are moved into the swap pools. Those balances become the available liquidity for that epoch.
 
@@ -51,7 +53,7 @@ Swap Protocol operates around 30-day epochs.
 | --- | --- |
 | Pool accumulation | Eligible tax proceeds allocated to Market Module 2.0 accumulate for the next epoch. |
 | Epoch start | LUNC and USTC balances are moved into distinct swap pools. |
-| Active swaps | Users can swap while the module is enabled, oracle checks pass, and pool capacity remains. |
+| Active swaps | Users could swap while the module is enabled, oracle checks pass, and pool capacity remains. |
 | Capacity changes | Swap direction changes pool balances. One-sided flow can exhaust one side. |
 | Epoch boundary | Remaining balances in the pools are burned, and the next epoch starts with newly allocated liquidity. |
 
@@ -84,11 +86,11 @@ The important concepts are:
 - **supply scaling** adjusts recovery behavior as LUNC supply changes
 - **absolute clamps** cap the allowed virtual pool size
 
-The product implication is that Swap Protocol is intentionally bounded. It is designed to reopen native swaps without allowing the module to become an unlimited output source.
+The product implication is that Swap Protocol is intentionally bounded. It is designed to reopen native swaps only if implementation and activation occur without allowing the module to become an unlimited output source.
 
 ## Fees
 
-When the module is enabled and allowance remains, swaps apply a 0.35% spread fee.
+When the module is implemented, enabled, and allowance remains, the design applies a 0.35% spread fee.
 
 The fee is collected in the output asset:
 
@@ -111,4 +113,10 @@ Core controls include:
 - disabled stable-to-stable routing
 - governance-level module closure
 
-See [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) for the operational detail.
+See [Swap Protocol oracles and safety](/swap-protocol/oracles-and-safety-controls/) for the operational detail.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page describes the Market Module 2.0 source design. It should be paired with [Implementation status](/swap-protocol/implementation-status/) before any production claim is made.

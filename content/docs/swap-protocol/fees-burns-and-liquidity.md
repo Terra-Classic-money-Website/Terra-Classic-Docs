@@ -13,6 +13,8 @@ tocDepth: 3
 ---
 Swap Protocol is designed around finite liquidity and explicit burn accounting.
 
+This page explains the Market Module 2.0 source design, not a live-data page or proof of production availability.
+
 The core rule is that swaps use existing pool balances. They do not mint new LUNC or USTC to satisfy demand.
 
 ## Liquidity source
@@ -41,7 +43,7 @@ For documentation purposes, this distinction matters:
 
 ## Spread fee
 
-When Swap Protocol is enabled and capacity remains, each swap charges a 0.35% spread fee.
+When Swap Protocol is implemented, enabled, and capacity remains, the design charges a 0.35% spread fee.
 
 | Condition | Fee behavior |
 | --- | --- |
@@ -115,3 +117,9 @@ It cannot guarantee:
 - unlimited swap capacity
 - profit from arbitrage
 - continuous availability during oracle or liquidity stress
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page describes proposed fee, burn, and liquidity mechanics from the Market Module 2.0 source design. Use external explorers, governance records, releases, and wallets to verify any future production status or live values.
