@@ -150,4 +150,4 @@ const msg = new MsgExecuteContract({
 
 - Call `simulateTx` to estimate gas, then apply a margin (for example `1.2x`) before calculating fees.
 - Refer to `docs/develop/endpoints.md` for production-grade infrastructure.
-- On Terra Classic, market swaps are disabled; use DEX contracts instead.
+- On Terra Classic, legacy mint/burn market swaps are disabled. Use [Swap Protocol](/swap-protocol/overview/) for native LUNC/USTC swaps and DEX contracts for general token swap routes.

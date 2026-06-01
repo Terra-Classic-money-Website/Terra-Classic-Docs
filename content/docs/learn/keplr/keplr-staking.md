@@ -12,6 +12,8 @@ sourceDate: "2026-05-27"
 ---
 Staking with Keplr is only possible through third-party websites or the [Keplr Dashboard](https://wallet.keplr.app/chains/terra-classic).
 
+For the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).
+
 > **Tips**
 >
 > - Keep enough LUNC for future fees.

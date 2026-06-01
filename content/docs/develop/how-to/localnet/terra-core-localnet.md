@@ -1,5 +1,5 @@
 ---
-title: "Terra Core Localnet"
+title: "Run Terra Classic localnet"
 description: "Spin up a multi-validator Terra Classic Core network locally with `make localnet-start`."
 status: draft
 reviewed: false
@@ -10,39 +10,63 @@ sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "develop/how-to/localnet/terra-core-localnet.md"
 sourceDate: "2026-05-27"
 ---
+Use localnet when you want a private Terra Classic network that you can reset, test against, and break safely.
+
+Localnet is the right environment for contract development, integration testing, transaction simulation, demos, and reproducible QA. It is not a replacement for testnet or mainnet validation.
+
 ## Prerequisites
 
-- git, make, Docker, and Docker Compose (depending on your setup)
-- 16-32 GB RAM recommended
+Install:
 
-## Steps
+- git
+- make
+- Docker
+- Docker Compose
 
-1. Clone the repository:
+Use a machine with 16-32 GB RAM when possible. Local multi-validator networks can be heavy on smaller machines.
 
-   ```bash
-   git clone https://github.com/classic-terra/core.git terra-core
-   cd terra-core
-   ```
+## Clone Terra Classic Core
 
-2. Start a localnet:
+```bash
+git clone https://github.com/classic-terra/core.git terra-core
+cd terra-core
+```
 
-   ```bash
-   make localnet-start
-   ```
+## Start localnet
 
-   This spins up a multi-validator local network with RPC and LCD endpoints. Keep it running in the background while you develop.
+```bash
+make localnet-start
+```
 
-3. Endpoints (typical defaults):
+This starts a multi-validator local Terra Classic network with RPC, LCD, and gRPC endpoints. Keep the process running while you develop.
 
-   - RPC: `http://localhost:26657`
-   - LCD: `http://localhost:1317`
-   - gRPC: `http://localhost:9090`
+## Typical local endpoints
 
-4. Chain ID:
+```text
+RPC:  http://localhost:26657
+LCD:  http://localhost:1317
+gRPC: http://localhost:9090
+```
 
-   - Usually `localterra` or `localnet` (check the console output). Use this in your SDK configuration.
+If these ports are already in use, stop the conflicting process or change the Terra Core localnet configuration.
 
-## Using with CosmES
+## Chain ID
+
+Common local chain IDs are:
+
+```text
+localterra
+```
+
+or:
+
+```text
+localnet
+```
+
+Check your terminal output and use the exact chain ID shown by your local setup. SDK and wallet configuration must match the running local chain.
+
+## Using localnet with CosmES
 
 Example Keplr setup against localnet:
 
@@ -52,20 +76,47 @@ import { KeplrController, WalletType } from "@goblinhunt/cosmes/wallet";
 const controller = new KeplrController("<YOUR_WC_PROJECT_ID>");
 const wallets = await controller.connect(WalletType.EXTENSION, [
   {
-    chainId: "localterra", // or "localnet"
+    chainId: "localterra",
     rpc: "http://localhost:26657",
     gasPrice: { denom: "uluna", amount: "28.325" },
   },
 ]);
+
 const connected = wallets.get("localterra");
 console.log("address", connected?.address);
 ```
 
 > **Warning**
 >
-> Make sure to add the chain information to keplr before connecting.
+> Add the local chain information to Keplr before connecting. If Keplr has a different chain ID, RPC URL, or denomination configured, wallet connection and signing can fail.
+
+## Using localnet for contracts
+
+For contract workflows, use the same `Msg*` transactions as on mainnet or testnet. Only the chain ID, endpoints, and local keys change.
+
+Typical flow:
+
+1. Start localnet.
+2. Confirm the local chain ID.
+3. Build and optimize the contract.
+4. Store code with `terrad tx wasm store`.
+5. Instantiate the contract.
+6. Execute and query the contract.
+7. Reset localnet when you need a clean state.
+
+For contract setup and deployment steps, continue with [Smart contracts](/develop/smart-contracts/overview/).
 
 ## Tips
 
-- If ports conflict, stop other chain processes or change ports in Terra Core configs.
-- For contract workflows, use the same `Msg*` transactions in CosmES as on mainnet or testnet—only the endpoints and chain ID change.
+- Keep localnet running in a separate terminal while developing.
+- Use localnet for repeatable tests before using testnet or mainnet.
+- Do not assume local gas, tax, liquidity, or oracle behavior exactly matches public networks.
+- If a wallet cannot connect, verify chain ID, RPC URL, address prefix, and gas denom.
+- If transaction behavior matters, test the same flow on `rebel-2` or with tiny mainnet amounts before production release.
+
+## Related docs
+
+- [Quick start guide](/develop/quick-start-guide/)
+- [Tx best practices](/develop/classic-transaction-behavior/)
+- [CosmES SDK](/develop/cosmes/cosmes/)
+- [Smart contracts](/develop/smart-contracts/overview/)

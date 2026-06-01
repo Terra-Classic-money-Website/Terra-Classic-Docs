@@ -16,6 +16,8 @@ sourceDate: "2026-05-27"
 4. Choose a validator and click **Delegate**.
 5. Enter the stake amount and confirm.
 
+For the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).
+
 > **Tips**
 >
 > - Keep some LUNC for transaction fees.

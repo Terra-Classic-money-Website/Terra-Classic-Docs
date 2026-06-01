@@ -1,5 +1,6 @@
 import { docsPages } from "./generated/docsManifest";
-import type { DocsNavGroup, DocsNavItem } from "./types";
+import { docsNavBlueprint } from "./generated/docsNav";
+import type { DocsNavBlueprintItem, DocsNavGroup, DocsNavItem } from "./types";
 
 const defaultPage = docsPages.find((page) => page.slug === "start") ?? docsPages[0];
 
@@ -24,28 +25,36 @@ export function getPageBySlug(slug: string | null) {
 }
 
 export function docsGroups() {
-  const groups = new Map<string, DocsNavGroup>();
   const itemBySlug = new Map<string, DocsNavItem>();
 
   for (const page of docsPages) {
-    itemBySlug.set(page.slug, { page, children: [] });
+    itemBySlug.set(page.slug, { type: "page", page, children: [] });
   }
 
-  for (const page of docsPages) {
-    if (page.navOrder >= 10_000) continue;
-    if (!groups.has(page.group)) groups.set(page.group, { label: page.group, items: [] });
-    const group = groups.get(page.group)!;
-    const item = itemBySlug.get(page.slug)!;
-
-    if (!page.navParent) {
-      group.items.push(item);
-      continue;
+  const buildItem = (blueprint: DocsNavBlueprintItem): DocsNavItem | null => {
+    if (blueprint.type === "label") {
+      return {
+        type: "label",
+        id: blueprint.id,
+        title: blueprint.title,
+        children: blueprint.children.map(buildItem).filter((item): item is DocsNavItem => item !== null),
+      };
     }
 
-    const parent = itemBySlug.get(page.navParent);
-    if (parent) parent.children.push(item);
-    else group.items.push(item);
+    const pageItem = itemBySlug.get(blueprint.slug);
+    if (!pageItem) return null;
+    pageItem.children = blueprint.children.map(buildItem).filter((item): item is DocsNavItem => item !== null);
+    return pageItem;
+  };
+
+  const groups: DocsNavGroup[] = [];
+
+  for (const group of docsNavBlueprint) {
+    groups.push({
+      label: group.label,
+      items: group.items.map(buildItem).filter((item): item is DocsNavItem => item !== null),
+    });
   }
 
-  return [...groups.values()];
+  return groups;
 }

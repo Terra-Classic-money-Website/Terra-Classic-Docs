@@ -24,9 +24,9 @@ sourceDate: "2026-05-27"
 
 | Name | Description | Classic default |
 | --- | --- | --- |
-| `CommunityTax` | Percentage of collected fees sent to community pool. | `0` |
-| `BaseProposerReward` | Fixed proposer reward share. | `0.01` |
-| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0.04` |
+| `CommunityTax` | Percentage of collected fees sent to community pool. | `0.5` |
+| `BaseProposerReward` | Fixed proposer reward share. | `0` |
+| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0` |
 | `WithdrawAddrEnabled` | Allow custom withdrawal addresses. | `true` |
 
 ## Reward flow

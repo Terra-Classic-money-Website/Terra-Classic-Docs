@@ -21,6 +21,7 @@ export const docsPages = [
     "sourceCommit": "bootstrap-2026-05-27",
     "sourcePath": "content/docs/start.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -38,7 +39,7 @@ export const docsPages = [
         "id": "contribution-model"
       }
     ],
-    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, fees, staking, and governance material.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. The edit link on each page opens its source markdown file in the public docs repository.\n",
+    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, and fees.\n- [Staking Protocol](/staking-protocol/overview/) covers LUNC delegation, rewards, validator selection, unstaking risks, validator responsibilities, and developer integration.\n- [Swap Protocol](/swap-protocol/overview/) covers native LUNC and USTC swaps through Market Module 2.0, including no-mint liquidity, oracle pricing, fees, burns, validator operations, and developer integration.\n- [Forex Protocol](/forex-protocol/overview/) covers the proposed Terra Classic L1 stable-asset system, including EUTC, collateral design, minting and redemption model, fees, liquidity, oracle controls, risks, and implementation requirements.\n- [Governance](/governance/overview/) covers proposal voting, voting power, vote options, proposal review, validator accountability, and governance risks.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. The edit link on each page opens its source markdown file in the public docs repository.\n",
     "previousSlug": null,
     "nextSlug": "learn/protocol"
   },
@@ -62,6 +63,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/protocol.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -99,7 +101,7 @@ export const docsPages = [
         "id": "fees-and-rewards"
       }
     ],
-    "body": "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact.\n\n> **Important**\n>\n> Since May 2022, Terra Classic has no pegged stablecoins. TerraUSD (UST) has depegged and is currently considered a speculative asset.\n>\n> References to **stablecoins** in this document refer to the historical algorithmic operation of Terra.\n\n## Terra and LUNC\n\n- **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.\n- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC; on Classic, the mint/burn swap paths are disabled, but legacy supply mechanics still inform the protocol design.\n\n## Stablecoin mechanics (historical)\n\nTerra was designed around two supply pools—Terra and LUNC. The market module encouraged arbitrage to expand or contract stablecoin supply and keep prices near their pegs.\n\n- **Expansion**: When Terra traded above the peg, burning LUNC to mint Terra increased supply and reduced the premium.\n- **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.\n\n> **Important**\n> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset, while stablecoin liquidity is community-maintained through dApps and DEXes.\n\n## Validators and consensus\n\nValidators run full nodes, propose blocks, and vote during Tendermint consensus.\n\n1. A proposer is selected (weighted by stake) and broadcasts a block.\n2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.\n3. Fees from the block enter the distribution module and are later shared with delegators.\n\nLearn more in the validator guides under `Run a full node` and the [staking doc](/learn/staking-and-governance/).\n\n## Staking lifecycle\n\n- **Delegating**: Delegators bond LUNC to a validator to earn rewards. Staked LUNC contributes to validator voting power but always belongs to the delegator.\n- **Bonded / unbonded / unbonding**: LUNC exists in three phases. Unbonding takes 21 days and does not accrue rewards.\n- **Redelegation**: Move bonded stake between validators without waiting the unbonding period (subject to a 21-day cooldown per source/target pair).\n\n### Slashing\n\nMisbehaving validators are penalised by the slashing module:\n\n- **Double-signing**: Signing conflicting blocks at the same height.\n- **Downtime**: Failing to participate in consensus.\n- **Oracle faults**: Missing required oracle votes (`x/oracle`).\n\nEvery slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.\n\n## Governance\n\nTerra Classic governance lets stakers steer protocol policy.\n\n1. **Deposit period** (2 weeks): Community members deposit LUNC on a proposal until the minimum threshold (currently 50 LUNC) is met.\n2. **Voting period** (1 week): Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator’s vote.\n3. **Execution**: Passed proposals trigger automatic handlers or human follow-up (for text proposals). Deposits are refunded if quorum (40% participation) and veto thresholds are satisfied.\n\nCommon proposal types include parameter changes, community pool spends, and text proposals. See the [governance module spec](/develop/module-specifications/spec-governance/) for details.\n\n## Fees and rewards\n\n- **Gas** pays validator compute and storage costs (`x/auth`).\n- **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.\n- **Legacy swap fees** (Tobin and spread) are currently set to 100% to disable utilizing the market module.\n\nRewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [fees guide](/learn/fees/) for live endpoints and tax exemptions.\n",
+    "body": "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact.\n\n> **Important**\n>\n> Since May 2022, Terra Classic has no pegged stablecoins. TerraUSD (UST) has depegged and is currently considered a speculative asset.\n>\n> References to **stablecoins** in this document refer to the historical algorithmic operation of Terra.\n\n## Terra and LUNC\n\n- **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.\n- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC. On Classic, the old mint/burn swap path was disabled after 2022; native LUNC and USTC swaps are now handled through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0's no-mint pool design.\n\n## Stablecoin mechanics (historical)\n\nTerra was designed around two supply pools—Terra and LUNC. The market module encouraged arbitrage to expand or contract stablecoin supply and keep prices near their pegs.\n\n- **Expansion**: When Terra traded above the peg, burning LUNC to mint Terra increased supply and reduced the premium.\n- **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.\n\n> **Important**\n> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset. Native LUNC and USTC swaps now use [Swap Protocol](/swap-protocol/overview/), which avoids minting new supply and prices USTC through oracle-reported market data.\n\n## Validators and consensus\n\nValidators run full nodes, propose blocks, and vote during Tendermint consensus.\n\n1. A proposer is selected (weighted by stake) and broadcasts a block.\n2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.\n3. Fees from the block enter the distribution module and are later shared with delegators.\n\nLearn more in the validator guides under `Run a full node` and the [Staking Protocol overview](/staking-protocol/overview/).\n\n## Staking lifecycle\n\n- **Delegating**: Delegators bond LUNC to a validator to earn rewards. Staked LUNC contributes to validator voting power but always belongs to the delegator.\n- **Bonded / unbonded / unbonding**: LUNC exists in three phases. Unbonding takes 21 days and does not accrue rewards.\n- **Redelegation**: Move bonded stake between validators without waiting the unbonding period (subject to a 21-day cooldown per source/target pair).\n\n### Slashing\n\nMisbehaving validators are penalised by the slashing module:\n\n- **Double-signing**: Signing conflicting blocks at the same height.\n- **Downtime**: Failing to participate in consensus.\n- **Oracle faults**: Missing required oracle votes (`x/oracle`).\n\nEvery slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.\n\n## Governance\n\nTerra Classic governance lets stakers steer protocol policy.\n\n1. **Deposit period**: Community members deposit LUNC on a proposal until the minimum threshold is reached or the maximum deposit period expires.\n2. **Voting period**: Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator's vote.\n3. **Execution**: Passed proposals trigger automatic handlers or human follow-up depending on the proposal type. Deposits, quorum, threshold, veto, and voting-period parameters are governance-controlled and should be queried before relying on a fixed value.\n\nCommon proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Governance guide](/governance/overview/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.\n\n## Fees and rewards\n\n- **Gas** pays validator compute and storage costs (`x/auth`).\n- **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.\n- **Swap Protocol spread fees** apply to native LUNC and USTC swaps through Market Module 2.0. The protocol charges a 0.35% spread fee when swaps are enabled and capacity remains; the fee routes 50% to burn and 50% to the Oracle Pool.\n\nRewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [Staking Protocol rewards guide](/staking-protocol/rewards-and-apr/), the [Swap Protocol fees guide](/swap-protocol/fees-burns-and-liquidity/), and the [fees guide](/learn/fees/) for related mechanics.\n",
     "previousSlug": "start",
     "nextSlug": "learn/wallets"
   },
@@ -123,6 +125,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/wallets.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -154,6 +157,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "Keplr is one of the recommended wallets for Terra Classic. Use this section to install the extension, create or import wallets, and perform common account actions.\n",
     "previousSlug": "learn/wallets",
@@ -179,6 +183,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr-install.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -220,6 +225,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr-wallet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -256,6 +262,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr-send.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "1. Open the Keplr extension and select the Terra Classic network.\n2. Navigate to **Assets** and choose the token you want to send.\n3. Click **Send**.\n4. Paste the recipient `terra...` address.\n5. Enter the amount and optional memo.\n6. Review fees and confirm with **Approve**.\n\n> **Tips**\n>\n> - Keep a small `uluna` balance to cover future fees.\n> - For rebel-2, request test tokens from the [faucet](https://t.me/tcrebelfaucet_bot).\n",
     "previousSlug": "learn/keplr/keplr-wallet",
@@ -281,8 +288,9 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr-staking.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
-    "body": "Staking with Keplr is only possible through third-party websites or the [Keplr Dashboard](https://wallet.keplr.app/chains/terra-classic).\n\n> **Tips**\n>\n> - Keep enough LUNC for future fees.\n> - Redelegations avoid the 21-day unbonding period, but each validator pair has a 21-day cooldown between redelegations.\n> - Undelegation requires a 21-day waiting period before funds become liquid.\n",
+    "body": "Staking with Keplr is only possible through third-party websites or the [Keplr Dashboard](https://wallet.keplr.app/chains/terra-classic).\n\nFor the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).\n\n> **Tips**\n>\n> - Keep enough LUNC for future fees.\n> - Redelegations avoid the 21-day unbonding period, but each validator pair has a 21-day cooldown between redelegations.\n> - Undelegation requires a 21-day waiting period before funds become liquid.\n",
     "previousSlug": "learn/keplr/keplr-send",
     "nextSlug": "learn/keplr/keplr-governance"
   },
@@ -297,17 +305,29 @@ export const docsPages = [
     "navHasChildren": false,
     "navOrder": 8,
     "title": "Keplr governance",
-    "description": "Deposit and vote on proposals using Keplr.",
+    "description": "How Keplr users should approach Terra Classic governance voting when using supported governance interfaces.",
     "status": "draft",
     "reviewed": false,
-    "sourceTitle": "Terra Classic Docs repository",
-    "sourceSite": "https://terra-classic.io/docs",
-    "sourceRepo": "https://github.com/terra-classic-io/website/tree/main/src/docs",
-    "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
-    "sourcePath": "learn/keplr/keplr-governance.md",
-    "sourceDate": "2026-05-27",
-    "headings": [],
-    "body": "Voting with Keplr is only possible through third-party websites. See the [ecosystem page](/) for more information.\n",
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/learn/keplr/keplr-governance.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": null,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Practical flow",
+        "id": "practical-flow"
+      },
+      {
+        "depth": 2,
+        "title": "Safety",
+        "id": "safety"
+      }
+    ],
+    "body": "Keplr can hold Terra Classic accounts, but governance availability depends on the interface you use with the wallet.\n\nIf the active Keplr interface you are using does not expose Terra Classic governance directly, use a supported Terra Classic governance interface that connects to Keplr.\n\nBefore voting, read the general [How to vote](/governance/how-to-vote/) guide and the [Vote options](/governance/vote-options/) guide.\n\n## Practical flow\n\n1. Open a supported Terra Classic governance interface.\n2. Connect Keplr.\n3. Confirm that Terra Classic is selected.\n4. Open the proposal.\n5. Review the proposal text, deadline, current tally, and discussion links.\n6. Choose `Yes`, `No`, `NoWithVeto`, or `Abstain`.\n7. Confirm the transaction in Keplr.\n8. Verify that your vote was recorded.\n\n## Safety\n\nNever enter your Keplr seed phrase into a governance website.\n\nKeplr should ask you to approve a transaction. It should not ask you to reveal your recovery phrase.\n",
     "previousSlug": "learn/keplr/keplr-staking",
     "nextSlug": "learn/keplr/keplr-testnet"
   },
@@ -331,6 +351,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/keplr/keplr-testnet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -367,6 +388,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "Galaxy Station by Hexxagon offers a WalletConnect-capable browser extension for Terra Classic. Use this section to install the wallet, manage accounts, and perform common actions across mainnet (`columbus-5`) and the `rebel-2` testnet.\n",
     "previousSlug": "learn/keplr/keplr-testnet",
@@ -392,6 +414,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station-install.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -433,6 +456,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station-wallet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -474,6 +498,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station-send.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "1. Open the Galaxy Station extension or connect through WalletConnect.\n2. Ensure Terra Classic is the active network.\n3. Choose a token from **Assets**.\n4. Click **Send**.\n5. Paste the recipient `terra...` address.\n6. Enter the amount and optional memo.\n7. Review fees and confirm.\n\n> **Tips**\n>\n> - Keep a small LUNC balance to cover future fees.\n> - For rebel-2 testnet, request funds from the [faucet](https://t.me/tcrebelfaucet_bot).\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-wallet",
@@ -499,8 +524,9 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station-staking.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
-    "body": "1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected as the active network.\n3. Open the staking view and browse validators.\n4. Choose a validator and click **Delegate**.\n5. Enter the stake amount and confirm.\n\n> **Tips**\n>\n> - Keep some LUNC for transaction fees.\n> - Redelegations avoid the 21-day unbonding period but introduce a 21-day cooldown between the same validator pair.\n> - Undelegating starts a 21-day unbonding period before funds become liquid.\n",
+    "body": "1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected as the active network.\n3. Open the staking view and browse validators.\n4. Choose a validator and click **Delegate**.\n5. Enter the stake amount and confirm.\n\nFor the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).\n\n> **Tips**\n>\n> - Keep some LUNC for transaction fees.\n> - Redelegations avoid the 21-day unbonding period but introduce a 21-day cooldown between the same validator pair.\n> - Undelegating starts a 21-day unbonding period before funds become liquid.\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-send",
     "nextSlug": "learn/galaxy-station/galaxy-station-governance"
   },
@@ -518,12 +544,13 @@ export const docsPages = [
     "description": "Deposit and vote on proposals via Galaxy Station.",
     "status": "draft",
     "reviewed": false,
-    "sourceTitle": "Terra Classic Docs repository",
-    "sourceSite": "https://terra-classic.io/docs",
-    "sourceRepo": "https://github.com/terra-classic-io/website/tree/main/src/docs",
-    "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
-    "sourcePath": "learn/galaxy-station/galaxy-station-governance.md",
-    "sourceDate": "2026-05-27",
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/learn/galaxy-station/galaxy-station-governance.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -536,7 +563,7 @@ export const docsPages = [
         "id": "deposit-to-a-proposal"
       }
     ],
-    "body": "## Vote on proposals\n\n1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected.\n3. Open **Governance / Proposals**.\n4. Choose a proposal to review.\n5. Click **Vote**, select an option, and confirm.\n\n## Deposit to a proposal\n\n1. While a proposal is in deposit period, open it in Governance.\n2. Click **Deposit**, enter the `LUNC` amount, and confirm.\n\n> **Notes**\n>\n> - A minimum deposit is required for proposals to enter the voting stage.\n> - Your staked voting power applies to both deposits and votes.\n",
+    "body": "## Vote on proposals\n\nRead the general [How to vote](/governance/how-to-vote/) guide and [Vote options](/governance/vote-options/) guide before voting on high-impact proposals.\n\n1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected.\n3. Open **Governance / Proposals**.\n4. Choose a proposal to review.\n5. Click **Vote**, select an option, and confirm.\n\n## Deposit to a proposal\n\n1. While a proposal is in deposit period, open it in Governance.\n2. Click **Deposit**, enter the `LUNC` amount, and confirm.\n\n> **Notes**\n>\n> - A minimum deposit is required for proposals to enter the voting stage.\n> - Your staked voting power applies to both deposits and votes.\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-staking",
     "nextSlug": "learn/galaxy-station/galaxy-station-testnet"
   },
@@ -560,6 +587,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/galaxy-station/galaxy-station-testnet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -579,37 +607,6 @@ export const docsPages = [
     ],
     "body": "## Endpoints\n\n- LCD: [https://lcd.luncblaze.com](https://lcd.luncblaze.com)\n- RPC: [https://rpc.luncblaze.com](https://rpc.luncblaze.com)\n\n## Get test funds\n\n1. Connect Galaxy Station to the Terra Classic testnet (`rebel-2`).\n2. Request tokens from the [rebel-2 faucet bot](https://t.me/tcrebelfaucet_bot). Enter your testnet `terra...` address.\n\n## Send a test transaction\n\n1. In Galaxy Station, open **Assets** and select a token.\n2. Click **Send**, enter the recipient testnet `terra...` address, and confirm the amount.\n3. Review fees and approve the transaction.\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-governance",
-    "nextSlug": "learn/staking-and-governance"
-  },
-  {
-    "slug": "learn/staking-and-governance",
-    "path": "/learn/staking-and-governance/",
-    "sourceFile": "content/docs/learn/staking-and-governance.md",
-    "group": "Learn Terra Classic",
-    "navTitle": "Staking and governance",
-    "navDepth": 0,
-    "navParent": null,
-    "navHasChildren": false,
-    "navOrder": 17,
-    "title": "Staking and governance",
-    "description": "How validator economics, rewards, and voting power align the Terra Classic network.",
-    "status": "draft",
-    "reviewed": false,
-    "sourceTitle": "Terra Classic Docs repository",
-    "sourceSite": "https://terra-classic.io/docs",
-    "sourceRepo": "https://github.com/terra-classic-io/website/tree/main/src/docs",
-    "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
-    "sourcePath": "learn/staking-and-governance.md",
-    "sourceDate": "2026-05-27",
-    "headings": [
-      {
-        "depth": 2,
-        "title": "Delegate flow",
-        "id": "delegate-flow"
-      }
-    ],
-    "body": "Delegating LUNC grants validators voting power proportional to their stake. Validators collect commission on rewards while delegators earn the remainder. Typical commission settings range between 2.5% and 20%.\n\nGovernance proposals enter a seven-day voting phase once deposits reach the minimum threshold. Delegators can override validator votes through supported wallets.\n\n## Delegate flow\n\n1. Connect with Keplr, Galaxy Station or other supported wallets and review validator voting power and commission.\n2. Delegate LUNC and monitor validator uptime to ensure they remain below slashing thresholds.\n3. Redelegate proactively if a validator is unreliable or votes against your interests.\n4. Vote on governance proposals before the deadline to direct network policy.\n5. Observe the 21-day unbonding period when reallocating stake across validators.\n\n> **Tip**\n>\n> Delegator votes **override** validator votes. The voting power from undelegated LUNC is not used to vote on proposals.\n",
-    "previousSlug": "learn/galaxy-station/galaxy-station-testnet",
     "nextSlug": "learn/fees"
   },
   {
@@ -621,9 +618,9 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 18,
+    "navOrder": 17,
     "title": "Fees",
-    "description": "Understand gas, burn tax, and legacy swap fees on Terra Classic.",
+    "description": "Understand gas, burn tax, Swap Protocol spread fees, and historical Terra swap fees on Terra Classic.",
     "status": "draft",
     "reviewed": false,
     "sourceTitle": "Terra Classic Docs repository",
@@ -632,6 +629,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/fees.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -659,8 +657,2471 @@ export const docsPages = [
         "id": "spread-fee"
       }
     ],
-    "body": "All Terra Classic transactions consume gas. Some legacy transaction types also reference historical fees such as Tobin and spread taxes; these are currently disabled on Classic. The table below summarises which fees apply.\n\n| Transaction type | [Gas](#gas) | [Tobin](#tobin-tax) | [Spread](#spread-fee) | Burn tax |\n| --- | --- | --- | --- | --- |\n| ~~Stablecoin ↔ stablecoin market swap~~ *disabled* | ✓ | ✓ |  |  |\n| ~~Stablecoin ↔ LUNC market swap~~ *disabled* | ✓ |  | ✓ |  |\n| Wallet-to-wallet transfer | ✓ |  |  | ✓ |\n\nDApps such as DEXes can charge additional protocol fees on top of network fees.\n\n## Gas\n\n[Gas](/appendices/glossary/#fees) covers validator compute and storage. Validators configure minimum gas prices; transactions must include fees meeting or exceeding that implied price.\n\nKey behaviour on Terra Classic:\n\n- Validators reject transactions with implied gas prices below their configured minimum.\n- Most wallets estimate gas above the minimum to avoid underestimation.\n- Unused gas is **not** refunded.\n- Transactions are processed FIFO within the mempool, not by highest fee.\n\nCurrent suggested prices are available via [`https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices`](https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices).\n\nGas fees flow into the distribution module and are paid out to validators and delegators as staking rewards, and fill the Community Pool.\n\n## Burn tax (`x/tax` module)\n\nTerra Classic uses the `x/tax` module to levy burn taxes on transfers.\n\n- Parameters: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params)\n- Current burn rate: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate)\n\nReverse-charge (Tax2Gas) rules can deduct tax from the transfer amount or fees depending on the transaction path. Always confirm current governance decisions before relying on a specific behaviour.\n\n### Tax exemption registry\n\nSome addresses are exempt from burn tax. Query the registry via:\n\n- Zones list: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones)\n- Zone addresses: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/{zonename}/addresses`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/%7Bzonename%7D/addresses)\n- Taxable check: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{to}`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/%7Bfrom%7D/%7Bto%7D)\n\n## Tobin tax\n\nThe Tobin tax historically applied to swaps between Terra stablecoins. Governance disabled Classic market swaps, so the rate is unused today, but it remains queryable for reference via the oracle module.\n\nDiscussed rationale: [“On swap fees: the greedy and the wise”](https://medium.com/terra-money/on-swap-fees-the-greedy-and-the-wise-b967f0c8914e).\n\nWhen active, Tobin tax revenue flowed into the oracle reward pool and was redistributed to validators who reported accurate exchange rates. See the [oracle module spec](/develop/module-specifications/spec-oracle/) for reward mechanics.\n\n## Spread fee\n\nSpread fees applied to swaps between Terra stablecoins and LUNC. While disabled on Classic, the [market module](/develop/module-specifications/spec-market/) retains the logic to adjust spread based on pool balances. Historically the minimum spread was 0.5%, increasing during volatility to maintain the [`x*y=k`](/develop/module-specifications/spec-market/#market-making-algorithm) invariant.\n\nLike Tobin tax, spread revenue previously funded the oracle reward pool.\n",
-    "previousSlug": "learn/staking-and-governance",
+    "body": "All Terra Classic transactions consume gas. Transfers can also be affected by burn tax. Native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/) use a Market Module 2.0 spread fee instead of the normal chain-wide burn tax for that in-module route.\n\n| Transaction type | [Gas](#gas) | [Tobin](#tobin-tax) | [Spread](#spread-fee) | Burn tax |\n| --- | --- | --- | --- | --- |\n| ~~Stablecoin ↔ stablecoin market swap~~ *disabled* | ✓ | ✓ |  |  |\n| LUNC ↔ USTC Swap Protocol route | ✓ |  | ✓ |  |\n| Wallet-to-wallet transfer | ✓ |  |  | ✓ |\n\nDApps such as DEXes can charge additional protocol fees on top of network fees.\n\n## Gas\n\n[Gas](/appendices/glossary/#fees) covers validator compute and storage. Validators configure minimum gas prices; transactions must include fees meeting or exceeding that implied price.\n\nKey behaviour on Terra Classic:\n\n- Validators reject transactions with implied gas prices below their configured minimum.\n- Most wallets estimate gas above the minimum to avoid underestimation.\n- Unused gas is **not** refunded.\n- Transactions are processed FIFO within the mempool, not by highest fee.\n\nCurrent suggested prices are available via [`https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices`](https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices).\n\nGas fees flow into the distribution module and are paid out to validators and delegators as staking rewards, and fill the Community Pool.\n\n## Burn tax (`x/tax` module)\n\nTerra Classic uses the `x/tax` module to levy burn taxes on transfers.\n\n- Parameters: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params)\n- Current burn rate: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate)\n\nReverse-charge (Tax2Gas) rules can deduct tax from the transfer amount or fees depending on the transaction path. Always confirm current governance decisions before relying on a specific behaviour.\n\n### Tax exemption registry\n\nSome addresses are exempt from burn tax. Query the registry via:\n\n- Zones list: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones)\n- Zone addresses: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/{zonename}/addresses`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/%7Bzonename%7D/addresses)\n- Taxable check: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{to}`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/%7Bfrom%7D/%7Bto%7D)\n\n## Tobin tax\n\nThe Tobin tax historically applied to swaps between Terra stablecoins. Market Module 2.0 disables stable-to-stable routing, so Tobin tax should be treated as historical reference for current Swap Protocol usage.\n\nDiscussed rationale: [“On swap fees: the greedy and the wise”](https://medium.com/terra-money/on-swap-fees-the-greedy-and-the-wise-b967f0c8914e).\n\nWhen active, Tobin tax revenue flowed into the oracle reward pool and was redistributed to validators who reported accurate exchange rates. See the [oracle module spec](/develop/module-specifications/spec-oracle/) for reward mechanics.\n\n## Spread fee\n\nSpread fees apply to native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/). The Market Module 2.0 source design sets the Swap Protocol spread fee at 0.35% of notional, collected in the output asset.\n\nSwap Protocol routes spread fees 50% to burn and 50% to the Oracle Pool. See [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/) for the full product-level explanation.\n\nHistorical spread logic remains useful context for the [market module](/develop/module-specifications/spec-market/), but applications should not assume pre-2022 mint/burn swap behavior.\n",
+    "previousSlug": "learn/galaxy-station/galaxy-station-testnet",
+    "nextSlug": "staking-protocol/overview"
+  },
+  {
+    "slug": "staking-protocol/overview",
+    "path": "/staking-protocol/overview/",
+    "sourceFile": "content/docs/staking-protocol/overview.md",
+    "group": "Staking Protocol",
+    "navTitle": "Staking Protocol",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 18,
+    "title": "Staking Protocol",
+    "description": "The user-facing staking layer for Terra Classic: delegate LUNC, secure the network, earn protocol rewards, and participate in governance.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/overview.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Product position",
+        "id": "product-position"
+      },
+      {
+        "depth": 2,
+        "title": "What staking does",
+        "id": "what-staking-does"
+      },
+      {
+        "depth": 2,
+        "title": "Why it matters for Terra Classic",
+        "id": "why-it-matters-for-terra-classic"
+      },
+      {
+        "depth": 2,
+        "title": "Core actions",
+        "id": "core-actions"
+      },
+      {
+        "depth": 2,
+        "title": "How this section is organized",
+        "id": "how-this-section-is-organized"
+      },
+      {
+        "depth": 2,
+        "title": "What to avoid",
+        "id": "what-to-avoid"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial advice",
+        "id": "not-financial-advice"
+      }
+    ],
+    "body": "The Staking Protocol is Terra Classic's proof-of-stake participation layer.\n\nIt lets LUNC holders delegate tokens to validators, help secure the chain, earn protocol rewards, and route voting power into governance without giving validators custody of their wallet.\n\nUse this section if you are:\n\n- a LUNC holder deciding whether to stake\n- a delegator choosing validators\n- a community member trying to understand governance power\n- an investor evaluating network participation\n- a validator explaining what responsible operation requires\n- a developer building staking, portfolio, governance, or validator tooling\n\n## Product position\n\nStaking Protocol is the official product name used in these docs for Terra Classic staking.\n\nIt is not a new token, not a custody product, not liquid staking, not a yield vault, and not a guarantee of profit. It is the user-facing name for the native proof-of-stake system already built into Terra Classic through Cosmos SDK staking, distribution, slashing, and governance modules.\n\nThe product promise should stay simple:\n\n> Delegate LUNC to help secure Terra Classic, earn transparent protocol rewards, and participate in governance while keeping control of your wallet.\n\n## What staking does\n\nWhen you delegate LUNC, your stake is bonded to a validator. The validator uses total delegated stake to compete for consensus power. If the validator is active, it can propose and sign blocks. Rewards earned by that validator are shared with delegators after commission.\n\nYour delegated LUNC remains associated with your wallet address. A validator cannot spend it, transfer it, or move it to another wallet. The validator can still affect your outcome because poor validator behavior can reduce rewards, cause missed governance participation, or create slashing risk.\n\n## Why it matters for Terra Classic\n\nStaking Protocol is one of Terra Classic's strongest existing L1 products because it is live, understandable, non-custodial, and directly connected to network security.\n\nFor Terra Classic, staking also matters strategically:\n\n- Higher bonded stake reduces the liquid supply available for immediate selling.\n- More distributed stake improves the validator power structure.\n- Better validator selection raises pressure for uptime, governance participation, and professional operation.\n- More active delegator voting makes governance less dependent on a small validator minority.\n- Clear staking docs turn a confusing wallet action into a credible participation pathway.\n\nThis is why the docs should not describe staking only as a passive APR feature. On Terra Classic, staking is also a network-security, governance, and trust-surface product.\n\n## Core actions\n\n| Action | What it means | Main tradeoff |\n| --- | --- | --- |\n| Delegate | Bond liquid LUNC to a validator. | Earn rewards and voting power exposure, but accept validator risk. |\n| Claim rewards | Withdraw accumulated rewards to your wallet. | Requires a transaction fee. |\n| Redelegate | Move bonded stake from one validator to another. | Avoids the full unbonding wait, but has cooldown limits. |\n| Undelegate | Start returning bonded LUNC to liquid balance. | Takes the chain's unbonding period and earns no rewards during that time. |\n| Vote | Cast your own governance vote. | Overrides your validator's vote for that proposal. |\n\n## How this section is organized\n\n- [How it works](/staking-protocol/how-it-works/) explains the staking lifecycle and current queryable parameters.\n- [Delegate LUNC](/staking-protocol/delegate-lunc/) gives a practical staking flow for supported wallets.\n- [Rewards and APR](/staking-protocol/rewards-and-apr/) explains where rewards come from and why APR changes.\n- [Choose a validator](/staking-protocol/choose-a-validator/) gives a decision framework for delegators.\n- [Risks and unstaking](/staking-protocol/risks-and-unstaking/) covers slashing, lockups, redelegation limits, and operational risk.\n- [Governance](/governance/overview/) explains how staked LUNC becomes governance power and how proposals are reviewed and voted on.\n- [Validator responsibilities](/staking-protocol/validator-responsibilities/) explains what responsible validators should provide.\n- [Developer reference](/staking-protocol/developer-reference/) gives module, message, query, and endpoint references.\n\n## What to avoid\n\nDo not evaluate Staking Protocol only by the displayed APR. APR is useful, but it is not the whole product.\n\nA serious staking decision should also look at validator uptime, voting behavior, commission, concentration, public communication, infrastructure quality, self-delegation, community contribution, and whether the validator's incentives are aligned with Terra Classic's long-term health.\n\n## Not financial advice\n\nStaking can produce protocol rewards, but LUNC price volatility, validator behavior, governance decisions, wallet security, slashing, and liquidity timing can materially affect outcomes. These docs explain protocol mechanics. They do not tell you whether to buy, sell, hold, or stake LUNC.\n",
+    "previousSlug": "learn/fees",
+    "nextSlug": "staking-protocol/how-it-works"
+  },
+  {
+    "slug": "staking-protocol/how-it-works",
+    "path": "/staking-protocol/how-it-works/",
+    "sourceFile": "content/docs/staking-protocol/how-it-works.md",
+    "group": "Staking Protocol",
+    "navTitle": "How it works",
+    "navDepth": 1,
+    "navParent": "staking-protocol/use-staking-protocol",
+    "navHasChildren": false,
+    "navOrder": 20,
+    "title": "How it works",
+    "description": "A practical explanation of delegation, validator power, bonding states, redelegation, unbonding, and current Terra Classic staking parameters.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/how-it-works.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Validators and delegators",
+        "id": "validators-and-delegators"
+      },
+      {
+        "depth": 2,
+        "title": "Bonded, unbonding, and unbonded LUNC",
+        "id": "bonded-unbonding-and-unbonded-lunc"
+      },
+      {
+        "depth": 2,
+        "title": "Validator power",
+        "id": "validator-power"
+      },
+      {
+        "depth": 2,
+        "title": "Delegation shares",
+        "id": "delegation-shares"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegation",
+        "id": "redelegation"
+      },
+      {
+        "depth": 2,
+        "title": "Unbonding",
+        "id": "unbonding"
+      },
+      {
+        "depth": 2,
+        "title": "Reward accounting",
+        "id": "reward-accounting"
+      },
+      {
+        "depth": 2,
+        "title": "Slashing link",
+        "id": "slashing-link"
+      }
+    ],
+    "body": "Staking Protocol is built on the standard proof-of-stake model used by Cosmos SDK chains, with Terra Classic-specific parameters and governance-controlled settings.\n\nThe simple version:\n\n1. You hold liquid LUNC in a compatible wallet.\n2. You delegate some LUNC to one or more validators.\n3. Validators use delegated stake to participate in consensus.\n4. Rewards accumulate through the distribution module.\n5. You can claim rewards, redelegate, vote, or undelegate.\n\n## Validators and delegators\n\nValidators run infrastructure. They operate nodes, sign blocks, keep keys secure, participate in upgrades, vote in governance, and maintain reliable public communication.\n\nDelegators hold LUNC and choose validators. They do not need to run nodes. By delegating, they assign staking power to validators and share in rewards and risks.\n\nThis creates a principal-agent relationship. Delegators provide capital. Validators operate the security layer. Delegators should therefore treat validator choice as an active risk decision, not a random list selection.\n\n## Bonded, unbonding, and unbonded LUNC\n\nLUNC used by Staking Protocol can be in three practical states.\n\n| State | What it means | Rewards | Liquidity |\n| --- | --- | --- | --- |\n| Unbonded | Liquid LUNC in your wallet. | No staking rewards. | Spendable and transferable. |\n| Bonded | Delegated to a validator. | Eligible for staking rewards. | Not directly spendable. |\n| Unbonding | Leaving staking and returning to liquid balance. | No staking rewards during the wait. | Locked until the unbonding period completes. |\n\nOn Terra Classic, the staking bond denomination is `uluna`.\n\n```text\n1 LUNC = 1,000,000 uluna\n```\n\n## Validator power\n\nA validator's voting power comes from its bonded stake: self-delegation plus delegations from users.\n\nIn consensus, voting power decides how much weight a validator has when blocks are proposed and committed. In governance, validator voting power is also used unless delegators cast their own vote.\n\nTerra Classic has also implemented a custom validator voting-power cap documented in the [staking module spec](/develop/module-specifications/spec-staking/). The purpose is to reduce the risk that one validator accumulates too much influence.\n\nFor a user-facing governance explanation, see [Voting power and delegation](/governance/voting-power-and-delegation/).\n\n## Delegation shares\n\nWhen you delegate, the staking module tracks your position as delegation shares against a validator, not as a separate pile of untouched tokens.\n\nThis matters because rewards and slashes change the validator's token pool over time. Your claim is proportional to your shares in that validator's pool. In normal wallet interfaces this is abstracted away, but developers and analytics tools should understand that the chain state uses shares.\n\n## Redelegation\n\nRedelegation moves bonded LUNC from one validator to another without first waiting through the full unbonding period.\n\nUse redelegation when:\n\n- a validator is jailed or unreliable\n- a validator stops voting or communicating\n- commission changes make the validator unattractive\n- stake is too concentrated in a small set of validators\n- your governance preferences no longer align\n\nRedelegation still has limits. A redelegation creates a cooldown for the same source and destination validator pair. During the redelegation window, the stake can still be slashable for infractions that occurred before the redelegation began.\n\n## Unbonding\n\nUndelegation starts the unbonding process. During unbonding, the LUNC is no longer earning rewards and is not liquid until the period completes.\n\nTerra Classic's current staking params can be queried through LCD:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, this endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `unbonding_time` | `1814400s` | 21 days. |\n| `max_validators` | `110` | Maximum active bonded validators. |\n| `max_entries` | `7` | Maximum simultaneous unbonding or redelegation entries per pair context. |\n| `bond_denom` | `uluna` | LUNC micro-denomination used for staking. |\n| `min_commission_rate` | `0.025` | Minimum validator commission rate of 2.5%. |\n\nAlways query current parameters before building tooling, writing operational instructions, or making a large staking decision. Governance can change parameters over time.\n\n## Reward accounting\n\nRewards are handled by the distribution module. They accumulate until withdrawn. Wallets may show pending rewards, but those rewards are not spendable until a withdraw transaction is submitted.\n\nSome staking actions can trigger reward withdrawal or accounting changes depending on wallet behavior and module rules. Keep enough liquid LUNC for fees before claiming, delegating, redelegating, or undelegating.\n\n## Slashing link\n\nStaked and unbonding LUNC can be reduced if the validator is slashed for certain failures. See [Risks and unstaking](/staking-protocol/risks-and-unstaking/) before delegating a large position.\n",
+    "previousSlug": "staking-protocol/overview",
+    "nextSlug": "staking-protocol/delegate-lunc"
+  },
+  {
+    "slug": "staking-protocol/delegate-lunc",
+    "path": "/staking-protocol/delegate-lunc/",
+    "sourceFile": "content/docs/staking-protocol/delegate-lunc.md",
+    "group": "Staking Protocol",
+    "navTitle": "Delegate LUNC",
+    "navDepth": 1,
+    "navParent": "staking-protocol/use-staking-protocol",
+    "navHasChildren": false,
+    "navOrder": 21,
+    "title": "Delegate LUNC",
+    "description": "A practical delegator guide for staking LUNC through Staking Protocol using supported Terra Classic wallets.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/delegate-lunc.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Before you delegate",
+        "id": "before-you-delegate"
+      },
+      {
+        "depth": 2,
+        "title": "Delegation flow",
+        "id": "delegation-flow"
+      },
+      {
+        "depth": 2,
+        "title": "How much to delegate",
+        "id": "how-much-to-delegate"
+      },
+      {
+        "depth": 2,
+        "title": "Claim rewards",
+        "id": "claim-rewards"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegate",
+        "id": "redelegate"
+      },
+      {
+        "depth": 2,
+        "title": "Undelegate",
+        "id": "undelegate"
+      },
+      {
+        "depth": 2,
+        "title": "Transaction checklist",
+        "id": "transaction-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator operating rhythm",
+        "id": "delegator-operating-rhythm"
+      }
+    ],
+    "body": "Delegating LUNC is the main user action in Staking Protocol.\n\nThe goal is not only to earn rewards. The better goal is to place stake with validators that make Terra Classic more secure, more accountable, and more credible.\n\n## Before you delegate\n\nPrepare these basics first:\n\n- Use a compatible Terra Classic wallet such as Keplr or Galaxy Station.\n- Confirm the active network is Terra Classic mainnet `columbus-5`.\n- Keep some liquid LUNC outside staking for transaction fees.\n- Decide whether you want to split stake across multiple validators.\n- Read the validator's commission, voting history, uptime signals, website, and public communication.\n- Understand that unstaking has a waiting period.\n\nWallet-specific setup:\n\n- [Keplr install](/learn/keplr/keplr-install/)\n- [Keplr staking](/learn/keplr/keplr-staking/)\n- [Galaxy Station install](/learn/galaxy-station/galaxy-station-install/)\n- [Galaxy Station staking](/learn/galaxy-station/galaxy-station-staking/)\n\n## Delegation flow\n\nMost wallet interfaces follow the same pattern.\n\n1. Open the wallet or staking interface.\n2. Select Terra Classic.\n3. Open the staking or validators view.\n4. Search or browse validators.\n5. Review commission, voting power, uptime, and validator information.\n6. Enter the amount of LUNC to delegate.\n7. Keep liquid LUNC for fees.\n8. Review the transaction.\n9. Sign and broadcast.\n10. Confirm the transaction on an explorer.\n\nAfter the transaction is included in a block, your delegation should appear under the selected validator.\n\n## How much to delegate\n\nDo not delegate your entire wallet balance. Keep enough LUNC liquid for:\n\n- claiming rewards\n- voting\n- redelegating\n- undelegating\n- emergency transactions\n- wallet or interface fee estimation variance\n\nFor larger positions, splitting stake across several responsible validators can reduce validator-specific risk and can support decentralization. Splitting stake does not remove market risk or protocol risk.\n\n## Claim rewards\n\nRewards accumulate until claimed. Claiming rewards requires a transaction and therefore a fee.\n\nClaim frequency is a practical tradeoff. Claiming too often can waste fees. Claiming too rarely can make portfolio tracking less clear. The best cadence depends on reward size, fee cost, and whether you plan to compound manually.\n\n## Redelegate\n\nRedelegation moves bonded LUNC from one validator to another without waiting through the full unbonding period.\n\nUse redelegation if your current validator:\n\n- is jailed\n- repeatedly misses blocks\n- stops voting\n- raises commission beyond your expectations\n- has poor communication\n- contributes to excessive stake concentration\n- no longer aligns with your governance preferences\n\nRedelegation is not unlimited. The same validator pair can be subject to a cooldown. If a wallet blocks a redelegation, check whether a prior redelegation is still active.\n\n## Undelegate\n\nUndelegation starts the unbonding period. During that period:\n\n- the LUNC is not liquid\n- the LUNC does not earn staking rewards\n- the position can still be exposed to some slash conditions tied to prior validator behavior\n- the final liquid balance appears only after unbonding completes\n\nDo not start unbonding if you need immediate liquidity.\n\n## Transaction checklist\n\nBefore signing any staking transaction:\n\n- Confirm the chain ID is `columbus-5`.\n- Confirm the validator operator address starts with `terravaloper`.\n- Confirm the wallet address starts with `terra`.\n- Confirm the LUNC amount and fee.\n- Confirm the action: delegate, redelegate, undelegate, claim, or vote.\n- Confirm you are using the real wallet or interface URL.\n\n## Delegator operating rhythm\n\nStaking is not a one-time action. A responsible delegator should periodically review:\n\n- validator jailed status\n- commission changes\n- missed-block or uptime indicators\n- governance voting behavior\n- communication quality\n- concentration in top validators\n- whether rewards are worth claiming or compounding\n\nFor a deeper decision model, read [Choose a validator](/staking-protocol/choose-a-validator/).\n",
+    "previousSlug": "staking-protocol/how-it-works",
+    "nextSlug": "staking-protocol/rewards-and-apr"
+  },
+  {
+    "slug": "staking-protocol/rewards-and-apr",
+    "path": "/staking-protocol/rewards-and-apr/",
+    "sourceFile": "content/docs/staking-protocol/rewards-and-apr.md",
+    "group": "Staking Protocol",
+    "navTitle": "Rewards and APR",
+    "navDepth": 1,
+    "navParent": "staking-protocol/use-staking-protocol",
+    "navHasChildren": false,
+    "navOrder": 22,
+    "title": "Rewards and APR",
+    "description": "How Staking Protocol rewards are generated, distributed, claimed, and interpreted without treating APR as a fixed promise.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/rewards-and-apr.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Where rewards come from",
+        "id": "where-rewards-come-from"
+      },
+      {
+        "depth": 2,
+        "title": "How rewards are split",
+        "id": "how-rewards-are-split"
+      },
+      {
+        "depth": 2,
+        "title": "Why APR changes",
+        "id": "why-apr-changes"
+      },
+      {
+        "depth": 2,
+        "title": "Real yield versus token price",
+        "id": "real-yield-versus-token-price"
+      },
+      {
+        "depth": 2,
+        "title": "Claiming rewards",
+        "id": "claiming-rewards"
+      },
+      {
+        "depth": 2,
+        "title": "Compounding",
+        "id": "compounding"
+      },
+      {
+        "depth": 2,
+        "title": "APR interpretation checklist",
+        "id": "apr-interpretation-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "Developer note",
+        "id": "developer-note"
+      }
+    ],
+    "body": "Staking Protocol rewards are protocol-level rewards paid through Terra Classic's distribution module.\n\nAPR is useful as a summary metric, but it should never be treated as a fixed rate, a promise, or the full reason to stake.\n\n## Where rewards come from\n\nOn Terra Classic, staking rewards are primarily connected to network fee and distribution flows rather than new inflation.\n\nCurrent mint parameters can be queried here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/mint/v1beta1/params\n```\n\nAs checked on 2026-06-01, Terra Classic mint parameters returned zero inflation settings:\n\n| Parameter | Value |\n| --- | --- |\n| `inflation_rate_change` | `0` |\n| `inflation_max` | `0` |\n| `inflation_min` | `0` |\n\nDistribution parameters can be queried here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/distribution/v1beta1/params\n```\n\nAs checked on 2026-06-01, the distribution endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `community_tax` | `0.5` | 50% of collected distributable rewards directed to the community pool. |\n| `base_proposer_reward` | `0` | No fixed proposer reward share. |\n| `bonus_proposer_reward` | `0` | No bonus proposer reward share. |\n| `withdraw_addr_enabled` | `true` | Reward withdrawal addresses are enabled. |\n\nThese parameters can change through governance. Interfaces should query live values instead of freezing them.\n\n## How rewards are split\n\nAt a high level:\n\n1. Fees and eligible reward flows enter collection and distribution logic.\n2. The distribution module accounts for rewards by validator.\n3. Validator commission is taken from the rewards earned on behalf of delegators.\n4. Remaining rewards accrue to delegators based on their delegation shares.\n5. Rewards stay pending until withdrawn.\n\nIf a validator has 5% commission, that means the validator keeps 5% of the rewards earned by delegators on that validator before the remaining rewards are allocated to delegators.\n\nCommission affects APR, but it is not the only factor. A low-commission validator can still be a poor choice if it is unreliable, silent, over-concentrated, or absent from governance.\n\n## Why APR changes\n\nAPR can change because:\n\n- network transaction activity changes\n- fee and tax parameters change\n- community-tax or distribution parameters change\n- total bonded LUNC changes\n- validator commission changes\n- wallet or dashboard calculation methods differ\n- rewards are measured over different time windows\n- price assumptions change when dashboards convert to fiat\n\nAPR shown on a website or wallet is therefore a current estimate, not a guarantee.\n\n## Real yield versus token price\n\nStaking rewards are denominated in tokens. Your economic result also depends on LUNC price movement, liquidity, taxes, fees, and timing.\n\nAn APR can be positive while the market value of the staked position falls. An APR can also look modest while staking still improves network security, governance alignment, and long-term participation quality.\n\nDo not reduce Staking Protocol to a single APR number.\n\n## Claiming rewards\n\nRewards are not automatically spendable. A wallet must submit a withdrawal transaction.\n\nCommon reward messages include:\n\n- `MsgWithdrawDelegatorReward`\n- `MsgWithdrawValidatorCommission`\n- `MsgSetWithdrawAddress`\n\nClaiming rewards costs a transaction fee. Keep liquid LUNC available.\n\n## Compounding\n\nManual compounding means claiming rewards and delegating them again.\n\nThis can increase the staked balance over time, but it is only rational when the expected added rewards are worth more than the fees and operational friction. Small positions may not benefit from frequent compounding.\n\n## APR interpretation checklist\n\nWhen comparing validators, evaluate:\n\n- commission rate\n- whether commission recently changed\n- uptime and jailed status\n- governance participation\n- voting power concentration\n- self-delegation\n- public identity and communication\n- contribution to Terra Classic infrastructure or tooling\n- whether the validator has credible long-term incentives\n\nThe better validator is not always the validator with the highest displayed APR.\n\n## Developer note\n\nStaking dashboards should disclose their APR methodology. A credible calculator should state which endpoint, time window, fee assumptions, bonded-token value, commission treatment, and compounding assumption it uses.\n\nFor integration details, see [Developer reference](/staking-protocol/developer-reference/).\n",
+    "previousSlug": "staking-protocol/delegate-lunc",
+    "nextSlug": "staking-protocol/risks-and-unstaking"
+  },
+  {
+    "slug": "staking-protocol/risks-and-unstaking",
+    "path": "/staking-protocol/risks-and-unstaking/",
+    "sourceFile": "content/docs/staking-protocol/risks-and-unstaking.md",
+    "group": "Staking Protocol",
+    "navTitle": "Risks and unstaking",
+    "navDepth": 1,
+    "navParent": "staking-protocol/use-staking-protocol",
+    "navHasChildren": false,
+    "navOrder": 23,
+    "title": "Risks and unstaking",
+    "description": "The main Staking Protocol risks: unbonding, redelegation cooldowns, slashing, validator failures, governance exposure, wallet security, and market risk.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/risks-and-unstaking.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Liquidity risk",
+        "id": "liquidity-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegation risk",
+        "id": "redelegation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Slashing risk",
+        "id": "slashing-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Validator risk",
+        "id": "validator-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Governance risk",
+        "id": "governance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Market risk",
+        "id": "market-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Wallet and interface risk",
+        "id": "wallet-and-interface-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Operational checklist",
+        "id": "operational-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "When to consider redelegating",
+        "id": "when-to-consider-redelegating"
+      }
+    ],
+    "body": "Staking Protocol is non-custodial, but it is not risk-free.\n\nThe biggest mistake is treating staking as a bank deposit. It is not. It is a protocol action with lockup, validator, governance, slashing, wallet, and market risks.\n\n## Liquidity risk\n\nBonded LUNC is not liquid.\n\nIf you undelegate, the LUNC enters unbonding. During unbonding it cannot be transferred, sold, or redelegated as liquid LUNC. It also does not earn staking rewards.\n\nCurrent unbonding time is queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, Terra Classic returned `1814400s`, or 21 days.\n\nDo not stake LUNC you may need to move immediately.\n\n## Redelegation risk\n\nRedelegation is useful because it avoids the full unbonding wait when moving between validators.\n\nBut redelegation is not unlimited:\n\n- a source-to-destination validator pair can have a cooldown\n- active redelegations may block further moves\n- some slash exposure can remain for validator infractions that occurred before redelegation began\n- wallets may display redelegation errors if a previous redelegation is still active\n\nFor active management, track where and when you last redelegated.\n\n## Slashing risk\n\nSlashing penalizes validator failures by reducing stake and, in some cases, jailing the validator.\n\nCurrent slashing params are queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/slashing/v1beta1/params\n```\n\nAs checked on 2026-06-01, the endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `signed_blocks_window` | `100800` | Liveness is measured across this window. |\n| `min_signed_per_window` | `0.85` | Minimum signing ratio required during the window. |\n| `downtime_jail_duration` | `1800s` | Downtime jail period of 30 minutes. |\n| `slash_fraction_double_sign` | `0.05` | 5% slash for double-signing. |\n| `slash_fraction_downtime` | `0.0001` | 0.01% slash for downtime. |\n\nThese parameters are governance-controlled and should be queried before relying on them.\n\n## Validator risk\n\nValidator failures can include:\n\n- downtime\n- jailing\n- double-signing\n- poor key management\n- failed upgrades\n- weak monitoring\n- high or unexpected commission changes\n- governance absence\n- poor communication during incidents\n\nDelegators share some consequences of validator behavior. This is why validator selection matters.\n\n## Governance risk\n\nStaked LUNC has governance power.\n\nIf you do not vote, your validator's vote applies to your delegated stake by default. A validator can vote in ways you disagree with, abstain, or fail to vote. Delegators can override validator votes, but only by voting themselves before the proposal deadline.\n\nGovernance can also change protocol parameters, funding decisions, module behavior, tax rules, upgrade timing, and other chain-level settings.\n\nFor the full governance workflow, see [Governance](/governance/overview/), [Voting power and delegation](/governance/voting-power-and-delegation/), and [How to vote](/governance/how-to-vote/).\n\n## Market risk\n\nStaking rewards do not remove price risk.\n\nLUNC price can fall while you are bonded or unbonding. The unbonding period can prevent immediate reaction to market events. APR should be evaluated alongside liquidity needs, volatility, and your own risk tolerance.\n\n## Wallet and interface risk\n\nStaking is only as safe as the wallet and interface used to sign transactions.\n\nBasic practices:\n\n- use official wallet download sources\n- verify URLs before connecting\n- never enter a seed phrase into a website\n- prefer hardware wallet support for large balances where available\n- inspect transaction action, amount, fee, and validator address before signing\n- keep recovery phrases offline\n\nNo validator, website, or support account needs your seed phrase.\n\n## Operational checklist\n\nBefore staking a meaningful amount:\n\n- understand the unbonding period\n- split stake if validator-specific risk matters to you\n- review validator concentration\n- review governance participation\n- keep liquid LUNC for fees\n- test with a small transaction first\n- document which validators you used\n- know how to redelegate and undelegate before you need to do it\n\n## When to consider redelegating\n\nConsider redelegating if a validator:\n\n- is jailed\n- misses blocks repeatedly\n- stops voting\n- stops communicating\n- raises commission unexpectedly\n- becomes too concentrated\n- behaves against your governance preferences\n- creates unresolved trust or conflict-of-interest concerns\n\nStaking Protocol works best when delegators actively reward good validators and remove stake from poor operators.\n",
+    "previousSlug": "staking-protocol/rewards-and-apr",
+    "nextSlug": "staking-protocol/choose-a-validator"
+  },
+  {
+    "slug": "staking-protocol/choose-a-validator",
+    "path": "/staking-protocol/choose-a-validator/",
+    "sourceFile": "content/docs/staking-protocol/choose-a-validator.md",
+    "group": "Staking Protocol",
+    "navTitle": "Choose a validator",
+    "navDepth": 1,
+    "navParent": "staking-protocol/validators",
+    "navHasChildren": false,
+    "navOrder": 25,
+    "title": "Choose a validator",
+    "description": "A practical validator-selection framework for Terra Classic delegators who want rewards, accountability, and better network decentralization.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/choose-a-validator.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The short version",
+        "id": "the-short-version"
+      },
+      {
+        "depth": 2,
+        "title": "Commission",
+        "id": "commission"
+      },
+      {
+        "depth": 2,
+        "title": "Uptime and jailed status",
+        "id": "uptime-and-jailed-status"
+      },
+      {
+        "depth": 2,
+        "title": "Governance behavior",
+        "id": "governance-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Voting power concentration",
+        "id": "voting-power-concentration"
+      },
+      {
+        "depth": 2,
+        "title": "Self-delegation",
+        "id": "self-delegation"
+      },
+      {
+        "depth": 2,
+        "title": "Public identity and communication",
+        "id": "public-identity-and-communication"
+      },
+      {
+        "depth": 2,
+        "title": "Contribution",
+        "id": "contribution"
+      },
+      {
+        "depth": 2,
+        "title": "Red flags",
+        "id": "red-flags"
+      },
+      {
+        "depth": 2,
+        "title": "Validator selection scorecard",
+        "id": "validator-selection-scorecard"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator responsibility",
+        "id": "delegator-responsibility"
+      }
+    ],
+    "body": "Validator choice is the most important decision a delegator makes in Staking Protocol.\n\nYou are not only choosing an APR. You are choosing who receives your voting power, whose infrastructure risk you accept, and who represents your stake by default in governance.\n\nFor the governance-specific side of this decision, also read [Voting power and delegation](/governance/voting-power-and-delegation/) and [Validator accountability](/governance/validator-accountability/).\n\n## The short version\n\nA strong validator should be:\n\n- reliably signing blocks\n- not jailed\n- transparent about identity and operations\n- active in governance\n- reasonable and clear about commission\n- responsive during upgrades and incidents\n- contributing to Terra Classic's long-term health\n- not making the validator set more concentrated than necessary\n\n## Commission\n\nCommission is the percentage of delegator rewards kept by the validator.\n\nTerra Classic currently enforces a minimum commission rate through staking params. Query current params here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, `min_commission_rate` returned `0.025`, or 2.5%.\n\nVery low commission is not automatically better. Validators need sustainable economics to maintain infrastructure, security practices, upgrade readiness, monitoring, and communication. Very high commission is not automatically bad either, but the validator should justify it through real contribution and reliability.\n\n## Uptime and jailed status\n\nA validator that misses too many blocks can be jailed and can create downtime slashing risk.\n\nBefore delegating, check:\n\n- whether the validator is bonded and active\n- whether it is jailed\n- recent missed block behavior\n- whether it has a pattern of upgrade failures\n- whether it communicates incidents clearly\n\nValidators should not be rewarded for being technically absent.\n\n## Governance behavior\n\nDelegating gives a validator default governance influence unless you vote yourself.\n\nReview whether the validator:\n\n- votes regularly\n- explains votes on major proposals\n- avoids silent non-participation\n- uses `NoWithVeto` responsibly\n- engages with technical and economic tradeoffs\n- follows through on commitments made in proposals\n\nTerra Classic has historically suffered from weak governance participation and validator non-participation. Delegators can improve this by moving stake away from validators that collect rewards while ignoring governance.\n\n## Voting power concentration\n\nDo not blindly delegate to the largest validators.\n\nConcentrated voting power weakens decentralization. It can make halt, censorship, governance capture, or coordination failures easier. Terra Classic's own state-of-chain research has repeatedly identified validator concentration and low Nakamoto coefficient as strategic risks.\n\nA practical rule:\n\n- Avoid adding stake to validators already holding very large voting power unless there is a strong reason.\n- Consider credible mid-size and smaller validators with strong reliability and governance records.\n- Split large delegations across multiple responsible validators.\n\n## Self-delegation\n\nSelf-delegation shows that a validator has some of its own capital at stake.\n\nDo not treat self-delegation as a perfect trust signal. A validator can have low self-delegation and still operate well, or high self-delegation and still behave poorly. But self-delegation is one input into incentive alignment.\n\n## Public identity and communication\n\nA validator should make it easy to understand:\n\n- who operates it or what organization is responsible\n- where to find official communication\n- how to contact the operator\n- what infrastructure or community contribution it provides\n- how it handles incidents\n- why delegators should trust it with voting power\n\nAnonymous or low-information validators are not automatically malicious, but they require a higher risk discount.\n\n## Contribution\n\nA validator can contribute by:\n\n- running reliable validator infrastructure\n- providing public endpoints\n- building tools and dashboards\n- participating in governance research\n- helping during upgrades\n- maintaining documentation\n- supporting developers\n- funding public goods\n- communicating risks clearly\n\nContribution should be concrete. Marketing claims without visible delivery are weak evidence.\n\n## Red flags\n\nBe careful with validators that:\n\n- are jailed or repeatedly unreliable\n- skip most governance votes\n- have no useful website or communication channel\n- change commission unexpectedly\n- promise guaranteed returns\n- push delegators into unsafe wallet behavior\n- concentrate too much voting power\n- operate with obvious conflicts of interest and no disclosure\n- make large public claims without measurable delivery\n\n## Validator selection scorecard\n\n| Criterion | Good signal | Weak signal |\n| --- | --- | --- |\n| Uptime | Active, reliable, monitored. | Jailed, repeated misses, silent incidents. |\n| Governance | Regular voting with explanations. | Frequent non-voting or no rationale. |\n| Commission | Sustainable and transparent. | Bait-rate behavior or unexplained changes. |\n| Concentration | Helps distribute stake. | Adds power to already dominant validators. |\n| Communication | Clear public channels. | No website, no contact, no incident updates. |\n| Contribution | Visible work for Terra Classic. | Slogans without delivery. |\n| Security | Sensible key and infra posture. | No evidence of operational maturity. |\n\n## Delegator responsibility\n\nDelegators are not passive passengers. If a validator becomes unreliable, stops voting, or behaves against your interests, use [redelegation](/staking-protocol/delegate-lunc/) to move your stake.\n\nFor a broader governance framework, see [Risks and safeguards](/governance/risks-and-safeguards/).\n",
+    "previousSlug": "staking-protocol/risks-and-unstaking",
+    "nextSlug": "staking-protocol/validator-responsibilities"
+  },
+  {
+    "slug": "staking-protocol/validator-responsibilities",
+    "path": "/staking-protocol/validator-responsibilities/",
+    "sourceFile": "content/docs/staking-protocol/validator-responsibilities.md",
+    "group": "Staking Protocol",
+    "navTitle": "Validator responsibilities",
+    "navDepth": 1,
+    "navParent": "staking-protocol/validators",
+    "navHasChildren": false,
+    "navOrder": 26,
+    "title": "Validator responsibilities",
+    "description": "What responsible Terra Classic validators should provide to delegators, developers, governance participants, and the wider network.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/validator-responsibilities.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Minimum responsibility",
+        "id": "minimum-responsibility"
+      },
+      {
+        "depth": 2,
+        "title": "Infrastructure",
+        "id": "infrastructure"
+      },
+      {
+        "depth": 2,
+        "title": "Governance participation",
+        "id": "governance-participation"
+      },
+      {
+        "depth": 2,
+        "title": "Commission discipline",
+        "id": "commission-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator communication",
+        "id": "delegator-communication"
+      },
+      {
+        "depth": 2,
+        "title": "Security and conflicts",
+        "id": "security-and-conflicts"
+      },
+      {
+        "depth": 2,
+        "title": "Support for developers",
+        "id": "support-for-developers"
+      },
+      {
+        "depth": 2,
+        "title": "Becoming or running a validator",
+        "id": "becoming-or-running-a-validator"
+      },
+      {
+        "depth": 2,
+        "title": "Validator accountability",
+        "id": "validator-accountability"
+      }
+    ],
+    "body": "Validators are not only reward recipients. They are infrastructure operators, security participants, governance actors, and public trust signals for Terra Classic.\n\nStaking Protocol works only if validators take that role seriously.\n\n## Minimum responsibility\n\nA responsible validator should:\n\n- maintain reliable block-signing infrastructure\n- monitor uptime and jailed status\n- keep validator keys secure\n- prepare for software upgrades\n- vote on governance proposals\n- explain votes on important proposals\n- communicate incidents\n- keep commission behavior transparent\n- avoid misleading delegators\n- maintain a useful validator profile\n\nThis is the baseline, not an exceptional contribution.\n\n## Infrastructure\n\nValidators should operate with production discipline:\n\n- hardened servers\n- monitoring and alerting\n- secure key management\n- backup and recovery procedures\n- sentry or network-protection architecture where appropriate\n- tested upgrade procedures\n- clear operational ownership\n- incident response channels\n\nValidators that treat node operation as passive income create risk for their delegators and for the network.\n\n## Governance participation\n\nValidators should vote consistently.\n\nThey should also explain important votes, especially when proposals affect:\n\n- L1 upgrades\n- tax and fee parameters\n- community pool spending\n- validator economics\n- oracle behavior\n- market or swap modules\n- security-critical changes\n- ecosystem funding\n\nNon-voting is still a governance action. A validator that repeatedly skips proposals is effectively asking delegators to provide voting power without representation.\n\n## Commission discipline\n\nCommission should be understandable and sustainable.\n\nA validator should disclose:\n\n- current commission\n- maximum commission\n- maximum daily change rate\n- why the rate is appropriate\n- whether delegators should expect changes\n\nBait-rate behavior damages trust. Sustainable commission is acceptable when paired with reliable operation and real contribution.\n\n## Delegator communication\n\nValidators should provide delegators with:\n\n- official website or profile link\n- contact channel\n- incident updates\n- upgrade readiness notices\n- governance vote rationale\n- known risks\n- service changes\n\nSilence is costly. Delegators cannot evaluate risk if validators do not communicate.\n\n## Security and conflicts\n\nValidators should disclose material conflicts where relevant.\n\nExamples include:\n\n- operating major infrastructure on multiple competing chains\n- running services that may benefit from specific governance outcomes\n- receiving funding from projects affected by proposals\n- operating validator and application businesses with overlapping incentives\n\nConflicts are not automatically disqualifying. Hidden conflicts are the problem.\n\n## Support for developers\n\nValidators can strengthen Terra Classic by supporting builders.\n\nUseful validator contributions include:\n\n- public RPC, LCD, gRPC, or archival infrastructure\n- reliable endpoint status pages\n- testnet support\n- upgrade coordination\n- technical documentation\n- open-source tooling\n- analytics and observability\n- developer support during incidents\n\nIf public endpoints are provided, validators should document limits and reliability expectations.\n\n## Becoming or running a validator\n\nFor node and validator operation, use the full-node guides:\n\n- [Full node overview](/full-node/overview/)\n- [Set up production](/full-node/run-a-full-terra-node/set-up-production/)\n- [Validate on columbus-5](/full-node/run-a-full-terra-node/validator-columbus-5/)\n- [Sync](/full-node/run-a-full-terra-node/sync/)\n- [Reset and troubleshooting](/full-node/run-a-full-terra-node/troubleshoot/)\n\nStaking Protocol docs explain the product and participation layer. The full-node section explains the operational path.\n\n## Validator accountability\n\nDelegators should expect validators to earn trust continuously.\n\nGood validators make Terra Classic easier to trust. Poor validators make the chain look fragile even when the protocol keeps running. Delegation is the mechanism that lets the community reward the first group and remove power from the second.\n",
+    "previousSlug": "staking-protocol/choose-a-validator",
+    "nextSlug": "staking-protocol/developer-reference"
+  },
+  {
+    "slug": "staking-protocol/developer-reference",
+    "path": "/staking-protocol/developer-reference/",
+    "sourceFile": "content/docs/staking-protocol/developer-reference.md",
+    "group": "Staking Protocol",
+    "navTitle": "Developer reference",
+    "navDepth": 1,
+    "navParent": "staking-protocol/technical-reference",
+    "navHasChildren": false,
+    "navOrder": 28,
+    "title": "Developer reference",
+    "description": "Modules, messages, queries, endpoints, CLI examples, and integration notes for building Terra Classic staking and governance tooling.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/developer-reference.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Core modules",
+        "id": "core-modules"
+      },
+      {
+        "depth": 2,
+        "title": "Common messages",
+        "id": "common-messages"
+      },
+      {
+        "depth": 2,
+        "title": "Useful LCD queries",
+        "id": "useful-lcd-queries"
+      },
+      {
+        "depth": 2,
+        "title": "CLI examples",
+        "id": "cli-examples"
+      },
+      {
+        "depth": 2,
+        "title": "Integration requirements",
+        "id": "integration-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "APR calculator requirements",
+        "id": "apr-calculator-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Error states to handle",
+        "id": "error-states-to-handle"
+      },
+      {
+        "depth": 2,
+        "title": "Terra Classic-specific notes",
+        "id": "terra-classic-specific-notes"
+      },
+      {
+        "depth": 2,
+        "title": "Source references",
+        "id": "source-references"
+      }
+    ],
+    "body": "Use this page when building wallets, dashboards, staking calculators, validator analytics, governance tools, portfolio trackers, or backend automation around Staking Protocol.\n\n## Core modules\n\nStaking Protocol spans several modules.\n\n| Module | Role | Module spec |\n| --- | --- | --- |\n| `x/staking` | Validators, delegations, redelegations, unbonding, staking params. | [Staking module](/develop/module-specifications/spec-staking/) |\n| `x/distribution` | Reward accounting, delegator reward withdrawals, validator commission. | [Distribution module](/develop/module-specifications/spec-distribution/) |\n| `x/slashing` | Downtime and double-signing penalties, jailed state, signing info. | [Slashing module](/develop/module-specifications/spec-slashing/) |\n| `x/gov` | Proposal lifecycle, votes, deposits, governance params. | [Governance module](/develop/module-specifications/spec-governance/) |\n\nTerra Classic inherits Cosmos SDK module behavior with Terra Classic-specific params and customizations. Always verify live chain behavior against current node endpoints and the running Terra Classic version.\n\n## Common messages\n\n| Action | Message |\n| --- | --- |\n| Delegate LUNC | `MsgDelegate` |\n| Redelegate LUNC | `MsgBeginRedelegate` |\n| Undelegate LUNC | `MsgUndelegate` |\n| Claim delegator rewards | `MsgWithdrawDelegatorReward` |\n| Claim validator commission | `MsgWithdrawValidatorCommission` |\n| Set reward withdrawal address | `MsgSetWithdrawAddress` |\n| Vote on proposal | `MsgVote` |\n| Submit proposal | `MsgSubmitProposal` |\n| Deposit on proposal | `MsgDeposit` |\n\nWallets should make the action label obvious before signing. Users should not need to inspect raw protobuf messages to understand whether they are delegating, redelegating, undelegating, claiming, voting, or changing a withdrawal address.\n\n## Useful LCD queries\n\nMainnet LCD example:\n\n```text\nhttps://terra-classic-lcd.publicnode.com\n```\n\nStaking:\n\n```text\n/cosmos/staking/v1beta1/params\n/cosmos/staking/v1beta1/pool\n/cosmos/staking/v1beta1/validators\n/cosmos/staking/v1beta1/validators/{validator_address}\n/cosmos/staking/v1beta1/delegations/{delegator_address}\n/cosmos/staking/v1beta1/validators/{validator_address}/delegations/{delegator_address}\n/cosmos/staking/v1beta1/delegators/{delegator_address}/redelegations\n/cosmos/staking/v1beta1/delegators/{delegator_address}/unbonding_delegations\n```\n\nDistribution:\n\n```text\n/cosmos/distribution/v1beta1/params\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address\n/cosmos/distribution/v1beta1/validators/{validator_address}/commission\n/cosmos/distribution/v1beta1/community_pool\n```\n\nSlashing:\n\n```text\n/cosmos/slashing/v1beta1/params\n/cosmos/slashing/v1beta1/signing_infos\n/cosmos/slashing/v1beta1/signing_infos/{cons_address}\n```\n\nGovernance:\n\n```text\n/cosmos/gov/v1/proposals\n/cosmos/gov/v1/proposals/{proposal_id}\n/cosmos/gov/v1/proposals/{proposal_id}/votes\n/cosmos/gov/v1/proposals/{proposal_id}/votes/{voter}\n/cosmos/gov/v1/params/voting\n```\n\nFor production systems, do not rely on a single public endpoint. Use endpoint failover, timeouts, retries, health checks, and clear error states.\n\n## CLI examples\n\nThe examples below are shapes, not copy-paste production commands. Replace addresses, amounts, gas, chain ID, key names, and endpoints with current values.\n\nDelegate:\n\n```bash\nterrad tx staking delegate terravaloper1... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nRedelegate:\n\n```bash\nterrad tx staking redelegate terravaloper1source... terravaloper1dest... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nUndelegate:\n\n```bash\nterrad tx staking unbond terravaloper1... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nQuery staking params:\n\n```bash\nterrad query staking params --node https://terra-classic-rpc.publicnode.com:443\n```\n\nQuery delegator rewards:\n\n```bash\nterrad query distribution rewards terra1... --node https://terra-classic-rpc.publicnode.com:443\n```\n\n## Integration requirements\n\nStaking interfaces should show:\n\n- liquid balance\n- delegated balance by validator\n- pending rewards\n- validator commission\n- validator voting power\n- jailed status\n- unbonding entries and completion times\n- redelegation entries and completion times\n- governance vote override state\n- transaction fee estimate\n- tax or fee behavior where relevant\n- clear warning before undelegation\n\n## APR calculator requirements\n\nA credible APR calculator should disclose:\n\n- data source\n- time window\n- reward source assumptions\n- bonded-token denominator\n- validator commission treatment\n- community-tax treatment\n- compounding assumption\n- whether fiat conversion is used\n- refresh time\n\nAvoid displaying APR with false precision. If the calculation is an estimate, label it as an estimate.\n\n## Error states to handle\n\nStaking tooling should handle:\n\n- insufficient liquid LUNC for fees\n- validator not found\n- validator jailed\n- invalid `terravaloper` address\n- redelegation cooldown\n- max unbonding or redelegation entries reached\n- endpoint timeout\n- stale endpoint data\n- wallet rejection\n- chain ID mismatch\n- tax or fee estimation failure\n- transaction included but UI cache not refreshed\n\nUser-facing errors should explain the next action in plain language.\n\n## Terra Classic-specific notes\n\n- Chain ID: `columbus-5`\n- Account prefix: `terra`\n- Validator operator prefix: `terravaloper`\n- Staking denomination: `uluna`\n- Display unit: `LUNC`\n- 1 LUNC: `1000000uluna`\n- Market swap mint/burn paths are disabled on Classic; do not assume historical Terra swap behavior is active.\n- Burn tax, distribution, governance, and staking parameters should be queried live.\n- Terra Classic has a custom validator voting-power cap documented in the staking module spec.\n\n## Source references\n\nUse current Terra Classic endpoints for live params and upstream Cosmos SDK docs for module behavior:\n\n- [Cosmos SDK staking module](https://docs.cosmos.network/sdk/latest/modules/staking/README)\n- [Cosmos SDK distribution module](https://docs.cosmos.network/sdk/v0.50/build/modules/distribution/README)\n- [Cosmos SDK slashing module](https://docs.cosmos.network/sdk/latest/modules/slashing/README)\n- [Cosmos SDK governance module](https://docs.cosmos.network/sdk/latest/modules/gov/README)\n",
+    "previousSlug": "staking-protocol/validator-responsibilities",
+    "nextSlug": "swap-protocol/overview"
+  },
+  {
+    "slug": "swap-protocol/overview",
+    "path": "/swap-protocol/overview/",
+    "sourceFile": "content/docs/swap-protocol/overview.md",
+    "group": "Swap Protocol",
+    "navTitle": "Swap Protocol",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 29,
+    "title": "Swap Protocol",
+    "description": "The native L1 swap layer for exchanging LUNC and USTC through Market Module 2.0 without minting new supply.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/overview.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Product position",
+        "id": "product-position"
+      },
+      {
+        "depth": 2,
+        "title": "Why it exists",
+        "id": "why-it-exists"
+      },
+      {
+        "depth": 2,
+        "title": "What Swap Protocol does",
+        "id": "what-swap-protocol-does"
+      },
+      {
+        "depth": 2,
+        "title": "What it does not do",
+        "id": "what-it-does-not-do"
+      },
+      {
+        "depth": 2,
+        "title": "How this section is organized",
+        "id": "how-this-section-is-organized"
+      },
+      {
+        "depth": 2,
+        "title": "Product discipline",
+        "id": "product-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial advice",
+        "id": "not-financial-advice"
+      }
+    ],
+    "body": "Swap Protocol is Terra Classic's native L1 swap product for exchanging LUNC and USTC.\n\nIt is powered by Market Module 2.0, a no-mint version of the historical market module design. The product name is **Swap Protocol**. The underlying technology is **Market Module 2.0**.\n\nSwap Protocol exists to restore native swap utility without returning to the uncontrolled mint/burn behavior that helped damage Terra Classic in 2022.\n\nUse this section if you are:\n\n- a user who wants to understand LUNC and USTC swaps before signing a transaction\n- a LUNC or USTC holder evaluating the protocol's burn, liquidity, and risk mechanics\n- a validator responsible for oracle price feeds and chain safety\n- a developer integrating swap status, routing, pricing, or module data\n- a community member trying to separate real product mechanics from repeg speculation\n\n## Product position\n\nSwap Protocol is not a new token, not a DEX pool, not a centralized exchange bridge, and not a USTC repeg mechanism.\n\nIt is a native protocol route for LUNC and USTC swaps. Instead of minting tokens during swaps, Market Module 2.0 uses prefilled protocol liquidity pools. The pools are funded from tax proceeds allocated for the module, and remaining pool balances are burned at the start of the next 30-day epoch.\n\nThe product promise should stay narrow:\n\n> Swap LUNC and USTC through Terra Classic's native L1 market route using protocol liquidity, oracle-aware pricing, spread fees, and hard safety controls.\n\n## Why it exists\n\nThe original Terra market module depended on minting and burning between LUNC and Terra stablecoins. That design assumed stable assets could be valued against hard peg targets. During the 2022 collapse, unlimited swap capacity and fixed peg assumptions helped accelerate hyperinflation.\n\nMarket Module 2.0 changes the design constraints:\n\n- swaps use prefilled pools instead of minting new supply\n- USTC is valued by live oracle prices, not by a fixed 1 USD assumption\n- swap capacity is bounded by the available pool and epoch rules\n- safety guards can stop swaps when oracle conditions are not reliable\n- remaining pool balances are burned at each epoch boundary\n\nThat makes Swap Protocol a utility and infrastructure product, not a promise that USTC will return to a particular price.\n\n## What Swap Protocol does\n\n| Capability | What it means |\n| --- | --- |\n| LUNC to USTC swaps | Users can exchange LUNC for USTC through protocol liquidity when the route has capacity. |\n| USTC to LUNC swaps | Users can exchange USTC for LUNC through protocol liquidity when the route has capacity. |\n| Oracle-aware pricing | Swap pricing uses validator-reported market prices instead of a fixed USTC peg assumption. |\n| No-mint execution | Tokens are taken from and added to prefilled pools instead of minted during execution. |\n| Spread fee | Enabled swaps collect a 0.35% spread fee in the output asset. |\n| Burn and oracle funding | Spread fees route 50% to burn and 50% to the Oracle Pool. |\n| Epoch burns | Remaining swap-pool balances are burned at the next 30-day epoch boundary. |\n\n## What it does not do\n\nSwap Protocol does not guarantee:\n\n- USTC repeg\n- LUNC price appreciation\n- unlimited liquidity\n- continuous swap availability\n- execution during oracle outages\n- a fixed exchange rate between LUNC and USTC\n- a stablecoin redemption right\n\nIf liquidity is exhausted, oracle quorum fails, sanity checks fail, or governance disables the module, swaps can be refused.\n\n## How this section is organized\n\n- [How it works](/swap-protocol/how-it-works/) explains the no-mint pool design, oracle pricing, epochs, and module lifecycle.\n- [Swap LUNC and USTC](/swap-protocol/swap-lunc-and-ustc/) gives a practical decision framework for using the protocol.\n- [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/) explains spread fees, pool funding, burn routing, and finite capacity.\n- [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) covers price feeds, quorum, TWAP checks, disabled routes, and emergency controls.\n- [Scenarios and examples](/swap-protocol/scenarios-and-examples/) translates source examples into user-readable behavior.\n- [Risks and limitations](/swap-protocol/risks-and-limitations/) lists the risks that should stay visible in any serious product explanation.\n- [Validator operations](/swap-protocol/validator-operations/) explains oracle-feeder responsibilities and operational expectations.\n- [Developer reference](/swap-protocol/developer-reference/) gives a technical reference for builders.\n\n## Product discipline\n\nSwap Protocol should be presented as serious chain infrastructure.\n\nThe strongest version of the product story is not hype. It is the fact that Terra Classic can expose native LUNC and USTC swaps while avoiding the two design failures that matter most: uncontrolled minting and stale fixed-peg pricing.\n\n## Not financial advice\n\nSwap Protocol documentation explains protocol mechanics. It does not tell you whether to buy, sell, hold, swap, stake, or trade LUNC or USTC. LUNC and USTC remain volatile crypto assets, and USTC is treated by this protocol as a market-priced speculative asset rather than a guaranteed stable asset.\n",
+    "previousSlug": "staking-protocol/developer-reference",
+    "nextSlug": "swap-protocol/how-it-works"
+  },
+  {
+    "slug": "swap-protocol/how-it-works",
+    "path": "/swap-protocol/how-it-works/",
+    "sourceFile": "content/docs/swap-protocol/how-it-works.md",
+    "group": "Swap Protocol",
+    "navTitle": "How it works",
+    "navDepth": 1,
+    "navParent": "swap-protocol/use-swap-protocol",
+    "navHasChildren": false,
+    "navOrder": 31,
+    "title": "How it works",
+    "description": "How Swap Protocol uses Market Module 2.0 pools, oracle prices, epochs, fees, and safety controls.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/how-it-works.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The old failure mode",
+        "id": "the-old-failure-mode"
+      },
+      {
+        "depth": 2,
+        "title": "The no-mint pool model",
+        "id": "the-no-mint-pool-model"
+      },
+      {
+        "depth": 2,
+        "title": "Epoch lifecycle",
+        "id": "epoch-lifecycle"
+      },
+      {
+        "depth": 2,
+        "title": "Pricing",
+        "id": "pricing"
+      },
+      {
+        "depth": 2,
+        "title": "Capacity",
+        "id": "capacity"
+      },
+      {
+        "depth": 2,
+        "title": "Adaptive throttling",
+        "id": "adaptive-throttling"
+      },
+      {
+        "depth": 2,
+        "title": "Fees",
+        "id": "fees"
+      },
+      {
+        "depth": 2,
+        "title": "Safety controls",
+        "id": "safety-controls"
+      }
+    ],
+    "body": "Swap Protocol is built on Market Module 2.0.\n\nThe key design change is simple: swaps do not mint new LUNC or USTC. They move existing tokens between user balances and protocol swap pools.\n\n## The old failure mode\n\nThe historical market module used virtual liquidity and mint/burn logic. When a user swapped between Terra stablecoins and LUNC, the module could mint output tokens according to a pricing curve and oracle assumptions.\n\nThat model became dangerous because:\n\n- swap capacity could be too large\n- pool recovery could refill capacity too quickly\n- UST was treated as if it still had a hard 1 USD peg\n- minting could run faster than market demand could absorb\n\nMarket Module 2.0 keeps the useful part of the market route but removes minting from swap execution.\n\n## The no-mint pool model\n\nSwap Protocol uses distinct protocol pools for LUNC and USTC.\n\nAt the start of a 30-day epoch, token balances allocated to the market-module liquidity pool are moved into the swap pools. Those balances become the available liquidity for that epoch.\n\nDuring the epoch:\n\n- a LUNC to USTC swap sends LUNC into the module and takes USTC out of the USTC pool\n- a USTC to LUNC swap sends USTC into the module and takes LUNC out of the LUNC pool\n- the output amount is priced through the module's market logic and oracle prices\n- no new output tokens are minted\n\nAt the start of the next epoch, remaining balances in the swap pools are burned.\n\n## Epoch lifecycle\n\nSwap Protocol operates around 30-day epochs.\n\n| Phase | What happens |\n| --- | --- |\n| Pool accumulation | Eligible tax proceeds allocated to Market Module 2.0 accumulate for the next epoch. |\n| Epoch start | LUNC and USTC balances are moved into distinct swap pools. |\n| Active swaps | Users can swap while the module is enabled, oracle checks pass, and pool capacity remains. |\n| Capacity changes | Swap direction changes pool balances. One-sided flow can exhaust one side. |\n| Epoch boundary | Remaining balances in the pools are burned, and the next epoch starts with newly allocated liquidity. |\n\nThe source design explicitly excludes voluntary burns from the 30-day pool calculation. Voluntary burns are coins intentionally sent to the burn module by users, exchanges, or other entities. They should not be treated as liquidity funding because doing so could reduce voluntary burn support.\n\n## Pricing\n\nUSTC is not treated as a fixed 1 USD asset.\n\nSwap Protocol uses oracle-reported market pricing. Validators report prices through the oracle module, and the module uses voting-power-weighted median pricing for the relevant period.\n\nThis matters because the protocol is not pretending USTC is already repegged. USTC is priced as a market asset.\n\n## Capacity\n\nLiquidity is finite.\n\nIf enough users swap in one direction, the output pool for that direction can be depleted. When available allowance or pool capacity is exhausted, the swap is refused instead of minting new tokens to complete the trade.\n\nThat refusal is a safety property, not a product bug.\n\n## Adaptive throttling\n\nThe source design uses adaptive parameters to control how much capacity can be exposed during an epoch.\n\nThe important concepts are:\n\n- **base_pool** controls the virtual market depth used by the swap calculation\n- **Pool Recovery Period** controls how quickly virtual capacity recovers\n- **supply scaling** adjusts recovery behavior as LUNC supply changes\n- **absolute clamps** cap the allowed virtual pool size\n\nThe product implication is that Swap Protocol is intentionally bounded. It is designed to reopen native swaps without allowing the module to become an unlimited output source.\n\n## Fees\n\nWhen the module is enabled and allowance remains, swaps apply a 0.35% spread fee.\n\nThe fee is collected in the output asset:\n\n- USTC to LUNC swaps collect the fee in LUNC\n- LUNC to USTC swaps collect the fee in USTC\n\nThe fee is routed 50% to burn and 50% to the Oracle Pool.\n\nThe chain-wide burn tax does not apply to these in-module swaps. The spread fee replaces it for Swap Protocol execution.\n\n## Safety controls\n\nSwap Protocol can refuse swaps when safety conditions fail.\n\nCore controls include:\n\n- oracle quorum requirements\n- TWAP sanity checks\n- finite pool capacity\n- disabled stable-to-stable routing\n- governance-level module closure\n\nSee [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) for the operational detail.\n",
+    "previousSlug": "swap-protocol/overview",
+    "nextSlug": "swap-protocol/swap-lunc-and-ustc"
+  },
+  {
+    "slug": "swap-protocol/swap-lunc-and-ustc",
+    "path": "/swap-protocol/swap-lunc-and-ustc/",
+    "sourceFile": "content/docs/swap-protocol/swap-lunc-and-ustc.md",
+    "group": "Swap Protocol",
+    "navTitle": "Swap LUNC and USTC",
+    "navDepth": 1,
+    "navParent": "swap-protocol/use-swap-protocol",
+    "navHasChildren": false,
+    "navOrder": 32,
+    "title": "Swap LUNC and USTC",
+    "description": "How to think through a LUNC and USTC swap through Swap Protocol before signing the transaction.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/swap-lunc-and-ustc.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Supported route",
+        "id": "supported-route"
+      },
+      {
+        "depth": 2,
+        "title": "Before you swap",
+        "id": "before-you-swap"
+      },
+      {
+        "depth": 2,
+        "title": "Basic flow",
+        "id": "basic-flow"
+      },
+      {
+        "depth": 2,
+        "title": "Why a swap can fail",
+        "id": "why-a-swap-can-fail"
+      },
+      {
+        "depth": 2,
+        "title": "Pricing behavior",
+        "id": "pricing-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Fees",
+        "id": "fees"
+      },
+      {
+        "depth": 2,
+        "title": "Good user practice",
+        "id": "good-user-practice"
+      }
+    ],
+    "body": "Swap Protocol supports native swaps between LUNC and USTC.\n\nThis page explains what to check before using the protocol. It does not document a specific wallet interface because wallet support and interface labels can change. Always review the transaction details shown by your wallet before signing.\n\n## Supported route\n\nSwap Protocol is designed for:\n\n- LUNC to USTC\n- USTC to LUNC\n\nStable-to-stable routing is disabled in the Market Module 2.0 design. The protocol should not be treated as a general stablecoin swap router.\n\n## Before you swap\n\nCheck four things before signing:\n\n| Check | Why it matters |\n| --- | --- |\n| Pair | Confirm you are swapping LUNC and USTC in the intended direction. |\n| Estimate | Review the expected output amount and the spread fee impact. |\n| Availability | Swaps can be unavailable if the module is disabled, liquidity is exhausted, or oracle checks fail. |\n| Asset risk | LUNC and USTC are volatile. USTC is market-priced, not treated as a guaranteed 1 USD asset. |\n\n## Basic flow\n\nThe practical flow is:\n\n1. Connect or open a wallet that supports Terra Classic transactions.\n2. Choose LUNC or USTC as the input asset.\n3. Choose the other asset as the output asset.\n4. Enter the amount you want to swap.\n5. Review the estimated output, spread fee, and transaction details.\n6. Sign and broadcast the transaction if the terms are acceptable.\n7. Confirm the final on-chain result in your wallet or explorer.\n\nThe exact interface can differ by wallet or application. The protocol mechanics are the same: the module receives the input asset and releases the output asset from its available pool.\n\n## Why a swap can fail\n\nA refused swap is possible and should be expected under some conditions.\n\nCommon reasons include:\n\n- the Market Module is disabled\n- the relevant output pool has insufficient capacity\n- the epoch allowance is exhausted\n- oracle vote quorum is below the required threshold\n- the current price fails the TWAP sanity check\n- the attempted route is not supported\n- the transaction fee or account balance is insufficient\n\nWhen these conditions happen, the protocol should reject the swap instead of minting tokens to complete it.\n\n## Pricing behavior\n\nSwap Protocol uses oracle-aware pricing. USTC is valued at market price, not at a hard 1 USD peg.\n\nBecause oracle prices update on-chain by voting period, the quoted route can differ from centralized exchange prices or DEX pool prices during volatile markets. This can create arbitrage opportunities, but arbitrage is not guaranteed and should not be treated as risk-free.\n\n## Fees\n\nEnabled swaps collect a 0.35% spread fee in the output asset.\n\nThat means:\n\n- if you swap USTC to LUNC, the fee is collected in LUNC\n- if you swap LUNC to USTC, the fee is collected in USTC\n\nThe chain-wide burn tax does not apply to these in-module swaps. The spread fee replaces it for this route.\n\n## Good user practice\n\nTreat every swap as a market transaction.\n\nBefore signing:\n\n- compare the quoted output with other available routes\n- check whether the price has moved significantly\n- understand that pool capacity is finite\n- avoid assuming a swap will remain available after you wait\n- keep enough LUNC for transaction fees\n- never sign a transaction you do not understand\n\nSwap Protocol restores native swap utility, but it does not remove market risk.\n",
+    "previousSlug": "swap-protocol/how-it-works",
+    "nextSlug": "swap-protocol/fees-burns-and-liquidity"
+  },
+  {
+    "slug": "swap-protocol/fees-burns-and-liquidity",
+    "path": "/swap-protocol/fees-burns-and-liquidity/",
+    "sourceFile": "content/docs/swap-protocol/fees-burns-and-liquidity.md",
+    "group": "Swap Protocol",
+    "navTitle": "Fees, burns, and liquidity",
+    "navDepth": 1,
+    "navParent": "swap-protocol/economics-and-safety",
+    "navHasChildren": false,
+    "navOrder": 34,
+    "title": "Fees, burns, and liquidity",
+    "description": "How Swap Protocol funds liquidity, charges spread fees, burns remaining balances, and routes oracle funding.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/fees-burns-and-liquidity.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Liquidity source",
+        "id": "liquidity-source"
+      },
+      {
+        "depth": 2,
+        "title": "Voluntary burns",
+        "id": "voluntary-burns"
+      },
+      {
+        "depth": 2,
+        "title": "Spread fee",
+        "id": "spread-fee"
+      },
+      {
+        "depth": 2,
+        "title": "Fee routing",
+        "id": "fee-routing"
+      },
+      {
+        "depth": 2,
+        "title": "No double taxation",
+        "id": "no-double-taxation"
+      },
+      {
+        "depth": 2,
+        "title": "End-of-epoch burns",
+        "id": "end-of-epoch-burns"
+      },
+      {
+        "depth": 2,
+        "title": "Directional effects",
+        "id": "directional-effects"
+      },
+      {
+        "depth": 2,
+        "title": "Liquidity exhaustion",
+        "id": "liquidity-exhaustion"
+      },
+      {
+        "depth": 2,
+        "title": "What users should remember",
+        "id": "what-users-should-remember"
+      }
+    ],
+    "body": "Swap Protocol is designed around finite liquidity and explicit burn accounting.\n\nThe core rule is that swaps use existing pool balances. They do not mint new LUNC or USTC to satisfy demand.\n\n## Liquidity source\n\nThe Market Module 2.0 source design redirects part of eligible burn-tax proceeds into a temporary market-module liquidity pool.\n\nAt the first block of every 30-day epoch:\n\n- LUNC assigned to market-module liquidity moves into a LUNC swap pool\n- USTC assigned to market-module liquidity moves into a USTC swap pool\n- each token is handled separately\n- those balances become available for swaps during the epoch\n\nThe source describes the allocation as 60% of burn-tax proceeds, equivalent to 75% of the previous burn allocation under the stated tax-split model. The practical product point is that the swap pool is funded from prior-period tax proceeds, not from newly minted supply.\n\n## Voluntary burns\n\nVoluntary burns should be excluded from the pool calculation.\n\nVoluntary burns are coins intentionally sent to the burn module by users, exchanges, or community entities. The source calls this out because treating voluntary burns as pool funding could reduce support from entities that burn voluntarily.\n\nFor documentation purposes, this distinction matters:\n\n- tax-derived module liquidity can be used for Swap Protocol pools\n- voluntary burns should remain burns unless governance explicitly changes the design\n\n## Spread fee\n\nWhen Swap Protocol is enabled and capacity remains, each swap charges a 0.35% spread fee.\n\n| Condition | Fee behavior |\n| --- | --- |\n| Module disabled | No swap, no spread fee. |\n| Module enabled and allowance remains | 0.35% of notional is collected. |\n| Allowance exhausted | Swap is refused, no spread fee. |\n\nThe fee is collected in the output asset:\n\n- USTC to LUNC: fee collected in LUNC\n- LUNC to USTC: fee collected in USTC\n\n## Fee routing\n\nSpread fees are routed:\n\n| Destination | Share |\n| --- | --- |\n| Burn | 50% |\n| Oracle Pool | 50% |\n\nThis makes the swap route both a burn contributor and an oracle-funding contributor when users actually swap.\n\n## No double taxation\n\nThe source design states that the chain-wide burn tax does not apply to these in-module swaps. The 0.35% spread fee replaces the burn tax for Swap Protocol execution.\n\nThis is important for user expectations. A user should evaluate the route by the quoted output, spread fee, and market price, not by assuming the normal transfer tax is added on top of the protocol fee.\n\n## End-of-epoch burns\n\nAt the start of the next 30-day epoch, remaining swap-pool balances are burned.\n\nThis is the main deflation control in the design. Liquidity that was set aside for swaps but not paid out remains on-chain only until the next epoch boundary.\n\n## Directional effects\n\nThe final burn mix depends on user behavior.\n\nIf swaps are balanced in both directions, pool balances can end the epoch close to the expected allocation. If flow is strongly one-sided, one output pool can be depleted while the other token accumulates.\n\nThat means one-sided usage can shift which token is burned more at the epoch boundary.\n\nExamples:\n\n- heavy USTC to LUNC flow can reduce remaining LUNC while increasing USTC held by the pool\n- heavy LUNC to USTC flow can reduce remaining USTC while increasing LUNC held by the pool\n- low swap usage can leave more of both pools to burn at epoch end\n\nThis is why Swap Protocol should not be described as a guaranteed fixed burn outcome for either asset. It is a bounded swap route with burn mechanics, and the exact burn composition depends on actual usage.\n\n## Liquidity exhaustion\n\nIf a pool side is exhausted, the protocol should refuse swaps in that direction.\n\nThis protects Terra Classic from the old failure mode where the module could satisfy demand by minting output supply. In Market Module 2.0, finite liquidity is part of the safety model.\n\n## What users should remember\n\nSwap Protocol can generate:\n\n- utility through native LUNC and USTC swaps\n- burns through spread-fee routing\n- additional epoch burns from remaining pools\n- Oracle Pool funding through spread fees\n\nIt cannot guarantee:\n\n- a fixed monthly burn amount\n- balanced LUNC and USTC burn outcomes\n- unlimited swap capacity\n- profit from arbitrage\n- continuous availability during oracle or liquidity stress\n",
+    "previousSlug": "swap-protocol/swap-lunc-and-ustc",
+    "nextSlug": "swap-protocol/oracles-and-safety-controls"
+  },
+  {
+    "slug": "swap-protocol/oracles-and-safety-controls",
+    "path": "/swap-protocol/oracles-and-safety-controls/",
+    "sourceFile": "content/docs/swap-protocol/oracles-and-safety-controls.md",
+    "group": "Swap Protocol",
+    "navTitle": "Oracles and safety controls",
+    "navDepth": 1,
+    "navParent": "swap-protocol/economics-and-safety",
+    "navHasChildren": false,
+    "navOrder": 35,
+    "title": "Oracles and safety controls",
+    "description": "The oracle, quorum, TWAP, route, liquidity, and governance controls that protect Swap Protocol.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/oracles-and-safety-controls.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Why oracle pricing matters",
+        "id": "why-oracle-pricing-matters"
+      },
+      {
+        "depth": 2,
+        "title": "Price vote period",
+        "id": "price-vote-period"
+      },
+      {
+        "depth": 2,
+        "title": "Quorum auto-disable",
+        "id": "quorum-auto-disable"
+      },
+      {
+        "depth": 2,
+        "title": "TWAP sanity clamp",
+        "id": "twap-sanity-clamp"
+      },
+      {
+        "depth": 2,
+        "title": "Disabled stable-to-stable route",
+        "id": "disabled-stable-to-stable-route"
+      },
+      {
+        "depth": 2,
+        "title": "Finite pool capacity",
+        "id": "finite-pool-capacity"
+      },
+      {
+        "depth": 2,
+        "title": "Governance closure",
+        "id": "governance-closure"
+      },
+      {
+        "depth": 2,
+        "title": "User impact",
+        "id": "user-impact"
+      },
+      {
+        "depth": 2,
+        "title": "Integration impact",
+        "id": "integration-impact"
+      }
+    ],
+    "body": "Swap Protocol depends on the oracle module.\n\nThe protocol cannot safely price USTC if validators are not reporting current market prices with enough voting power. Market Module 2.0 therefore treats oracle failure as a reason to stop swaps.\n\n## Why oracle pricing matters\n\nThe historical market module assumed Terra stablecoins could be valued against their pegs. That assumption is not acceptable for USTC after the 2022 collapse.\n\nMarket Module 2.0 removes the fixed 1 USD assumption and uses live oracle-reported market pricing instead.\n\nThat means:\n\n- USTC is treated as a market-priced asset\n- validators must provide usable price data\n- the module can stop swaps when price data is unsafe\n- stale or missing oracle data should not allow token output to be drained\n\n## Price vote period\n\nThe source design uses the existing oracle cadence:\n\n| Control | Source rule |\n| --- | --- |\n| Price vote period | 5 blocks, approximately 30 seconds |\n| USTC price | voting-power-weighted median for the current period |\n| Quorum threshold | 50% voting power |\n\nSee the [Oracle module spec](/develop/module-specifications/spec-oracle/) for the broader oracle voting process.\n\n## Quorum auto-disable\n\nIf either asset lacks price votes from at least 50% of voting power for 25 blocks, the market module disables itself until quorum is restored.\n\nIn product terms: if the chain cannot see enough reliable price votes, Swap Protocol should stop accepting swaps.\n\nThis is a necessary tradeoff. Swap availability is less important than preventing unsafe execution against missing or weak price data.\n\n## TWAP sanity clamp\n\nEach swap can fail if the current peg price differs by more than 10% from a 45-block oracle TWAP.\n\nThe TWAP is fed by the same oracle system. Its role is to detect price conditions that are too inconsistent for safe execution.\n\nThis control helps protect the module from short-lived price anomalies, stale feeds, and attempted manipulation.\n\n## Disabled stable-to-stable route\n\nThe stable-to-stable route is hard-disabled in the source design.\n\nThe relevant failure state is `ErrStableSwapDisabled`.\n\nSwap Protocol should therefore be understood as a LUNC and USTC product, not a generic stablecoin router.\n\n## Finite pool capacity\n\nLiquidity limits are also safety controls.\n\nWhen the output pool does not have enough capacity, the module should refuse the swap. It should not mint new output tokens to fill the order.\n\nThis is one of the most important differences between Market Module 2.0 and the historical mint/burn model.\n\n## Governance closure\n\nThe source design includes a governance-level brake: a two-thirds super-majority can close the market module.\n\nSeparately, in a severe chain-level emergency, validator coordination can halt the chain for remediation. That is not normal product operation, but it is part of the broader safety reality for a delegated proof-of-stake chain.\n\n## User impact\n\nSafety controls can create frustrating user outcomes:\n\n- swaps may be unavailable\n- quoted paths may fail before execution\n- one direction may be exhausted before another\n- integrations may need to show protocol-disabled states\n\nThat is still better than the old alternative: satisfying unsafe demand by expanding supply.\n\n## Integration impact\n\nApplications that expose Swap Protocol should handle disabled states clearly.\n\nAt minimum, interfaces should distinguish:\n\n- module disabled\n- insufficient pool liquidity\n- unsupported route\n- oracle quorum failure\n- TWAP sanity failure\n- transaction fee or account-balance failure\n\nDo not collapse all failures into a generic \"swap failed\" message. Users need to know whether the issue is temporary market safety, insufficient liquidity, wallet balance, or an unsupported route.\n",
+    "previousSlug": "swap-protocol/fees-burns-and-liquidity",
+    "nextSlug": "swap-protocol/scenarios-and-examples"
+  },
+  {
+    "slug": "swap-protocol/scenarios-and-examples",
+    "path": "/swap-protocol/scenarios-and-examples/",
+    "sourceFile": "content/docs/swap-protocol/scenarios-and-examples.md",
+    "group": "Swap Protocol",
+    "navTitle": "Scenarios and examples",
+    "navDepth": 1,
+    "navParent": "swap-protocol/economics-and-safety",
+    "navHasChildren": false,
+    "navOrder": 36,
+    "title": "Scenarios and examples",
+    "description": "Illustrative examples of how Swap Protocol behaves under balanced usage, one-sided flow, and oracle stress.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/scenarios-and-examples.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Balanced usage",
+        "id": "balanced-usage"
+      },
+      {
+        "depth": 2,
+        "title": "Heavy USTC to LUNC flow",
+        "id": "heavy-ustc-to-lunc-flow"
+      },
+      {
+        "depth": 2,
+        "title": "Heavy LUNC to USTC flow",
+        "id": "heavy-lunc-to-ustc-flow"
+      },
+      {
+        "depth": 2,
+        "title": "Low usage",
+        "id": "low-usage"
+      },
+      {
+        "depth": 2,
+        "title": "Oracle stress",
+        "id": "oracle-stress"
+      },
+      {
+        "depth": 2,
+        "title": "Pool exhaustion example",
+        "id": "pool-exhaustion-example"
+      },
+      {
+        "depth": 2,
+        "title": "What examples should not imply",
+        "id": "what-examples-should-not-imply"
+      }
+    ],
+    "body": "This page translates the Market Module 2.0 source examples into product behavior.\n\nThese are illustrations, not forecasts. Actual outcomes depend on tax proceeds, swap demand, market prices, oracle performance, governance parameters, and user behavior.\n\n## Balanced usage\n\nIf users swap in both directions at roughly balanced value, the pools can end the epoch with a composition close to their starting allocation.\n\nProduct impact:\n\n- native swap utility exists during the epoch\n- spread fees are generated when swaps happen\n- fees route 50% to burn and 50% to the Oracle Pool\n- remaining pool balances are burned at the next epoch\n- burn composition can remain broadly similar to the allocation model\n\nThis is the cleanest case for the product narrative, but it should not be assumed.\n\n## Heavy USTC to LUNC flow\n\nIf users mostly swap USTC to LUNC, the LUNC pool is paid out and the module receives USTC.\n\nProduct impact:\n\n- LUNC output capacity can be exhausted\n- USTC can accumulate in the pool\n- epoch-end burns can lean more toward USTC\n- LUNC burned at epoch end can be lower than under balanced usage\n\nThis does not create LUNC hyperinflation because the module does not mint new LUNC. It can, however, disappoint users who expected the mechanism to maximize LUNC burns in every scenario.\n\n## Heavy LUNC to USTC flow\n\nIf users mostly swap LUNC to USTC, the USTC pool is paid out and the module receives LUNC.\n\nProduct impact:\n\n- USTC output capacity can be exhausted\n- LUNC can accumulate in the pool\n- epoch-end burns can lean more toward LUNC\n- USTC burned at epoch end can be lower than under balanced usage\n\nThe direction of user demand matters. Swap Protocol does not force a predetermined burn mix.\n\n## Low usage\n\nIf swap usage is low, more of the original pool balances remain until the next epoch boundary.\n\nProduct impact:\n\n- fewer spread fees are generated\n- Oracle Pool funding from swap fees is lower\n- more unused pool balance can remain for epoch-end burn\n- product utility may be perceived as weaker if users expected high volume\n\nLow usage is not a protocol failure, but it is a product and expectations risk.\n\n## Oracle stress\n\nThe source design includes an oracle-stress scenario where market volatility and validator outages reduce usable price quorum.\n\nProduct impact:\n\n- if price votes fall below the required voting-power threshold, the module disables itself\n- swaps stop while the module is disabled\n- no spread fees are collected while swaps are inactive\n- pool balances remain subject to epoch rules\n\nThis behavior is intentional. If pricing is unsafe, Swap Protocol should stop.\n\n## Pool exhaustion example\n\nAssume USTC is priced at 200 LUNC per USTC and the LUNC pool has 400 million LUNC available for the period.\n\nIf users swap enough USTC to request the full 400 million LUNC, the LUNC side can be depleted. Further USTC to LUNC swaps should be refused until opposite-direction swaps replenish LUNC or a new epoch begins.\n\nIf later users swap LUNC to USTC, the LUNC they send into the module can increase LUNC availability again.\n\nThe important point: pool balances are dynamic during the epoch, but output cannot exceed available capacity.\n\n## What examples should not imply\n\nDo not use these scenarios to imply:\n\n- guaranteed volume\n- guaranteed arbitrage profit\n- guaranteed LUNC burn increase\n- guaranteed USTC burn increase\n- guaranteed swap availability\n- a target USTC price\n\nThe examples exist to show behavioral boundaries. The product remains market-dependent.\n",
+    "previousSlug": "swap-protocol/oracles-and-safety-controls",
+    "nextSlug": "swap-protocol/risks-and-limitations"
+  },
+  {
+    "slug": "swap-protocol/risks-and-limitations",
+    "path": "/swap-protocol/risks-and-limitations/",
+    "sourceFile": "content/docs/swap-protocol/risks-and-limitations.md",
+    "group": "Swap Protocol",
+    "navTitle": "Risks and limitations",
+    "navDepth": 1,
+    "navParent": "swap-protocol/economics-and-safety",
+    "navHasChildren": false,
+    "navOrder": 37,
+    "title": "Risks and limitations",
+    "description": "The main risks, limitations, and expectation controls for Swap Protocol and Market Module 2.0.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/risks-and-limitations.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Not a repeg",
+        "id": "not-a-repeg"
+      },
+      {
+        "depth": 2,
+        "title": "Not unlimited liquidity",
+        "id": "not-unlimited-liquidity"
+      },
+      {
+        "depth": 2,
+        "title": "One-sided flow risk",
+        "id": "one-sided-flow-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Volume expectation risk",
+        "id": "volume-expectation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Oracle dependency",
+        "id": "oracle-dependency"
+      },
+      {
+        "depth": 2,
+        "title": "Implementation risk",
+        "id": "implementation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Parameter risk",
+        "id": "parameter-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Governance risk",
+        "id": "governance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "User risk",
+        "id": "user-risk"
+      },
+      {
+        "depth": 2,
+        "title": "The honest product claim",
+        "id": "the-honest-product-claim"
+      }
+    ],
+    "body": "Swap Protocol should be explained with discipline because Terra Classic has already paid the cost of weak market-module assumptions.\n\nThe product is useful because it restores native LUNC and USTC swap utility without minting new supply. That does not make it risk-free.\n\n## Not a repeg\n\nSwap Protocol is not a USTC repeg proposal.\n\nUSTC is treated as a speculative market-priced asset. The module uses oracle-reported market pricing instead of assuming USTC is worth 1 USD.\n\nAny content that implies Swap Protocol will restore a fixed USTC peg is wrong.\n\n## Not unlimited liquidity\n\nSwap Protocol uses finite pools.\n\nIf the requested output asset is exhausted, the swap should fail. This is a core safety property. It prevents the module from satisfying demand by minting new supply.\n\n## One-sided flow risk\n\nIf most users swap in one direction, the burn outcome can become one-sided too.\n\nFor example:\n\n- heavy USTC to LUNC flow can reduce LUNC remaining for epoch-end burn and increase USTC held by the pool\n- heavy LUNC to USTC flow can reduce USTC remaining for epoch-end burn and increase LUNC held by the pool\n\nThis may disappoint users who expect every scenario to maximize burns of their preferred asset.\n\n## Volume expectation risk\n\nSwap Protocol only generates spread-fee burns and Oracle Pool funding when swaps happen.\n\nIf usage is low, fee generation will be low. Native availability is valuable, but it should not be marketed as if high volume is guaranteed.\n\nThe source material explicitly warns that community disappointment from unmet expectations is one of the main risks.\n\n## Oracle dependency\n\nSwap Protocol relies on validator oracle feeds.\n\nIf enough voting power fails to report valid prices, or if prices fail safety checks, the module can disable swaps. This protects the chain, but it means the product can be unavailable during stress.\n\nValidators and feeder operators are therefore part of the product surface, not just back-end infrastructure.\n\n## Implementation risk\n\nMarket Module 2.0 changes critical L1 behavior.\n\nThe source material identifies technical mistakes as a risk and recommends thorough review, stress testing, and audit consideration. The docs should not hide this. A no-mint design is safer than the historical mint/burn model, but implementation quality still matters.\n\n## Parameter risk\n\nSwap behavior depends on parameters and mechanisms such as liquidity allocation, base pool, recovery period, oracle thresholds, and spread fee rules.\n\nIf parameters are too loose, the product can expose more risk. If they are too tight, the product can feel unavailable or too small to matter.\n\nThe correct framing is not \"set and forget.\" It is \"bounded product design with governance-visible tradeoffs.\"\n\n## Governance risk\n\nGovernance can change protocol behavior.\n\nThat is a strength when the chain needs to adapt, but it also means product expectations must track governance decisions. Users and integrators should not assume every parameter will stay fixed forever.\n\n## User risk\n\nUsers still face normal market and wallet risks:\n\n- price volatility\n- slippage between quote and execution\n- transaction failure\n- wallet signing mistakes\n- insufficient fee balance\n- phishing or malicious interfaces\n- misunderstanding USTC's market status\n\nSwap Protocol is native infrastructure. It does not remove the need for transaction discipline.\n\n## The honest product claim\n\nThe defensible claim is:\n\n> Swap Protocol restores native LUNC and USTC swap utility through a bounded, oracle-aware, no-mint market module.\n\nThe indefensible claim is:\n\n> Swap Protocol guarantees repeg, profit, unlimited swaps, or a specific burn outcome.\n\nKeep that distinction clear.\n",
+    "previousSlug": "swap-protocol/scenarios-and-examples",
+    "nextSlug": "swap-protocol/validator-operations"
+  },
+  {
+    "slug": "swap-protocol/validator-operations",
+    "path": "/swap-protocol/validator-operations/",
+    "sourceFile": "content/docs/swap-protocol/validator-operations.md",
+    "group": "Swap Protocol",
+    "navTitle": "Validator operations",
+    "navDepth": 1,
+    "navParent": "swap-protocol/technical-reference",
+    "navHasChildren": false,
+    "navOrder": 39,
+    "title": "Validator operations",
+    "description": "Operational responsibilities for validators and oracle feeder operators supporting Swap Protocol.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/validator-operations.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Validator role",
+        "id": "validator-role"
+      },
+      {
+        "depth": 2,
+        "title": "USTC price support",
+        "id": "ustc-price-support"
+      },
+      {
+        "depth": 2,
+        "title": "Provider diversity",
+        "id": "provider-diversity"
+      },
+      {
+        "depth": 2,
+        "title": "Quorum monitoring",
+        "id": "quorum-monitoring"
+      },
+      {
+        "depth": 2,
+        "title": "Feeder account hygiene",
+        "id": "feeder-account-hygiene"
+      },
+      {
+        "depth": 2,
+        "title": "Rollout discipline",
+        "id": "rollout-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "User-facing responsibility",
+        "id": "user-facing-responsibility"
+      },
+      {
+        "depth": 2,
+        "title": "Related references",
+        "id": "related-references"
+      }
+    ],
+    "body": "Validators are part of the Swap Protocol product surface.\n\nMarket Module 2.0 depends on current oracle prices. If validators do not operate reliable oracle feeders, swaps can be disabled or unsafe.\n\n## Validator role\n\nValidators support Swap Protocol by:\n\n- running consensus infrastructure reliably\n- submitting oracle prices on schedule\n- maintaining feeder accounts and fee balances\n- supporting USTC price reporting\n- using diverse and reliable price sources\n- monitoring missed votes and quorum\n- responding quickly to feeder failures\n\nThis is not only an infrastructure task. It affects whether users can swap safely.\n\n## USTC price support\n\nThe source design requires USTC to be added to the oracle vote set and priced by real market data.\n\nThat means validator operators need oracle feeder support for USTC pricing. The old fixed 1 USD assumption is not compatible with Swap Protocol.\n\nOperators should verify:\n\n- the feeder binary supports USTC pricing\n- the feeder config includes the required denom\n- price providers are reachable\n- fallback providers are configured where supported\n- prevote and vote messages are being submitted successfully\n- missed-vote counters remain healthy\n\n## Provider diversity\n\nThe source material calls out feeder provider expansion as important for manipulation resistance and reliability.\n\nA weak provider setup creates protocol risk:\n\n- stale prices\n- missing prices\n- correlated outages\n- inaccurate medians\n- quorum loss\n\nValidators should avoid relying on a single fragile source when better provider diversity is available.\n\n## Quorum monitoring\n\nMarket Module 2.0 can disable itself if either asset has price votes from less than 50% of voting power for 25 blocks.\n\nValidators should monitor:\n\n- current oracle participation\n- their own feeder status\n- missed prevotes and votes\n- exchange-rate query results\n- chain alerts around module disablement\n\nIf quorum drops, the correct priority is restoring accurate oracle participation, not bypassing safety controls.\n\n## Feeder account hygiene\n\nOracle feeders need enough LUNC to pay transaction fees.\n\nOperators should maintain:\n\n- funded feeder accounts\n- secure key handling\n- clear restart procedures\n- logs that show provider failures and broadcast failures\n- alerting for missed oracle periods\n\nPoor feeder operations can lead to missed oracle votes and, over time, slashing risk under oracle module rules.\n\n## Rollout discipline\n\nSwap Protocol should be treated as a coordinated validator rollout.\n\nBefore a chain upgrade or parameter activation, operators should confirm:\n\n- feeder versions are compatible\n- USTC price support is active\n- provider configs are tested\n- failover behavior is understood\n- monitoring is in place\n- validators know how to diagnose disabled swap states\n\nThe source material is explicit that invalid or absent price input should trigger automatic shutdown mechanisms. That is the right failure mode, but it makes operational readiness critical.\n\n## User-facing responsibility\n\nValidators who publicly support Swap Protocol should communicate responsibly.\n\nGood communication:\n\n- explains that USTC is market-priced\n- avoids repeg promises\n- explains that oracle failure can disable swaps\n- distinguishes module safety from wallet or UI issues\n- reports incidents clearly when feeders fail\n\nBad communication overpromises volume, burns, repeg, or guaranteed availability.\n\n## Related references\n\n- [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/)\n- [Oracle module spec](/develop/module-specifications/spec-oracle/)\n- [Validator accountability](/governance/validator-accountability/)\n",
+    "previousSlug": "swap-protocol/risks-and-limitations",
+    "nextSlug": "swap-protocol/developer-reference"
+  },
+  {
+    "slug": "swap-protocol/developer-reference",
+    "path": "/swap-protocol/developer-reference/",
+    "sourceFile": "content/docs/swap-protocol/developer-reference.md",
+    "group": "Swap Protocol",
+    "navTitle": "Developer reference",
+    "navDepth": 1,
+    "navParent": "swap-protocol/technical-reference",
+    "navHasChildren": false,
+    "navOrder": 40,
+    "title": "Developer reference",
+    "description": "Technical reference for building around Swap Protocol and Market Module 2.0.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Market-Module 2.0",
+    "sourceSite": "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "swap-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/swap-protocol/developer-reference.md",
+    "sourceDate": "2025-06-25",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Related modules",
+        "id": "related-modules"
+      },
+      {
+        "depth": 2,
+        "title": "Supported assets",
+        "id": "supported-assets"
+      },
+      {
+        "depth": 2,
+        "title": "Execution model",
+        "id": "execution-model"
+      },
+      {
+        "depth": 2,
+        "title": "Important states",
+        "id": "important-states"
+      },
+      {
+        "depth": 2,
+        "title": "Source-defined controls",
+        "id": "source-defined-controls"
+      },
+      {
+        "depth": 2,
+        "title": "Pool and epoch model",
+        "id": "pool-and-epoch-model"
+      },
+      {
+        "depth": 2,
+        "title": "Oracle integration",
+        "id": "oracle-integration"
+      },
+      {
+        "depth": 2,
+        "title": "UX requirements for integrations",
+        "id": "ux-requirements-for-integrations"
+      },
+      {
+        "depth": 2,
+        "title": "Developer caution",
+        "id": "developer-caution"
+      }
+    ],
+    "body": "This reference is for developers building wallets, explorers, routing interfaces, dashboards, monitoring tools, or analytics around Swap Protocol.\n\nSwap Protocol is the product name. Market Module 2.0 is the underlying L1 implementation concept.\n\n## Related modules\n\n| Module | Role |\n| --- | --- |\n| `x/market` | Executes market-module swap logic and maintains market parameters/state. |\n| `x/oracle` | Provides validator-reported prices used by Market Module 2.0. |\n| `x/tax` | Supplies the tax-flow context used by the liquidity allocation design. |\n| `x/gov` | Controls governance-level changes and emergency policy decisions. |\n| `x/distribution` | Receives and distributes normal staking rewards; distinct from swap execution. |\n\nSee also:\n\n- [Market module spec](/develop/module-specifications/spec-market/)\n- [Oracle module spec](/develop/module-specifications/spec-oracle/)\n- [Tax module spec](/develop/module-specifications/spec-tax/)\n\n## Supported assets\n\nSwap Protocol is scoped to LUNC and USTC.\n\nSupported product routes:\n\n- LUNC to USTC\n- USTC to LUNC\n\nStable-to-stable swaps are disabled in the source design and should be treated as unsupported. Integrations should surface this clearly rather than hiding it behind a generic failure.\n\n## Execution model\n\nAt execution time, the module should:\n\n1. verify the requested route is supported\n2. verify the module is enabled\n3. verify oracle data is available and passes safety checks\n4. calculate output using market-module logic and current prices\n5. verify output pool capacity remains available\n6. collect the 0.35% spread fee in the output asset\n7. transfer input into the module and output from the pool\n8. route spread-fee accounting to burn and Oracle Pool destinations\n\nThe exact message and keeper implementation should be confirmed against the deployed Terra Classic core version used by the application.\n\n## Important states\n\nInterfaces should model these states explicitly:\n\n| State | User-facing meaning |\n| --- | --- |\n| Enabled | Swaps can be attempted if liquidity and oracle checks pass. |\n| Disabled | The protocol route is currently unavailable. |\n| Insufficient liquidity | The requested output side does not have enough pool capacity. |\n| Allowance exhausted | Epoch capacity has been consumed. |\n| Oracle quorum failure | Not enough voting power is reporting usable prices. |\n| TWAP sanity failure | Current price differs too far from the oracle TWAP. |\n| Unsupported route | The route is not available, such as stable-to-stable swaps. |\n\nAvoid treating all of these as the same error. Users and operators need different recovery paths.\n\n## Source-defined controls\n\nThe Market Module 2.0 source defines these controls:\n\n| Control | Value or behavior |\n| --- | --- |\n| Price vote period | 5 blocks, approximately 30 seconds |\n| Quorum threshold | 50% voting power |\n| Quorum auto-disable window | 25 blocks below quorum |\n| TWAP sanity check | Swap fails if peg price differs by more than 10% from 45-block oracle TWAP |\n| Spread fee | 0.35% notional, collected in output asset |\n| Fee routing | 50% burn, 50% Oracle Pool |\n| Stable-to-stable route | Disabled |\n| Epoch length | 30 days |\n\nIf live chain parameters differ after governance changes, applications should prefer queried chain state where available.\n\n## Pool and epoch model\n\nApplications should not assume infinite liquidity.\n\nDuring each epoch:\n\n- LUNC and USTC pools have separate balances\n- swaps change those balances dynamically\n- one side can be exhausted\n- opposite-direction swaps can replenish the depleted side\n- remaining balances are burned at epoch boundary\n\nAnalytics should track LUNC and USTC independently. A single \"pool health\" number can hide one-sided exhaustion.\n\n## Oracle integration\n\nApplications that show Swap Protocol status should read or infer:\n\n- current exchange rates\n- oracle vote participation\n- whether required assets have valid prices\n- module enabled state\n- relevant market parameters\n- pool balances or usable route capacity where exposed\n\nThe public endpoint strategy should follow the broader docs guidance in [Public Network Endpoints](/develop/endpoints/). Do not hardcode one endpoint as the only source of truth for critical routing.\n\n## UX requirements for integrations\n\nA serious Swap Protocol integration should show:\n\n- input asset\n- output asset\n- estimated output\n- spread fee\n- warning when USTC is involved\n- protocol availability\n- insufficient-liquidity state\n- transaction fee requirement\n- final confirmation before signing\n\nIt should not show:\n\n- \"USTC = $1\" assumptions\n- repeg language\n- hidden pool exhaustion failures\n- generic errors when the module disabled itself for safety\n\n## Developer caution\n\nMarket Module 2.0 is critical L1 behavior. Any integration that touches swap routing should be defensive:\n\n- query live state before quoting\n- refresh quotes before signing\n- handle failed broadcasts cleanly\n- distinguish protocol failure from wallet failure\n- never promise execution until the transaction is committed\n- expose transaction hashes and explorer links after broadcast\n\nFor users, a failed swap should be understandable. For operators, it should be diagnosable.\n",
+    "previousSlug": "swap-protocol/validator-operations",
+    "nextSlug": "forex-protocol/overview"
+  },
+  {
+    "slug": "forex-protocol/overview",
+    "path": "/forex-protocol/overview/",
+    "sourceFile": "content/docs/forex-protocol/overview.md",
+    "group": "Forex Protocol",
+    "navTitle": "Forex Protocol",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 41,
+    "title": "Forex Protocol",
+    "description": "The proposed Terra Classic L1 product for collateral-backed, fiat-pegged stable assets, built around the Collateralized Stablecoin Module.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/overview.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Current status",
+        "id": "current-status"
+      },
+      {
+        "depth": 2,
+        "title": "Product position",
+        "id": "product-position"
+      },
+      {
+        "depth": 2,
+        "title": "Why it matters",
+        "id": "why-it-matters"
+      },
+      {
+        "depth": 2,
+        "title": "Who this section is for",
+        "id": "who-this-section-is-for"
+      },
+      {
+        "depth": 2,
+        "title": "What Forex Protocol proposes",
+        "id": "what-forex-protocol-proposes"
+      },
+      {
+        "depth": 2,
+        "title": "What it does not do today",
+        "id": "what-it-does-not-do-today"
+      },
+      {
+        "depth": 2,
+        "title": "How this section is organized",
+        "id": "how-this-section-is-organized"
+      },
+      {
+        "depth": 2,
+        "title": "Product discipline",
+        "id": "product-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial advice",
+        "id": "not-financial-advice"
+      }
+    ],
+    "body": "Forex Protocol is a proposed Terra Classic L1 stable-asset system.\n\nThe technical mechanism described in the source material is the Collateralized Stablecoin Module, or CSM.\n\nThe product goal is to let Terra Classic support fiat-pegged stable assets backed by external collateral, starting with EUTC as a Euro-pegged Terra Classic stablecoin.\n\n## Current status\n\nForex Protocol is not live.\n\nIt is not deployed on Terra Classic mainnet, not available in wallets, and not ready for users to mint or redeem stable assets. The product concept has been accepted by Terra Classic governance as Proposal 12209, but implementation work is still needed.\n\nThe current public product framing is:\n\n- Forex Protocol is a governance-accepted L1 product concept.\n- The first proposed stable asset is EUTC.\n- The underlying technology is the Collateralized Stablecoin Module.\n- The production implementation still needs a software team or company to build, test, document, review, and deploy it.\n- A separate liquidity proposal or liquidity process may still be required after implementation work is defined.\n\nDo not treat this section as a live user guide. Treat it as product, governance, and implementation documentation for a proposed L1 product.\n\n## Product position\n\nForex Protocol is designed to replace the failed algorithmic stablecoin model with a collateral-backed architecture.\n\nThe source proposal describes it as a multi-currency, fully collateralized stablecoin system built directly on Terra Classic. Instead of relying on an algorithmic mint-and-burn relationship between LUNC and a stablecoin, the proposed CSM uses external collateral such as EURC or USDC to back issued stable assets.\n\nThe simplest product statement is:\n\n> Forex Protocol aims to bring collateral-backed, fiat-pegged stable assets to Terra Classic, starting with EUTC, using collateral vaults, oracle pricing, mint and redemption controls, DEX liquidity, and protocol-owned LUNC buyback logic.\n\n## Why it matters\n\nTerra Classic's original identity was strongly connected to decentralized money and stablecoin utility. After the 2022 collapse, that stablecoin mechanism could not simply be restarted without repeating unacceptable risk.\n\nForex Protocol matters because it tries to preserve the useful product ambition - on-chain fiat-pegged assets - while changing the risk model:\n\n- stable assets are backed by collateral rather than algorithmic expansion\n- LUNC is not minted to defend a peg\n- mint and redeem fees are paid in the same stablecoin used by the user\n- fees become secondary collateral in the proposed design\n- secondary collateral is proposed to buy back LUNC\n- redemption limits and safety controls are intended to reduce run risk\n- DEX liquidity is part of the peg-maintenance and market-access design\n\nThis makes Forex Protocol strategically different from both the old Terra market module and a simple wrapped-stablecoin listing.\n\n## Who this section is for\n\nUse this section if you are:\n\n- a community member trying to understand what Proposal 12209 accepted\n- an investor evaluating what Forex Protocol is and is not\n- a validator reviewing the operational and oracle implications\n- a developer or software company assessing the implementation work\n- a wallet, dashboard, or explorer team planning future product support\n- a governance participant reviewing open risks before funding or deployment decisions\n\n## What Forex Protocol proposes\n\nAt a high level, the source design proposes:\n\n| Product area | Source-defined idea |\n| --- | --- |\n| Stable asset | EUTC, a Euro-pegged Terra Classic stablecoin. |\n| Collateral | EURC at 1:1, or USDC with a 0.5% premium. |\n| Mint fee | 1.5%, paid in the same stablecoin used to mint. |\n| Redemption fee | 1.5%, paid in the same stablecoin withdrawn. |\n| Redemption control | No more than 10% of total EUTC supply redeemable per day. |\n| Secondary reserve | Mint and redemption fees accumulate as secondary collateral. |\n| LUNC buyback | Secondary collateral is proposed to buy LUNC through DEX routes. |\n| LUNC vault | Purchased LUNC is proposed to be stored in a permanent protocol vault. |\n| Liquidity | EUTC/LUNC, EUTC/USTC, and EUTC/USDC pools are proposed as initial liquidity targets. |\n| Safety controls | Fiat oracles, vault accounting, redemption caps, rebalancing, and a multisig kill switch. |\n\n## What it does not do today\n\nForex Protocol does not currently provide:\n\n- live EUTC minting\n- live EUTC redemption\n- live Forex Protocol pools\n- a deployed CSM contract or module\n- production oracle integration\n- a final collateral custody design\n- a completed audit\n- a wallet interface\n- a guaranteed LUNC burn outcome\n- a guaranteed stablecoin peg\n- investment advice\n\nThose gaps are not minor details. They are the actual implementation work.\n\n## How this section is organized\n\n- [Governance and status](/forex-protocol/governance-and-status/) explains Proposal 12209, the current not-live state, and the open implementation path.\n- [How it is proposed to work](/forex-protocol/how-it-is-proposed-to-work/) translates the source design into the proposed mint, redeem, reserve, buyback, and liquidity flow.\n- [Collateral and stable assets](/forex-protocol/collateral-and-stable-assets/) explains EUTC, EURC, USDC, premiums, collateral ratios, and vault accounting.\n- [Fees, buybacks, and liquidity](/forex-protocol/fees-buybacks-and-liquidity/) covers 1.5% fees, secondary collateral, DEX routing, LUNC buybacks, and proposed pools.\n- [Oracles and safety controls](/forex-protocol/oracles-and-safety-controls/) covers fiat price inputs, redemption caps, kill switch logic, and rebalancing controls.\n- [Risks and open questions](/forex-protocol/risks-and-open-questions/) keeps unresolved issues visible, including vault-vs-burn controversy, demand risk, collateral structure, and implementation risk.\n- [Developer reference](/forex-protocol/developer-reference/) gives builders and validators a technical reference for the implementation work.\n\n## Product discipline\n\nThe strongest Forex Protocol story is not that it is already solved. It is that Terra Classic has a governance-accepted path to explore collateral-backed stable assets without returning to the old algorithmic failure mode.\n\nThat is a serious claim. It is also a limited claim.\n\n## Not financial advice\n\nForex Protocol documentation explains a proposed product design and governance-approved work direction. It does not tell you whether to buy, sell, hold, stake, mint, redeem, or trade LUNC, USTC, EUTC, EURC, USDC, or any other asset.\n",
+    "previousSlug": "swap-protocol/developer-reference",
+    "nextSlug": "forex-protocol/governance-and-status"
+  },
+  {
+    "slug": "forex-protocol/governance-and-status",
+    "path": "/forex-protocol/governance-and-status/",
+    "sourceFile": "content/docs/forex-protocol/governance-and-status.md",
+    "group": "Forex Protocol",
+    "navTitle": "Governance and status",
+    "navDepth": 1,
+    "navParent": "forex-protocol/status-and-model",
+    "navHasChildren": false,
+    "navOrder": 43,
+    "title": "Governance and status",
+    "description": "The governance-approved status of Forex Protocol, what Proposal 12209 accepted, and what still needs to be built.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/governance-and-status.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Governance decision",
+        "id": "governance-decision"
+      },
+      {
+        "depth": 2,
+        "title": "What was accepted",
+        "id": "what-was-accepted"
+      },
+      {
+        "depth": 2,
+        "title": "Current implementation status",
+        "id": "current-implementation-status"
+      },
+      {
+        "depth": 2,
+        "title": "Why the status wording matters",
+        "id": "why-the-status-wording-matters"
+      },
+      {
+        "depth": 2,
+        "title": "Source proposal scope",
+        "id": "source-proposal-scope"
+      },
+      {
+        "depth": 2,
+        "title": "Roles and responsibilities",
+        "id": "roles-and-responsibilities"
+      },
+      {
+        "depth": 2,
+        "title": "Open work framing",
+        "id": "open-work-framing"
+      },
+      {
+        "depth": 2,
+        "title": "Governance should still protect users",
+        "id": "governance-should-still-protect-users"
+      }
+    ],
+    "body": "Forex Protocol is a governance-accepted L1 product concept, not a deployed product.\n\nThis distinction should stay visible across the docs, website, and any future wallet or developer material.\n\n## Governance decision\n\nThe Terra Classic governance item shown for this work is Proposal 12209:\n\n```text\nLunc Forex Genesis + EUTC Repeg\n```\n\nThe proposal status shown in the supplied governance screenshot is passed.\n\nThe proposal memo says:\n\n```text\nBegin development of Collateralized Stablecoin Module, test and oracle integration. Development is done for free. New prop will be put up for liquidity investment.\n```\n\nThe source discussion linked from the proposal is the LUNC Forex Genesis and EUTC Repeg thread. That thread describes the Collateralized Stablecoin Module design, EUTC as the first proposed stable asset, collateral options, fee mechanics, buyback logic, vault logic, DEX liquidity needs, and safety controls.\n\n## What was accepted\n\nBased on the source material and the governance screenshot, the accepted direction is:\n\n- begin development of the Collateralized Stablecoin Module\n- start with EUTC as the first stable asset\n- use collateralized stablecoin design rather than algorithmic expansion\n- include test and oracle integration work\n- treat liquidity investment as a later governance or funding step\n- document the CSM as the proposed technical foundation for Forex Protocol\n\nThis acceptance does not mean a production implementation already exists.\n\n## Current implementation status\n\nForex Protocol is not in production.\n\nAs of this docs section:\n\n- no live CSM production deployment is documented in this repository\n- no public user minting flow is documented\n- no public redemption flow is documented\n- no final wallet interface is documented\n- no final production oracle integration is documented\n- no audit result is documented\n- no mainnet launch instructions are documented\n\nThe product is also represented on the main Terra Classic website as open work for implementation. That means the docs should help qualified builders understand the product direction and the source-defined requirements, without pretending the work is already complete.\n\n## Why the status wording matters\n\nStablecoin documentation is trust-sensitive.\n\nIf documentation makes Forex Protocol sound live before it is implemented, users can misunderstand risk, validators can miscommunicate governance status, and builders can inherit a vague or overpromised brief.\n\nThe correct language is:\n\n| Say this | Do not say this |\n| --- | --- |\n| Proposed Forex Protocol design | Live Forex Protocol product |\n| Governance-accepted implementation direction | Completed implementation |\n| EUTC is the first proposed stable asset | EUTC is available to mint today |\n| CSM is the proposed technology | CSM is already deployed |\n| Liquidity may need a later proposal | Liquidity is already secured |\n| Safety controls need implementation and testing | Safety controls already protect users |\n\n## Source proposal scope\n\nThe source proposal says it is exclusively for construction of the CSM system.\n\nThe source lists the construction scope as:\n\n- multi-asset collateral\n- stablecoin issuance\n- automated swaps\n- LUNC buyback vault logic\n\nThe source also says that liquidity investment would require a new proposal after development.\n\nThat means this docs section should support two jobs:\n\n1. Explain the accepted product concept clearly enough for the community.\n2. Define the implementation surface clearly enough for builders to quote and execute.\n\n## Roles and responsibilities\n\nThe source proposal presents the concept as community-driven and names contributors in the discussion. It also references help from Terra Classic technical contributors for deployment after approval.\n\nThe docs should not convert that into a claim that a production team has already accepted responsibility for final delivery.\n\nA production implementation still needs explicit ownership across:\n\n- architecture\n- smart contracts or module code\n- oracle integration\n- vault accounting\n- collateral custody structure\n- DEX routing\n- testnet deployment\n- security review\n- mainnet deployment support\n- public documentation\n- post-launch monitoring\n\n## Open work framing\n\nThe open-work framing on the main website is product-correct.\n\nForex Protocol needs a team capable of turning the accepted concept into a deployable, testable, reviewable system. A serious implementation proposal should define:\n\n- discovery scope\n- exact MVP boundaries\n- technical architecture\n- collateral handling model\n- oracle and feeder requirements\n- governance-controlled parameters\n- testnet and simulation plan\n- security review plan\n- deployment plan\n- documentation deliverables\n- post-launch monitoring and incident response\n\nSee [Developer reference](/forex-protocol/developer-reference/) for the builder-facing implementation surface.\n\n## Governance should still protect users\n\nPassing a text proposal is not the same as de-risking a stablecoin system.\n\nBefore any production launch, governance and validators should expect evidence of:\n\n- testnet behavior\n- oracle safety\n- redemption cap behavior\n- vault accounting correctness\n- collateral accounting correctness\n- DEX routing behavior\n- emergency pause behavior\n- audit or independent review\n- user-facing risk documentation\n\nThis is not bureaucracy. It is the minimum trust standard for a stable-asset product after Terra Classic's history.\n",
+    "previousSlug": "forex-protocol/overview",
+    "nextSlug": "forex-protocol/how-it-is-proposed-to-work"
+  },
+  {
+    "slug": "forex-protocol/how-it-is-proposed-to-work",
+    "path": "/forex-protocol/how-it-is-proposed-to-work/",
+    "sourceFile": "content/docs/forex-protocol/how-it-is-proposed-to-work.md",
+    "group": "Forex Protocol",
+    "navTitle": "How it is proposed to work",
+    "navDepth": 1,
+    "navParent": "forex-protocol/status-and-model",
+    "navHasChildren": false,
+    "navOrder": 44,
+    "title": "How it is proposed to work",
+    "description": "A plain-English walkthrough of the proposed Forex Protocol minting, redemption, reserve, buyback, vault, and liquidity flow.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/how-it-is-proposed-to-work.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Core flow",
+        "id": "core-flow"
+      },
+      {
+        "depth": 2,
+        "title": "Minting with EURC",
+        "id": "minting-with-eurc"
+      },
+      {
+        "depth": 2,
+        "title": "Minting with USDC",
+        "id": "minting-with-usdc"
+      },
+      {
+        "depth": 2,
+        "title": "Redemption",
+        "id": "redemption"
+      },
+      {
+        "depth": 2,
+        "title": "Daily redemption limit",
+        "id": "daily-redemption-limit"
+      },
+      {
+        "depth": 2,
+        "title": "Secondary reserve",
+        "id": "secondary-reserve"
+      },
+      {
+        "depth": 2,
+        "title": "LUNC buybacks",
+        "id": "lunc-buybacks"
+      },
+      {
+        "depth": 2,
+        "title": "LUNC vault",
+        "id": "lunc-vault"
+      },
+      {
+        "depth": 2,
+        "title": "Liquidity pools",
+        "id": "liquidity-pools"
+      },
+      {
+        "depth": 2,
+        "title": "What makes this different from the old model",
+        "id": "what-makes-this-different-from-the-old-model"
+      },
+      {
+        "depth": 2,
+        "title": "Product state summary",
+        "id": "product-state-summary"
+      }
+    ],
+    "body": "Forex Protocol is proposed as a collateral-backed stable-asset system.\n\nThe first proposed stable asset is EUTC. The underlying technology is the Collateralized Stablecoin Module.\n\n## Core flow\n\nThe proposed flow is:\n\n1. A user deposits approved collateral.\n2. The protocol mints EUTC against that collateral.\n3. The protocol takes a 1.5% mint fee in the same stablecoin used by the user.\n4. The fee becomes secondary collateral.\n5. EUTC can trade through proposed DEX liquidity pools.\n6. A user can redeem EUTC back to collateral.\n7. The protocol burns redeemed EUTC.\n8. The protocol takes a 1.5% redemption fee in the same stablecoin withdrawn.\n9. Secondary collateral is proposed to buy back LUNC.\n10. Purchased LUNC is proposed to be stored in a permanent protocol vault.\n\nThis is a proposal-level product design. It is not a live workflow yet.\n\n## Minting with EURC\n\nThe source defines EURC as the cleanest EUTC collateral path.\n\nProposed EURC minting:\n\n1. User deposits EURC.\n2. The contract mints EUTC at 1:1.\n3. A 1.5% protocol fee is taken in EURC.\n4. The EURC fee becomes secondary collateral.\n\nThe source emphasizes that users do not need to buy USTC or another fee token to mint. Fees are paid in the same stablecoin path the user is already using.\n\n## Minting with USDC\n\nThe source also supports USDC collateral with a premium.\n\nProposed USDC minting:\n\n1. User deposits USDC.\n2. The contract applies a 0.5% mint premium.\n3. The user receives EUTC using this source formula:\n\n```text\nEUTC minted = USDC deposited x 0.995\n```\n\n4. A 1.5% protocol fee is taken in USDC.\n5. The USDC fee becomes secondary collateral.\n\nThe source says the 0.5% USDC premium exists to protect against EUR/USD fluctuation and DEX spread.\n\n## Redemption\n\nThe proposed redemption flow is:\n\n1. User sends EUTC back to the contract.\n2. EUTC is burned.\n3. User receives the same collateral type they deposited, such as EURC or USDC.\n4. A 1.5% redemption fee is taken in that same stablecoin.\n\nThe source describes this as keeping the system clean and avoiding token-hopping.\n\n## Daily redemption limit\n\nThe source design includes a daily redemption limit:\n\n```text\nNo more than 10% of total EUTC supply can be redeemed per day.\n```\n\nThe source says this is intended to reduce:\n\n- instant mint and redeem arbitrage loops\n- large-scale redemption runs\n- liquidity crunches in the USDC vault\n- oracle-timing exploits\n\nThe practical product meaning is that EUTC is not proposed as an unlimited same-block exit instrument. Redemption is intentionally rate-limited.\n\n## Secondary reserve\n\nMint and redemption fees are proposed to accumulate in the Forex Secondary Reserve.\n\nThe source describes these fees as secondary collateral. That secondary reserve is then proposed to be used for automatic LUNC buybacks.\n\nThis creates two separate collateral concepts:\n\n| Collateral layer | Source-defined role |\n| --- | --- |\n| Primary collateral | Backs issued stable assets such as EUTC. |\n| Secondary collateral | Comes from fees and supports buyback or reserve logic. |\n\n## LUNC buybacks\n\nThe source proposal says secondary collateral is periodically swapped for LUNC through whichever supported DEX route gives the best price at the time of buyback.\n\nNamed DEX environments in the source:\n\n- GDEX\n- Terraswap\n- Terraport\n\nThe docs should treat this as proposed routing logic, not a live router guarantee.\n\n## LUNC vault\n\nThe proposed design sends purchased LUNC to a permanent protocol vault.\n\nThe source describes the vault as:\n\n- non-circulating\n- unable to be spent\n- growing over time\n- intended to strengthen long-term LUNC scarcity\n- also discussed as secondary collateral or reserve logic in the source thread\n\nThis point is controversial. Some community comments in the source argued that repurchased LUNC should be burned instead of vaulted. The source proposer defended the vault as collateral-related and community-owned.\n\nSee [Risks and open questions](/forex-protocol/risks-and-open-questions/) for the unresolved vault-vs-burn issue.\n\n## Liquidity pools\n\nThe source says the community pool may seed initial liquidity for:\n\n- EUTC/LUNC\n- EUTC/USTC\n- EUTC/USDC\n\nThese pools are important because the source relies on DEX liquidity and arbitrage to help keep EUTC markets usable.\n\nThe source also says liquidity investment would come through a later proposal. That means liquidity is not solved merely because the CSM concept passed governance.\n\n## What makes this different from the old model\n\nForex Protocol is proposed as a replacement for the failed algorithmic market module.\n\nThe main differences are:\n\n| Old algorithmic model | Proposed Forex Protocol model |\n| --- | --- |\n| Peg defense depended on mint and burn dynamics. | Stable assets are backed by external collateral. |\n| LUNC supply could expand under stress. | LUNC is not minted to support EUTC issuance. |\n| Stablecoin assumptions failed during the collapse. | Fiat oracles and collateral vaults are part of the proposed design. |\n| Systemic run dynamics caused catastrophic damage. | Redemption caps and safety controls are proposed to reduce run risk. |\n\nThe design still needs implementation and testing. A better concept is not the same as a safe deployed system.\n\n## Product state summary\n\nForex Protocol is best understood as:\n\n- accepted by governance as a direction\n- designed around the CSM\n- starting with EUTC\n- collateral-backed rather than algorithmic\n- dependent on external collateral, oracles, vaults, DEX liquidity, and safety controls\n- still awaiting production implementation\n",
+    "previousSlug": "forex-protocol/governance-and-status",
+    "nextSlug": "forex-protocol/collateral-and-stable-assets"
+  },
+  {
+    "slug": "forex-protocol/collateral-and-stable-assets",
+    "path": "/forex-protocol/collateral-and-stable-assets/",
+    "sourceFile": "content/docs/forex-protocol/collateral-and-stable-assets.md",
+    "group": "Forex Protocol",
+    "navTitle": "Collateral and stable assets",
+    "navDepth": 1,
+    "navParent": "forex-protocol/collateral-and-safety",
+    "navHasChildren": false,
+    "navOrder": 46,
+    "title": "Collateral and stable assets",
+    "description": "How EUTC, EURC, USDC, premiums, collateral ratios, secondary collateral, and vault accounting are described in the Forex Protocol source.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/collateral-and-stable-assets.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Supported stable asset",
+        "id": "supported-stable-asset"
+      },
+      {
+        "depth": 2,
+        "title": "Collateral options",
+        "id": "collateral-options"
+      },
+      {
+        "depth": 2,
+        "title": "EURC path",
+        "id": "eurc-path"
+      },
+      {
+        "depth": 2,
+        "title": "USDC path",
+        "id": "usdc-path"
+      },
+      {
+        "depth": 2,
+        "title": "Collateralization level",
+        "id": "collateralization-level"
+      },
+      {
+        "depth": 2,
+        "title": "Primary and secondary collateral",
+        "id": "primary-and-secondary-collateral"
+      },
+      {
+        "depth": 2,
+        "title": "Same-collateral redemption",
+        "id": "same-collateral-redemption"
+      },
+      {
+        "depth": 2,
+        "title": "Vault requirements",
+        "id": "vault-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Fiat price inputs",
+        "id": "fiat-price-inputs"
+      },
+      {
+        "depth": 2,
+        "title": "What users should remember",
+        "id": "what-users-should-remember"
+      }
+    ],
+    "body": "Forex Protocol starts with EUTC in the source design.\n\nEUTC is described as a Euro-pegged Terra Classic stablecoin backed by approved collateral.\n\n## Supported stable asset\n\nThe source explicitly names:\n\n| Stable asset | Description |\n| --- | --- |\n| EUTC | Euro-pegged Terra Classic stablecoin. |\n\nThe source also mentions on-chain fiat price support for multiple currencies, including USD, EUR, GBP, JPY, CAD, SGD, AUD, and CNY. That should be treated as a future multi-currency direction, not as proof that those assets are implemented.\n\nFor the initial docs section, EUTC should remain the only concrete stable asset described as source-defined.\n\n## Collateral options\n\nThe source defines two initial collateral options for EUTC:\n\n| Collateral | Source-defined treatment |\n| --- | --- |\n| EURC | 1:1 collateral for EUTC. |\n| USDC | 1:1 collateral with a 0.5% premium. |\n\nThe USDC premium exists because EUTC is Euro-pegged while USDC is USD-denominated. The source says the premium helps protect against EUR/USD fluctuation and DEX spread.\n\n## EURC path\n\nEURC is the direct collateral path.\n\nThe source minting model is:\n\n- deposit EURC\n- mint EUTC at 1:1\n- pay a 1.5% protocol fee in EURC\n- move the EURC fee into secondary collateral\n\nBecause EURC and EUTC are both Euro-denominated in the proposed model, no 0.5% currency premium is described for EURC.\n\n## USDC path\n\nUSDC is the indirect collateral path.\n\nThe source minting model is:\n\n- deposit USDC\n- apply a 0.5% premium\n- mint EUTC using the source formula:\n\n```text\nEUTC minted = USDC deposited x 0.995\n```\n\n- pay a 1.5% protocol fee in USDC\n- move the USDC fee into secondary collateral\n\nThe design needs live fiat pricing to avoid treating USD and EUR as interchangeable.\n\n## Collateralization level\n\nThe source says the system uses 100.5% collateralization and also describes vault infrastructure maintaining over-collateralization ratios of 101.5%.\n\nThose two numbers appear in different parts of the source:\n\n| Source number | Context in source material |\n| --- | --- |\n| 100.5% | Presented as safe and stable after adding the 0.5% premium and redemption limits. |\n| 101.5% | Presented in the vault infrastructure section as the over-collateralization ratio. |\n\nThese docs should not pretend the implementation has resolved that difference. A production implementer must clarify the exact collateral ratio rules and how they interact with mint fees, redemption fees, premiums, and vault accounting.\n\n## Primary and secondary collateral\n\nThe source uses two collateral concepts.\n\nPrimary collateral backs issued stable assets.\n\nSecondary collateral comes from mint and redemption fees. The source proposes using that secondary collateral for automatic LUNC buybacks, with purchased LUNC stored in a permanent protocol vault.\n\n| Collateral type | Source-defined purpose |\n| --- | --- |\n| Primary collateral | Back EUTC issuance and redemption. |\n| Secondary collateral | Fee-funded reserve used for LUNC buyback and vault logic. |\n\nThis separation must be explicit in implementation. If primary backing and secondary reserve logic are mixed, users and auditors will not be able to reason clearly about solvency.\n\n## Same-collateral redemption\n\nThe source says a user receives the same collateral they deposited when redeeming EUTC.\n\nThat means the implementation must be able to track the collateral type behind each redemption claim or define an equivalent accounting model.\n\nThis is one of the most important implementation questions because a multi-collateral system can become complex quickly.\n\nThe docs cannot invent the final accounting mechanism. The source only defines the intended user outcome.\n\n## Vault requirements\n\nThe source describes a smart vault system that will:\n\n- lock collateral such as USDC, EURC, and LUNC\n- maintain over-collateralization ratios\n- track minted outstanding supply\n- automatically rebalance mint caps based on collateral depth and volatility\n\nThe source also suggests portfolio rebalancing when there is a 5% differential between the value of USDC and EURC.\n\nThose are implementation requirements, not live product facts.\n\n## Fiat price inputs\n\nForex Protocol depends on fiat price inputs because its collateral and target asset can use different fiat units.\n\nThe source says on-chain oracle prices should refresh every 30 seconds and support live fiat prices such as USD and EUR.\n\nFor production, the important unresolved questions are:\n\n- which oracle sources are accepted\n- how validators or contracts receive fiat prices\n- what happens during stale or missing prices\n- how EUR/USD changes affect minting and redemption\n- whether mint caps change automatically or by governance\n\nSee [Oracles and safety controls](/forex-protocol/oracles-and-safety-controls/) for the safety layer.\n\n## What users should remember\n\nThe product claim is not \"EUTC exists because governance passed a proposal.\"\n\nThe defensible claim is:\n\n> EUTC is the first proposed Forex Protocol stable asset, designed to be backed by EURC or USDC collateral through the Collateralized Stablecoin Module.\n\nUntil production implementation exists, collateral behavior remains a proposed design that must be built and validated.\n",
+    "previousSlug": "forex-protocol/how-it-is-proposed-to-work",
+    "nextSlug": "forex-protocol/fees-buybacks-and-liquidity"
+  },
+  {
+    "slug": "forex-protocol/fees-buybacks-and-liquidity",
+    "path": "/forex-protocol/fees-buybacks-and-liquidity/",
+    "sourceFile": "content/docs/forex-protocol/fees-buybacks-and-liquidity.md",
+    "group": "Forex Protocol",
+    "navTitle": "Fees, buybacks, and liquidity",
+    "navDepth": 1,
+    "navParent": "forex-protocol/collateral-and-safety",
+    "navHasChildren": false,
+    "navOrder": 47,
+    "title": "Fees, buybacks, and liquidity",
+    "description": "How the Forex Protocol source describes mint and redemption fees, secondary collateral, LUNC buybacks, vaulting, and DEX liquidity.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/fees-buybacks-and-liquidity.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Mint fee",
+        "id": "mint-fee"
+      },
+      {
+        "depth": 2,
+        "title": "Redemption fee",
+        "id": "redemption-fee"
+      },
+      {
+        "depth": 2,
+        "title": "Secondary collateral reserve",
+        "id": "secondary-collateral-reserve"
+      },
+      {
+        "depth": 2,
+        "title": "LUNC buyback route",
+        "id": "lunc-buyback-route"
+      },
+      {
+        "depth": 2,
+        "title": "Permanent LUNC vault",
+        "id": "permanent-lunc-vault"
+      },
+      {
+        "depth": 2,
+        "title": "Proposed liquidity pools",
+        "id": "proposed-liquidity-pools"
+      },
+      {
+        "depth": 2,
+        "title": "Why liquidity is central",
+        "id": "why-liquidity-is-central"
+      },
+      {
+        "depth": 2,
+        "title": "Revenue and activity assumptions",
+        "id": "revenue-and-activity-assumptions"
+      },
+      {
+        "depth": 2,
+        "title": "What this means for launch planning",
+        "id": "what-this-means-for-launch-planning"
+      },
+      {
+        "depth": 2,
+        "title": "Honest product claim",
+        "id": "honest-product-claim"
+      }
+    ],
+    "body": "Forex Protocol's source design uses fees for more than revenue.\n\nMint and redemption fees become secondary collateral. That secondary collateral is proposed to fund automatic LUNC buybacks.\n\n## Mint fee\n\nThe source defines a 1.5% mint fee.\n\nThe fee is paid in the same stablecoin used for minting:\n\n| Mint collateral | Fee asset |\n| --- | --- |\n| EURC | EURC |\n| USDC | USDC |\n\nThe source explicitly avoids requiring users to buy USTC or a separate token to pay the fee.\n\n## Redemption fee\n\nThe source also defines a 1.5% redemption fee.\n\nThe fee is paid in the same stablecoin withdrawn:\n\n| Redemption collateral | Fee asset |\n| --- | --- |\n| EURC | EURC |\n| USDC | USDC |\n\nThis is intended to avoid token-hopping and make the user path simpler.\n\n## Secondary collateral reserve\n\nAll mint and redemption fees are proposed to accumulate in the Forex Secondary Reserve.\n\nThe source describes this reserve as secondary collateral. It is not the same as the primary collateral backing EUTC redemption.\n\nThe proposed reserve purpose is:\n\n- collect fees in EURC or USDC\n- use those fees for LUNC buybacks\n- store purchased LUNC in a permanent vault\n- strengthen long-term LUNC scarcity according to the source design\n\n## LUNC buyback route\n\nThe source says secondary collateral is periodically swapped for LUNC through the best available DEX route at the time of buyback.\n\nNamed DEX environments:\n\n| DEX environment | Source-described fee context |\n| --- | --- |\n| GDEX | 0.3% swap fee, split as 0.2% to LPs and 0.1% to DEX shares. |\n| Terraswap | 0.3% total swap fee, 100% to LPs. |\n| Terraport | 0.3% swap fee. |\n\nThe source also says the chain earns the 0.5% tax on every native swap.\n\nThese should be treated as source-defined design assumptions. A production implementation must verify actual route availability, fee behavior, tax treatment, and contract compatibility before launch.\n\n## Permanent LUNC vault\n\nThe source proposal sends purchased LUNC to a permanent protocol vault.\n\nThe source describes vault-held LUNC as:\n\n- non-circulating\n- not spendable\n- growing over time\n- part of the long-term scarcity and collateral story\n\nThis is one of the most sensitive design choices. Several comments in the source thread argue that buyback LUNC should go to the burn wallet instead of a permanent vault. The proposer argues that the vault is collateral-related and should not be burned.\n\nThe docs should not hide that disagreement. See [Risks and open questions](/forex-protocol/risks-and-open-questions/).\n\n## Proposed liquidity pools\n\nThe source says the community pool may seed initial liquidity for:\n\n- EUTC/LUNC\n- EUTC/USTC\n- EUTC/USDC\n\nThese pools matter because the product depends on DEX liquidity for market access, arbitrage, and peg support.\n\nThe source does not prove that liquidity is already funded. It says liquidity investment would require a later proposal after development.\n\n## Why liquidity is central\n\nCollateral alone does not make a useful stable asset.\n\nUsers need practical markets:\n\n- to enter EUTC\n- to exit EUTC\n- to arbitrage EUTC when it trades away from target value\n- to route between EUTC and Terra Classic ecosystem assets\n- to create enough on-chain volume for the product to matter\n\nThe source discussion includes a direct concern: why would users choose this stablecoin instead of established stablecoins such as USDT?\n\nThat is a valid product question, not a hostile question. Forex Protocol needs liquidity, integrations, and a reason to use EUTC.\n\n## Revenue and activity assumptions\n\nThe source describes chain and ecosystem revenue sources as:\n\n- on-chain tax\n- LP fees on DEX trades\n- protocol fees on minting and redemption\n- buybacks using protocol fees\n\nThose revenue paths only matter if users mint, redeem, trade, and provide liquidity.\n\nThe docs should not imply that fees, buybacks, or volume are guaranteed.\n\n## What this means for launch planning\n\nA credible Forex Protocol implementation plan should include:\n\n- exact fee accounting\n- reserve accounting\n- buyback trigger rules\n- DEX route selection rules\n- failed-route handling\n- slippage limits\n- vault address and permissions\n- liquidity funding assumptions\n- monitoring for pool depth and peg deviation\n- reporting for fees collected, buybacks executed, and vault balances\n\nWithout that, the product is too opaque for a stable-asset system.\n\n## Honest product claim\n\nThe defensible claim is:\n\n> Forex Protocol proposes a fee-funded secondary reserve that can buy back LUNC and support protocol-owned vault logic if the CSM is implemented and used.\n\nThe indefensible claim is:\n\n> Forex Protocol guarantees LUNC appreciation, deep liquidity, stable demand, or profitable arbitrage.\n",
+    "previousSlug": "forex-protocol/collateral-and-stable-assets",
+    "nextSlug": "forex-protocol/oracles-and-safety-controls"
+  },
+  {
+    "slug": "forex-protocol/oracles-and-safety-controls",
+    "path": "/forex-protocol/oracles-and-safety-controls/",
+    "sourceFile": "content/docs/forex-protocol/oracles-and-safety-controls.md",
+    "group": "Forex Protocol",
+    "navTitle": "Oracles and safety controls",
+    "navDepth": 1,
+    "navParent": "forex-protocol/collateral-and-safety",
+    "navHasChildren": false,
+    "navOrder": 48,
+    "title": "Oracles and safety controls",
+    "description": "The proposed fiat oracle, redemption cap, vault, rebalancing, and emergency-control requirements for Forex Protocol.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/oracles-and-safety-controls.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Fiat price oracles",
+        "id": "fiat-price-oracles"
+      },
+      {
+        "depth": 2,
+        "title": "Why fiat pricing matters",
+        "id": "why-fiat-pricing-matters"
+      },
+      {
+        "depth": 2,
+        "title": "Daily redemption cap",
+        "id": "daily-redemption-cap"
+      },
+      {
+        "depth": 2,
+        "title": "Vault infrastructure",
+        "id": "vault-infrastructure"
+      },
+      {
+        "depth": 2,
+        "title": "Rebalancing",
+        "id": "rebalancing"
+      },
+      {
+        "depth": 2,
+        "title": "Kill switch",
+        "id": "kill-switch"
+      },
+      {
+        "depth": 2,
+        "title": "Governance and multisig boundary",
+        "id": "governance-and-multisig-boundary"
+      },
+      {
+        "depth": 2,
+        "title": "Mint and redemption safety",
+        "id": "mint-and-redemption-safety"
+      },
+      {
+        "depth": 2,
+        "title": "User-facing safety states",
+        "id": "user-facing-safety-states"
+      },
+      {
+        "depth": 2,
+        "title": "Validator and operator implications",
+        "id": "validator-and-operator-implications"
+      },
+      {
+        "depth": 2,
+        "title": "Safety summary",
+        "id": "safety-summary"
+      }
+    ],
+    "body": "Forex Protocol depends on safety controls because it deals with stable-asset issuance, collateral, redemption, and DEX liquidity.\n\nThe source design includes several controls, but none of them are live until implemented and tested.\n\n## Fiat price oracles\n\nThe source says Forex Protocol needs on-chain fiat price oracles.\n\nNamed fiat prices include:\n\n- USD\n- EUR\n- GBP\n- JPY\n- CAD\n- SGD\n- AUD\n- CNY\n\nThe source also says prices should refresh every 30 seconds.\n\nFor the initial EUTC path, the most important pricing relationship is EUR/USD because EURC and USDC are both listed as possible collateral for a Euro-pegged asset.\n\n## Why fiat pricing matters\n\nEUTC is proposed as a Euro-pegged asset.\n\nIf a user mints EUTC using USDC, the protocol must account for the USD/EUR relationship. The source handles this with a 0.5% premium and live pricing assumptions.\n\nWithout reliable fiat pricing:\n\n- mint ratios can be wrong\n- redemption accounting can be wrong\n- USDC collateral can become underpriced or overpriced against EUTC\n- arbitrage can exploit stale values\n- vault rebalancing can fail\n\nOracle quality is therefore a core product requirement, not a back-end detail.\n\n## Daily redemption cap\n\nThe source includes this redemption limit:\n\n```text\nNo matter how much EUTC is circulating, only 10% of total supply can be redeemed per day.\n```\n\nThe source says the cap is intended to prevent:\n\n- instant mint and redeem arbitrage loops\n- large-scale redemption runs\n- liquidity crunches in the USDC vault\n- oracle-timing exploits\n\nThis is a strong safety control, but it also changes user expectations. Users should understand that redemption is proposed to be rate-limited.\n\n## Vault infrastructure\n\nThe source describes a smart vault system that will:\n\n- lock collateral such as USDC, EURC, and LUNC\n- maintain over-collateralization ratios\n- track minted outstanding supply\n- automatically rebalance mint caps based on collateral depth and volatility\n\nThis requires precise implementation. A vault is not safe because it is called a vault. It is safe only if ownership, permissions, accounting, and emergency behavior are correct.\n\n## Rebalancing\n\nThe source suggests portfolio rebalancing when there is a 5% differential between the value of USDC and EURC.\n\nThis is a design signal, not a complete algorithm.\n\nA production implementation must define:\n\n- what price sources measure the differential\n- who or what can trigger rebalancing\n- whether rebalancing is automatic, governance-controlled, or multisig-controlled\n- what assets can be sold or moved\n- what slippage limits apply\n- how rebalancing events are reported\n\n## Kill switch\n\nThe source includes a kill switch concept.\n\nThe source describes the kill switch as:\n\n- multisig-controlled\n- requiring multiple signers, with 5-of-9 given as a common example\n- able to pause new redemptions temporarily\n- not blocking user balances\n- not stopping mints unless needed\n- automatically resuming after a governance vote\n\nThis is not a final implementation spec. It is an emergency-control concept that must be turned into exact permissions and procedures before deployment.\n\n## Governance and multisig boundary\n\nStablecoin controls must avoid two bad extremes:\n\n- no emergency control when the system is under attack\n- opaque human control over user assets\n\nThe source tries to solve this with multisig and governance resumption. The final design still needs to define the boundary between:\n\n- automated contract logic\n- multisig emergency action\n- governance approval\n- user redemption rights\n- collateral movement\n- public reporting\n\nWithout that boundary, the system will be hard to trust.\n\n## Mint and redemption safety\n\nThe source claims the proposed design reduces collateral risk because the 10% daily redemption cap prevents large immediate exits and oracle-timing exploits.\n\nThat may be directionally reasonable, but it must be tested.\n\nProduction validation should include:\n\n- mint then redeem loops\n- large user redemption attempts\n- rapid EUR/USD movement\n- DEX spread changes\n- missing or stale oracle prices\n- sudden liquidity withdrawal\n- one collateral asset becoming unavailable\n- emergency pause and resume\n\n## User-facing safety states\n\nAny future interface should distinguish at least these states:\n\n| State | User-facing meaning |\n| --- | --- |\n| Not launched | Forex Protocol is not available yet. |\n| Mint available | New EUTC minting can be attempted. |\n| Mint paused | New minting is temporarily unavailable. |\n| Redemption available | EUTC redemption can be attempted within limits. |\n| Redemption cap reached | The daily redemption limit has been used. |\n| Redemption paused | Emergency controls paused new redemptions. |\n| Oracle degraded | Pricing inputs are missing, stale, or unsafe. |\n| Liquidity limited | DEX depth may not support the desired route. |\n\nGeneric \"transaction failed\" errors are not enough for this product class.\n\n## Validator and operator implications\n\nThe source mentions on-chain fiat prices. If those prices depend on validator oracle participation or chain-level oracle infrastructure, validators become part of the product surface.\n\nBefore launch, operators need clear instructions for:\n\n- supported price feeds\n- feeder configuration\n- monitoring\n- missed-vote behavior\n- failover providers\n- incident reporting\n\nSee the [Oracle module spec](/develop/module-specifications/spec-oracle/) for the current Terra Classic oracle context.\n\n## Safety summary\n\nForex Protocol should not launch as \"trust us, it is collateralized.\"\n\nIt needs visible controls:\n\n- collateral accounting\n- fiat price feeds\n- redemption limits\n- vault permissions\n- rebalancing rules\n- emergency pause logic\n- testnet evidence\n- public monitoring\n\nThose controls are the difference between a serious stable-asset product and another fragile narrative.\n",
+    "previousSlug": "forex-protocol/fees-buybacks-and-liquidity",
+    "nextSlug": "forex-protocol/risks-and-open-questions"
+  },
+  {
+    "slug": "forex-protocol/risks-and-open-questions",
+    "path": "/forex-protocol/risks-and-open-questions/",
+    "sourceFile": "content/docs/forex-protocol/risks-and-open-questions.md",
+    "group": "Forex Protocol",
+    "navTitle": "Risks and open questions",
+    "navDepth": 1,
+    "navParent": "forex-protocol/collateral-and-safety",
+    "navHasChildren": false,
+    "navOrder": 49,
+    "title": "Risks and open questions",
+    "description": "The unresolved risks, product questions, governance issues, and implementation gaps in the proposed Forex Protocol design.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/risks-and-open-questions.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Not live risk",
+        "id": "not-live-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Implementation risk",
+        "id": "implementation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Vault versus burn controversy",
+        "id": "vault-versus-burn-controversy"
+      },
+      {
+        "depth": 2,
+        "title": "Demand risk",
+        "id": "demand-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Liquidity risk",
+        "id": "liquidity-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Oracle risk",
+        "id": "oracle-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Collateral accounting risk",
+        "id": "collateral-accounting-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Redemption cap tradeoff",
+        "id": "redemption-cap-tradeoff"
+      },
+      {
+        "depth": 2,
+        "title": "Legal and regulatory risk",
+        "id": "legal-and-regulatory-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Multisig and governance trust risk",
+        "id": "multisig-and-governance-trust-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Stablecoin reputation risk",
+        "id": "stablecoin-reputation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Open questions for implementation",
+        "id": "open-questions-for-implementation"
+      },
+      {
+        "depth": 2,
+        "title": "Bottom line",
+        "id": "bottom-line"
+      }
+    ],
+    "body": "Forex Protocol should be documented with visible risk controls.\n\nThe source design is ambitious and strategically important, but stable-asset systems fail when docs hide unresolved questions.\n\n## Not live risk\n\nThe first risk is basic: Forex Protocol is not live.\n\nIf users believe EUTC minting or redemption is already available, they can be misled by fake interfaces, fake airdrops, fake contracts, or social posts that imply launch status.\n\nUntil a production deployment is verified, the correct user instruction is:\n\n```text\nDo not attempt to mint or redeem Forex Protocol assets through unofficial links.\n```\n\n## Implementation risk\n\nThe proposal is not a production specification.\n\nIt describes the product direction, but a build team still needs to define exact architecture, contract or module boundaries, custody assumptions, oracle feeds, DEX routing, vault accounting, permissions, deployment process, and monitoring.\n\nImplementation risk is high because Forex Protocol touches:\n\n- stable-asset issuance\n- collateral custody\n- redemption accounting\n- DEX routing\n- oracle pricing\n- emergency controls\n- governance trust\n- user-facing financial expectations\n\nThis cannot be treated like a simple UI feature.\n\n## Vault versus burn controversy\n\nThe most visible controversy in the source discussion is what should happen to LUNC bought with protocol fees.\n\nThe source proposal sends purchased LUNC to a permanent protocol vault. Several community comments argue that repurchased LUNC should be sent to the burn wallet instead.\n\nThe difference matters:\n\n| Option | Product implication |\n| --- | --- |\n| Vault | LUNC remains non-circulating if the vault is truly permanent and controlled, and may be treated as reserve or secondary collateral. |\n| Burn | LUNC is permanently removed from supply and cannot later be moved or used as collateral. |\n\nThe source proposer argues that burning collateral would weaken the collateralized model. Critics argue that vaulting creates trust concerns and is less final than burning.\n\nThis issue is not resolved by documentation. A production implementation must make the final governance-approved choice explicit.\n\n## Demand risk\n\nThe source discussion includes a direct question:\n\n```text\nWhy would anyone use this stablecoin instead of USDT?\n```\n\nThat is one of the strongest product questions.\n\nForex Protocol needs a reason for users, LPs, arbitrageurs, builders, and wallets to care. Possible demand drivers are not enough unless they become real integrations, liquidity, and user flows.\n\nDemand risk includes:\n\n- EUTC may not attract users\n- DEX liquidity may be shallow\n- arbitrage may be insufficient\n- fees may be too high for some use cases\n- established stablecoins may remain easier to use\n- wallets may not support the flow\n- users may not trust a new Terra Classic stable asset\n\n## Liquidity risk\n\nThe source says initial pools may include EUTC/LUNC, EUTC/USTC, and EUTC/USDC.\n\nThe source also says liquidity investment would require a later proposal.\n\nThat means Forex Protocol can pass conceptually but still fail commercially if liquidity is not deep enough.\n\nLiquidity risk affects:\n\n- mint demand\n- redemption confidence\n- DEX price stability\n- arbitrage efficiency\n- slippage\n- user trust\n- protocol fee generation\n\n## Oracle risk\n\nForex Protocol depends on fiat price inputs.\n\nIf oracle prices are stale, manipulated, unavailable, or too slow, the system can mint or redeem at unsafe values.\n\nThe source mentions 30-second live fiat prices, but the implementation must still define:\n\n- data providers\n- validator participation requirements\n- fallback behavior\n- stale-price handling\n- cross-rate calculation\n- manipulation resistance\n- monitoring and alerting\n\n## Collateral accounting risk\n\nThe source says users redeem into the same collateral they deposited.\n\nThat creates an accounting problem that must be solved precisely.\n\nOpen questions include:\n\n- how user collateral type is tracked\n- whether EUTC is fungible across collateral types\n- what happens if one collateral pool is depleted\n- whether redemptions are pro rata or collateral-specific\n- how fees affect collateral ratio\n- how secondary collateral is separated from primary collateral\n- how vault balances are reported\n\nThese cannot be hand-waved in a production system.\n\n## Redemption cap tradeoff\n\nThe 10% daily redemption cap is a safety control, but it also limits user exit capacity.\n\nBenefits:\n\n- reduces run risk\n- reduces instant arbitrage loops\n- reduces vault liquidity shock\n- reduces oracle-timing exploit risk\n\nTradeoffs:\n\n- users may dislike waiting\n- large holders may discount EUTC because redemption is capped\n- stress periods can create queues or secondary-market discounts\n- interfaces must explain cap status clearly\n\nThe cap may be necessary, but it is not free.\n\n## Legal and regulatory risk\n\nThe source describes the system as fully collateralized and regulatory neutral. That wording should be treated carefully.\n\nCollateralized stable assets can still raise legal, licensing, custody, sanctions, disclosure, and jurisdictional questions.\n\nThe docs should not claim legal compliance unless a qualified legal review exists.\n\n## Multisig and governance trust risk\n\nThe source proposes a multisig kill switch and governance-based resume logic.\n\nThat creates operational questions:\n\n- who are the signers\n- how are signers selected\n- how are signer changes approved\n- what actions can the multisig take\n- what actions require governance\n- how are emergency actions disclosed\n- how are conflicts of interest handled\n\nIf these questions are not answered, \"multisig-controlled\" can create as much anxiety as it removes.\n\n## Stablecoin reputation risk\n\nTerra Classic has a unique reputational burden because of the 2022 UST collapse.\n\nAny new stable-asset product will be judged through that history. The docs therefore need sober language:\n\n- collateral-backed, not algorithmic\n- proposed, not live\n- EUTC, not USTC\n- safety controls, not guarantees\n- implementation required, not already solved\n\n## Open questions for implementation\n\nBefore mainnet launch, the implementation plan should answer:\n\n| Question | Why it matters |\n| --- | --- |\n| Is CSM a CosmWasm contract system, core module, or hybrid? | Determines audit surface, upgrade process, and governance control. |\n| How are EURC and USDC bridged or represented on Terra Classic? | Determines collateral quality and operational risk. |\n| How is same-collateral redemption tracked? | Determines solvency and user fairness. |\n| What exact collateral ratio applies? | Source references 100.5% and 101.5% contexts. |\n| Who controls the vault? | Determines trust and emergency risk. |\n| What is the final vault-vs-burn policy? | Determines community acceptance and reserve behavior. |\n| What oracle feeds are used? | Determines pricing integrity. |\n| How are DEX routes selected? | Determines buyback safety and slippage. |\n| What happens if a collateral asset depegs? | Determines crisis behavior. |\n| What public monitoring exists? | Determines whether users can verify the system. |\n\n## Bottom line\n\nForex Protocol is worth documenting because it is one of the clearest attempts to reconnect Terra Classic with stable-asset utility.\n\nIt is also exactly the kind of product that must be documented with restraint. The credibility comes from being precise about what is accepted, what is proposed, what is missing, and what must be proven before launch.\n",
+    "previousSlug": "forex-protocol/oracles-and-safety-controls",
+    "nextSlug": "forex-protocol/developer-reference"
+  },
+  {
+    "slug": "forex-protocol/developer-reference",
+    "path": "/forex-protocol/developer-reference/",
+    "sourceFile": "content/docs/forex-protocol/developer-reference.md",
+    "group": "Forex Protocol",
+    "navTitle": "Developer reference",
+    "navDepth": 1,
+    "navParent": "forex-protocol/technical-reference",
+    "navHasChildren": false,
+    "navOrder": 51,
+    "title": "Developer reference",
+    "description": "Builder-facing reference for the proposed Forex Protocol and Collateralized Stablecoin Module implementation.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff",
+    "sourceSite": "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "forex-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/forex-protocol/developer-reference.md",
+    "sourceDate": "2025-12-07",
+    "tocDepth": 3,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Implementation status",
+        "id": "implementation-status"
+      },
+      {
+        "depth": 2,
+        "title": "Source-defined scope",
+        "id": "source-defined-scope"
+      },
+      {
+        "depth": 2,
+        "title": "Core product entities",
+        "id": "core-product-entities"
+      },
+      {
+        "depth": 2,
+        "title": "Required flows",
+        "id": "required-flows"
+      },
+      {
+        "depth": 3,
+        "title": "Mint with EURC",
+        "id": "mint-with-eurc"
+      },
+      {
+        "depth": 3,
+        "title": "Mint with USDC",
+        "id": "mint-with-usdc"
+      },
+      {
+        "depth": 3,
+        "title": "Redeem EUTC",
+        "id": "redeem-eutc"
+      },
+      {
+        "depth": 3,
+        "title": "Buy back LUNC",
+        "id": "buy-back-lunc"
+      },
+      {
+        "depth": 2,
+        "title": "Required accounting",
+        "id": "required-accounting"
+      },
+      {
+        "depth": 2,
+        "title": "Required safety controls",
+        "id": "required-safety-controls"
+      },
+      {
+        "depth": 2,
+        "title": "Related Terra Classic modules",
+        "id": "related-terra-classic-modules"
+      },
+      {
+        "depth": 2,
+        "title": "Interface states",
+        "id": "interface-states"
+      },
+      {
+        "depth": 2,
+        "title": "Builder quote expectations",
+        "id": "builder-quote-expectations"
+      },
+      {
+        "depth": 2,
+        "title": "Test requirements",
+        "id": "test-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Public diagnostics",
+        "id": "public-diagnostics"
+      },
+      {
+        "depth": 2,
+        "title": "Implementation warning",
+        "id": "implementation-warning"
+      }
+    ],
+    "body": "This reference is for software teams, protocol engineers, validators, wallet teams, and reviewers assessing Forex Protocol implementation work.\n\nForex Protocol is the product name. Collateralized Stablecoin Module is the proposed technology.\n\n## Implementation status\n\nForex Protocol is not deployed.\n\nThere is no production CSM implementation documented in this repository. Any team quoting or building this work should treat the source proposal as a product and mechanism brief, not as a complete technical specification.\n\n## Source-defined scope\n\nThe source proposal says the CSM construction scope includes:\n\n- multi-asset collateral\n- stablecoin issuance\n- automated swaps\n- LUNC buyback vault logic\n\nThe governance memo also references:\n\n- test integration\n- oracle integration\n- later liquidity investment proposal\n\n## Core product entities\n\n| Entity | Source-defined role |\n| --- | --- |\n| Forex Protocol | User-facing product name. |\n| Collateralized Stablecoin Module | Technical system for collateral-backed stable assets. |\n| EUTC | First proposed Euro-pegged Terra Classic stable asset. |\n| EURC | Proposed direct 1:1 EUTC collateral. |\n| USDC | Proposed EUTC collateral with 0.5% premium. |\n| Forex Secondary Reserve | Fee reserve used as secondary collateral and buyback source. |\n| LUNC Vault | Proposed destination for LUNC bought with secondary collateral. |\n| Fiat price oracle | Price input layer for USD, EUR, and other fiat rates. |\n\n## Required flows\n\nA complete implementation must define at least these flows.\n\n### Mint with EURC\n\n1. User deposits EURC.\n2. System validates the collateral input.\n3. System mints EUTC at 1:1.\n4. System takes a 1.5% EURC fee.\n5. System accounts for the EURC fee as secondary collateral.\n6. System updates outstanding EUTC supply.\n\n### Mint with USDC\n\n1. User deposits USDC.\n2. System applies the 0.5% premium.\n3. System mints EUTC using the source formula:\n\n```text\nEUTC minted = USDC deposited x 0.995\n```\n\n4. System takes a 1.5% USDC fee.\n5. System accounts for the USDC fee as secondary collateral.\n6. System updates outstanding EUTC supply.\n\n### Redeem EUTC\n\n1. User submits EUTC for redemption.\n2. System checks daily redemption capacity.\n3. System burns redeemed EUTC.\n4. System returns the same collateral type the user deposited, according to the final accounting model.\n5. System takes a 1.5% redemption fee in the withdrawn stablecoin.\n6. System accounts for the fee as secondary collateral.\n\n### Buy back LUNC\n\n1. System accumulates secondary collateral.\n2. System selects a DEX route for LUNC buyback.\n3. System applies slippage and safety limits.\n4. System swaps secondary collateral for LUNC.\n5. System sends purchased LUNC to the final destination defined by governance, proposed as a permanent protocol vault in the source.\n6. System reports buyback and vault state.\n\n## Required accounting\n\nThe implementation needs explicit accounting for:\n\n- EUTC total supply\n- EUTC minted per collateral type\n- EURC primary collateral\n- USDC primary collateral\n- mint fees\n- redemption fees\n- secondary reserve balances\n- buyback execution\n- LUNC vault balances\n- daily redemption cap usage\n- collateral ratio\n- mint caps\n- rebalancing state\n\nDo not collapse these into one generic balance. Stable-asset users and reviewers need to verify each layer independently.\n\n## Required safety controls\n\nThe source defines or implies these controls:\n\n| Control | Source-defined behavior |\n| --- | --- |\n| Daily redemption cap | Maximum 10% of total EUTC supply redeemable per day. |\n| Same-stablecoin fees | Mint and redemption fees paid in the same stablecoin used or withdrawn. |\n| Fiat price oracles | Live fiat prices, with 30-second refresh described in source. |\n| Vault accounting | Lock collateral, maintain ratios, track minted outstanding supply. |\n| Mint-cap rebalancing | Adjust mint caps based on collateral depth and volatility. |\n| Portfolio rebalancing | Suggested when USDC and EURC value differential reaches 5%. |\n| Kill switch | Multisig-controlled pause concept with governance-based resume. |\n\nThese controls need exact implementation definitions before deployment.\n\n## Related Terra Classic modules\n\nThe final CSM design may touch or depend on:\n\n| Module or layer | Possible role |\n| --- | --- |\n| `x/oracle` | Fiat and asset pricing if implemented through chain oracle infrastructure. |\n| `x/gov` | Governance approvals, parameter changes, emergency resume logic. |\n| `x/tax` | Tax treatment for native swaps and related transfers if applicable. |\n| `x/wasm` | Possible smart contract implementation surface if CSM is built with CosmWasm. |\n| DEX contracts | EUTC pools, LUNC buybacks, liquidity routing. |\n\nThe source does not finalize whether CSM should be a core module, a smart contract system, or a hybrid. That is an implementation decision that must be justified.\n\n## Interface states\n\nWallets and dashboards should be prepared to show these states if Forex Protocol is implemented:\n\n| State | Meaning |\n| --- | --- |\n| Not launched | No production system exists. |\n| Mint paused | Minting is unavailable. |\n| Mint available | Minting can be attempted. |\n| Redemption available | Redemption can be attempted within daily limits. |\n| Redemption cap reached | Daily redemption capacity is exhausted. |\n| Redemption paused | Emergency controls paused redemptions. |\n| Oracle degraded | Price inputs are unavailable, stale, or unsafe. |\n| Buyback pending | Secondary reserve exists but buyback has not executed. |\n| Buyback failed | DEX route, slippage, or execution failed. |\n| Vault reporting unavailable | LUNC vault state cannot be verified. |\n\n## Builder quote expectations\n\nA credible team proposal should include:\n\n- discovery phase\n- architecture decision: core module, CosmWasm, or hybrid\n- collateral asset representation plan\n- oracle integration plan\n- vault and reserve accounting design\n- mint and redemption flow design\n- redemption cap design\n- DEX routing and buyback design\n- emergency pause design\n- testnet plan\n- simulation plan\n- security review or audit plan\n- documentation plan\n- deployment support plan\n- monitoring and incident response plan\n\n## Test requirements\n\nMinimum test areas should include:\n\n- EURC minting\n- USDC minting with 0.5% premium\n- mint fee accounting\n- redemption fee accounting\n- same-collateral redemption behavior\n- daily redemption cap\n- EUTC burn on redemption\n- secondary reserve accumulation\n- buyback route execution\n- buyback route failure\n- slippage limits\n- vault balance immutability or permission constraints\n- fiat oracle stale data\n- fiat oracle rapid movement\n- collateral ratio boundary conditions\n- emergency pause and resume\n- governance or multisig permission checks\n\n## Public diagnostics\n\nForex Protocol should ship with public diagnostics, not just contracts.\n\nUseful diagnostics include:\n\n- total EUTC supply\n- EUTC minted by collateral type\n- primary collateral balances\n- collateral ratio\n- daily redemption cap remaining\n- fees collected\n- secondary reserve balances\n- buybacks executed\n- LUNC vault balance\n- oracle status\n- paused state\n- latest parameter changes\n- latest governance-controlled action\n\nThis matters because the project owner and many users are not developers. The system should make verification simple.\n\n## Implementation warning\n\nDo not implement Forex Protocol as a black-box stablecoin contract.\n\nThe product will only be credible if users, validators, builders, and governance participants can understand and verify:\n\n- what backs EUTC\n- where collateral is held\n- who can move or pause what\n- how fees are handled\n- how LUNC buybacks work\n- what happens in stress\n- whether the system is live, paused, or not launched\n\nThat verification layer is part of the product.\n",
+    "previousSlug": "forex-protocol/risks-and-open-questions",
+    "nextSlug": "governance/overview"
+  },
+  {
+    "slug": "governance/overview",
+    "path": "/governance/overview/",
+    "sourceFile": "content/docs/governance/overview.md",
+    "group": "Governance",
+    "navTitle": "Governance",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 52,
+    "title": "Governance",
+    "description": "A user-first guide to Terra Classic governance: what it controls, why it matters, and how LUNC holders can participate responsibly.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/overview.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Who this section is for",
+        "id": "who-this-section-is-for"
+      },
+      {
+        "depth": 2,
+        "title": "What governance can affect",
+        "id": "what-governance-can-affect"
+      },
+      {
+        "depth": 2,
+        "title": "The core idea",
+        "id": "the-core-idea"
+      },
+      {
+        "depth": 2,
+        "title": "Why governance quality matters",
+        "id": "why-governance-quality-matters"
+      },
+      {
+        "depth": 2,
+        "title": "How this section is organized",
+        "id": "how-this-section-is-organized"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial advice",
+        "id": "not-financial-advice"
+      }
+    ],
+    "body": "Governance is the decision layer of Terra Classic.\n\nIt is how staked LUNC is used to approve, reject, fund, signal, or execute changes that affect the chain. Governance can influence protocol parameters, software upgrades, tax and fee rules, community pool spending, product directions, and public coordination.\n\nGovernance is not a company board, a customer support desk, or a guarantee that every passed idea will be delivered well. It is a token-weighted control process. That makes participation powerful, but it also makes voter quality, validator accountability, and proposal discipline extremely important.\n\n## Who this section is for\n\nUse this section if you are:\n\n- a LUNC holder trying to understand what governance can change\n- a delegator who wants to know how validator votes affect your stake\n- a community member deciding how to vote on proposals\n- an investor evaluating whether Terra Classic governance is serious\n- a user trying to avoid unsafe, vague, or overpromised proposals\n\nDevelopers should also read the [governance module specification](/develop/module-specifications/spec-governance/) when they need protocol-level details.\n\n## What governance can affect\n\nGovernance can affect several parts of Terra Classic:\n\n| Area | Examples |\n| --- | --- |\n| Protocol upgrades | Software upgrade proposals, module changes, chain halt coordination. |\n| Parameters | Deposit, voting, tax, fee, staking, slashing, and module settings where governance-controlled. |\n| Community funding | Community pool spend proposals and public-good funding. |\n| Product direction | Signaling proposals for L1 products such as Swap Protocol or Forex Protocol. |\n| Public coordination | Roadmaps, policies, working groups, and other off-chain commitments. |\n\nNot every proposal executes automatically. Some proposals change chain state directly. Others are text or signaling proposals that require humans, teams, or validators to follow through after the vote.\n\n## The core idea\n\nTerra Classic governance has three connected layers:\n\n1. Staked LUNC creates voting power.\n2. Validators vote by default with delegated voting power.\n3. Delegators can override their validator's vote by voting directly before the deadline.\n\nThis means staking and governance are connected, but they are not the same thing. Staking explains how voting power is created. Governance explains how that power is used.\n\n## Why governance quality matters\n\nWeak governance can damage a chain even when the chain keeps producing blocks.\n\nPoor governance can lead to:\n\n- low-turnout decisions\n- validator non-participation\n- vague funding requests\n- untested protocol changes\n- rushed software upgrades\n- repeated proposal churn\n- weak accountability after a proposal passes\n\nStrong governance does the opposite. It makes decisions easier to inspect, improves user trust, gives serious builders clearer requirements, and makes it harder for weak proposals to pass on hype alone.\n\n## How this section is organized\n\n- [Voting power and delegation](/governance/voting-power-and-delegation/) explains how staked LUNC becomes governance power.\n- [Proposal lifecycle](/governance/proposal-lifecycle/) explains deposit, voting, quorum, thresholds, veto, and execution.\n- [Vote options](/governance/vote-options/) explains `Yes`, `No`, `NoWithVeto`, and `Abstain`.\n- [How to vote](/governance/how-to-vote/) gives a practical user workflow.\n- [How to evaluate proposals](/governance/how-to-evaluate-proposals/) gives a decision framework for non-technical voters.\n- [Validator accountability](/governance/validator-accountability/) explains what delegators should expect from validators.\n- [Risks and safeguards](/governance/risks-and-safeguards/) explains common governance failure modes and how users can reduce risk.\n\n## Not financial advice\n\nGovernance can affect protocol behavior and market expectations, but these docs do not tell you whether to buy, sell, hold, stake, vote, or fund any asset, validator, proposal, or project.\n",
+    "previousSlug": "forex-protocol/developer-reference",
+    "nextSlug": "governance/voting-power-and-delegation"
+  },
+  {
+    "slug": "governance/voting-power-and-delegation",
+    "path": "/governance/voting-power-and-delegation/",
+    "sourceFile": "content/docs/governance/voting-power-and-delegation.md",
+    "group": "Governance",
+    "navTitle": "Voting power and delegation",
+    "navDepth": 1,
+    "navParent": "governance/understand-governance",
+    "navHasChildren": false,
+    "navOrder": 54,
+    "title": "Voting power and delegation",
+    "description": "How staked LUNC becomes governance power, how validator votes work, and how delegators can override validator votes.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/voting-power-and-delegation.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Default validator voting",
+        "id": "default-validator-voting"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator override",
+        "id": "delegator-override"
+      },
+      {
+        "depth": 2,
+        "title": "Why delegator voting matters",
+        "id": "why-delegator-voting-matters"
+      },
+      {
+        "depth": 2,
+        "title": "Delegation is still accountability",
+        "id": "delegation-is-still-accountability"
+      },
+      {
+        "depth": 2,
+        "title": "How this relates to Staking Protocol",
+        "id": "how-this-relates-to-staking-protocol"
+      }
+    ],
+    "body": "Governance power comes from staked LUNC.\n\nWhen you delegate LUNC, you are not only staking for protocol rewards. You are also assigning default governance power to your validator.\n\n## Default validator voting\n\nValidators vote with the voting power delegated to them.\n\nIf a delegator does nothing, the validator's vote is applied to that delegator's stake. This is convenient, but it creates risk when validators are passive, misaligned, unaccountable, or silent on important decisions.\n\nDelegators can override the validator's vote by voting directly before the proposal deadline.\n\n## Delegator override\n\nIf you vote directly, your vote overrides your validator's vote for your delegated stake on that proposal.\n\nThis matters because you can keep your stake delegated while still making your own decision on proposals that affect:\n\n- software upgrades\n- community pool spending\n- tax and fee rules\n- staking and slashing parameters\n- oracle behavior\n- product proposals\n- governance process changes\n\nDelegator override makes validator choice less absolute, but it does not remove the need to choose serious validators. Validators still influence consensus, day-to-day governance defaults, upgrade readiness, public credibility, and operational safety.\n\n## Why delegator voting matters\n\nTerra Classic has a long-running governance-quality problem: many users do not vote directly, and many validators have historically skipped proposals.\n\nThis creates three issues:\n\n- decisions are made by a smaller group than the full stakeholder base\n- silent validators can carry delegated voting power without accountability\n- governance legitimacy weakens when turnout is low\n\nDirect voting is one of the simplest ways delegators can improve governance quality. Even if you do not vote on every proposal, you should vote directly on proposals that materially affect your risk, your stake, or the chain's direction.\n\n## Delegation is still accountability\n\nVoting directly is not the only governance action.\n\nDelegators can also:\n\n- move stake away from validators that rarely vote\n- avoid validators that do not explain important votes\n- split stake across credible validators to reduce concentration\n- support validators with strong uptime, communication, and public contribution\n- review voting records before delegating more LUNC\n\nDelegation is not only an APR decision. It is also a governance decision.\n\n## How this relates to Staking Protocol\n\nThe [Staking Protocol](/staking-protocol/overview/) section explains delegation, rewards, validator selection, unstaking, and staking risks.\n\nThis Governance section explains what happens after staked LUNC becomes voting power.\n\nIf you are choosing where to stake, read:\n\n- [Choose a validator](/staking-protocol/choose-a-validator/)\n- [Validator accountability](/governance/validator-accountability/)\n- [Risks and safeguards](/governance/risks-and-safeguards/)\n",
+    "previousSlug": "governance/overview",
+    "nextSlug": "governance/proposal-lifecycle"
+  },
+  {
+    "slug": "governance/proposal-lifecycle",
+    "path": "/governance/proposal-lifecycle/",
+    "sourceFile": "content/docs/governance/proposal-lifecycle.md",
+    "group": "Governance",
+    "navTitle": "Proposal lifecycle",
+    "navDepth": 1,
+    "navParent": "governance/understand-governance",
+    "navHasChildren": false,
+    "navOrder": 55,
+    "title": "Proposal lifecycle",
+    "description": "How Terra Classic proposals move through deposit, voting, tallying, and execution, and which governance parameters users should understand.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/proposal-lifecycle.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Deposit period",
+        "id": "deposit-period"
+      },
+      {
+        "depth": 2,
+        "title": "Voting period",
+        "id": "voting-period"
+      },
+      {
+        "depth": 2,
+        "title": "Quorum, threshold, and veto",
+        "id": "quorum-threshold-and-veto"
+      },
+      {
+        "depth": 2,
+        "title": "Current parameter check",
+        "id": "current-parameter-check"
+      },
+      {
+        "depth": 2,
+        "title": "Passed does not always mean delivered",
+        "id": "passed-does-not-always-mean-delivered"
+      },
+      {
+        "depth": 2,
+        "title": "Execution gap",
+        "id": "execution-gap"
+      }
+    ],
+    "body": "A proposal is not just a forum post. It is an on-chain governance item with a lifecycle.\n\nMost Terra Classic governance items move through deposit, voting, tallying, and then either execution or follow-up.\n\n## Deposit period\n\nA proposal must reach the required deposit before it enters voting.\n\nThe deposit exists to reduce spam and require some commitment from the proposer or supporters. Other users can usually contribute to the deposit while the proposal is in deposit period.\n\nIf the proposal does not reach the minimum deposit before the maximum deposit period ends, it does not enter voting.\n\n## Voting period\n\nAfter the required deposit is reached, the proposal enters voting period.\n\nDuring voting period, staked LUNC can be used to vote. Validators vote by default with delegated voting power, unless delegators vote directly and override the validator vote for their own stake.\n\nThe proposal result depends on quorum, threshold, veto threshold, and the final tally.\n\n## Quorum, threshold, and veto\n\nThree terms matter most:\n\n| Term | Meaning |\n| --- | --- |\n| Quorum | The minimum share of voting power that must participate for the vote to be valid. |\n| Threshold | The support level needed for a proposal to pass if quorum is reached and veto does not block it. |\n| Veto threshold | The `NoWithVeto` level that can reject a proposal and burn deposits where chain rules apply. |\n\n`Yes`, `No`, `NoWithVeto`, and `Abstain` all count toward quorum. `Abstain` counts as participation, but it is not support for `Yes` or `No`.\n\n## Current parameter check\n\nGovernance parameters can change. Query current values before writing guides, calculators, dashboards, or governance tooling.\n\nTerra Classic governance params are queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/gov/v1/params/voting\nhttps://terra-classic-lcd.publicnode.com/cosmos/gov/v1/params/deposit\nhttps://terra-classic-lcd.publicnode.com/cosmos/gov/v1/params/tallying\n```\n\nAs checked on 2026-06-01, the LCD endpoint returned:\n\n| Parameter | Value |\n| --- | --- |\n| `min_deposit` | `5000000000000uluna` |\n| `max_deposit_period` | `1209600s` |\n| `voting_period` | `604800s` |\n| `quorum` | `0.400000000000000000` |\n| `threshold` | `0.500000000000000000` |\n| `veto_threshold` | `0.334000000000000000` |\n| `expedited_voting_period` | `86400s` |\n| `expedited_threshold` | `0.667000000000000000` |\n| `burn_vote_veto` | `true` |\n\nThe same endpoint also returned an `expedited_min_deposit` denom of `stake`. Treat endpoint output as chain state to inspect, not as a user-facing assumption. Interfaces should display the exact current values they query.\n\n## Passed does not always mean delivered\n\nSome proposals execute on-chain when they pass.\n\nOther proposals are text, signaling, funding, coordination, or roadmap proposals. These can pass without automatically delivering the work described in the proposal.\n\nFor that reason, users should separate:\n\n- vote result\n- on-chain execution\n- off-chain follow-through\n- public proof that delivery happened\n\nA serious governance culture tracks all four.\n\n## Execution gap\n\nThe execution gap is the distance between \"the proposal passed\" and \"the promised result exists.\"\n\nThis gap is especially important for:\n\n- software upgrade proposals\n- community pool spending\n- product implementation proposals\n- stablecoin or market module proposals\n- infrastructure and documentation proposals\n- proposals that rely on a named team or multisig\n\nIf a proposal depends on human execution, voters should ask who owns delivery, what proof will be published, and what happens if delivery fails.\n",
+    "previousSlug": "governance/voting-power-and-delegation",
+    "nextSlug": "governance/vote-options"
+  },
+  {
+    "slug": "governance/vote-options",
+    "path": "/governance/vote-options/",
+    "sourceFile": "content/docs/governance/vote-options.md",
+    "group": "Governance",
+    "navTitle": "Vote options",
+    "navDepth": 1,
+    "navParent": "governance/understand-governance",
+    "navHasChildren": false,
+    "navOrder": 56,
+    "title": "Vote options",
+    "description": "What Yes, No, NoWithVeto, and Abstain mean in Terra Classic governance, and how users should think about each option.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/vote-options.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Vote meanings",
+        "id": "vote-meanings"
+      },
+      {
+        "depth": 2,
+        "title": "Yes",
+        "id": "yes"
+      },
+      {
+        "depth": 2,
+        "title": "No",
+        "id": "no"
+      },
+      {
+        "depth": 2,
+        "title": "NoWithVeto",
+        "id": "nowithveto"
+      },
+      {
+        "depth": 2,
+        "title": "Abstain",
+        "id": "abstain"
+      },
+      {
+        "depth": 2,
+        "title": "Did not vote",
+        "id": "did-not-vote"
+      },
+      {
+        "depth": 2,
+        "title": "Practical rule",
+        "id": "practical-rule"
+      }
+    ],
+    "body": "Terra Classic governance supports four standard vote options.\n\nThe vote you choose should match your actual decision, not just your emotion toward the proposer.\n\n## Vote meanings\n\n| Vote | Meaning |\n| --- | --- |\n| `Yes` | You support the proposal passing. |\n| `No` | You reject the proposal without using veto-specific rejection. |\n| `NoWithVeto` | You strongly reject the proposal and want veto rules to apply if the threshold is reached. |\n| `Abstain` | You participate in quorum without supporting or opposing the proposal. |\n\n## Yes\n\nUse `Yes` when the proposal is clear enough, useful enough, and safe enough to pass.\n\nA good `Yes` vote should usually mean:\n\n- the problem is real\n- the proposed action is specific\n- the requested budget is justified, if any\n- the execution path is credible\n- risks are disclosed\n- follow-up can be verified\n\nDo not vote `Yes` only because the idea sounds positive. Governance should approve executable plans, not just good intentions.\n\n## No\n\nUse `No` when you reject the proposal but do not think veto handling is appropriate.\n\nCommon reasons to vote `No` include:\n\n- weak scope\n- poor timing\n- missing budget detail\n- unclear ownership\n- insufficient evidence\n- better alternatives available\n- proposal is directionally useful but not ready\n\n`No` is a normal governance answer. It should not be treated as hostility.\n\n## NoWithVeto\n\nUse `NoWithVeto` carefully.\n\nIt is a governance safety tool, not a general dislike button.\n\n`NoWithVeto` may be appropriate when a proposal is:\n\n- spam\n- malicious\n- deceptive\n- abusive toward minority interests\n- unsafe for users\n- attempting to misuse the community pool\n- pushing high-risk protocol changes without serious review\n- materially misrepresenting its status, scope, or authority\n\nIf the veto threshold is reached and chain rules apply, deposits can be burned. That makes `NoWithVeto` a stronger signal than `No`.\n\n## Abstain\n\nUse `Abstain` when you want your voting power to count toward quorum but you do not want to support or reject the proposal.\n\n`Abstain` can be reasonable when:\n\n- you have a conflict of interest\n- the proposal is outside your competence\n- the information is incomplete but you do not want to block quorum\n- you want to signal process participation without a directional vote\n\nDo not use `Abstain` as a permanent substitute for doing the work. A governance participant that always abstains is not giving delegators much representation.\n\n## Did not vote\n\nNot voting is different from `Abstain`.\n\nIf you do not vote directly, your validator's vote applies to your delegated stake by default. If your validator also does not vote, your stake does not participate in that proposal.\n\nRepeated non-voting by validators or delegators weakens governance because decisions are made by a thinner active set.\n\n## Practical rule\n\nUse this simple decision rule:\n\n| If you believe... | Vote |\n| --- | --- |\n| The proposal is useful, scoped, and credible. | `Yes` |\n| The proposal should not pass, but is not abusive or dangerous. | `No` |\n| The proposal is spam, malicious, deceptive, or materially unsafe. | `NoWithVeto` |\n| You need to participate but cannot take a side responsibly. | `Abstain` |\n",
+    "previousSlug": "governance/proposal-lifecycle",
+    "nextSlug": "governance/how-to-vote"
+  },
+  {
+    "slug": "governance/how-to-vote",
+    "path": "/governance/how-to-vote/",
+    "sourceFile": "content/docs/governance/how-to-vote.md",
+    "group": "Governance",
+    "navTitle": "How to vote",
+    "navDepth": 1,
+    "navParent": "governance/use-governance",
+    "navHasChildren": false,
+    "navOrder": 58,
+    "title": "How to vote",
+    "description": "A practical voting workflow for Terra Classic users who want to review proposals, cast votes, and verify the result.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/how-to-vote.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Before you vote",
+        "id": "before-you-vote"
+      },
+      {
+        "depth": 2,
+        "title": "Voting workflow",
+        "id": "voting-workflow"
+      },
+      {
+        "depth": 2,
+        "title": "Wallet guides",
+        "id": "wallet-guides"
+      },
+      {
+        "depth": 2,
+        "title": "Vote before the deadline",
+        "id": "vote-before-the-deadline"
+      },
+      {
+        "depth": 2,
+        "title": "Check your validator's vote",
+        "id": "check-your-validators-vote"
+      },
+      {
+        "depth": 2,
+        "title": "Verify after voting",
+        "id": "verify-after-voting"
+      },
+      {
+        "depth": 2,
+        "title": "Safety reminders",
+        "id": "safety-reminders"
+      }
+    ],
+    "body": "Voting is a wallet transaction.\n\nYou need a wallet that supports Terra Classic governance, available LUNC for transaction fees, and staked LUNC for voting power.\n\n## Before you vote\n\nBefore voting, check:\n\n- proposal title\n- full proposal text\n- proposal type\n- voting deadline\n- current tally\n- discussion links\n- requested budget, if any\n- proposer identity or responsible team\n- whether the proposal executes on-chain or needs off-chain follow-up\n- whether your validator has already voted\n\nDo not vote from screenshots alone. Open the proposal and read the source material.\n\n## Voting workflow\n\nMost wallet governance flows follow this pattern:\n\n1. Open the governance view in a supported wallet or dashboard.\n2. Select Terra Classic.\n3. Open the proposal.\n4. Read the full proposal text and discussion links.\n5. Check whether the proposal is executable, text-only, parameter-changing, upgrade-related, or funding-related.\n6. Choose `Yes`, `No`, `NoWithVeto`, or `Abstain`.\n7. Confirm the transaction and fee.\n8. Verify your vote on an explorer or governance dashboard.\n\n## Wallet guides\n\nUse wallet-specific pages for interface details:\n\n- [Galaxy Station governance](/learn/galaxy-station/galaxy-station-governance/)\n- [Keplr governance](/learn/keplr/keplr-governance/)\n\nWallet interfaces can change. If a screenshot or menu label is outdated, rely on the concept: open Governance, select the proposal, choose a vote option, confirm the transaction, then verify the vote.\n\n## Vote before the deadline\n\nYou can only vote while the proposal is in voting period.\n\nIf you wait until the final moments, you risk missing the deadline because of wallet issues, network delay, user error, or insufficient transaction fees.\n\n## Check your validator's vote\n\nIf you delegate LUNC, your validator may already have voted.\n\nYou can still vote directly before the deadline. Your direct vote overrides the validator's vote for your delegated stake on that proposal.\n\nIf your validator repeatedly votes against your preferences or does not vote, consider whether that validator still deserves your delegation.\n\n## Verify after voting\n\nAfter confirming the transaction, verify that the vote appears correctly.\n\nCheck:\n\n- proposal ID\n- wallet address\n- selected vote option\n- transaction success\n- vote timestamp or block height\n\nIf the transaction failed, your vote was not counted.\n\n## Safety reminders\n\nNever enter your seed phrase into a governance website.\n\nBe careful with links shared in social media, Telegram, Discord, or comments. Use known wallet apps and official project links where possible.\n\nGovernance pages should not ask you for private keys. A legitimate vote requires a signed wallet transaction, not seed phrase disclosure.\n",
+    "previousSlug": "governance/vote-options",
+    "nextSlug": "governance/how-to-evaluate-proposals"
+  },
+  {
+    "slug": "governance/how-to-evaluate-proposals",
+    "path": "/governance/how-to-evaluate-proposals/",
+    "sourceFile": "content/docs/governance/how-to-evaluate-proposals.md",
+    "group": "Governance",
+    "navTitle": "How to evaluate proposals",
+    "navDepth": 1,
+    "navParent": "governance/use-governance",
+    "navHasChildren": false,
+    "navOrder": 59,
+    "title": "How to evaluate proposals",
+    "description": "A practical proposal-review framework for Terra Classic users, delegators, and investors.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/how-to-evaluate-proposals.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "First question",
+        "id": "first-question"
+      },
+      {
+        "depth": 2,
+        "title": "Proposal quality checklist",
+        "id": "proposal-quality-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "Identify proposal type",
+        "id": "identify-proposal-type"
+      },
+      {
+        "depth": 2,
+        "title": "Check the execution path",
+        "id": "check-the-execution-path"
+      },
+      {
+        "depth": 2,
+        "title": "Check source quality",
+        "id": "check-source-quality"
+      },
+      {
+        "depth": 2,
+        "title": "Red flags",
+        "id": "red-flags"
+      },
+      {
+        "depth": 2,
+        "title": "Product proposals need extra discipline",
+        "id": "product-proposals-need-extra-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Investor-grade standard",
+        "id": "investor-grade-standard"
+      }
+    ],
+    "body": "A proposal should earn trust before it earns votes.\n\nThe goal is not to make every voter a developer, lawyer, or economist. The goal is to give users a simple framework for spotting serious proposals and rejecting weak ones.\n\n## First question\n\nAsk one question before anything else:\n\n> If this proposal passes, what exactly changes?\n\nIf the answer is unclear, the proposal is not ready.\n\n## Proposal quality checklist\n\nA serious proposal should make the following clear:\n\n| Question | Why it matters |\n| --- | --- |\n| What problem does it solve? | Governance should not approve vague activity. |\n| What exact action happens? | Voters need to know whether this is code, funding, signaling, or coordination. |\n| Who is responsible? | \"The community\" is not an execution owner. |\n| What budget is requested? | Funding requires scope, amount, custody, and deliverables. |\n| What evidence supports the claim? | Good proposals show sources, data, code, or comparable examples. |\n| What are the risks? | Serious teams disclose tradeoffs before opponents do it for them. |\n| What is the timeline? | Open-ended promises are hard to evaluate. |\n| How is success measured? | Voters need proof after the vote. |\n| What happens if execution fails? | Governance needs an accountability path. |\n\nWeak proposals ask governance for trust without giving governance enough information to make a decision.\n\n## Identify proposal type\n\nNot all proposals carry the same risk.\n\n| Proposal type | Main review focus |\n| --- | --- |\n| Text or signaling | Is the direction clear, useful, and honestly framed? |\n| Community pool spend | Is the budget justified and milestone-based? |\n| Software upgrade | Are code, testing, release notes, and upgrade coordination credible? |\n| Parameter change | What second-order effects does the change create? |\n| Product proposal | Is it live, proposed, funded, audited, or only accepted as a direction? |\n| Stablecoin or market mechanism | Are collateral, oracle, liquidity, legal, and user-safety risks addressed? |\n\n## Check the execution path\n\nA proposal can pass and still fail operationally.\n\nBefore voting `Yes`, check whether the execution path includes:\n\n- named owner\n- delivery milestones\n- public repository or artifact\n- acceptance criteria\n- update cadence\n- testing or review plan\n- budget release logic\n- final delivery proof\n\nIf a proposal asks for money but does not define acceptance criteria, voters should be skeptical.\n\n## Check source quality\n\nPrefer proposals that link to:\n\n- code repositories\n- design documents\n- technical specifications\n- governance discussions\n- dashboards or queryable data\n- audit reports or review notes\n- previous delivery history\n- clear wallet or multisig addresses where relevant\n\nScreenshots and social posts can support a proposal, but they should not be the only evidence for a major decision.\n\n## Red flags\n\nBe careful with proposals that:\n\n- promise price outcomes\n- use urgency to avoid review\n- hide who controls funds\n- confuse passed governance with completed implementation\n- claim official status without proof\n- omit risks\n- request funding without milestones\n- rely on vague \"community will decide later\" language\n- attack critics instead of answering technical or economic questions\n- turn a high-risk product into a branding exercise\n\n## Product proposals need extra discipline\n\nTerra Classic has several L1 product directions, including [Swap Protocol](/swap-protocol/overview/) and [Forex Protocol](/forex-protocol/overview/).\n\nFor product proposals, voters should separate:\n\n- governance acceptance\n- implementation funding\n- code completion\n- testing\n- audits\n- liquidity\n- wallet support\n- mainnet availability\n\nThose are different stages. A proposal passing does not automatically make a product live.\n\n## Investor-grade standard\n\nFor major proposals, use this standard:\n\n> Claim, artifact, verifier, timestamp.\n\nA proposal should say what is being claimed, show the artifact that proves it, make it possible for others to verify, and include a timestamp or checked date.\n\nIf a proposal cannot be verified, treat it as commentary until evidence exists.\n",
+    "previousSlug": "governance/how-to-vote",
+    "nextSlug": "governance/validator-accountability"
+  },
+  {
+    "slug": "governance/validator-accountability",
+    "path": "/governance/validator-accountability/",
+    "sourceFile": "content/docs/governance/validator-accountability.md",
+    "group": "Governance",
+    "navTitle": "Validator accountability",
+    "navDepth": 1,
+    "navParent": "governance/accountability-and-risk",
+    "navHasChildren": false,
+    "navOrder": 61,
+    "title": "Validator accountability",
+    "description": "How Terra Classic delegators can judge validator governance behavior, communication, conflicts, and accountability.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/validator-accountability.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Minimum governance expectations",
+        "id": "minimum-governance-expectations"
+      },
+      {
+        "depth": 2,
+        "title": "Non-voting is still a signal",
+        "id": "non-voting-is-still-a-signal"
+      },
+      {
+        "depth": 2,
+        "title": "Vote explanations",
+        "id": "vote-explanations"
+      },
+      {
+        "depth": 2,
+        "title": "Conflicts of interest",
+        "id": "conflicts-of-interest"
+      },
+      {
+        "depth": 2,
+        "title": "Communication standards",
+        "id": "communication-standards"
+      },
+      {
+        "depth": 2,
+        "title": "Accountability tools for delegators",
+        "id": "accountability-tools-for-delegators"
+      },
+      {
+        "depth": 2,
+        "title": "Validator accountability scorecard",
+        "id": "validator-accountability-scorecard"
+      },
+      {
+        "depth": 2,
+        "title": "Link back to staking",
+        "id": "link-back-to-staking"
+      }
+    ],
+    "body": "Validators are not only block-signing operators.\n\nThey are also default governance representatives for delegators who do not vote directly. That makes validator accountability a governance issue, not only a staking issue.\n\n## Minimum governance expectations\n\nA responsible validator should:\n\n- vote on governance proposals consistently\n- explain important votes\n- prepare for software upgrades\n- communicate incidents\n- disclose material conflicts\n- keep commission behavior transparent\n- maintain useful public contact information\n- avoid misleading delegators\n- support chain safety over short-term attention\n\nThis is the baseline. It is not an exceptional contribution.\n\n## Non-voting is still a signal\n\nIf a validator repeatedly does not vote, that is not neutral.\n\nIt means the validator is carrying delegated voting power without using it. This weakens representation and pushes decisions toward a smaller active set.\n\nDelegators should treat repeated non-voting as a serious accountability problem.\n\n## Vote explanations\n\nValidators should explain important votes, especially when proposals affect:\n\n- L1 upgrades\n- tax and fee parameters\n- community pool spending\n- validator economics\n- oracle behavior\n- market or swap modules\n- stablecoin-related proposals\n- security-critical changes\n- ecosystem funding\n\nA short explanation is often enough. The point is to make the decision inspectable.\n\n## Conflicts of interest\n\nConflicts are not automatically disqualifying. Hidden conflicts are the problem.\n\nA validator should disclose material conflicts where relevant, such as:\n\n- operating services that benefit from a proposal\n- running applications affected by a proposal\n- receiving funding from a project involved in a vote\n- maintaining infrastructure that governance may fund\n- promoting another chain or product that competes with Terra Classic priorities\n\nDelegators do not need perfect purity. They need clarity.\n\n## Communication standards\n\nA validator should make it easy to find:\n\n- official website or profile\n- contact channel\n- governance vote rationale\n- incident updates\n- upgrade readiness notices\n- commission information\n- public contributions\n\nSilence is costly. Delegators cannot evaluate risk if validators do not communicate.\n\n## Accountability tools for delegators\n\nDelegators can respond to weak validator behavior by:\n\n- voting directly\n- asking validators to explain votes\n- tracking voting records\n- redelegating away from passive validators\n- splitting stake across multiple credible validators\n- avoiding validators that increase concentration risk\n- supporting validators that publish useful public information\n\nRedelegation is not drama. It is how delegated proof-of-stake creates accountability.\n\n## Validator accountability scorecard\n\n| Criterion | Strong signal | Weak signal |\n| --- | --- | --- |\n| Voting | Regular participation. | Frequent non-voting. |\n| Rationale | Explains major votes. | Silent on important proposals. |\n| Conflicts | Discloses relevant conflicts. | Hidden or ignored conflicts. |\n| Communication | Clear public channels. | No useful contact or updates. |\n| Delivery | Shows concrete contribution. | Slogans without proof. |\n| Safety | Supports review and evidence. | Pushes rushed high-risk changes. |\n| Delegator respect | Makes risk understandable. | Treats delegation as passive income. |\n\n## Link back to staking\n\nValidator selection is still covered in [Choose a validator](/staking-protocol/choose-a-validator/).\n\nThis page focuses on the governance behavior delegators should expect after choosing a validator.\n",
+    "previousSlug": "governance/how-to-evaluate-proposals",
+    "nextSlug": "governance/risks-and-safeguards"
+  },
+  {
+    "slug": "governance/risks-and-safeguards",
+    "path": "/governance/risks-and-safeguards/",
+    "sourceFile": "content/docs/governance/risks-and-safeguards.md",
+    "group": "Governance",
+    "navTitle": "Risks and safeguards",
+    "navDepth": 1,
+    "navParent": "governance/accountability-and-risk",
+    "navHasChildren": false,
+    "navOrder": 62,
+    "title": "Risks and safeguards",
+    "description": "The main governance risks on Terra Classic and practical safeguards for voters, delegators, and community members.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Governance section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "governance-section-2026-06-01",
+    "sourcePath": "content/docs/governance/risks-and-safeguards.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Low turnout risk",
+        "id": "low-turnout-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Validator concentration risk",
+        "id": "validator-concentration-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Text proposal theater",
+        "id": "text-proposal-theater"
+      },
+      {
+        "depth": 2,
+        "title": "Community pool misuse risk",
+        "id": "community-pool-misuse-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Rushed upgrade risk",
+        "id": "rushed-upgrade-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Parameter risk",
+        "id": "parameter-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Stablecoin and market mechanism risk",
+        "id": "stablecoin-and-market-mechanism-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Information integrity risk",
+        "id": "information-integrity-risk"
+      },
+      {
+        "depth": 2,
+        "title": "The practical standard",
+        "id": "the-practical-standard"
+      }
+    ],
+    "body": "Governance is powerful because it can change the chain.\n\nThat same power creates risk. A good governance system needs user participation, validator accountability, serious proposal standards, and public proof after decisions pass.\n\n## Low turnout risk\n\nLow turnout means fewer active participants shape the result.\n\nThis can make governance legally valid but socially weak. It also makes it easier for a small active group to define direction while most delegators remain passive.\n\nSafeguards:\n\n- vote directly on important proposals\n- delegate to validators that vote consistently\n- review turnout before treating a result as broad consensus\n- encourage proposal summaries that normal users can understand\n\n## Validator concentration risk\n\nIf too much voting power sits with a small number of validators, governance becomes easier to coordinate, capture, or block.\n\nSafeguards:\n\n- avoid blindly delegating to the largest validators\n- split large delegations across credible validators\n- review validator voting behavior before delegating\n- support reliable mid-size validators where appropriate\n\n## Text proposal theater\n\nText and signaling proposals can be useful, but they can also create the illusion of progress.\n\nA text proposal can pass without code, funding, ownership, testing, or delivery. That does not make it worthless, but it does mean voters must be clear about what passed.\n\nSafeguards:\n\n- separate direction from implementation\n- ask for owners, milestones, and proof artifacts\n- track follow-up after the vote\n- avoid treating passed text as completed work\n\n## Community pool misuse risk\n\nCommunity pool spending can fund public goods. It can also become a credibility sink if proposals lack scope, milestones, custody clarity, or acceptance criteria.\n\nSafeguards:\n\n- require budgets to match deliverables\n- prefer milestone-based funding\n- verify receiving addresses and multisigs\n- require public updates\n- ask what happens if delivery fails\n\n## Rushed upgrade risk\n\nSoftware upgrades can improve the chain, but rushed upgrades can create halt, version mismatch, validator coordination, and exchange maintenance risk.\n\nSafeguards:\n\n- look for release notes\n- look for testnet or dry-run evidence\n- check whether validators and exchanges have upgrade instructions\n- ask whether rollback or incident plans exist\n- avoid approving high-impact upgrades only because they sound urgent\n\n## Parameter risk\n\nGovernance can change parameters that affect fees, taxes, staking, slashing, deposits, voting periods, and modules.\n\nSmall parameter changes can have large second-order effects.\n\nSafeguards:\n\n- ask for before-and-after values\n- ask who is affected\n- ask whether the change is reversible\n- ask what data supports the change\n- avoid parameter changes without scenario analysis\n\n## Stablecoin and market mechanism risk\n\nStablecoin, oracle, swap, market module, and collateral proposals carry higher risk than ordinary text proposals.\n\nThey can affect user funds, liquidity, exchange perception, regulatory posture, and chain credibility.\n\nSafeguards:\n\n- require clear status labels: proposed, accepted, funded, built, audited, live\n- separate governance acceptance from production launch\n- require oracle and liquidity assumptions to be explicit\n- ask for security review before mainnet risk\n- avoid claims that imply guaranteed peg, profit, or price outcome\n\n## Information integrity risk\n\nUsers often encounter Terra Classic information through social media, chat groups, dashboards, wallets, validators, and third-party sites.\n\nConflicting or unofficial information can confuse users and create phishing or misdirection risk.\n\nSafeguards:\n\n- verify links before connecting wallets\n- prefer source-linked docs and governance pages\n- treat screenshots as secondary evidence\n- check proposal IDs directly\n- never enter seed phrases into governance sites\n\n## The practical standard\n\nFor important governance decisions, use this rule:\n\n> No narratives without evidence. No funding without proof loops. No authority without a clear mandate.\n\nThat standard protects users and makes Terra Classic easier to trust.\n",
+    "previousSlug": "governance/validator-accountability",
+    "nextSlug": "develop/quick-start-guide"
+  },
+  {
+    "slug": "develop/quick-start-guide",
+    "path": "/develop/quick-start-guide/",
+    "sourceFile": "content/docs/develop/quick-start-guide.md",
+    "group": "Develop",
+    "navTitle": "Quick start guide",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 63,
+    "title": "Quick start guide",
+    "description": "Choose the right Terra Classic developer path, connect safely, and know which deeper guide to use next.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs owner-provided draft",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "owner-draft-2026-05-29",
+    "sourcePath": "content/docs/develop/quick-start-guide.md",
+    "sourceDate": "2026-05-29",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "What Terra Classic is for developers",
+        "id": "what-terra-classic-is-for-developers"
+      },
+      {
+        "depth": 2,
+        "title": "Choose your developer path",
+        "id": "choose-your-developer-path"
+      },
+      {
+        "depth": 2,
+        "title": "Before you send a transaction",
+        "id": "before-you-send-a-transaction"
+      },
+      {
+        "depth": 3,
+        "title": "Burn tax can affect transfers",
+        "id": "burn-tax-can-affect-transfers"
+      },
+      {
+        "depth": 3,
+        "title": "Tax exemptions exist",
+        "id": "tax-exemptions-exist"
+      },
+      {
+        "depth": 3,
+        "title": "Public endpoints are not production infrastructure",
+        "id": "public-endpoints-are-not-production-infrastructure"
+      },
+      {
+        "depth": 3,
+        "title": "Legacy market-swap assumptions are dangerous",
+        "id": "legacy-market-swap-assumptions-are-dangerous"
+      },
+      {
+        "depth": 3,
+        "title": "Simulation is part of the product",
+        "id": "simulation-is-part-of-the-product"
+      },
+      {
+        "depth": 2,
+        "title": "First 30-minute path",
+        "id": "first-30-minute-path"
+      },
+      {
+        "depth": 2,
+        "title": "Minimal TypeScript starter",
+        "id": "minimal-typescript-starter"
+      },
+      {
+        "depth": 2,
+        "title": "Local development",
+        "id": "local-development"
+      },
+      {
+        "depth": 2,
+        "title": "Smart contracts",
+        "id": "smart-contracts"
+      },
+      {
+        "depth": 2,
+        "title": "Python and backend automation",
+        "id": "python-and-backend-automation"
+      },
+      {
+        "depth": 2,
+        "title": "Native swaps, DEX routes, CW20, and IBC",
+        "id": "native-swaps-dex-routes-cw20-and-ibc"
+      },
+      {
+        "depth": 2,
+        "title": "Before mainnet",
+        "id": "before-mainnet"
+      },
+      {
+        "depth": 2,
+        "title": "Common mistakes",
+        "id": "common-mistakes"
+      },
+      {
+        "depth": 3,
+        "title": "Treating Terra Classic as old Terra documentation",
+        "id": "treating-terra-classic-as-old-terra-documentation"
+      },
+      {
+        "depth": 3,
+        "title": "Treating public endpoints as reliable production infrastructure",
+        "id": "treating-public-endpoints-as-reliable-production-infrastructure"
+      },
+      {
+        "depth": 3,
+        "title": "Hardcoding fees and tax behavior",
+        "id": "hardcoding-fees-and-tax-behavior"
+      },
+      {
+        "depth": 3,
+        "title": "Skipping simulation",
+        "id": "skipping-simulation"
+      },
+      {
+        "depth": 3,
+        "title": "Building swap flows from memory",
+        "id": "building-swap-flows-from-memory"
+      },
+      {
+        "depth": 2,
+        "title": "Where to go next",
+        "id": "where-to-go-next"
+      }
+    ],
+    "body": "This guide is the first pass for developers who want to build on Terra Classic without reading every reference page first.\n\nUse it to understand the chain, choose your path, make your first safe integration decision, and move into the dedicated guides when you need exact commands or deeper examples.\n\n> **Important**\n>\n> Terra Classic is a community-maintained blockchain. Public infrastructure, SDK support, wallet behavior, tax parameters, and governance-controlled settings can change. Verify live chain state before deploying production applications.\n\n## What Terra Classic is for developers\n\nTerra Classic is a Cosmos SDK / CometBFT blockchain with CosmWasm smart contracts, IBC connectivity, staking, governance, oracle infrastructure, and Terra Classic-specific tax behavior.\n\nThe practical developer constants are:\n\n| Concept | Terra Classic value |\n| --- | --- |\n| Mainnet chain ID | `columbus-5` |\n| Mainnet address prefix | `terra` |\n| Native staking and governance asset | LUNC |\n| On-chain LUNC denomination | `uluna` |\n| Unit conversion | `1 LUNC = 1,000,000 uluna` |\n| Common testnet | `rebel-2` |\n| Common local chain ID | `localterra` or `localnet` |\n\nIf you are coming from Ethereum, use this mental model:\n\n| Ethereum-style concept | Terra Classic equivalent |\n| --- | --- |\n| Solidity smart contract | CosmWasm contract, usually written in Rust |\n| ERC20 token | CW20 token |\n| MetaMask | Keplr, Galaxy Station, Orbitar, Cosmostation, LUNC Dash |\n| Web3.js / ethers.js | CosmES, Terra Classic SDK, LCD/RPC/gRPC APIs |\n| Ganache / local chain | Terra Classic localnet |\n| Contract deployment | Store WASM code, then instantiate contract |\n| Contract call | `MsgExecuteContract` |\n| Native token transfer | `MsgSend` |\n| Cross-chain transfer | IBC transfer |\n\n## Choose your developer path\n\nMost builders should start with one of these paths.\n\n| Path | Use it when you want to build | Start here |\n| --- | --- | --- |\n| Frontend dApp | Wallet connection, balances, signing, staking, governance, DEX, or contract UX | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Smart contract | On-chain logic, vaults, token contracts, DeFi primitives, escrow, games, or governance tools | [Smart contracts](/develop/smart-contracts/overview/) |\n| Backend or automation | Bots, scripts, indexers, monitoring, treasury jobs, analytics, or integrations | [Terra Py](/develop/terra-py/terra-py/) |\n| Infrastructure | Nodes, endpoints, validator tooling, local testing, or production-grade RPC/LCD access | [Run a full Terra node](/full-node/overview/) |\n\nIf you are not sure which path fits, start with a frontend read-only integration. Reading a balance through an RPC endpoint teaches you the network model without risking funds.\n\n## Before you send a transaction\n\nTerra Classic follows standard Cosmos transaction patterns, but several chain-specific details can break naive integrations.\n\n### Burn tax can affect transfers\n\nTerra Classic uses the `x/tax` module. Some transfers can be taxed, and the receiver may receive less than the entered send amount.\n\nDo not hardcode tax assumptions. Query current parameters or simulate when your app shows fees, accounting values, or expected received amounts.\n\nRead the detailed guide: [Tx best practices](/develop/classic-transaction-behavior/).\n\n### Tax exemptions exist\n\nSome addresses or zones can be exempt from burn tax. This matters for exchanges, custody flows, treasury wallets, smart contract workflows, and service wallets.\n\nIf the final received amount matters, check taxability before the user confirms.\n\n### Public endpoints are not production infrastructure\n\nPublic RPC, LCD, FCD, and gRPC endpoints are useful for development and light workloads. Production apps need redundancy, monitoring, and preferably dedicated infrastructure.\n\nUse the maintained endpoint list: [Public Network Endpoints](/develop/endpoints/).\n\n### Legacy market-swap assumptions are dangerous\n\nDo not build against pre-2022 algorithmic mint/burn behavior or old Terra market-swap assumptions.\n\nNative LUNC and USTC swaps are documented under [Swap Protocol](/swap-protocol/overview/). General token swaps should use active DEX contracts and explicit slippage controls.\n\n### Simulation is part of the product\n\nBefore broadcasting, simulate transactions when the app needs reliable gas estimates, fee previews, or clearer failure handling.\n\nAt minimum, production flows should log:\n\n- transaction hash\n- raw log\n- gas used\n- endpoint used\n- chain ID\n- wallet or backend account\n- failure code and message\n\n## First 30-minute path\n\nThis is the shortest useful path for a developer new to Terra Classic.\n\n1. Pick `columbus-5` for mainnet, `rebel-2` for testnet, or a local chain ID from localnet output.\n2. Use a public endpoint only for development.\n3. Connect with CosmES or Terra Py.\n4. Read a wallet balance.\n5. Convert display units correctly: `1000000uluna` is `1 LUNC`.\n6. Fetch current gas prices before sending.\n7. Read the transaction behavior guide before showing final fee or received-amount estimates.\n8. Send only a small test transaction first.\n9. Run localnet before contract development or repeatable integration testing.\n10. Move deeper into the exact guide for your path.\n\n## Minimal TypeScript starter\n\nInstall CosmES:\n\n```bash\nyarn add @goblinhunt/cosmes\n```\n\nFor TypeScript projects, use modern module resolution:\n\n```json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\nRead a native balance:\n\n```ts\nimport { getNativeBalances } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\nconst address = \"terra1...\";\n\nasync function main(): Promise<void> {\n  const balances = await getNativeBalances(RPC, { address });\n  console.log(balances);\n}\n\nmain().catch(console.error);\n```\n\nConnect Keplr:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function connect(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n  console.log(\"address\", connected?.address);\n}\n\nconnect().catch(console.error);\n```\n\nFor signing, broadcasting, mnemonic wallets, and wallet-specific setup, continue with [CosmES SDK](/develop/cosmes/cosmes/).\n\n## Local development\n\nUse localnet when you need a private chain you can reset, test against, and break safely.\n\nLocalnet is useful for:\n\n- contract development\n- integration testing\n- frontend transaction testing\n- module experiments\n- reproducible QA\n- demos\n\nDo not keep localnet setup details in your head from this page. Use the dedicated guide: [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/).\n\n## Smart contracts\n\nTerra Classic supports CosmWasm smart contracts.\n\nA typical contract workflow is:\n\n1. Install Rust and CosmWasm tooling.\n2. Start from a CosmWasm template.\n3. Build and optimize the WASM artifact.\n4. Store code on localnet or testnet.\n5. Instantiate a contract.\n6. Execute and query it.\n7. Publish schemas, addresses, admin permissions, and risk assumptions.\n\nUse the dedicated smart contract section for exact commands: [Smart contracts](/develop/smart-contracts/overview/).\n\n## Python and backend automation\n\nUse Python when you are building scripts, scheduled jobs, analytics, monitoring, treasury automation, or backend services.\n\nStart with [Terra Py](/develop/terra-py/terra-py/).\n\nBackend services should also read [Tx best practices](/develop/classic-transaction-behavior/) before broadcasting transactions automatically.\n\n## Native swaps, DEX routes, CW20, and IBC\n\nThese are not first-step integrations. They need more careful assumptions.\n\n| Integration type | Read first |\n| --- | --- |\n| Native LUNC and USTC swaps | [Swap Protocol developer reference](/swap-protocol/developer-reference/) |\n| General DEX routes | DEX contract documentation and [Tx best practices](/develop/classic-transaction-behavior/) |\n| CW20 tokens | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| IBC transfers | [IBC module specification](/develop/module-specifications/spec-ibc/) and current channel data |\n| Tax-sensitive flows | [Tx best practices](/develop/classic-transaction-behavior/) and [Fees](/learn/fees/) |\n\nFor IBC, verify the channel, destination chain, relayer activity, timeout behavior, and recovery path. A historical channel existing does not prove that the route is healthy today.\n\n## Before mainnet\n\nBefore shipping a Terra Classic app to production, confirm:\n\n- the app uses the correct chain ID\n- display amounts and micro-denom amounts are separated\n- gas prices are refreshed or deliberately configured\n- transaction simulation is used where accuracy matters\n- tax behavior is understood for the transaction type\n- tax exemption status is checked where needed\n- public endpoints are not a single point of failure\n- tx hash, raw logs, gas used, and errors are persisted\n- wallet rejection and broadcast failure are handled separately\n- smart contracts have been tested locally and reviewed\n- contract addresses, schemas, admin permissions, and risk assumptions are documented\n- users can see when they are using mainnet\n\n## Common mistakes\n\n### Treating Terra Classic as old Terra documentation\n\nSome old Terra materials describe behavior that is not active on Terra Classic today. Verify current chain behavior before building.\n\n### Treating public endpoints as reliable production infrastructure\n\nPublic endpoints are best-effort access surfaces. Production systems need redundancy and monitoring.\n\n### Hardcoding fees and tax behavior\n\nGas prices, tax parameters, and governance-controlled settings can change. Build apps that can adapt to current chain state.\n\n### Skipping simulation\n\nSimulation catches many gas, fee, message, and contract errors before a user signs or before a backend submits a transaction.\n\n### Building swap flows from memory\n\nNative Swap Protocol, DEX contracts, CW20 transfers, and IBC transfers have different assumptions. Use the relevant docs and verify live state.\n\n## Where to go next\n\n| Need | Guide |\n| --- | --- |\n| Maintained endpoint list | [Public Network Endpoints](/develop/endpoints/) |\n| Safe transaction behavior | [Tx best practices](/develop/classic-transaction-behavior/) |\n| TypeScript SDK path | [CosmES SDK](/develop/cosmes/cosmes/) |\n| Python SDK path | [Terra Py](/develop/terra-py/terra-py/) |\n| Local private chain | [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/) |\n| Contract development | [Smart contracts](/develop/smart-contracts/overview/) |\n| CW20 token workflows | [Manage CW20 tokens](/develop/smart-contracts/manage-cw20-tokens/) |\n| Native LUNC and USTC swaps | [Swap Protocol](/swap-protocol/overview/) |\n| Module-level behavior | [Module specifications](/develop/module-specifications/module-specifications/) |\n| Builder overview | [Builder tooling](/learn/builder-tooling/) |\n\nTerra Classic already has the core pieces a developer needs: a running Cosmos-based chain, smart contracts, wallets, public endpoints, IBC, staking, governance, and community-maintained tooling. The goal is to turn those pieces into clear products that users can actually understand and use.\n",
+    "previousSlug": "governance/risks-and-safeguards",
     "nextSlug": "develop/how-to/localnet/terra-core-localnet"
   },
   {
@@ -672,7 +3133,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 19,
+    "navOrder": 64,
     "title": "Run Terra Classic localnet",
     "description": "Spin up a multi-validator Terra Classic Core network locally with `make localnet-start`.",
     "status": "draft",
@@ -683,6 +3144,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/how-to/localnet/terra-core-localnet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -691,22 +3153,47 @@ export const docsPages = [
       },
       {
         "depth": 2,
-        "title": "Steps",
-        "id": "steps"
+        "title": "Clone Terra Classic Core",
+        "id": "clone-terra-classic-core"
       },
       {
         "depth": 2,
-        "title": "Using with CosmES",
-        "id": "using-with-cosmes"
+        "title": "Start localnet",
+        "id": "start-localnet"
+      },
+      {
+        "depth": 2,
+        "title": "Typical local endpoints",
+        "id": "typical-local-endpoints"
+      },
+      {
+        "depth": 2,
+        "title": "Chain ID",
+        "id": "chain-id"
+      },
+      {
+        "depth": 2,
+        "title": "Using localnet with CosmES",
+        "id": "using-localnet-with-cosmes"
+      },
+      {
+        "depth": 2,
+        "title": "Using localnet for contracts",
+        "id": "using-localnet-for-contracts"
       },
       {
         "depth": 2,
         "title": "Tips",
         "id": "tips"
+      },
+      {
+        "depth": 2,
+        "title": "Related docs",
+        "id": "related-docs"
       }
     ],
-    "body": "## Prerequisites\n\n- git, make, Docker, and Docker Compose (depending on your setup)\n- 16-32 GB RAM recommended\n\n## Steps\n\n1. Clone the repository:\n\n   ```bash\n   git clone https://github.com/classic-terra/core.git terra-core\n   cd terra-core\n   ```\n\n2. Start a localnet:\n\n   ```bash\n   make localnet-start\n   ```\n\n   This spins up a multi-validator local network with RPC and LCD endpoints. Keep it running in the background while you develop.\n\n3. Endpoints (typical defaults):\n\n   - RPC: `http://localhost:26657`\n   - LCD: `http://localhost:1317`\n   - gRPC: `http://localhost:9090`\n\n4. Chain ID:\n\n   - Usually `localterra` or `localnet` (check the console output). Use this in your SDK configuration.\n\n## Using with CosmES\n\nExample Keplr setup against localnet:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\nconst wallets = await controller.connect(WalletType.EXTENSION, [\n  {\n    chainId: \"localterra\", // or \"localnet\"\n    rpc: \"http://localhost:26657\",\n    gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  },\n]);\nconst connected = wallets.get(\"localterra\");\nconsole.log(\"address\", connected?.address);\n```\n\n> **Warning**\n>\n> Make sure to add the chain information to keplr before connecting.\n\n## Tips\n\n- If ports conflict, stop other chain processes or change ports in Terra Core configs.\n- For contract workflows, use the same `Msg*` transactions in CosmES as on mainnet or testnet—only the endpoints and chain ID change.\n",
-    "previousSlug": "learn/fees",
+    "body": "Use localnet when you want a private Terra Classic network that you can reset, test against, and break safely.\n\nLocalnet is the right environment for contract development, integration testing, transaction simulation, demos, and reproducible QA. It is not a replacement for testnet or mainnet validation.\n\n## Prerequisites\n\nInstall:\n\n- git\n- make\n- Docker\n- Docker Compose\n\nUse a machine with 16-32 GB RAM when possible. Local multi-validator networks can be heavy on smaller machines.\n\n## Clone Terra Classic Core\n\n```bash\ngit clone https://github.com/classic-terra/core.git terra-core\ncd terra-core\n```\n\n## Start localnet\n\n```bash\nmake localnet-start\n```\n\nThis starts a multi-validator local Terra Classic network with RPC, LCD, and gRPC endpoints. Keep the process running while you develop.\n\n## Typical local endpoints\n\n```text\nRPC:  http://localhost:26657\nLCD:  http://localhost:1317\ngRPC: http://localhost:9090\n```\n\nIf these ports are already in use, stop the conflicting process or change the Terra Core localnet configuration.\n\n## Chain ID\n\nCommon local chain IDs are:\n\n```text\nlocalterra\n```\n\nor:\n\n```text\nlocalnet\n```\n\nCheck your terminal output and use the exact chain ID shown by your local setup. SDK and wallet configuration must match the running local chain.\n\n## Using localnet with CosmES\n\nExample Keplr setup against localnet:\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\nconst wallets = await controller.connect(WalletType.EXTENSION, [\n  {\n    chainId: \"localterra\",\n    rpc: \"http://localhost:26657\",\n    gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  },\n]);\n\nconst connected = wallets.get(\"localterra\");\nconsole.log(\"address\", connected?.address);\n```\n\n> **Warning**\n>\n> Add the local chain information to Keplr before connecting. If Keplr has a different chain ID, RPC URL, or denomination configured, wallet connection and signing can fail.\n\n## Using localnet for contracts\n\nFor contract workflows, use the same `Msg*` transactions as on mainnet or testnet. Only the chain ID, endpoints, and local keys change.\n\nTypical flow:\n\n1. Start localnet.\n2. Confirm the local chain ID.\n3. Build and optimize the contract.\n4. Store code with `terrad tx wasm store`.\n5. Instantiate the contract.\n6. Execute and query the contract.\n7. Reset localnet when you need a clean state.\n\nFor contract setup and deployment steps, continue with [Smart contracts](/develop/smart-contracts/overview/).\n\n## Tips\n\n- Keep localnet running in a separate terminal while developing.\n- Use localnet for repeatable tests before using testnet or mainnet.\n- Do not assume local gas, tax, liquidity, or oracle behavior exactly matches public networks.\n- If a wallet cannot connect, verify chain ID, RPC URL, address prefix, and gas denom.\n- If transaction behavior matters, test the same flow on `rebel-2` or with tiny mainnet amounts before production release.\n\n## Related docs\n\n- [Quick start guide](/develop/quick-start-guide/)\n- [Tx best practices](/develop/classic-transaction-behavior/)\n- [CosmES SDK](/develop/cosmes/cosmes/)\n- [Smart contracts](/develop/smart-contracts/overview/)\n",
+    "previousSlug": "develop/quick-start-guide",
     "nextSlug": "develop/classic-transaction-behavior"
   },
   {
@@ -718,7 +3205,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 20,
+    "navOrder": 65,
     "title": "Tx best practices",
     "description": "Practical guidance for burn tax, Tax2Gas, tax-free contract funding, and safe Terra Classic transaction flows.",
     "status": "draft",
@@ -729,6 +3216,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/classic-transaction-behavior.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -844,7 +3332,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 21,
+    "navOrder": 66,
     "title": "Builder tooling",
     "description": "Essential SDKs and references for building Terra Classic dApps with modern tooling.",
     "status": "draft",
@@ -855,6 +3343,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/builder-tooling.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -875,7 +3364,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": true,
-    "navOrder": 22,
+    "navOrder": 67,
     "title": "CosmES SDK",
     "description": "Use @goblinhunt/cosmes for Terra Classic TypeScript apps.",
     "status": "draft",
@@ -886,6 +3375,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -926,7 +3416,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 23,
+    "navOrder": 68,
     "title": "Get started",
     "description": "Install the SDK, configure TypeScript, and connect wallets.",
     "status": "draft",
@@ -937,6 +3427,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes-getting-started.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -992,7 +3483,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 24,
+    "navOrder": 69,
     "title": "Query data",
     "description": "Read balances and contract state via CosmES client helpers.",
     "status": "draft",
@@ -1003,6 +3494,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes-query-data.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1033,7 +3525,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 25,
+    "navOrder": 70,
     "title": "Programmatic wallet",
     "description": "Use `MnemonicWallet` to sign transactions from backends or scripts.",
     "status": "draft",
@@ -1044,6 +3536,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes-mnemonic-wallet.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1069,7 +3562,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 26,
+    "navOrder": 71,
     "title": "Transactions",
     "description": "Compose and broadcast Common Terra Classic messages.",
     "status": "draft",
@@ -1080,6 +3573,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes-transactions.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1122,7 +3616,7 @@ export const docsPages = [
         "id": "best-practices"
       }
     ],
-    "body": "## Bank send (`MsgSend`)\n\n```ts\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function send(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    { chainId: CHAIN_ID, rpc: RPC, gasPrice: { denom: \"uluna\", amount: \"28.325\" } },\n  ]);\n  const connected = wallets.get(CHAIN_ID);\n  if (!connected) {\n    throw new Error(\"Failed to connect wallet\");\n  }\n\n  const msg = new MsgSend({\n    fromAddress: connected.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"100000\" }],\n  });\n\n  const unsigned = { msgs: [msg], memo: \"CosmES send\" };\n  const fee = await connected.estimateFee(unsigned, 1.2);\n  const txHash = await connected.broadcastTx(unsigned, fee);\n  console.log(\"txhash\", txHash);\n}\n```\n\n## Execute a contract (`MsgExecuteContract`)\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst contract = \"terra1...cw20\";\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract,\n  msg: { transfer: { recipient: \"terra1...dest\", amount: \"1000\" } },\n  funds: [],\n});\n\nconst unsigned = { msgs: [msg], memo: \"cw20 transfer\" };\nconst fee = await connected.estimateFee(unsigned, 1.2);\nconst txHash = await connected.broadcastTx(unsigned, fee);\n```\n\n## IBC transfer (`MsgIbcTransfer`)\n\n```ts\nimport { MsgIbcTransfer } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgIbcTransfer({\n  sourcePort: \"transfer\",\n  sourceChannel: \"channel-XXXX\",\n  token: { denom: \"uluna\", amount: \"100000\" },\n  sender: connected.address,\n  receiver: \"cosmos1...dest\",\n  timeoutHeight: { revisionNumber: \"0\", revisionHeight: \"0\" },\n  timeoutTimestamp: \"0\",\n});\n```\n\n## DEX swap templates\n\n### Terraswap pair swap\n\n```ts\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...pair\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"100000\",\n      },\n      belief_price: \"0.000123\",\n      max_spread: \"0.005\",\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"100000\" }],\n});\n```\n\n### Terraport router swap\n\n```ts\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...router\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"100000\",\n      },\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"100000\" }],\n});\n```\n\n### CW20 offer swap\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst hookMsg = { swap: { belief_price: \"123.45\", max_spread: \"0.005\", to: connected.address } };\nconst hook = Buffer.from(JSON.stringify(hookMsg)).toString(\"base64\");\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...cw20\",\n  msg: {\n    send: {\n      contract: \"terra1...pair\",\n      amount: \"500000\",\n      msg: hook,\n    },\n  },\n  funds: [],\n});\n```\n\n> **Important**\n>\n> - Replace contract addresses and fields with the DEX’ published schemas.\n> - Always set `max_spread` or `minimum_receive` safeguards.\n> - Use `queryContract` to discover pair addresses via factory contracts.\n\n## Best practices\n\n- Call `simulateTx` to estimate gas, then apply a margin (for example `1.2x`) before calculating fees.\n- Refer to `docs/develop/endpoints.md` for production-grade infrastructure.\n- On Terra Classic, market swaps are disabled; use DEX contracts instead.\n",
+    "body": "## Bank send (`MsgSend`)\n\n```ts\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function send(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    { chainId: CHAIN_ID, rpc: RPC, gasPrice: { denom: \"uluna\", amount: \"28.325\" } },\n  ]);\n  const connected = wallets.get(CHAIN_ID);\n  if (!connected) {\n    throw new Error(\"Failed to connect wallet\");\n  }\n\n  const msg = new MsgSend({\n    fromAddress: connected.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"100000\" }],\n  });\n\n  const unsigned = { msgs: [msg], memo: \"CosmES send\" };\n  const fee = await connected.estimateFee(unsigned, 1.2);\n  const txHash = await connected.broadcastTx(unsigned, fee);\n  console.log(\"txhash\", txHash);\n}\n```\n\n## Execute a contract (`MsgExecuteContract`)\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst contract = \"terra1...cw20\";\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract,\n  msg: { transfer: { recipient: \"terra1...dest\", amount: \"1000\" } },\n  funds: [],\n});\n\nconst unsigned = { msgs: [msg], memo: \"cw20 transfer\" };\nconst fee = await connected.estimateFee(unsigned, 1.2);\nconst txHash = await connected.broadcastTx(unsigned, fee);\n```\n\n## IBC transfer (`MsgIbcTransfer`)\n\n```ts\nimport { MsgIbcTransfer } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgIbcTransfer({\n  sourcePort: \"transfer\",\n  sourceChannel: \"channel-XXXX\",\n  token: { denom: \"uluna\", amount: \"100000\" },\n  sender: connected.address,\n  receiver: \"cosmos1...dest\",\n  timeoutHeight: { revisionNumber: \"0\", revisionHeight: \"0\" },\n  timeoutTimestamp: \"0\",\n});\n```\n\n## DEX swap templates\n\n### Terraswap pair swap\n\n```ts\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...pair\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"100000\",\n      },\n      belief_price: \"0.000123\",\n      max_spread: \"0.005\",\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"100000\" }],\n});\n```\n\n### Terraport router swap\n\n```ts\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...router\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"100000\",\n      },\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"100000\" }],\n});\n```\n\n### CW20 offer swap\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst hookMsg = { swap: { belief_price: \"123.45\", max_spread: \"0.005\", to: connected.address } };\nconst hook = Buffer.from(JSON.stringify(hookMsg)).toString(\"base64\");\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...cw20\",\n  msg: {\n    send: {\n      contract: \"terra1...pair\",\n      amount: \"500000\",\n      msg: hook,\n    },\n  },\n  funds: [],\n});\n```\n\n> **Important**\n>\n> - Replace contract addresses and fields with the DEX’ published schemas.\n> - Always set `max_spread` or `minimum_receive` safeguards.\n> - Use `queryContract` to discover pair addresses via factory contracts.\n\n## Best practices\n\n- Call `simulateTx` to estimate gas, then apply a margin (for example `1.2x`) before calculating fees.\n- Refer to `docs/develop/endpoints.md` for production-grade infrastructure.\n- On Terra Classic, legacy mint/burn market swaps are disabled. Use [Swap Protocol](/swap-protocol/overview/) for native LUNC/USTC swaps and DEX contracts for general token swap routes.\n",
     "previousSlug": "develop/cosmes/cosmes-mnemonic-wallet",
     "nextSlug": "develop/terra-py/terra-py"
   },
@@ -1135,7 +3629,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": false,
-    "navOrder": 27,
+    "navOrder": 72,
     "title": "Terra.py on Terra Classic",
     "description": "Install terra_sdk, connect to trusted endpoints, and broadcast Python transactions.",
     "status": "draft",
@@ -1146,6 +3640,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/terra-py/terra-py.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1221,7 +3716,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 28,
+    "navOrder": 73,
     "title": "Smart contracts",
     "description": "End-to-end tutorials for building and deploying CosmWasm dApps on Terra Classic.",
     "status": "draft",
@@ -1232,6 +3727,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/README.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1282,7 +3778,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 29,
+    "navOrder": 74,
     "title": "Build a Terra Classic dApp",
     "description": "Overview of the CosmWasm template workflow from idea to deployment.",
     "status": "draft",
@@ -1293,6 +3789,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/build-terra-dapp.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1313,7 +3810,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 30,
+    "navOrder": 75,
     "title": "Set up local environment",
     "description": "Install toolchains and prepare LocalTerra for contract development.",
     "status": "draft",
@@ -1324,6 +3821,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/set-up-local-environment.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1349,7 +3847,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 31,
+    "navOrder": 76,
     "title": "Write smart contract",
     "description": "Author and test CosmWasm contracts with entry points and state management.",
     "status": "draft",
@@ -1360,6 +3858,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/write-smart-contract.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1475,7 +3974,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 32,
+    "navOrder": 77,
     "title": "Interact with contracts",
     "description": "Store, instantiate, execute, and query contracts using `terrad`.",
     "status": "draft",
@@ -1486,6 +3985,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/interact-with-smart-contract.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1541,7 +4041,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 33,
+    "navOrder": 78,
     "title": "Manage CW20 tokens",
     "description": "Deploy and operate CW20 token contracts on Terra Classic.",
     "status": "draft",
@@ -1552,6 +4052,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/smart-contracts/manage-cw20-tokens.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1587,7 +4088,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 34,
+    "navOrder": 79,
     "title": "Module specifications",
     "description": "Explore Terra Classic Core modules, parameters, and Classic-specific behaviour.",
     "status": "draft",
@@ -1598,6 +4099,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/module-specifications.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1635,7 +4137,7 @@ export const docsPages = [
         "id": "currency-denominations"
       }
     ],
-    "body": "Terra Classic Core is the Golang implementation of the Terra Classic protocol, built on top of the [Cosmos SDK](https://cosmos.network/appchains) and [CometBFT](https://cometbft.com/). Use these module specifications to understand how Classic’s on-chain logic is organized and how each module contributes to validator operations, governance, and the wider economy.\n\n## How to use these specs\n\nEach document starts with the module’s role in the protocol and then dives into state, message handling, and block transitions. Parameter tables at the end highlight defaults and governance-controlled values. The specs are designed to supplement a direct read of the Terra Core source code and help contributors reason about Classic-specific behavior.\n\n> **Note**\n> References to seigniorage and market swaps reflect the historical behavior of the Terra protocol. On Terra Classic, seigniorage is fully burned and the market module’s swap paths are disabled to protect supply.\n\nMany Terra Classic modules are inherited from the Cosmos SDK with Classic-specific parameters and custom hooks.\n\n## Block lifecycle overview\n\n### Begin block\n\n- Distribution: pay rewards for the previous block.\n- Slashing: check downtime and double-signing evidence.\n\n### Process messages\n\n- Route and execute tx messages in their respective modules.\n\n### End block\n\n- Crisis: assert registered invariants.\n- Oracle: tally exchange-rate votes (`VotePeriod`) and penalise oracle downtime (`SlashWindow`).\n- Governance: expire deposits/votes and execute passed proposals.\n- Market: replenish liquidity pools (Classic swaps remain disabled).\n- Treasury: adjust tax rate and reward weight at each epoch.\n- Staking: recompute the top-130 active validator set.\n\n## Conventions\n\n### Currency denominations\n\n- LUNC is Terra Classic’s staking and governance asset (`uluna` microunit).\n- All denominations use microunits (`10^-6`) on-chain.\n\nPrice discovery relies on the [oracle module](/develop/module-specifications/spec-oracle/), while the [market module](/develop/module-specifications/spec-market/) historically mediated swaps using those oracle rates.\n",
+    "body": "Terra Classic Core is the Golang implementation of the Terra Classic protocol, built on top of the [Cosmos SDK](https://cosmos.network/appchains) and [CometBFT](https://cometbft.com/). Use these module specifications to understand how Classic’s on-chain logic is organized and how each module contributes to validator operations, governance, and the wider economy.\n\n## How to use these specs\n\nEach document starts with the module’s role in the protocol and then dives into state, message handling, and block transitions. Parameter tables at the end highlight defaults and governance-controlled values. The specs are designed to supplement a direct read of the Terra Core source code and help contributors reason about Classic-specific behavior.\n\n> **Note**\n> References to seigniorage and historical market swaps reflect legacy Terra protocol behavior. On Terra Classic, seigniorage is fully burned. Native LUNC and USTC swaps are live through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0's no-mint pool design.\n\nMany Terra Classic modules are inherited from the Cosmos SDK with Classic-specific parameters and custom hooks.\n\n## Block lifecycle overview\n\n### Begin block\n\n- Distribution: pay rewards for the previous block.\n- Slashing: check downtime and double-signing evidence.\n\n### Process messages\n\n- Route and execute tx messages in their respective modules.\n\n### End block\n\n- Crisis: assert registered invariants.\n- Oracle: tally exchange-rate votes (`VotePeriod`) and penalise oracle downtime (`SlashWindow`).\n- Governance: expire deposits/votes and execute passed proposals.\n- Market: maintain Market Module 2.0 swap state and safety-gated LUNC/USTC liquidity.\n- Treasury: adjust tax rate and reward weight at each epoch.\n- Staking: recompute the top-130 active validator set.\n\n## Conventions\n\n### Currency denominations\n\n- LUNC is Terra Classic’s staking and governance asset (`uluna` microunit).\n- All denominations use microunits (`10^-6`) on-chain.\n\nPrice discovery relies on the [oracle module](/develop/module-specifications/spec-oracle/), while the [market module](/develop/module-specifications/spec-market/) powers Swap Protocol for native LUNC and USTC swaps using oracle-aware pricing and bounded liquidity.\n",
     "previousSlug": "develop/smart-contracts/manage-cw20-tokens",
     "nextSlug": "develop/module-specifications/spec-auth"
   },
@@ -1648,7 +4150,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 35,
+    "navOrder": 80,
     "title": "Auth module (x/auth)",
     "description": "Ante handler, vesting accounts, and transaction gas parameters.",
     "status": "draft",
@@ -1659,6 +4161,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-auth.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1699,7 +4202,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 36,
+    "navOrder": 81,
     "title": "Authz module (x/authz)",
     "description": "Delegate message execution permissions with fine-grained controls.",
     "status": "draft",
@@ -1710,6 +4213,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-authz.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1755,7 +4259,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 37,
+    "navOrder": 82,
     "title": "Bank module (x/bank)",
     "description": "Account balances, token transfers, and supply tracking.",
     "status": "draft",
@@ -1766,6 +4270,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-bank.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1821,7 +4326,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 38,
+    "navOrder": 83,
     "title": "Capability module (x/capability)",
     "description": "Capability keeper for isolating inter-module access rights.",
     "status": "draft",
@@ -1832,6 +4337,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-capability.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1867,7 +4373,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 39,
+    "navOrder": 84,
     "title": "Consensus params module (x/consensus)",
     "description": "Governance-controlled Tendermint parameter updates.",
     "status": "draft",
@@ -1878,6 +4384,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-consensus.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic adopts the Cosmos SDK `x/consensus` module to manage Tendermint/CometBFT consensus parameters through governance. The module stores the active block, evidence, and validator parameter sets and exposes a single governance-controlled message to mutate them. Please see the upstream specification for [x/consensus](https://docs.cosmos.network/main/modules/consensus/) for more details.\n",
     "previousSlug": "develop/module-specifications/spec-capability",
@@ -1892,7 +4399,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 40,
+    "navOrder": 85,
     "title": "Crisis module (x/crisis)",
     "description": "Invariant checks and chain-halting safeguards.",
     "status": "draft",
@@ -1903,6 +4410,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-crisis.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic adopts the Cosmos SDK `x/crisis` module to guard against invariant violations. Please see the upstream specification for [x/crisis](https://docs.cosmos.network/main/modules/crisis/) for more details.\n",
     "previousSlug": "develop/module-specifications/spec-consensus",
@@ -1917,7 +4425,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 41,
+    "navOrder": 86,
     "title": "Distribution module (x/distribution)",
     "description": "Reward distribution to validators, delegators, and the community pool.",
     "status": "draft",
@@ -1928,6 +4436,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-distribution.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -1950,7 +4459,7 @@ export const docsPages = [
         "id": "messages-used-on-classic"
       }
     ],
-    "body": "> **Note**\n>\n> Terra Classic keeps the Cosmos SDK distribution module but relies on burn-tax inflows instead of inflation or seigniorage. Rewards are passively accumulated and must be withdrawn by validators and delegators.\n\n## Classic overview\n\n- **Burn-tax inflow.** `custom/auth/ante/fee_tax.go` forwards the burn-tax portion of every transaction to the fee collector. `x/distribution` allocates that balance at end block using the standard global split.\n- **Community pool.** `CommunityTax` is set to `0.5`, so the community pool grows with every transaction. Governance or users can still call `MsgFundCommunityPool` to deposit additional funds.\n- **Manual withdrawals.** Validators use `MsgWithdrawValidatorCommission`;delegators use `MsgWithdrawDelegatorReward`. Nothing auto-claims.\n\n## Parameters (subspace `distribution`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `CommunityTax` | Percentage of collected fees sent to community pool. | `0` |\n| `BaseProposerReward` | Fixed proposer reward share. | `0.01` |\n| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0.04` |\n| `WithdrawAddrEnabled` | Allow custom withdrawal addresses. | `true` |\n\n## Reward flow\n\n1. Fees and burn-tax proceeds accumulate in the fee collector module account.\n2. During `EndBlock`, the distribution keeper pays proposer rewards (`base + bonus`).\n3. Any configured community tax is transferred to the community pool (no-op on Classic).\n4. Remaining coins are recorded in `FeePool` for future delegator withdrawals and oracle ballot rewards.\n\n## Messages used on Classic\n\n- **`MsgSetWithdrawAddress`** — update the account receiving staking rewards.\n- **`MsgWithdrawDelegatorReward`** — claim rewards for a specific validator/delegator pair.\n- **`MsgWithdrawValidatorCommission`** — withdraw accumulated validator commission.\n- **`MsgFundCommunityPool`** — manually deposit funds into the community pool when governance approved spending budgets.\n\nSee the upstream Cosmos SDK documentation for full protobuf definitions and CLI usage examples.\n",
+    "body": "> **Note**\n>\n> Terra Classic keeps the Cosmos SDK distribution module but relies on burn-tax inflows instead of inflation or seigniorage. Rewards are passively accumulated and must be withdrawn by validators and delegators.\n\n## Classic overview\n\n- **Burn-tax inflow.** `custom/auth/ante/fee_tax.go` forwards the burn-tax portion of every transaction to the fee collector. `x/distribution` allocates that balance at end block using the standard global split.\n- **Community pool.** `CommunityTax` is set to `0.5`, so the community pool grows with every transaction. Governance or users can still call `MsgFundCommunityPool` to deposit additional funds.\n- **Manual withdrawals.** Validators use `MsgWithdrawValidatorCommission`;delegators use `MsgWithdrawDelegatorReward`. Nothing auto-claims.\n\n## Parameters (subspace `distribution`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `CommunityTax` | Percentage of collected fees sent to community pool. | `0.5` |\n| `BaseProposerReward` | Fixed proposer reward share. | `0` |\n| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0` |\n| `WithdrawAddrEnabled` | Allow custom withdrawal addresses. | `true` |\n\n## Reward flow\n\n1. Fees and burn-tax proceeds accumulate in the fee collector module account.\n2. During `EndBlock`, the distribution keeper pays proposer rewards (`base + bonus`).\n3. Any configured community tax is transferred to the community pool (no-op on Classic).\n4. Remaining coins are recorded in `FeePool` for future delegator withdrawals and oracle ballot rewards.\n\n## Messages used on Classic\n\n- **`MsgSetWithdrawAddress`** — update the account receiving staking rewards.\n- **`MsgWithdrawDelegatorReward`** — claim rewards for a specific validator/delegator pair.\n- **`MsgWithdrawValidatorCommission`** — withdraw accumulated validator commission.\n- **`MsgFundCommunityPool`** — manually deposit funds into the community pool when governance approved spending budgets.\n\nSee the upstream Cosmos SDK documentation for full protobuf definitions and CLI usage examples.\n",
     "previousSlug": "develop/module-specifications/spec-crisis",
     "nextSlug": "develop/module-specifications/spec-dyncomm"
   },
@@ -1963,7 +4472,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 42,
+    "navOrder": 87,
     "title": "DynComm module (x/dyncomm)",
     "description": "Dynamic validator commission band control for Classic staking.",
     "status": "draft",
@@ -1974,6 +4483,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-dyncomm.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2009,7 +4519,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 43,
+    "navOrder": 88,
     "title": "Evidence module (x/evidence)",
     "description": "Evidence handling for consensus faults and slashing workflows.",
     "status": "draft",
@@ -2020,6 +4530,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-evidence.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic uses the Cosmos SDK [`x/evidence`](https://docs.cosmos.network/main/modules/evidence/) module without modifications. Refer to the upstream specification for message formats, handlers, and state.\n",
     "previousSlug": "develop/module-specifications/spec-dyncomm",
@@ -2034,7 +4545,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 44,
+    "navOrder": 89,
     "title": "Feegrant module (x/feegrant)",
     "description": "Allow trusted accounts to pay fees on behalf of other users.",
     "status": "draft",
@@ -2045,6 +4556,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-feegrant.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic uses the Cosmos SDK [`x/feegrant`](https://docs.cosmos.network/main/modules/feegrant/) module without custom logic. Grants, allowances, and CLI flows behave exactly as upstream.\n>\n> Burn tax is charged in the ante handler (`custom/auth/ante/fee_tax.go`) **before** fee allowances are applied. Grantees must ensure the granter account holds enough funds to cover both the burn tax and gas fees.\n> Fee grants are often combined with tax-exemption lists for infrastructure wallets. Review `x/taxexemption` when configuring service accounts.\n",
     "previousSlug": "develop/module-specifications/spec-evidence",
@@ -2059,7 +4571,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 45,
+    "navOrder": 90,
     "title": "Governance module (x/gov)",
     "description": "Proposal lifecycle, deposits, voting, and parameter control.",
     "status": "draft",
@@ -2070,6 +4582,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-governance.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic's Governance module inherits from Cosmos SDK's `x/gov` module. Please refer to the [Cosmos SDK documentation](https://docs.cosmos.network/main/modules/gov/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-feegrant",
@@ -2084,7 +4597,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 46,
+    "navOrder": 91,
     "title": "IBC core module (x/ibc)",
     "description": "IBC routing, channel management, and light client integration.",
     "status": "draft",
@@ -2095,6 +4608,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-ibc.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic enables IBC routing through the Cosmos SDK core IBC module. Please refer to the [upstream documentation](https://ibc.cosmos.network/v7/ibc/overview/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-governance",
@@ -2109,7 +4623,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 47,
+    "navOrder": 92,
     "title": "IBC fee module (x/ibc-fee)",
     "description": "ICS-29 relayer incentivisation for Classic IBC packets.",
     "status": "draft",
@@ -2120,6 +4634,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-ibc-fee.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic enables ICS-29 fee middleware to incentivise relayers. Please refer to the [ICS-29 fee middleware documentation](https://ibc.cosmos.network/v7/middleware/ics29-fee/overview/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-ibc",
@@ -2134,7 +4649,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 48,
+    "navOrder": 93,
     "title": "IBC hooks module (ibc-hooks)",
     "description": "Middleware for wasm contract callbacks on IBC transfers.",
     "status": "draft",
@@ -2145,6 +4660,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-ibc-hooks.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic leverages the ibc-hooks middleware to trigger CosmWasm contract callbacks on IBC packets. Please refer to the [upstream documentation](https://ibc.cosmos.network/v7/ibc/overview/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-ibc-fee",
@@ -2159,7 +4675,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 49,
+    "navOrder": 94,
     "title": "Interchain accounts module (x/ica)",
     "description": "ICS-27 controller and host support on Terra Classic.",
     "status": "draft",
@@ -2170,6 +4686,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-ica.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic runs the ICS-27 interchain accounts controller and host stacks. Please refer to the [upstream documentation](https://ibc.cosmos.network/v7/apps/interchain-accounts/overview/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-ibc-hooks",
@@ -2184,9 +4701,9 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 50,
+    "navOrder": 95,
     "title": "Market module (x/market)",
-    "description": "Historical swap mechanics and constant-product spread logic.",
+    "description": "Market Module 2.0 swap mechanics, no-mint liquidity, and historical constant-product spread context.",
     "status": "draft",
     "reviewed": false,
     "sourceTitle": "Terra Classic Docs repository",
@@ -2195,11 +4712,17 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-market.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
-        "title": "Classic behaviour",
-        "id": "classic-behaviour"
+        "title": "Current behavior",
+        "id": "current-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Historical behavior",
+        "id": "historical-behavior"
       },
       {
         "depth": 2,
@@ -2217,7 +4740,7 @@ export const docsPages = [
         "id": "operational-notes"
       }
     ],
-    "body": "> **Note**\n>\n> Terra Classic retains the market module, but on-chain swaps (`MsgSwap`, `MsgSwapSend`) were disabled after May 2022. Users must rely on DEX liquidity pools; the module now maintains only virtual pools and spread state to keep downstream logic stable.\n\n## Classic behaviour\n\n- **Swaps rejected.** Transaction handlers remain wired, yet governance decisions prevent reopening algorithmic swaps to avoid uncontrolled mint/burn of LUNC.\n- **Virtual pools maintained.** `EndBlocker()` still invokes `ReplenishPools` to decay `TerraPoolDelta` back to equilibrium, preserving deterministic spread calculations.\n- **Oracle reward flow.** Oracle ballot rewards historically depended on swap spreads. Keeping the module intact ensures queries and simulations that expect spread values continue to work, even if no swap executes.\n\n## Parameters (`subspace`: `market`)\n\n| Name | Description | Default |\n| --- | --- | --- |\n| `BasePool` | Virtual Terra/Luna pool size (µSDR). | `1000000000000` (1,000,000 SDR) |\n| `PoolRecoveryPeriod` | Blocks needed for pools to recover toward equilibrium. | `14400` (≈1 day) |\n| `MinStabilitySpread` | Minimum spread imposed on swaps. | `0.02` (2%) |\n\nThe legacy `TobinTax` parameter used for Terra stablecoin swaps is set to `0` on Classic; tax logic has been moved to `x/tax`.\n\n## Queries and CLI\n\n- **Parameters:** `terrad q market params`\n- **Terra pool delta:** `terrad q market terra-pool-delta`\n\nThese calls are useful for analytics and backwards compatibility tooling.\n\n## Operational notes\n\n- Attempting `terrad tx market swap` on mainnet will fail because the keeper rejects swaps before coins move. This is due to the internal spread and tobin tax set to 100%.\n- Any future plan to re-enable algorithmic swaps would require a dedicated governance proposal, code updates, and careful parameter tuning.\n",
+    "body": "> **Note**\n>\n> Terra Classic swaps are live again through [Swap Protocol](/swap-protocol/overview/), the user-facing product powered by Market Module 2.0. Market Module 2.0 reopens native LUNC and USTC swaps with a no-mint pool design, live oracle pricing, finite epoch liquidity, and hard safety controls.\n\n## Current behavior\n\n- **Native swaps live.** The market module supports LUNC and USTC swaps through Swap Protocol when the module is enabled, oracle checks pass, and pool capacity remains.\n- **No minting during swaps.** Market Module 2.0 uses prefilled protocol liquidity pools instead of minting output supply.\n- **Live oracle pricing.** USTC is priced by oracle-reported market data, not by a fixed 1 USD assumption.\n- **Finite epoch liquidity.** LUNC and USTC are held in distinct swap pools. Output capacity is limited by available balances and epoch rules.\n- **Remainder burns.** Remaining pool balances are burned at the next 30-day epoch boundary.\n- **Safety-first failure.** Unsupported routes, depleted liquidity, oracle quorum failure, TWAP sanity failure, or module disablement should reject swaps rather than expand supply.\n\nSee the [Swap Protocol overview](/swap-protocol/overview/) and [Developer reference](/swap-protocol/developer-reference/) for product-level and integration guidance.\n\n## Historical behavior\n\nAfter May 2022, Terra Classic retained the market module but disabled the old algorithmic swap path to avoid uncontrolled mint/burn of LUNC. During that period, handlers and market state remained useful for backwards compatibility, but users relied on DEX liquidity pools for actual swaps.\n\nMarket Module 2.0 changes that status. It reopens the native route without returning to the historical mint/burn execution model.\n\n## Parameters (`subspace`: `market`)\n\n| Name | Description | Default |\n| --- | --- | --- |\n| `BasePool` | Virtual market depth used by market-module swap calculations. Market Module 2.0 constrains this through adaptive capacity and absolute clamps. | Query live chain state before relying on a fixed value. |\n| `PoolRecoveryPeriod` | Blocks used for virtual pool recovery. Market Module 2.0 uses supply-scaled recovery behavior in the source design. | Query live chain state before relying on a fixed value. |\n| `MinStabilitySpread` | Minimum spread imposed on swaps. | Query live chain state before relying on a fixed value. |\n\nThe legacy `TobinTax` parameter belonged to historical Terra stablecoin swap behavior. Swap Protocol is scoped to LUNC and USTC; stable-to-stable routing is disabled in the Market Module 2.0 source design.\n\n## Queries and CLI\n\n- **Parameters:** `terrad q market params`\n- **Terra pool delta:** `terrad q market terra-pool-delta`\n\nThese calls are useful for analytics, monitoring, and backwards compatibility tooling. Applications that expose Swap Protocol should also track module enabled state, available route capacity, oracle status, and relevant execution errors where the deployed node software exposes them.\n\n## Operational notes\n\n- Swap Protocol is not a return to unlimited algorithmic mint/burn swaps.\n- If the relevant output pool is depleted, a swap should fail instead of minting output tokens.\n- If oracle quorum or TWAP safety checks fail, the module can disable or reject swaps.\n- If a user or integration attempts a stable-to-stable route, the source design expects that route to be rejected.\n- Integrators should read the [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) page before routing user transactions through the module.\n",
     "previousSlug": "develop/module-specifications/spec-ica",
     "nextSlug": "develop/module-specifications/spec-mint"
   },
@@ -2230,7 +4753,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 51,
+    "navOrder": 96,
     "title": "Mint module (x/mint)",
     "description": "Inflation schedule and distribution handling (legacy on Classic).",
     "status": "draft",
@@ -2241,6 +4764,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-mint.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic retains the Cosmos SDK mint module for compatibility, but inflation is disabled on mainnet. Please refer to the [upstream documentation](https://docs.cosmos.network/main/modules/mint/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-market",
@@ -2255,9 +4779,9 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 52,
+    "navOrder": 97,
     "title": "Oracle module (x/oracle)",
-    "description": "Exchange-rate voting, reward weighting, and oracle slashing.",
+    "description": "Exchange-rate voting, reward weighting, oracle slashing, and Swap Protocol price-feed responsibilities.",
     "status": "draft",
     "reviewed": false,
     "sourceTitle": "Terra Classic Docs repository",
@@ -2266,11 +4790,17 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-oracle.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
         "title": "Classic behaviour",
         "id": "classic-behaviour"
+      },
+      {
+        "depth": 2,
+        "title": "Swap Protocol dependency",
+        "id": "swap-protocol-dependency"
       },
       {
         "depth": 2,
@@ -2298,7 +4828,7 @@ export const docsPages = [
         "id": "cli-shortcuts"
       }
     ],
-    "body": "Terra Classic validators feed external exchange rates so that downstream modules (tax splits, analytics, historical tooling) continue to operate even though algorithmic swaps are disabled. This module enforces the familiar prevote/vote handshake with slashing to keep price data honest.\n\n## Classic behaviour\n\n- **Vote cadence.** `VotePeriod` is 30 seconds (5 blocks). Validators must broadcast aggregate prevotes in period _t_ and reveal votes in period _t+1_. Same-period vote+prevote combinations are rejected (`ErrRevealPeriodMissMatch`).\n- **Aggregate flow.** Classic primarily uses `MsgAggregateExchangeRatePrevote` and `MsgAggregateExchangeRateVote`, bundling all whitelist denoms in a single message hashed as `sha256(\"salt:rates:validator\")`.\n- **Whitelist management.** Parameter `Whitelist` tracks the allowed fiat denoms (e.g., `uusd`, `ukrw`). Governance can prune unused stablecoins; any denom missing sufficient voting power each period is temporarily removed from the on-chain store.\n- **Reference Terra logic.** Weighted medians are computed relative to the high-turnout denom (`ReferenceTerra`) and converted into cross rates for the rest. Results land in the keeper via `k.SetLunaExchangeRate()`.\n- **Reward funding.** Oracle reward pools receive their budget from `x/tax` splits. At each tally the module pays winners proportionally and decays the pool over `RewardDistributionWindow`.\n- **Miss counters & slashing.** Validators must keep a valid vote rate above `MinValidPerWindow` (5%) over the week-long `SlashWindow`. Offenders lose `SlashFraction` (0.01%) of stake and are jailed until unjailed manually.\n\n## Messages\n\n- **`MsgAggregateExchangeRatePrevote`** – commits the hash of all exchange rates for the next period (`hash = sha256(\"salt:rate1,rate2,...:validator\")`). Multiple prevotes per period overwrite previous hashes.\n- **`MsgAggregateExchangeRateVote`** – reveals the salt and comma-separated rate list. Each entry is formatted as `<amount><denom>` (e.g., `0.00012ukrw`).\n- **`MsgDelegateFeedConsent`** – assigns a feeder account to a validator. CLI workflows (and the Classic E2E tests) confirm delegation before proceeding.\n\n## State\n\n| Store key | Description |\n| --- | --- |\n| `Prevotes` (`map[valoper][denom]AggregatePrevote`) | Current-period hashes waiting for reveal. |\n| `Votes` (`map[valoper][denom]AggregateVote`) | Revealed votes kept until tally completes. |\n| `LunaExchangeRate` (`map[denom]sdk.Dec`) | Latest accepted exchange rate per denom. |\n| `FeederDelegations` (`map[valoper]acc`) | Delegated feeder accounts. |\n| `MissCounters` (`map[valoper]int64`) | Missed-vote counters over the active slash window. |\n\n## End-block workflow\n\n1. Check if the block height is a multiple of `VotePeriod`.\n2. Build ballots per denom from revealed votes, discarding abstentions or jailed validators.\n3. Drop ballots lacking quorum (`VoteThreshold`, 50% voting power) or missing from `Whitelist`.\n4. Select `ReferenceTerra`, compute cross rates, and derive weighted medians.\n5. Update on-chain exchange rates, reward ballot winners, and increment miss counters.\n6. When a `SlashWindow` ends, slash and jail validators whose valid-vote ratio fell below `MinValidPerWindow`.\n7. Clear prevotes and votes for the next cycle while keeping the latest hash commitments.\n\n## Parameters (`subspace`: `oracle`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `VotePeriod` | Blocks per voting cycle. | `5` |\n| `VoteThreshold` | Minimum voting power required for a ballot. | `0.500000000000000000` |\n| `RewardBand` | Allowed deviation around the weighted median. | `0.020000000000000000` |\n| `RewardDistributionWindow` | Blocks used to pro-rate the reward pool. | `10512000` (`BlocksPerYear`) |\n| `Whitelist` | Allowed denoms and their Tobin taxes. | `[ukrw, usdr, uusd, umnt]` (governance may update) |\n| `SlashFraction` | Stake slashed on oracle failure. | `0.000100000000000000` |\n| `SlashWindow` | Block span for counting misses. | `604800` (`BlocksPerWeek`) |\n| `MinValidPerWindow` | Required successful vote ratio. | `0.050000000000000000` |\n\nGovernance proposals targeting the `oracle` subspace can adjust any of these values.\n\n## CLI shortcuts\n\n- **Submit aggregate vote:** `terrad tx oracle aggregate-vote <rates> <validator> --from <feeder>`\n- **Delegate feeder:** `terrad tx oracle delegate-feed-consent <validator> <feeder>`\n- **Inspect params:** `terrad q oracle params`\n- **Check current prices:** `terrad q oracle exchange-rates`\n\nEnsure feeders fund their accounts with enough ULUNA for fees. Classic tooling typically relies on endpoints such as `https://terra-classic-lcd.publicnode.com` or `https://api-lunc-lcd.binodes.com` when scripting.\n",
+    "body": "Terra Classic validators feed external exchange rates for downstream protocol logic, including [Swap Protocol](/swap-protocol/overview/). Market Module 2.0 uses oracle-reported market pricing so native LUNC and USTC swaps do not rely on a fixed USTC peg assumption.\n\nThis module enforces the familiar prevote/vote handshake with slashing to keep price data honest. For Swap Protocol, oracle reliability is also a product safety requirement: missing, stale, or low-quorum price data can disable swaps.\n\n## Classic behaviour\n\n- **Vote cadence.** `VotePeriod` is 30 seconds (5 blocks). Validators must broadcast aggregate prevotes in period _t_ and reveal votes in period _t+1_. Same-period vote+prevote combinations are rejected (`ErrRevealPeriodMissMatch`).\n- **Aggregate flow.** Classic primarily uses `MsgAggregateExchangeRatePrevote` and `MsgAggregateExchangeRateVote`, bundling all whitelist denoms in a single message hashed as `sha256(\"salt:rates:validator\")`.\n- **Whitelist management.** Parameter `Whitelist` tracks allowed oracle denoms. Swap Protocol requires USTC market-price support rather than a fixed 1 USD assumption. Governance and chain upgrades can change the exact live whitelist, so operators should query current params before relying on a hardcoded list.\n- **Reference Terra logic.** Weighted medians are computed relative to the high-turnout denom (`ReferenceTerra`) and converted into cross rates for the rest. Results land in the keeper via `k.SetLunaExchangeRate()`.\n- **Reward funding.** Oracle reward pools receive their budget from `x/tax` splits. At each tally the module pays winners proportionally and decays the pool over `RewardDistributionWindow`.\n- **Miss counters & slashing.** Validators must keep a valid vote rate above `MinValidPerWindow` (5%) over the week-long `SlashWindow`. Offenders lose `SlashFraction` (0.01%) of stake and are jailed until unjailed manually.\n\n## Swap Protocol dependency\n\nMarket Module 2.0 depends on oracle pricing for safe LUNC and USTC swaps.\n\nThe Swap Protocol source design defines these safety expectations:\n\n| Control | Behavior |\n| --- | --- |\n| Price vote period | 5 blocks, approximately 30 seconds. |\n| Price calculation | Voting-power-weighted median for the current period. |\n| Quorum auto-disable | If either required asset has price votes from less than 50% voting power for 25 blocks, the market module disables until quorum is restored. |\n| TWAP sanity clamp | Each swap can fail if the current price differs by more than 10% from a 45-block oracle TWAP. |\n| USTC treatment | USTC is valued at market price, not as a guaranteed 1 USD asset. |\n\nSee [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/) and [Validator operations](/swap-protocol/validator-operations/) for the Swap Protocol-specific operating model.\n\n## Messages\n\n- **`MsgAggregateExchangeRatePrevote`** – commits the hash of all exchange rates for the next period (`hash = sha256(\"salt:rate1,rate2,...:validator\")`). Multiple prevotes per period overwrite previous hashes.\n- **`MsgAggregateExchangeRateVote`** – reveals the salt and comma-separated rate list. Each entry is formatted as `<amount><denom>` (e.g., `0.00012ukrw`).\n- **`MsgDelegateFeedConsent`** – assigns a feeder account to a validator. CLI workflows (and the Classic E2E tests) confirm delegation before proceeding.\n\n## State\n\n| Store key | Description |\n| --- | --- |\n| `Prevotes` (`map[valoper][denom]AggregatePrevote`) | Current-period hashes waiting for reveal. |\n| `Votes` (`map[valoper][denom]AggregateVote`) | Revealed votes kept until tally completes. |\n| `LunaExchangeRate` (`map[denom]sdk.Dec`) | Latest accepted exchange rate per denom. |\n| `FeederDelegations` (`map[valoper]acc`) | Delegated feeder accounts. |\n| `MissCounters` (`map[valoper]int64`) | Missed-vote counters over the active slash window. |\n\n## End-block workflow\n\n1. Check if the block height is a multiple of `VotePeriod`.\n2. Build ballots per denom from revealed votes, discarding abstentions or jailed validators.\n3. Drop ballots lacking quorum (`VoteThreshold`, 50% voting power) or missing from `Whitelist`.\n4. Select `ReferenceTerra`, compute cross rates, and derive weighted medians.\n5. Update on-chain exchange rates, reward ballot winners, and increment miss counters.\n6. When a `SlashWindow` ends, slash and jail validators whose valid-vote ratio fell below `MinValidPerWindow`.\n7. Clear prevotes and votes for the next cycle while keeping the latest hash commitments.\n\n## Parameters (`subspace`: `oracle`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `VotePeriod` | Blocks per voting cycle. | `5` |\n| `VoteThreshold` | Minimum voting power required for a ballot. | `0.500000000000000000` |\n| `RewardBand` | Allowed deviation around the weighted median. | `0.020000000000000000` |\n| `RewardDistributionWindow` | Blocks used to pro-rate the reward pool. | `10512000` (`BlocksPerYear`) |\n| `Whitelist` | Allowed oracle denoms and related metadata. Swap Protocol requires current USTC market-price support. | Query live chain state; governance may update. |\n| `SlashFraction` | Stake slashed on oracle failure. | `0.000100000000000000` |\n| `SlashWindow` | Block span for counting misses. | `604800` (`BlocksPerWeek`) |\n| `MinValidPerWindow` | Required successful vote ratio. | `0.050000000000000000` |\n\nGovernance proposals targeting the `oracle` subspace can adjust any of these values.\n\n## CLI shortcuts\n\n- **Submit aggregate vote:** `terrad tx oracle aggregate-vote <rates> <validator> --from <feeder>`\n- **Delegate feeder:** `terrad tx oracle delegate-feed-consent <validator> <feeder>`\n- **Inspect params:** `terrad q oracle params`\n- **Check current prices:** `terrad q oracle exchange-rates`\n\nEnsure feeders fund their accounts with enough ULUNA for fees. Classic tooling typically relies on endpoints such as `https://terra-classic-lcd.publicnode.com` or `https://api-lunc-lcd.binodes.com` when scripting.\n\nFor Swap Protocol, feeder operators should also verify that USTC pricing is supported by their feeder binary and configured providers. If validators cannot maintain sufficient oracle participation, Swap Protocol should fail closed rather than execute swaps against unsafe price data.\n",
     "previousSlug": "develop/module-specifications/spec-mint",
     "nextSlug": "develop/module-specifications/spec-params"
   },
@@ -2311,7 +4841,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 53,
+    "navOrder": 98,
     "title": "Params module (x/params)",
     "description": "Parameter subspace management across modules.",
     "status": "draft",
@@ -2322,6 +4852,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-params.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> **Note**\n>\n> The params module has been deprecated in favor of letting each module keep its own parameters in the app state.  \n> Some modules still use the params module for governance proposals, but this is not recommended. These modules, until migrated, use the params keeper to store module parameter sets under individual subspaces. Those parameters can be updated through parameter-change proposals.\n>\n> Please refer to the [upstream documentation](https://docs.cosmos.network/main/modules/params/) for more details.\n",
     "previousSlug": "develop/module-specifications/spec-oracle",
@@ -2336,7 +4867,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 54,
+    "navOrder": 99,
     "title": "Slashing module (x/slashing)",
     "description": "Downtime and double-signing penalties.",
     "status": "draft",
@@ -2347,6 +4878,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-slashing.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic inherits the Cosmos SDK slashing module to manage validator punishments. Please refer to the [upstream documentation](https://docs.cosmos.network/main/modules/slashing/) for a complete overview.\n",
     "previousSlug": "develop/module-specifications/spec-params",
@@ -2361,7 +4893,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 55,
+    "navOrder": 100,
     "title": "Staking module (x/staking)",
     "description": "Validator set management, delegation, and bonding.",
     "status": "draft",
@@ -2372,6 +4904,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-staking.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic inherits the Cosmos SDK staking module to manage validator staking. Please refer to the [upstream documentation](https://docs.cosmos.network/main/modules/staking/) for a complete overview.\n>\n>\n> **Note**\n>\n> Terra Classic has implemented a custom voting power cap to prevent validators from having too much influence on the network. This cap is set to 20% of the total voting power.\n",
     "previousSlug": "develop/module-specifications/spec-slashing",
@@ -2386,7 +4919,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 56,
+    "navOrder": 101,
     "title": "Tax module (x/tax)",
     "description": "Burn tax collection, splits, and effective gas price handling.",
     "status": "draft",
@@ -2397,6 +4930,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-tax.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2427,7 +4961,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 57,
+    "navOrder": 102,
     "title": "Tax exemption module (x/taxexemption)",
     "description": "Manage burn-tax exempt address lists for Classic.",
     "status": "draft",
@@ -2438,6 +4972,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-taxexemption.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2483,7 +5018,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 58,
+    "navOrder": 103,
     "title": "Treasury module (x/treasury)",
     "description": "Epoch-based tax rate, reward weight, and seigniorage handling.",
     "status": "draft",
@@ -2494,6 +5029,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-treasury.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2684,7 +5220,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 59,
+    "navOrder": 104,
     "title": "IBC transfer module (x/transfer)",
     "description": "ICS-20 fungible token relay with tax integration.",
     "status": "draft",
@@ -2695,6 +5231,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-transfer.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic enables IBC routing through the IBC module. For more information, see the [upstream documentation](https://ibc.cosmos.network/v7/apps/transfer/overview/).\n",
     "previousSlug": "develop/module-specifications/spec-treasury",
@@ -2709,7 +5246,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 60,
+    "navOrder": 105,
     "title": "Upgrade module (x/upgrade)",
     "description": "Coordinated chain upgrades and store migrations.",
     "status": "draft",
@@ -2720,6 +5257,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-upgrade.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic inherits the Cosmos SDK upstream upgrade module. Please refer to the [upstream documentation](https://docs.cosmos.network/main/modules/upgrade/) for details.\n",
     "previousSlug": "develop/module-specifications/spec-transfer",
@@ -2734,7 +5272,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 61,
+    "navOrder": 106,
     "title": "Vesting module (x/vesting)",
     "description": "Legacy vesting account types preserved on Classic.",
     "status": "draft",
@@ -2745,6 +5283,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-vesting.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [],
     "body": "> Terra Classic at this point in time does not utilize vesting. The vesting module is still implemented for historical reasons and existing vesting accounts.\n",
     "previousSlug": "develop/module-specifications/spec-upgrade",
@@ -2759,7 +5298,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 62,
+    "navOrder": 107,
     "title": "Wasm module (x/wasm)",
     "description": "CosmWasm contract execution, message bindings, and migrations.",
     "status": "draft",
@@ -2770,6 +5309,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/module-specifications/spec-wasm.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2950,7 +5490,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 63,
+    "navOrder": 108,
     "title": "Overview",
     "description": "Understand hardware expectations, supported platforms, and the lifecycle of running a Terra Classic node.",
     "status": "draft",
@@ -2961,6 +5501,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/overview.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -2991,7 +5532,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 64,
+    "navOrder": 109,
     "title": "System configuration",
     "description": "Hardware, OS, and networking prerequisites pulled from the Classic runbook.",
     "status": "draft",
@@ -3002,6 +5543,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/system-config.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3037,7 +5579,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 65,
+    "navOrder": 110,
     "title": "Build Terra core",
     "description": "Fetch and compile the latest Terra Classic binaries from source.",
     "status": "draft",
@@ -3048,6 +5590,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/build-terra-core.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3068,7 +5611,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 66,
+    "navOrder": 111,
     "title": "Configure general settings",
     "description": "This guide covers the most important configuration files found in `~/.terra/config/`. Review each file and update the defaults to match your infrastructure.",
     "status": "draft",
@@ -3079,6 +5622,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/configure-general-settings.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3119,7 +5663,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 67,
+    "navOrder": 112,
     "title": "Set up a production environment",
     "description": "Use this checklist to prepare a production-grade Terra Classic node.",
     "status": "draft",
@@ -3130,6 +5674,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/set-up-production.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3175,7 +5720,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 68,
+    "navOrder": 113,
     "title": "Join a network",
     "description": "Use this overview to choose the right walkthrough for connecting a Terra Classic node to the network.",
     "status": "draft",
@@ -3186,6 +5731,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/join-a-network.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3226,7 +5772,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 69,
+    "navOrder": 114,
     "title": "Sync",
     "description": "Snapshots, manual replay, and verification steps.",
     "status": "draft",
@@ -3237,6 +5783,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/sync.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3277,7 +5824,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 70,
+    "navOrder": 115,
     "title": "Validate on columbus-5",
     "description": "End-to-end instructions for running a Terra Classic mainnet validator.",
     "status": "draft",
@@ -3288,6 +5835,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/validator-columbus-5.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3343,7 +5891,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 71,
+    "navOrder": 116,
     "title": "Validate on rebel-2",
     "description": "Spin up a Terra Classic testnet validator and join coordination channels.",
     "status": "draft",
@@ -3354,6 +5902,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/validator-rebel-2.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3409,7 +5958,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 72,
+    "navOrder": 117,
     "title": "Reset and troubleshooting",
     "description": "Recover from configuration drift, replace genesis files, and verify node health.",
     "status": "draft",
@@ -3420,6 +5969,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "full-node/run-a-full-terra-node/troubleshoot.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3455,7 +6005,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 73,
+    "navOrder": 118,
     "title": "Public Network Endpoints",
     "description": "Public endpoints for Terra Classic infrastructure.",
     "status": "draft",
@@ -3466,6 +6016,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/endpoints.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 3,
@@ -3501,7 +6052,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 74,
+    "navOrder": 119,
     "title": "Glossary",
     "description": "Terra Classic terminology reference for users, validators, and developers.",
     "status": "draft",
@@ -3512,6 +6063,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "learn/glossary.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,
@@ -3893,6 +6445,7 @@ export const docsPages = [
     "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
     "sourcePath": "develop/cosmes/cosmes-contracts.md",
     "sourceDate": "2026-05-27",
+    "tocDepth": null,
     "headings": [
       {
         "depth": 2,

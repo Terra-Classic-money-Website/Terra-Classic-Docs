@@ -52,13 +52,138 @@ const navSections = [
           },
         ],
       },
-      { slug: "learn/staking-and-governance", title: "Staking and governance" },
       { slug: "learn/fees", title: "Fees" },
+    ],
+  },
+  {
+    label: "Staking Protocol",
+    items: [
+      { slug: "staking-protocol/overview", title: "Staking Protocol" },
+      {
+        id: "staking-protocol/use-staking-protocol",
+        title: "Use Staking Protocol",
+        children: [
+          { slug: "staking-protocol/how-it-works", title: "How it works" },
+          { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
+          { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
+          { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
+        ],
+      },
+      {
+        id: "staking-protocol/validators",
+        title: "Validators",
+        children: [
+          { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
+          { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
+        ],
+      },
+      {
+        id: "staking-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "staking-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Swap Protocol",
+    items: [
+      { slug: "swap-protocol/overview", title: "Swap Protocol" },
+      {
+        id: "swap-protocol/use-swap-protocol",
+        title: "Use Swap Protocol",
+        children: [
+          { slug: "swap-protocol/how-it-works", title: "How it works" },
+          { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
+        ],
+      },
+      {
+        id: "swap-protocol/economics-and-safety",
+        title: "Economics and safety",
+        children: [
+          { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
+          { slug: "swap-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
+          { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
+        ],
+      },
+      {
+        id: "swap-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "swap-protocol/validator-operations", title: "Validator operations" },
+          { slug: "swap-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Forex Protocol",
+    items: [
+      { slug: "forex-protocol/overview", title: "Forex Protocol" },
+      {
+        id: "forex-protocol/status-and-model",
+        title: "Status and model",
+        children: [
+          { slug: "forex-protocol/governance-and-status", title: "Governance and status" },
+          { slug: "forex-protocol/how-it-is-proposed-to-work", title: "How it is proposed to work" },
+        ],
+      },
+      {
+        id: "forex-protocol/collateral-and-safety",
+        title: "Collateral and safety",
+        children: [
+          { slug: "forex-protocol/collateral-and-stable-assets", title: "Collateral and stable assets" },
+          { slug: "forex-protocol/fees-buybacks-and-liquidity", title: "Fees, buybacks, and liquidity" },
+          { slug: "forex-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "forex-protocol/risks-and-open-questions", title: "Risks and open questions" },
+        ],
+      },
+      {
+        id: "forex-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "forex-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Governance",
+    items: [
+      { slug: "governance/overview", title: "Governance" },
+      {
+        id: "governance/understand-governance",
+        title: "Understand governance",
+        children: [
+          { slug: "governance/voting-power-and-delegation", title: "Voting power and delegation" },
+          { slug: "governance/proposal-lifecycle", title: "Proposal lifecycle" },
+          { slug: "governance/vote-options", title: "Vote options" },
+        ],
+      },
+      {
+        id: "governance/use-governance",
+        title: "Use governance",
+        children: [
+          { slug: "governance/how-to-vote", title: "How to vote" },
+          { slug: "governance/how-to-evaluate-proposals", title: "How to evaluate proposals" },
+        ],
+      },
+      {
+        id: "governance/accountability-and-risk",
+        title: "Accountability and risk",
+        children: [
+          { slug: "governance/validator-accountability", title: "Validator accountability" },
+          { slug: "governance/risks-and-safeguards", title: "Risks and safeguards" },
+        ],
+      },
     ],
   },
   {
     label: "Develop",
     items: [
+      { slug: "develop/quick-start-guide", title: "Quick start guide" },
       { slug: "develop/how-to/localnet/terra-core-localnet", title: "Run Terra Classic localnet" },
       { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
       {
@@ -159,19 +284,24 @@ let navIndex = 0;
 
 function registerNavItem(section, item, depth = 0, parentSlug = null) {
   const children = item.children ?? [];
-  navMeta.set(item.slug, {
-    group: section.label,
-    navTitle: item.title,
-    navDepth: depth,
-    navParent: parentSlug,
-    navHasChildren: children.length > 0,
-    navOrder: navIndex,
-  });
+  const itemId = item.slug ?? item.id;
+
+  if (item.slug) {
+    navMeta.set(item.slug, {
+      group: section.label,
+      navTitle: item.title,
+      navDepth: depth,
+      navParent: parentSlug,
+      navHasChildren: children.length > 0,
+      navOrder: navIndex,
+    });
+  }
+
   navIndex += 1;
 
   for (const child of children) {
     const childItem = typeof child === "string" ? { slug: child, title: null } : child;
-    registerNavItem(section, childItem, depth + 1, item.slug);
+    registerNavItem(section, childItem, depth + 1, itemId);
   }
 }
 
@@ -223,6 +353,7 @@ const pages = walkMarkdown().map((filePath) => {
     sourceCommit: parsed.metadata.sourceCommit,
     sourcePath: parsed.metadata.sourcePath,
     sourceDate: parsed.metadata.sourceDate,
+    tocDepth: parsed.metadata.tocDepth ? Number(parsed.metadata.tocDepth) : null,
     headings: extractHeadings(body),
     body,
   };
@@ -247,10 +378,34 @@ const search = pages.map((page) => ({
     .slice(0, 8000),
 }));
 
+function navBlueprintItem(item) {
+  const children = (item.children ?? []).map((child) => navBlueprintItem(typeof child === "string" ? { slug: child, title: null } : child));
+
+  if (item.slug) {
+    return { type: "page", slug: item.slug, children };
+  }
+
+  return {
+    type: "label",
+    id: item.id,
+    title: item.title,
+    children,
+  };
+}
+
+const navBlueprint = navSections.map((section) => ({
+  label: section.label,
+  items: section.items.map(navBlueprintItem),
+}));
+
 fs.mkdirSync(generatedDir, { recursive: true });
 fs.writeFileSync(
   path.join(generatedDir, "docsManifest.ts"),
   `import type { DocsPage } from "../types";\n\nexport const docsPages = ${JSON.stringify(pages, null, 2)} satisfies DocsPage[];\n`,
+);
+fs.writeFileSync(
+  path.join(generatedDir, "docsNav.ts"),
+  `import type { DocsNavBlueprintGroup } from "../types";\n\nexport const docsNavBlueprint = ${JSON.stringify(navBlueprint, null, 2)} satisfies DocsNavBlueprintGroup[];\n`,
 );
 fs.writeFileSync(
   path.join(generatedDir, "searchIndex.ts"),

@@ -85,7 +85,15 @@ function SearchBox({ onNavigate }: { onNavigate: () => void }) {
 }
 
 function navItemContainsPage(item: DocsNavItem, slug: string): boolean {
-  return item.page.slug === slug || item.children.some((child) => navItemContainsPage(child, slug));
+  return (item.type === "page" && item.page.slug === slug) || item.children.some((child) => navItemContainsPage(child, slug));
+}
+
+function navItemId(item: DocsNavItem) {
+  return item.type === "page" ? item.page.slug : item.id;
+}
+
+function navItemTitle(item: DocsNavItem) {
+  return item.type === "page" ? item.page.navTitle : item.title;
 }
 
 function DocsNavNode({
@@ -105,10 +113,12 @@ function DocsNavNode({
 }) {
   const childrenInnerRef = useRef<HTMLDivElement>(null);
   const [childrenHeight, setChildrenHeight] = useState(0);
-  const isActive = item.page.slug === activePage.slug;
+  const itemId = navItemId(item);
+  const itemTitle = navItemTitle(item);
+  const isActive = item.type === "page" && item.page.slug === activePage.slug;
   const hasActiveChild = item.children.some((child) => navItemContainsPage(child, activePage.slug));
   const hasChildren = item.children.length > 0;
-  const expanded = isActive || hasActiveChild || expandedSlugs.has(item.page.slug);
+  const expanded = isActive || hasActiveChild || expandedSlugs.has(itemId);
 
   useLayoutEffect(() => {
     if (!hasChildren || !childrenInnerRef.current) return;
@@ -127,45 +137,59 @@ function DocsNavNode({
   const childrenStyle = {
     "--docs-nav-children-height": `${childrenHeight}px`,
   } as CSSProperties;
-  const childrenId = `docs-nav-children-${item.page.slug.replace(/[^a-z0-9_-]/gi, "-")}`;
+  const childrenId = `docs-nav-children-${itemId.replace(/[^a-z0-9_-]/gi, "-")}`;
   const rowClassName = [
     "docs-nav-row",
     isActive ? "docs-nav-row--active" : "",
     hasChildren ? "docs-nav-row--branch" : "",
     expanded ? "docs-nav-row--expanded" : "",
+    item.type === "label" ? "docs-nav-row--label" : "",
   ].filter(Boolean).join(" ");
 
   const handleLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (hasChildren) {
       const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
       const usesSplitControls = typeof window !== "undefined" && window.matchMedia("(max-width: 1299px)").matches;
-      if (!isModifiedClick && !usesSplitControls) onToggleExpanded(item.page.slug);
+      if (!isModifiedClick && !usesSplitControls) onToggleExpanded(itemId);
     }
     onNavigate();
   };
 
   return (
-    <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={item.page.slug}>
+    <div className={`docs-nav-node docs-nav-node--depth-${depth}`} key={itemId}>
       <div className={rowClassName}>
-        <a
-          className="docs-nav-link"
-          href={item.page.path}
-          aria-current={isActive ? "page" : undefined}
-          aria-expanded={hasChildren ? expanded : undefined}
-          aria-controls={hasChildren ? childrenId : undefined}
-          onClick={handleLinkClick}
-        >
-          <span>{item.page.navTitle}</span>
-          {hasChildren && <NavClusterIcon variant="branch-down" />}
-        </a>
+        {item.type === "page" ? (
+          <a
+            className="docs-nav-link"
+            href={item.page.path}
+            aria-current={isActive ? "page" : undefined}
+            aria-expanded={hasChildren ? expanded : undefined}
+            aria-controls={hasChildren ? childrenId : undefined}
+            onClick={handleLinkClick}
+          >
+            <span>{itemTitle}</span>
+            {hasChildren && <NavClusterIcon variant="branch-down" />}
+          </a>
+        ) : (
+          <button
+            className="docs-nav-link docs-nav-label-button"
+            type="button"
+            aria-expanded={hasChildren ? expanded : undefined}
+            aria-controls={hasChildren ? childrenId : undefined}
+            onClick={() => onToggleExpanded(itemId)}
+          >
+            <span>{itemTitle}</span>
+            {hasChildren && <NavClusterIcon variant="branch-down" />}
+          </button>
+        )}
         {hasChildren && (
           <button
             className="docs-nav-toggle"
             type="button"
-            aria-label={`${expanded ? "Collapse" : "Expand"} ${item.page.navTitle}`}
+            aria-label={`${expanded ? "Collapse" : "Expand"} ${itemTitle}`}
             aria-expanded={expanded}
             aria-controls={childrenId}
-            onClick={() => onToggleExpanded(item.page.slug)}
+            onClick={() => onToggleExpanded(itemId)}
           >
             <NavClusterIcon variant="branch-down" />
           </button>
@@ -185,7 +209,7 @@ function DocsNavNode({
                 depth={depth + 1}
                 expandedSlugs={expandedSlugs}
                 item={child}
-                key={child.page.slug}
+                key={navItemId(child)}
                 onNavigate={onNavigate}
                 onToggleExpanded={onToggleExpanded}
               />
@@ -213,7 +237,7 @@ function DocsSidebar({
     const stack = groups.flatMap((group) => group.items);
     while (stack.length > 0) {
       const item = stack.shift()!;
-      if (item.page.slug === slug) return item;
+      if (navItemId(item) === slug) return item;
       stack.push(...item.children);
     }
     return null;
@@ -227,7 +251,7 @@ function DocsSidebar({
       const parent = findNavItem(parentSlug);
       if (!parent) break;
       parents.add(parentSlug);
-      parentSlug = parent.page.navParent;
+      parentSlug = parent.type === "page" ? parent.page.navParent : null;
     }
 
     if (parents.size === 0) return;
@@ -265,7 +289,7 @@ function DocsSidebar({
                       activePage={activePage}
                       expandedSlugs={expandedSlugs}
                       item={item}
-                      key={item.page.slug}
+                      key={navItemId(item)}
                       onNavigate={onNavigate}
                       onToggleExpanded={toggleExpanded}
                     />
@@ -297,7 +321,8 @@ function DocsSidebar({
 }
 
 function TableOfContents({ page }: { page: DocsPage }) {
-  const headings = page.headings.filter((heading) => heading.depth <= 3);
+  const maxDepth = page.tocDepth ?? 3;
+  const headings = page.headings.filter((heading) => heading.depth <= maxDepth);
   if (headings.length === 0) return null;
   return (
     <aside className="docs-toc" aria-label="On this page">

@@ -3,14 +3,16 @@ title: "Galaxy Station Governance"
 description: "Deposit and vote on proposals via Galaxy Station."
 status: draft
 reviewed: false
-sourceTitle: "Terra Classic Docs repository"
-sourceSite: "https://terra-classic.io/docs"
-sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
-sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
-sourcePath: "learn/galaxy-station/galaxy-station-governance.md"
-sourceDate: "2026-05-27"
+sourceTitle: "Terra Classic Docs Governance section"
+sourceSite: "https://docs.terra-classic.money"
+sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
+sourceCommit: "governance-section-2026-06-01"
+sourcePath: "content/docs/learn/galaxy-station/galaxy-station-governance.md"
+sourceDate: "2026-06-01"
 ---
 ## Vote on proposals
+
+Read the general [How to vote](/governance/how-to-vote/) guide and [Vote options](/governance/vote-options/) guide before voting on high-impact proposals.
 
 1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.
 2. Ensure Terra Classic is selected.
