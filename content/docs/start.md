@@ -18,7 +18,8 @@ It is separate from the main Terra Classic Website. The docs site is built aroun
 
 ## Main sections
 
-- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, fees, staking, and governance material.
+- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, and fees.
+- [Staking Protocol](/staking-protocol/overview/) covers LUNC delegation, rewards, validator selection, governance participation, unstaking risks, validator responsibilities, and developer integration.
 - [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.
 - [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.
 - [Appendices](/appendices/glossary/) covers reference material such as glossary terms.

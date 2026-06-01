@@ -135,6 +135,7 @@ export function groupLabelFromSlug(slug) {
   const labels = {
     start: "Start",
     learn: "Learn",
+    "staking-protocol": "Staking Protocol",
     develop: "Develop",
     "full-node": "Full Node",
   };

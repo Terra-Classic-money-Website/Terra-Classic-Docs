@@ -41,7 +41,7 @@ Validators run full nodes, propose blocks, and vote during Tendermint consensus.
 2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.
 3. Fees from the block enter the distribution module and are later shared with delegators.
 
-Learn more in the validator guides under `Run a full node` and the [staking doc](./staking-and-governance).
+Learn more in the validator guides under `Run a full node` and the [Staking Protocol overview](/staking-protocol/overview/).
 
 ## Staking lifecycle
 
@@ -57,17 +57,17 @@ Misbehaving validators are penalised by the slashing module:
 - **Downtime**: Failing to participate in consensus.
 - **Oracle faults**: Missing required oracle votes (`x/oracle`).
 
-Every slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/docs/develop/module-specifications/slashing) for parameters.
+Every slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.
 
 ## Governance
 
 Terra Classic governance lets stakers steer protocol policy.
 
-1. **Deposit period** (2 weeks): Community members deposit LUNC on a proposal until the minimum threshold (currently 50 LUNC) is met.
-2. **Voting period** (1 week): Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator’s vote.
-3. **Execution**: Passed proposals trigger automatic handlers or human follow-up (for text proposals). Deposits are refunded if quorum (40% participation) and veto thresholds are satisfied.
+1. **Deposit period**: Community members deposit LUNC on a proposal until the minimum threshold is reached or the maximum deposit period expires.
+2. **Voting period**: Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator's vote.
+3. **Execution**: Passed proposals trigger automatic handlers or human follow-up depending on the proposal type. Deposits, quorum, threshold, veto, and voting-period parameters are governance-controlled and should be queried before relying on a fixed value.
 
-Common proposal types include parameter changes, community pool spends, and text proposals. See the [governance module spec](/docs/develop/module-specifications/governance) for details.
+Common proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Staking Protocol governance guide](/staking-protocol/governance/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.
 
 ## Fees and rewards
 
@@ -75,4 +75,4 @@ Common proposal types include parameter changes, community pool spends, and text
 - **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.
 - **Legacy swap fees** (Tobin and spread) are currently set to 100% to disable utilizing the market module.
 
-Rewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [fees guide](./fees) for live endpoints and tax exemptions.
+Rewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [Staking Protocol rewards guide](/staking-protocol/rewards-and-apr/) and the [fees guide](/learn/fees/) for live endpoints and tax exemptions.

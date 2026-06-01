@@ -39,7 +39,7 @@ export const docsPages = [
         "id": "contribution-model"
       }
     ],
-    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, fees, staking, and governance material.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. The edit link on each page opens its source markdown file in the public docs repository.\n",
+    "body": "## What this docs site is\n\nTerra Classic Docs is a custom, GitHub Pages-only documentation site for Terra Classic users, node operators, validators, and builders.\n\nIt is separate from the main Terra Classic Website. The docs site is built around source-aware markdown content, clear navigation, and a contribution model that can evolve through GitHub issues and pull requests.\n\n## Main sections\n\n- [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, and fees.\n- [Staking Protocol](/staking-protocol/overview/) covers LUNC delegation, rewards, validator selection, governance participation, unstaking risks, validator responsibilities, and developer integration.\n- [Develop](/develop/smart-contracts/overview/) covers smart contracts, CosmES, Terra.py, transaction behavior, endpoints, localnet, and module specifications.\n- [Full Node](/full-node/overview/) covers node operation, production setup, sync, troubleshooting, and validator-network guides.\n- [Appendices](/appendices/glossary/) covers reference material such as glossary terms.\n\n## Contribution model\n\nThe long-term target is a community-maintained docs surface where corrections and improvements are proposed through GitHub. The edit link on each page opens its source markdown file in the public docs repository.\n",
     "previousSlug": null,
     "nextSlug": "learn/protocol"
   },
@@ -101,7 +101,7 @@ export const docsPages = [
         "id": "fees-and-rewards"
       }
     ],
-    "body": "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact.\n\n> **Important**\n>\n> Since May 2022, Terra Classic has no pegged stablecoins. TerraUSD (UST) has depegged and is currently considered a speculative asset.\n>\n> References to **stablecoins** in this document refer to the historical algorithmic operation of Terra.\n\n## Terra and LUNC\n\n- **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.\n- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC; on Classic, the mint/burn swap paths are disabled, but legacy supply mechanics still inform the protocol design.\n\n## Stablecoin mechanics (historical)\n\nTerra was designed around two supply pools—Terra and LUNC. The market module encouraged arbitrage to expand or contract stablecoin supply and keep prices near their pegs.\n\n- **Expansion**: When Terra traded above the peg, burning LUNC to mint Terra increased supply and reduced the premium.\n- **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.\n\n> **Important**\n> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset, while stablecoin liquidity is community-maintained through dApps and DEXes.\n\n## Validators and consensus\n\nValidators run full nodes, propose blocks, and vote during Tendermint consensus.\n\n1. A proposer is selected (weighted by stake) and broadcasts a block.\n2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.\n3. Fees from the block enter the distribution module and are later shared with delegators.\n\nLearn more in the validator guides under `Run a full node` and the [staking doc](/learn/staking-and-governance/).\n\n## Staking lifecycle\n\n- **Delegating**: Delegators bond LUNC to a validator to earn rewards. Staked LUNC contributes to validator voting power but always belongs to the delegator.\n- **Bonded / unbonded / unbonding**: LUNC exists in three phases. Unbonding takes 21 days and does not accrue rewards.\n- **Redelegation**: Move bonded stake between validators without waiting the unbonding period (subject to a 21-day cooldown per source/target pair).\n\n### Slashing\n\nMisbehaving validators are penalised by the slashing module:\n\n- **Double-signing**: Signing conflicting blocks at the same height.\n- **Downtime**: Failing to participate in consensus.\n- **Oracle faults**: Missing required oracle votes (`x/oracle`).\n\nEvery slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.\n\n## Governance\n\nTerra Classic governance lets stakers steer protocol policy.\n\n1. **Deposit period** (2 weeks): Community members deposit LUNC on a proposal until the minimum threshold (currently 50 LUNC) is met.\n2. **Voting period** (1 week): Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator’s vote.\n3. **Execution**: Passed proposals trigger automatic handlers or human follow-up (for text proposals). Deposits are refunded if quorum (40% participation) and veto thresholds are satisfied.\n\nCommon proposal types include parameter changes, community pool spends, and text proposals. See the [governance module spec](/develop/module-specifications/spec-governance/) for details.\n\n## Fees and rewards\n\n- **Gas** pays validator compute and storage costs (`x/auth`).\n- **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.\n- **Legacy swap fees** (Tobin and spread) are currently set to 100% to disable utilizing the market module.\n\nRewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [fees guide](/learn/fees/) for live endpoints and tax exemptions.\n",
+    "body": "Terra Classic combines proof-of-stake security and on-chain governance. This overview explains how LUNC, validators, and delegators all interact.\n\n> **Important**\n>\n> Since May 2022, Terra Classic has no pegged stablecoins. TerraUSD (UST) has depegged and is currently considered a speculative asset.\n>\n> References to **stablecoins** in this document refer to the historical algorithmic operation of Terra.\n\n## Terra and LUNC\n\n- **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.\n- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC; on Classic, the mint/burn swap paths are disabled, but legacy supply mechanics still inform the protocol design.\n\n## Stablecoin mechanics (historical)\n\nTerra was designed around two supply pools—Terra and LUNC. The market module encouraged arbitrage to expand or contract stablecoin supply and keep prices near their pegs.\n\n- **Expansion**: When Terra traded above the peg, burning LUNC to mint Terra increased supply and reduced the premium.\n- **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.\n\n> **Important**\n> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset, while stablecoin liquidity is community-maintained through dApps and DEXes.\n\n## Validators and consensus\n\nValidators run full nodes, propose blocks, and vote during Tendermint consensus.\n\n1. A proposer is selected (weighted by stake) and broadcasts a block.\n2. Validators vote in two rounds. If ≥2/3 of voting power signs both rounds, the block is committed.\n3. Fees from the block enter the distribution module and are later shared with delegators.\n\nLearn more in the validator guides under `Run a full node` and the [Staking Protocol overview](/staking-protocol/overview/).\n\n## Staking lifecycle\n\n- **Delegating**: Delegators bond LUNC to a validator to earn rewards. Staked LUNC contributes to validator voting power but always belongs to the delegator.\n- **Bonded / unbonded / unbonding**: LUNC exists in three phases. Unbonding takes 21 days and does not accrue rewards.\n- **Redelegation**: Move bonded stake between validators without waiting the unbonding period (subject to a 21-day cooldown per source/target pair).\n\n### Slashing\n\nMisbehaving validators are penalised by the slashing module:\n\n- **Double-signing**: Signing conflicting blocks at the same height.\n- **Downtime**: Failing to participate in consensus.\n- **Oracle faults**: Missing required oracle votes (`x/oracle`).\n\nEvery slash reduces both validator self-bond and delegator stake, and the validator is jailed until conditions are resolved. Review the [slashing spec](/develop/module-specifications/spec-slashing/) for parameters.\n\n## Governance\n\nTerra Classic governance lets stakers steer protocol policy.\n\n1. **Deposit period**: Community members deposit LUNC on a proposal until the minimum threshold is reached or the maximum deposit period expires.\n2. **Voting period**: Validators vote `Yes`, `No`, `NoWithVeto`, or `Abstain`. Delegators can override their validator's vote.\n3. **Execution**: Passed proposals trigger automatic handlers or human follow-up depending on the proposal type. Deposits, quorum, threshold, veto, and voting-period parameters are governance-controlled and should be queried before relying on a fixed value.\n\nCommon proposal types include parameter changes, community pool spends, software upgrades, and text proposals. See the [Staking Protocol governance guide](/staking-protocol/governance/) and the [governance module spec](/develop/module-specifications/spec-governance/) for details.\n\n## Fees and rewards\n\n- **Gas** pays validator compute and storage costs (`x/auth`).\n- **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.\n- **Legacy swap fees** (Tobin and spread) are currently set to 100% to disable utilizing the market module.\n\nRewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [Staking Protocol rewards guide](/staking-protocol/rewards-and-apr/) and the [fees guide](/learn/fees/) for live endpoints and tax exemptions.\n",
     "previousSlug": "start",
     "nextSlug": "learn/wallets"
   },
@@ -290,7 +290,7 @@ export const docsPages = [
     "sourceDate": "2026-05-27",
     "tocDepth": null,
     "headings": [],
-    "body": "Staking with Keplr is only possible through third-party websites or the [Keplr Dashboard](https://wallet.keplr.app/chains/terra-classic).\n\n> **Tips**\n>\n> - Keep enough LUNC for future fees.\n> - Redelegations avoid the 21-day unbonding period, but each validator pair has a 21-day cooldown between redelegations.\n> - Undelegation requires a 21-day waiting period before funds become liquid.\n",
+    "body": "Staking with Keplr is only possible through third-party websites or the [Keplr Dashboard](https://wallet.keplr.app/chains/terra-classic).\n\nFor the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).\n\n> **Tips**\n>\n> - Keep enough LUNC for future fees.\n> - Redelegations avoid the 21-day unbonding period, but each validator pair has a 21-day cooldown between redelegations.\n> - Undelegation requires a 21-day waiting period before funds become liquid.\n",
     "previousSlug": "learn/keplr/keplr-send",
     "nextSlug": "learn/keplr/keplr-governance"
   },
@@ -515,7 +515,7 @@ export const docsPages = [
     "sourceDate": "2026-05-27",
     "tocDepth": null,
     "headings": [],
-    "body": "1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected as the active network.\n3. Open the staking view and browse validators.\n4. Choose a validator and click **Delegate**.\n5. Enter the stake amount and confirm.\n\n> **Tips**\n>\n> - Keep some LUNC for transaction fees.\n> - Redelegations avoid the 21-day unbonding period but introduce a 21-day cooldown between the same validator pair.\n> - Undelegating starts a 21-day unbonding period before funds become liquid.\n",
+    "body": "1. Open [Galaxy Station](https://station.hexxagon.io) and connect the extension or the mobile app via WalletConnect.\n2. Ensure Terra Classic is selected as the active network.\n3. Open the staking view and browse validators.\n4. Choose a validator and click **Delegate**.\n5. Enter the stake amount and confirm.\n\nFor the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).\n\n> **Tips**\n>\n> - Keep some LUNC for transaction fees.\n> - Redelegations avoid the 21-day unbonding period but introduce a 21-day cooldown between the same validator pair.\n> - Undelegating starts a 21-day unbonding period before funds become liquid.\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-send",
     "nextSlug": "learn/galaxy-station/galaxy-station-governance"
   },
@@ -596,38 +596,6 @@ export const docsPages = [
     ],
     "body": "## Endpoints\n\n- LCD: [https://lcd.luncblaze.com](https://lcd.luncblaze.com)\n- RPC: [https://rpc.luncblaze.com](https://rpc.luncblaze.com)\n\n## Get test funds\n\n1. Connect Galaxy Station to the Terra Classic testnet (`rebel-2`).\n2. Request tokens from the [rebel-2 faucet bot](https://t.me/tcrebelfaucet_bot). Enter your testnet `terra...` address.\n\n## Send a test transaction\n\n1. In Galaxy Station, open **Assets** and select a token.\n2. Click **Send**, enter the recipient testnet `terra...` address, and confirm the amount.\n3. Review fees and approve the transaction.\n",
     "previousSlug": "learn/galaxy-station/galaxy-station-governance",
-    "nextSlug": "learn/staking-and-governance"
-  },
-  {
-    "slug": "learn/staking-and-governance",
-    "path": "/learn/staking-and-governance/",
-    "sourceFile": "content/docs/learn/staking-and-governance.md",
-    "group": "Learn Terra Classic",
-    "navTitle": "Staking and governance",
-    "navDepth": 0,
-    "navParent": null,
-    "navHasChildren": false,
-    "navOrder": 17,
-    "title": "Staking and governance",
-    "description": "How validator economics, rewards, and voting power align the Terra Classic network.",
-    "status": "draft",
-    "reviewed": false,
-    "sourceTitle": "Terra Classic Docs repository",
-    "sourceSite": "https://terra-classic.io/docs",
-    "sourceRepo": "https://github.com/terra-classic-io/website/tree/main/src/docs",
-    "sourceCommit": "e305fbe051de9c218021cc3ff98e2e01db04f6dd",
-    "sourcePath": "learn/staking-and-governance.md",
-    "sourceDate": "2026-05-27",
-    "tocDepth": null,
-    "headings": [
-      {
-        "depth": 2,
-        "title": "Delegate flow",
-        "id": "delegate-flow"
-      }
-    ],
-    "body": "Delegating LUNC grants validators voting power proportional to their stake. Validators collect commission on rewards while delegators earn the remainder. Typical commission settings range between 2.5% and 20%.\n\nGovernance proposals enter a seven-day voting phase once deposits reach the minimum threshold. Delegators can override validator votes through supported wallets.\n\n## Delegate flow\n\n1. Connect with Keplr, Galaxy Station or other supported wallets and review validator voting power and commission.\n2. Delegate LUNC and monitor validator uptime to ensure they remain below slashing thresholds.\n3. Redelegate proactively if a validator is unreliable or votes against your interests.\n4. Vote on governance proposals before the deadline to direct network policy.\n5. Observe the 21-day unbonding period when reallocating stake across validators.\n\n> **Tip**\n>\n> Delegator votes **override** validator votes. The voting power from undelegated LUNC is not used to vote on proposals.\n",
-    "previousSlug": "learn/galaxy-station/galaxy-station-testnet",
     "nextSlug": "learn/fees"
   },
   {
@@ -639,7 +607,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 18,
+    "navOrder": 17,
     "title": "Fees",
     "description": "Understand gas, burn tax, and legacy swap fees on Terra Classic.",
     "status": "draft",
@@ -679,7 +647,635 @@ export const docsPages = [
       }
     ],
     "body": "All Terra Classic transactions consume gas. Some legacy transaction types also reference historical fees such as Tobin and spread taxes; these are currently disabled on Classic. The table below summarises which fees apply.\n\n| Transaction type | [Gas](#gas) | [Tobin](#tobin-tax) | [Spread](#spread-fee) | Burn tax |\n| --- | --- | --- | --- | --- |\n| ~~Stablecoin ↔ stablecoin market swap~~ *disabled* | ✓ | ✓ |  |  |\n| ~~Stablecoin ↔ LUNC market swap~~ *disabled* | ✓ |  | ✓ |  |\n| Wallet-to-wallet transfer | ✓ |  |  | ✓ |\n\nDApps such as DEXes can charge additional protocol fees on top of network fees.\n\n## Gas\n\n[Gas](/appendices/glossary/#fees) covers validator compute and storage. Validators configure minimum gas prices; transactions must include fees meeting or exceeding that implied price.\n\nKey behaviour on Terra Classic:\n\n- Validators reject transactions with implied gas prices below their configured minimum.\n- Most wallets estimate gas above the minimum to avoid underestimation.\n- Unused gas is **not** refunded.\n- Transactions are processed FIFO within the mempool, not by highest fee.\n\nCurrent suggested prices are available via [`https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices`](https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices).\n\nGas fees flow into the distribution module and are paid out to validators and delegators as staking rewards, and fill the Community Pool.\n\n## Burn tax (`x/tax` module)\n\nTerra Classic uses the `x/tax` module to levy burn taxes on transfers.\n\n- Parameters: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params)\n- Current burn rate: [`https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate`](https://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate)\n\nReverse-charge (Tax2Gas) rules can deduct tax from the transfer amount or fees depending on the transaction path. Always confirm current governance decisions before relying on a specific behaviour.\n\n### Tax exemption registry\n\nSome addresses are exempt from burn tax. Query the registry via:\n\n- Zones list: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones)\n- Zone addresses: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/{zonename}/addresses`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/%7Bzonename%7D/addresses)\n- Taxable check: [`https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{to}`](https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/%7Bfrom%7D/%7Bto%7D)\n\n## Tobin tax\n\nThe Tobin tax historically applied to swaps between Terra stablecoins. Governance disabled Classic market swaps, so the rate is unused today, but it remains queryable for reference via the oracle module.\n\nDiscussed rationale: [“On swap fees: the greedy and the wise”](https://medium.com/terra-money/on-swap-fees-the-greedy-and-the-wise-b967f0c8914e).\n\nWhen active, Tobin tax revenue flowed into the oracle reward pool and was redistributed to validators who reported accurate exchange rates. See the [oracle module spec](/develop/module-specifications/spec-oracle/) for reward mechanics.\n\n## Spread fee\n\nSpread fees applied to swaps between Terra stablecoins and LUNC. While disabled on Classic, the [market module](/develop/module-specifications/spec-market/) retains the logic to adjust spread based on pool balances. Historically the minimum spread was 0.5%, increasing during volatility to maintain the [`x*y=k`](/develop/module-specifications/spec-market/#market-making-algorithm) invariant.\n\nLike Tobin tax, spread revenue previously funded the oracle reward pool.\n",
-    "previousSlug": "learn/staking-and-governance",
+    "previousSlug": "learn/galaxy-station/galaxy-station-testnet",
+    "nextSlug": "staking-protocol/overview"
+  },
+  {
+    "slug": "staking-protocol/overview",
+    "path": "/staking-protocol/overview/",
+    "sourceFile": "content/docs/staking-protocol/overview.md",
+    "group": "Staking Protocol",
+    "navTitle": "Staking Protocol",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 18,
+    "title": "Staking Protocol",
+    "description": "The user-facing staking layer for Terra Classic: delegate LUNC, secure the network, earn protocol rewards, and participate in governance.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/overview.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Product position",
+        "id": "product-position"
+      },
+      {
+        "depth": 2,
+        "title": "What staking does",
+        "id": "what-staking-does"
+      },
+      {
+        "depth": 2,
+        "title": "Why it matters for Terra Classic",
+        "id": "why-it-matters-for-terra-classic"
+      },
+      {
+        "depth": 2,
+        "title": "Core actions",
+        "id": "core-actions"
+      },
+      {
+        "depth": 2,
+        "title": "How this section is organized",
+        "id": "how-this-section-is-organized"
+      },
+      {
+        "depth": 2,
+        "title": "What to avoid",
+        "id": "what-to-avoid"
+      },
+      {
+        "depth": 2,
+        "title": "Not financial advice",
+        "id": "not-financial-advice"
+      }
+    ],
+    "body": "The Staking Protocol is Terra Classic's proof-of-stake participation layer.\n\nIt lets LUNC holders delegate tokens to validators, help secure the chain, earn protocol rewards, and route voting power into governance without giving validators custody of their wallet.\n\nUse this section if you are:\n\n- a LUNC holder deciding whether to stake\n- a delegator choosing validators\n- a community member trying to understand governance power\n- an investor evaluating network participation\n- a validator explaining what responsible operation requires\n- a developer building staking, portfolio, governance, or validator tooling\n\n## Product position\n\nStaking Protocol is the official product name used in these docs for Terra Classic staking.\n\nIt is not a new token, not a custody product, not liquid staking, not a yield vault, and not a guarantee of profit. It is the user-facing name for the native proof-of-stake system already built into Terra Classic through Cosmos SDK staking, distribution, slashing, and governance modules.\n\nThe product promise should stay simple:\n\n> Delegate LUNC to help secure Terra Classic, earn transparent protocol rewards, and participate in governance while keeping control of your wallet.\n\n## What staking does\n\nWhen you delegate LUNC, your stake is bonded to a validator. The validator uses total delegated stake to compete for consensus power. If the validator is active, it can propose and sign blocks. Rewards earned by that validator are shared with delegators after commission.\n\nYour delegated LUNC remains associated with your wallet address. A validator cannot spend it, transfer it, or move it to another wallet. The validator can still affect your outcome because poor validator behavior can reduce rewards, cause missed governance participation, or create slashing risk.\n\n## Why it matters for Terra Classic\n\nStaking Protocol is one of Terra Classic's strongest existing L1 products because it is live, understandable, non-custodial, and directly connected to network security.\n\nFor Terra Classic, staking also matters strategically:\n\n- Higher bonded stake reduces the liquid supply available for immediate selling.\n- More distributed stake improves the validator power structure.\n- Better validator selection raises pressure for uptime, governance participation, and professional operation.\n- More active delegator voting makes governance less dependent on a small validator minority.\n- Clear staking docs turn a confusing wallet action into a credible participation pathway.\n\nThis is why the docs should not describe staking only as a passive APR feature. On Terra Classic, staking is also a network-security, governance, and trust-surface product.\n\n## Core actions\n\n| Action | What it means | Main tradeoff |\n| --- | --- | --- |\n| Delegate | Bond liquid LUNC to a validator. | Earn rewards and voting power exposure, but accept validator risk. |\n| Claim rewards | Withdraw accumulated rewards to your wallet. | Requires a transaction fee. |\n| Redelegate | Move bonded stake from one validator to another. | Avoids the full unbonding wait, but has cooldown limits. |\n| Undelegate | Start returning bonded LUNC to liquid balance. | Takes the chain's unbonding period and earns no rewards during that time. |\n| Vote | Cast your own governance vote. | Overrides your validator's vote for that proposal. |\n\n## How this section is organized\n\n- [How it works](/staking-protocol/how-it-works/) explains the staking lifecycle and current queryable parameters.\n- [Delegate LUNC](/staking-protocol/delegate-lunc/) gives a practical staking flow for supported wallets.\n- [Rewards and APR](/staking-protocol/rewards-and-apr/) explains where rewards come from and why APR changes.\n- [Choose a validator](/staking-protocol/choose-a-validator/) gives a decision framework for delegators.\n- [Risks and unstaking](/staking-protocol/risks-and-unstaking/) covers slashing, lockups, redelegation limits, and operational risk.\n- [Governance](/staking-protocol/governance/) explains how staked LUNC becomes governance power.\n- [Validator responsibilities](/staking-protocol/validator-responsibilities/) explains what responsible validators should provide.\n- [Developer reference](/staking-protocol/developer-reference/) gives module, message, query, and endpoint references.\n\n## What to avoid\n\nDo not evaluate Staking Protocol only by the displayed APR. APR is useful, but it is not the whole product.\n\nA serious staking decision should also look at validator uptime, voting behavior, commission, concentration, public communication, infrastructure quality, self-delegation, community contribution, and whether the validator's incentives are aligned with Terra Classic's long-term health.\n\n## Not financial advice\n\nStaking can produce protocol rewards, but LUNC price volatility, validator behavior, governance decisions, wallet security, slashing, and liquidity timing can materially affect outcomes. These docs explain protocol mechanics. They do not tell you whether to buy, sell, hold, or stake LUNC.\n",
+    "previousSlug": "learn/fees",
+    "nextSlug": "staking-protocol/how-it-works"
+  },
+  {
+    "slug": "staking-protocol/how-it-works",
+    "path": "/staking-protocol/how-it-works/",
+    "sourceFile": "content/docs/staking-protocol/how-it-works.md",
+    "group": "Staking Protocol",
+    "navTitle": "How it works",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 19,
+    "title": "How it works",
+    "description": "A practical explanation of delegation, validator power, bonding states, redelegation, unbonding, and current Terra Classic staking parameters.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/how-it-works.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Validators and delegators",
+        "id": "validators-and-delegators"
+      },
+      {
+        "depth": 2,
+        "title": "Bonded, unbonding, and unbonded LUNC",
+        "id": "bonded-unbonding-and-unbonded-lunc"
+      },
+      {
+        "depth": 2,
+        "title": "Validator power",
+        "id": "validator-power"
+      },
+      {
+        "depth": 2,
+        "title": "Delegation shares",
+        "id": "delegation-shares"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegation",
+        "id": "redelegation"
+      },
+      {
+        "depth": 2,
+        "title": "Unbonding",
+        "id": "unbonding"
+      },
+      {
+        "depth": 2,
+        "title": "Reward accounting",
+        "id": "reward-accounting"
+      },
+      {
+        "depth": 2,
+        "title": "Slashing link",
+        "id": "slashing-link"
+      }
+    ],
+    "body": "Staking Protocol is built on the standard proof-of-stake model used by Cosmos SDK chains, with Terra Classic-specific parameters and governance-controlled settings.\n\nThe simple version:\n\n1. You hold liquid LUNC in a compatible wallet.\n2. You delegate some LUNC to one or more validators.\n3. Validators use delegated stake to participate in consensus.\n4. Rewards accumulate through the distribution module.\n5. You can claim rewards, redelegate, vote, or undelegate.\n\n## Validators and delegators\n\nValidators run infrastructure. They operate nodes, sign blocks, keep keys secure, participate in upgrades, vote in governance, and maintain reliable public communication.\n\nDelegators hold LUNC and choose validators. They do not need to run nodes. By delegating, they assign staking power to validators and share in rewards and risks.\n\nThis creates a principal-agent relationship. Delegators provide capital. Validators operate the security layer. Delegators should therefore treat validator choice as an active risk decision, not a random list selection.\n\n## Bonded, unbonding, and unbonded LUNC\n\nLUNC used by Staking Protocol can be in three practical states.\n\n| State | What it means | Rewards | Liquidity |\n| --- | --- | --- | --- |\n| Unbonded | Liquid LUNC in your wallet. | No staking rewards. | Spendable and transferable. |\n| Bonded | Delegated to a validator. | Eligible for staking rewards. | Not directly spendable. |\n| Unbonding | Leaving staking and returning to liquid balance. | No staking rewards during the wait. | Locked until the unbonding period completes. |\n\nOn Terra Classic, the staking bond denomination is `uluna`.\n\n```text\n1 LUNC = 1,000,000 uluna\n```\n\n## Validator power\n\nA validator's voting power comes from its bonded stake: self-delegation plus delegations from users.\n\nIn consensus, voting power decides how much weight a validator has when blocks are proposed and committed. In governance, validator voting power is also used unless delegators cast their own vote.\n\nTerra Classic has also implemented a custom validator voting-power cap documented in the [staking module spec](/develop/module-specifications/spec-staking/). The purpose is to reduce the risk that one validator accumulates too much influence.\n\n## Delegation shares\n\nWhen you delegate, the staking module tracks your position as delegation shares against a validator, not as a separate pile of untouched tokens.\n\nThis matters because rewards and slashes change the validator's token pool over time. Your claim is proportional to your shares in that validator's pool. In normal wallet interfaces this is abstracted away, but developers and analytics tools should understand that the chain state uses shares.\n\n## Redelegation\n\nRedelegation moves bonded LUNC from one validator to another without first waiting through the full unbonding period.\n\nUse redelegation when:\n\n- a validator is jailed or unreliable\n- a validator stops voting or communicating\n- commission changes make the validator unattractive\n- stake is too concentrated in a small set of validators\n- your governance preferences no longer align\n\nRedelegation still has limits. A redelegation creates a cooldown for the same source and destination validator pair. During the redelegation window, the stake can still be slashable for infractions that occurred before the redelegation began.\n\n## Unbonding\n\nUndelegation starts the unbonding process. During unbonding, the LUNC is no longer earning rewards and is not liquid until the period completes.\n\nTerra Classic's current staking params can be queried through LCD:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, this endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `unbonding_time` | `1814400s` | 21 days. |\n| `max_validators` | `110` | Maximum active bonded validators. |\n| `max_entries` | `7` | Maximum simultaneous unbonding or redelegation entries per pair context. |\n| `bond_denom` | `uluna` | LUNC micro-denomination used for staking. |\n| `min_commission_rate` | `0.025` | Minimum validator commission rate of 2.5%. |\n\nAlways query current parameters before building tooling, writing operational instructions, or making a large staking decision. Governance can change parameters over time.\n\n## Reward accounting\n\nRewards are handled by the distribution module. They accumulate until withdrawn. Wallets may show pending rewards, but those rewards are not spendable until a withdraw transaction is submitted.\n\nSome staking actions can trigger reward withdrawal or accounting changes depending on wallet behavior and module rules. Keep enough liquid LUNC for fees before claiming, delegating, redelegating, or undelegating.\n\n## Slashing link\n\nStaked and unbonding LUNC can be reduced if the validator is slashed for certain failures. See [Risks and unstaking](/staking-protocol/risks-and-unstaking/) before delegating a large position.\n",
+    "previousSlug": "staking-protocol/overview",
+    "nextSlug": "staking-protocol/delegate-lunc"
+  },
+  {
+    "slug": "staking-protocol/delegate-lunc",
+    "path": "/staking-protocol/delegate-lunc/",
+    "sourceFile": "content/docs/staking-protocol/delegate-lunc.md",
+    "group": "Staking Protocol",
+    "navTitle": "Delegate LUNC",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 20,
+    "title": "Delegate LUNC",
+    "description": "A practical delegator guide for staking LUNC through Staking Protocol using supported Terra Classic wallets.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/delegate-lunc.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Before you delegate",
+        "id": "before-you-delegate"
+      },
+      {
+        "depth": 2,
+        "title": "Delegation flow",
+        "id": "delegation-flow"
+      },
+      {
+        "depth": 2,
+        "title": "How much to delegate",
+        "id": "how-much-to-delegate"
+      },
+      {
+        "depth": 2,
+        "title": "Claim rewards",
+        "id": "claim-rewards"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegate",
+        "id": "redelegate"
+      },
+      {
+        "depth": 2,
+        "title": "Undelegate",
+        "id": "undelegate"
+      },
+      {
+        "depth": 2,
+        "title": "Transaction checklist",
+        "id": "transaction-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator operating rhythm",
+        "id": "delegator-operating-rhythm"
+      }
+    ],
+    "body": "Delegating LUNC is the main user action in Staking Protocol.\n\nThe goal is not only to earn rewards. The better goal is to place stake with validators that make Terra Classic more secure, more accountable, and more credible.\n\n## Before you delegate\n\nPrepare these basics first:\n\n- Use a compatible Terra Classic wallet such as Keplr or Galaxy Station.\n- Confirm the active network is Terra Classic mainnet `columbus-5`.\n- Keep some liquid LUNC outside staking for transaction fees.\n- Decide whether you want to split stake across multiple validators.\n- Read the validator's commission, voting history, uptime signals, website, and public communication.\n- Understand that unstaking has a waiting period.\n\nWallet-specific setup:\n\n- [Keplr install](/learn/keplr/keplr-install/)\n- [Keplr staking](/learn/keplr/keplr-staking/)\n- [Galaxy Station install](/learn/galaxy-station/galaxy-station-install/)\n- [Galaxy Station staking](/learn/galaxy-station/galaxy-station-staking/)\n\n## Delegation flow\n\nMost wallet interfaces follow the same pattern.\n\n1. Open the wallet or staking interface.\n2. Select Terra Classic.\n3. Open the staking or validators view.\n4. Search or browse validators.\n5. Review commission, voting power, uptime, and validator information.\n6. Enter the amount of LUNC to delegate.\n7. Keep liquid LUNC for fees.\n8. Review the transaction.\n9. Sign and broadcast.\n10. Confirm the transaction on an explorer.\n\nAfter the transaction is included in a block, your delegation should appear under the selected validator.\n\n## How much to delegate\n\nDo not delegate your entire wallet balance. Keep enough LUNC liquid for:\n\n- claiming rewards\n- voting\n- redelegating\n- undelegating\n- emergency transactions\n- wallet or interface fee estimation variance\n\nFor larger positions, splitting stake across several responsible validators can reduce validator-specific risk and can support decentralization. Splitting stake does not remove market risk or protocol risk.\n\n## Claim rewards\n\nRewards accumulate until claimed. Claiming rewards requires a transaction and therefore a fee.\n\nClaim frequency is a practical tradeoff. Claiming too often can waste fees. Claiming too rarely can make portfolio tracking less clear. The best cadence depends on reward size, fee cost, and whether you plan to compound manually.\n\n## Redelegate\n\nRedelegation moves bonded LUNC from one validator to another without waiting through the full unbonding period.\n\nUse redelegation if your current validator:\n\n- is jailed\n- repeatedly misses blocks\n- stops voting\n- raises commission beyond your expectations\n- has poor communication\n- contributes to excessive stake concentration\n- no longer aligns with your governance preferences\n\nRedelegation is not unlimited. The same validator pair can be subject to a cooldown. If a wallet blocks a redelegation, check whether a prior redelegation is still active.\n\n## Undelegate\n\nUndelegation starts the unbonding period. During that period:\n\n- the LUNC is not liquid\n- the LUNC does not earn staking rewards\n- the position can still be exposed to some slash conditions tied to prior validator behavior\n- the final liquid balance appears only after unbonding completes\n\nDo not start unbonding if you need immediate liquidity.\n\n## Transaction checklist\n\nBefore signing any staking transaction:\n\n- Confirm the chain ID is `columbus-5`.\n- Confirm the validator operator address starts with `terravaloper`.\n- Confirm the wallet address starts with `terra`.\n- Confirm the LUNC amount and fee.\n- Confirm the action: delegate, redelegate, undelegate, claim, or vote.\n- Confirm you are using the real wallet or interface URL.\n\n## Delegator operating rhythm\n\nStaking is not a one-time action. A responsible delegator should periodically review:\n\n- validator jailed status\n- commission changes\n- missed-block or uptime indicators\n- governance voting behavior\n- communication quality\n- concentration in top validators\n- whether rewards are worth claiming or compounding\n\nFor a deeper decision model, read [Choose a validator](/staking-protocol/choose-a-validator/).\n",
+    "previousSlug": "staking-protocol/how-it-works",
+    "nextSlug": "staking-protocol/rewards-and-apr"
+  },
+  {
+    "slug": "staking-protocol/rewards-and-apr",
+    "path": "/staking-protocol/rewards-and-apr/",
+    "sourceFile": "content/docs/staking-protocol/rewards-and-apr.md",
+    "group": "Staking Protocol",
+    "navTitle": "Rewards and APR",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 21,
+    "title": "Rewards and APR",
+    "description": "How Staking Protocol rewards are generated, distributed, claimed, and interpreted without treating APR as a fixed promise.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/rewards-and-apr.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Where rewards come from",
+        "id": "where-rewards-come-from"
+      },
+      {
+        "depth": 2,
+        "title": "How rewards are split",
+        "id": "how-rewards-are-split"
+      },
+      {
+        "depth": 2,
+        "title": "Why APR changes",
+        "id": "why-apr-changes"
+      },
+      {
+        "depth": 2,
+        "title": "Real yield versus token price",
+        "id": "real-yield-versus-token-price"
+      },
+      {
+        "depth": 2,
+        "title": "Claiming rewards",
+        "id": "claiming-rewards"
+      },
+      {
+        "depth": 2,
+        "title": "Compounding",
+        "id": "compounding"
+      },
+      {
+        "depth": 2,
+        "title": "APR interpretation checklist",
+        "id": "apr-interpretation-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "Developer note",
+        "id": "developer-note"
+      }
+    ],
+    "body": "Staking Protocol rewards are protocol-level rewards paid through Terra Classic's distribution module.\n\nAPR is useful as a summary metric, but it should never be treated as a fixed rate, a promise, or the full reason to stake.\n\n## Where rewards come from\n\nOn Terra Classic, staking rewards are primarily connected to network fee and distribution flows rather than new inflation.\n\nCurrent mint parameters can be queried here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/mint/v1beta1/params\n```\n\nAs checked on 2026-06-01, Terra Classic mint parameters returned zero inflation settings:\n\n| Parameter | Value |\n| --- | --- |\n| `inflation_rate_change` | `0` |\n| `inflation_max` | `0` |\n| `inflation_min` | `0` |\n\nDistribution parameters can be queried here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/distribution/v1beta1/params\n```\n\nAs checked on 2026-06-01, the distribution endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `community_tax` | `0.5` | 50% of collected distributable rewards directed to the community pool. |\n| `base_proposer_reward` | `0` | No fixed proposer reward share. |\n| `bonus_proposer_reward` | `0` | No bonus proposer reward share. |\n| `withdraw_addr_enabled` | `true` | Reward withdrawal addresses are enabled. |\n\nThese parameters can change through governance. Interfaces should query live values instead of freezing them.\n\n## How rewards are split\n\nAt a high level:\n\n1. Fees and eligible reward flows enter collection and distribution logic.\n2. The distribution module accounts for rewards by validator.\n3. Validator commission is taken from the rewards earned on behalf of delegators.\n4. Remaining rewards accrue to delegators based on their delegation shares.\n5. Rewards stay pending until withdrawn.\n\nIf a validator has 5% commission, that means the validator keeps 5% of the rewards earned by delegators on that validator before the remaining rewards are allocated to delegators.\n\nCommission affects APR, but it is not the only factor. A low-commission validator can still be a poor choice if it is unreliable, silent, over-concentrated, or absent from governance.\n\n## Why APR changes\n\nAPR can change because:\n\n- network transaction activity changes\n- fee and tax parameters change\n- community-tax or distribution parameters change\n- total bonded LUNC changes\n- validator commission changes\n- wallet or dashboard calculation methods differ\n- rewards are measured over different time windows\n- price assumptions change when dashboards convert to fiat\n\nAPR shown on a website or wallet is therefore a current estimate, not a guarantee.\n\n## Real yield versus token price\n\nStaking rewards are denominated in tokens. Your economic result also depends on LUNC price movement, liquidity, taxes, fees, and timing.\n\nAn APR can be positive while the market value of the staked position falls. An APR can also look modest while staking still improves network security, governance alignment, and long-term participation quality.\n\nDo not reduce Staking Protocol to a single APR number.\n\n## Claiming rewards\n\nRewards are not automatically spendable. A wallet must submit a withdrawal transaction.\n\nCommon reward messages include:\n\n- `MsgWithdrawDelegatorReward`\n- `MsgWithdrawValidatorCommission`\n- `MsgSetWithdrawAddress`\n\nClaiming rewards costs a transaction fee. Keep liquid LUNC available.\n\n## Compounding\n\nManual compounding means claiming rewards and delegating them again.\n\nThis can increase the staked balance over time, but it is only rational when the expected added rewards are worth more than the fees and operational friction. Small positions may not benefit from frequent compounding.\n\n## APR interpretation checklist\n\nWhen comparing validators, evaluate:\n\n- commission rate\n- whether commission recently changed\n- uptime and jailed status\n- governance participation\n- voting power concentration\n- self-delegation\n- public identity and communication\n- contribution to Terra Classic infrastructure or tooling\n- whether the validator has credible long-term incentives\n\nThe better validator is not always the validator with the highest displayed APR.\n\n## Developer note\n\nStaking dashboards should disclose their APR methodology. A credible calculator should state which endpoint, time window, fee assumptions, bonded-token value, commission treatment, and compounding assumption it uses.\n\nFor integration details, see [Developer reference](/staking-protocol/developer-reference/).\n",
+    "previousSlug": "staking-protocol/delegate-lunc",
+    "nextSlug": "staking-protocol/choose-a-validator"
+  },
+  {
+    "slug": "staking-protocol/choose-a-validator",
+    "path": "/staking-protocol/choose-a-validator/",
+    "sourceFile": "content/docs/staking-protocol/choose-a-validator.md",
+    "group": "Staking Protocol",
+    "navTitle": "Choose a validator",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 22,
+    "title": "Choose a validator",
+    "description": "A practical validator-selection framework for Terra Classic delegators who want rewards, accountability, and better network decentralization.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/choose-a-validator.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "The short version",
+        "id": "the-short-version"
+      },
+      {
+        "depth": 2,
+        "title": "Commission",
+        "id": "commission"
+      },
+      {
+        "depth": 2,
+        "title": "Uptime and jailed status",
+        "id": "uptime-and-jailed-status"
+      },
+      {
+        "depth": 2,
+        "title": "Governance behavior",
+        "id": "governance-behavior"
+      },
+      {
+        "depth": 2,
+        "title": "Voting power concentration",
+        "id": "voting-power-concentration"
+      },
+      {
+        "depth": 2,
+        "title": "Self-delegation",
+        "id": "self-delegation"
+      },
+      {
+        "depth": 2,
+        "title": "Public identity and communication",
+        "id": "public-identity-and-communication"
+      },
+      {
+        "depth": 2,
+        "title": "Contribution",
+        "id": "contribution"
+      },
+      {
+        "depth": 2,
+        "title": "Red flags",
+        "id": "red-flags"
+      },
+      {
+        "depth": 2,
+        "title": "Validator selection scorecard",
+        "id": "validator-selection-scorecard"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator responsibility",
+        "id": "delegator-responsibility"
+      }
+    ],
+    "body": "Validator choice is the most important decision a delegator makes in Staking Protocol.\n\nYou are not only choosing an APR. You are choosing who receives your voting power, whose infrastructure risk you accept, and who represents your stake by default in governance.\n\n## The short version\n\nA strong validator should be:\n\n- reliably signing blocks\n- not jailed\n- transparent about identity and operations\n- active in governance\n- reasonable and clear about commission\n- responsive during upgrades and incidents\n- contributing to Terra Classic's long-term health\n- not making the validator set more concentrated than necessary\n\n## Commission\n\nCommission is the percentage of delegator rewards kept by the validator.\n\nTerra Classic currently enforces a minimum commission rate through staking params. Query current params here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, `min_commission_rate` returned `0.025`, or 2.5%.\n\nVery low commission is not automatically better. Validators need sustainable economics to maintain infrastructure, security practices, upgrade readiness, monitoring, and communication. Very high commission is not automatically bad either, but the validator should justify it through real contribution and reliability.\n\n## Uptime and jailed status\n\nA validator that misses too many blocks can be jailed and can create downtime slashing risk.\n\nBefore delegating, check:\n\n- whether the validator is bonded and active\n- whether it is jailed\n- recent missed block behavior\n- whether it has a pattern of upgrade failures\n- whether it communicates incidents clearly\n\nValidators should not be rewarded for being technically absent.\n\n## Governance behavior\n\nDelegating gives a validator default governance influence unless you vote yourself.\n\nReview whether the validator:\n\n- votes regularly\n- explains votes on major proposals\n- avoids silent non-participation\n- uses `NoWithVeto` responsibly\n- engages with technical and economic tradeoffs\n- follows through on commitments made in proposals\n\nTerra Classic has historically suffered from weak governance participation and validator non-participation. Delegators can improve this by moving stake away from validators that collect rewards while ignoring governance.\n\n## Voting power concentration\n\nDo not blindly delegate to the largest validators.\n\nConcentrated voting power weakens decentralization. It can make halt, censorship, governance capture, or coordination failures easier. Terra Classic's own state-of-chain research has repeatedly identified validator concentration and low Nakamoto coefficient as strategic risks.\n\nA practical rule:\n\n- Avoid adding stake to validators already holding very large voting power unless there is a strong reason.\n- Consider credible mid-size and smaller validators with strong reliability and governance records.\n- Split large delegations across multiple responsible validators.\n\n## Self-delegation\n\nSelf-delegation shows that a validator has some of its own capital at stake.\n\nDo not treat self-delegation as a perfect trust signal. A validator can have low self-delegation and still operate well, or high self-delegation and still behave poorly. But self-delegation is one input into incentive alignment.\n\n## Public identity and communication\n\nA validator should make it easy to understand:\n\n- who operates it or what organization is responsible\n- where to find official communication\n- how to contact the operator\n- what infrastructure or community contribution it provides\n- how it handles incidents\n- why delegators should trust it with voting power\n\nAnonymous or low-information validators are not automatically malicious, but they require a higher risk discount.\n\n## Contribution\n\nA validator can contribute by:\n\n- running reliable validator infrastructure\n- providing public endpoints\n- building tools and dashboards\n- participating in governance research\n- helping during upgrades\n- maintaining documentation\n- supporting developers\n- funding public goods\n- communicating risks clearly\n\nContribution should be concrete. Marketing claims without visible delivery are weak evidence.\n\n## Red flags\n\nBe careful with validators that:\n\n- are jailed or repeatedly unreliable\n- skip most governance votes\n- have no useful website or communication channel\n- change commission unexpectedly\n- promise guaranteed returns\n- push delegators into unsafe wallet behavior\n- concentrate too much voting power\n- operate with obvious conflicts of interest and no disclosure\n- make large public claims without measurable delivery\n\n## Validator selection scorecard\n\n| Criterion | Good signal | Weak signal |\n| --- | --- | --- |\n| Uptime | Active, reliable, monitored. | Jailed, repeated misses, silent incidents. |\n| Governance | Regular voting with explanations. | Frequent non-voting or no rationale. |\n| Commission | Sustainable and transparent. | Bait-rate behavior or unexplained changes. |\n| Concentration | Helps distribute stake. | Adds power to already dominant validators. |\n| Communication | Clear public channels. | No website, no contact, no incident updates. |\n| Contribution | Visible work for Terra Classic. | Slogans without delivery. |\n| Security | Sensible key and infra posture. | No evidence of operational maturity. |\n\n## Delegator responsibility\n\nDelegators are not passive passengers. If a validator becomes unreliable, stops voting, or behaves against your interests, use [redelegation](/staking-protocol/delegate-lunc/) to move your stake.\n",
+    "previousSlug": "staking-protocol/rewards-and-apr",
+    "nextSlug": "staking-protocol/risks-and-unstaking"
+  },
+  {
+    "slug": "staking-protocol/risks-and-unstaking",
+    "path": "/staking-protocol/risks-and-unstaking/",
+    "sourceFile": "content/docs/staking-protocol/risks-and-unstaking.md",
+    "group": "Staking Protocol",
+    "navTitle": "Risks and unstaking",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 23,
+    "title": "Risks and unstaking",
+    "description": "The main Staking Protocol risks: unbonding, redelegation cooldowns, slashing, validator failures, governance exposure, wallet security, and market risk.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/risks-and-unstaking.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Liquidity risk",
+        "id": "liquidity-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Redelegation risk",
+        "id": "redelegation-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Slashing risk",
+        "id": "slashing-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Validator risk",
+        "id": "validator-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Governance risk",
+        "id": "governance-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Market risk",
+        "id": "market-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Wallet and interface risk",
+        "id": "wallet-and-interface-risk"
+      },
+      {
+        "depth": 2,
+        "title": "Operational checklist",
+        "id": "operational-checklist"
+      },
+      {
+        "depth": 2,
+        "title": "When to consider redelegating",
+        "id": "when-to-consider-redelegating"
+      }
+    ],
+    "body": "Staking Protocol is non-custodial, but it is not risk-free.\n\nThe biggest mistake is treating staking as a bank deposit. It is not. It is a protocol action with lockup, validator, governance, slashing, wallet, and market risks.\n\n## Liquidity risk\n\nBonded LUNC is not liquid.\n\nIf you undelegate, the LUNC enters unbonding. During unbonding it cannot be transferred, sold, or redelegated as liquid LUNC. It also does not earn staking rewards.\n\nCurrent unbonding time is queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/staking/v1beta1/params\n```\n\nAs checked on 2026-06-01, Terra Classic returned `1814400s`, or 21 days.\n\nDo not stake LUNC you may need to move immediately.\n\n## Redelegation risk\n\nRedelegation is useful because it avoids the full unbonding wait when moving between validators.\n\nBut redelegation is not unlimited:\n\n- a source-to-destination validator pair can have a cooldown\n- active redelegations may block further moves\n- some slash exposure can remain for validator infractions that occurred before redelegation began\n- wallets may display redelegation errors if a previous redelegation is still active\n\nFor active management, track where and when you last redelegated.\n\n## Slashing risk\n\nSlashing penalizes validator failures by reducing stake and, in some cases, jailing the validator.\n\nCurrent slashing params are queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/slashing/v1beta1/params\n```\n\nAs checked on 2026-06-01, the endpoint returned:\n\n| Parameter | Value | Meaning |\n| --- | --- | --- |\n| `signed_blocks_window` | `100800` | Liveness is measured across this window. |\n| `min_signed_per_window` | `0.85` | Minimum signing ratio required during the window. |\n| `downtime_jail_duration` | `1800s` | Downtime jail period of 30 minutes. |\n| `slash_fraction_double_sign` | `0.05` | 5% slash for double-signing. |\n| `slash_fraction_downtime` | `0.0001` | 0.01% slash for downtime. |\n\nThese parameters are governance-controlled and should be queried before relying on them.\n\n## Validator risk\n\nValidator failures can include:\n\n- downtime\n- jailing\n- double-signing\n- poor key management\n- failed upgrades\n- weak monitoring\n- high or unexpected commission changes\n- governance absence\n- poor communication during incidents\n\nDelegators share some consequences of validator behavior. This is why validator selection matters.\n\n## Governance risk\n\nStaked LUNC has governance power.\n\nIf you do not vote, your validator's vote applies to your delegated stake by default. A validator can vote in ways you disagree with, abstain, or fail to vote. Delegators can override validator votes, but only by voting themselves before the proposal deadline.\n\nGovernance can also change protocol parameters, funding decisions, module behavior, tax rules, upgrade timing, and other chain-level settings.\n\n## Market risk\n\nStaking rewards do not remove price risk.\n\nLUNC price can fall while you are bonded or unbonding. The unbonding period can prevent immediate reaction to market events. APR should be evaluated alongside liquidity needs, volatility, and your own risk tolerance.\n\n## Wallet and interface risk\n\nStaking is only as safe as the wallet and interface used to sign transactions.\n\nBasic practices:\n\n- use official wallet download sources\n- verify URLs before connecting\n- never enter a seed phrase into a website\n- prefer hardware wallet support for large balances where available\n- inspect transaction action, amount, fee, and validator address before signing\n- keep recovery phrases offline\n\nNo validator, website, or support account needs your seed phrase.\n\n## Operational checklist\n\nBefore staking a meaningful amount:\n\n- understand the unbonding period\n- split stake if validator-specific risk matters to you\n- review validator concentration\n- review governance participation\n- keep liquid LUNC for fees\n- test with a small transaction first\n- document which validators you used\n- know how to redelegate and undelegate before you need to do it\n\n## When to consider redelegating\n\nConsider redelegating if a validator:\n\n- is jailed\n- misses blocks repeatedly\n- stops voting\n- stops communicating\n- raises commission unexpectedly\n- becomes too concentrated\n- behaves against your governance preferences\n- creates unresolved trust or conflict-of-interest concerns\n\nStaking Protocol works best when delegators actively reward good validators and remove stake from poor operators.\n",
+    "previousSlug": "staking-protocol/choose-a-validator",
+    "nextSlug": "staking-protocol/governance"
+  },
+  {
+    "slug": "staking-protocol/governance",
+    "path": "/staking-protocol/governance/",
+    "sourceFile": "content/docs/staking-protocol/governance.md",
+    "group": "Staking Protocol",
+    "navTitle": "Governance",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 24,
+    "title": "Governance",
+    "description": "How staked LUNC becomes governance power, how validator votes work, and how delegators can vote directly on Terra Classic proposals.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/governance.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Default validator voting",
+        "id": "default-validator-voting"
+      },
+      {
+        "depth": 2,
+        "title": "Vote options",
+        "id": "vote-options"
+      },
+      {
+        "depth": 2,
+        "title": "Proposal lifecycle",
+        "id": "proposal-lifecycle"
+      },
+      {
+        "depth": 2,
+        "title": "Why delegator voting matters",
+        "id": "why-delegator-voting-matters"
+      },
+      {
+        "depth": 2,
+        "title": "How to vote",
+        "id": "how-to-vote"
+      },
+      {
+        "depth": 2,
+        "title": "How to judge a proposal",
+        "id": "how-to-judge-a-proposal"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator override",
+        "id": "delegator-override"
+      },
+      {
+        "depth": 2,
+        "title": "Developer note",
+        "id": "developer-note"
+      }
+    ],
+    "body": "Staking Protocol and governance are linked.\n\nWhen you delegate LUNC, you are not only staking for rewards. You are assigning governance power to a validator by default.\n\n## Default validator voting\n\nValidators vote with the voting power delegated to them.\n\nIf a delegator does nothing, the validator's vote is applied to that delegator's stake. This is convenient, but it creates risk when validators are passive, misaligned, or unaccountable.\n\nDelegators can override the validator's vote by voting directly before the proposal deadline.\n\n## Vote options\n\nTerra Classic governance supports standard vote options:\n\n| Vote | Meaning |\n| --- | --- |\n| `Yes` | Support the proposal. |\n| `No` | Reject the proposal without triggering veto-specific handling. |\n| `NoWithVeto` | Strong rejection; can affect deposits if veto threshold rules are met. |\n| `Abstain` | Participate in quorum without choosing yes or no. |\n\nUse `NoWithVeto` carefully. It is a governance safety tool, not a general dislike button.\n\n## Proposal lifecycle\n\nGovernance parameters are queryable here:\n\n```text\nhttps://terra-classic-lcd.publicnode.com/cosmos/gov/v1/params/voting\n```\n\nAs checked on 2026-06-01, the governance endpoint returned:\n\n| Parameter | Value |\n| --- | --- |\n| `min_deposit` | `5000000000000uluna` |\n| `max_deposit_period` | `1209600s` |\n| `voting_period` | `604800s` |\n| `quorum` | `0.4` |\n| `threshold` | `0.5` |\n| `veto_threshold` | `0.334` |\n| `expedited_voting_period` | `86400s` |\n| `expedited_threshold` | `0.667` |\n\nGovernance can change these values. Query current params before writing guides, calculators, or governance tooling.\n\n## Why delegator voting matters\n\nTerra Classic has a long-running governance-quality problem: many users do not vote directly, and many validators have historically skipped proposals.\n\nThis creates three issues:\n\n- decisions are made by a smaller group than the full stakeholder base\n- silent validators can carry delegated voting power without accountability\n- governance legitimacy weakens when turnout is low\n\nDelegator voting is one of the simplest ways to improve governance quality. Even if you keep your stake delegated, direct voting lets you express your own preference on proposals that matter.\n\n## How to vote\n\nMost wallet governance flows follow this pattern:\n\n1. Open the governance view in a supported wallet or dashboard.\n2. Select Terra Classic.\n3. Open the proposal.\n4. Read the full proposal text and discussion links.\n5. Check whether the proposal is executable, text-only, parameter-changing, upgrade-related, or funding-related.\n6. Choose `Yes`, `No`, `NoWithVeto`, or `Abstain`.\n7. Confirm the transaction and fee.\n8. Verify the vote on an explorer or governance dashboard.\n\nWallet guides:\n\n- [Keplr governance](/learn/keplr/keplr-governance/)\n- [Galaxy Station governance](/learn/galaxy-station/galaxy-station-governance/)\n\n## How to judge a proposal\n\nA serious proposal should make the following clear:\n\n- what problem it solves\n- what exact on-chain or off-chain action happens\n- who is responsible for execution\n- what budget is requested, if any\n- what success metric will be used\n- what risks and alternatives were considered\n- whether code, audits, or technical review exist\n- what happens if the proposal passes but execution fails\n\nWeak proposals ask governance for trust without giving governance enough information to make a decision.\n\n## Delegator override\n\nIf you vote directly, your vote overrides the validator's vote for your delegated stake on that proposal.\n\nThis makes validator choice less absolute, but it does not remove the need to choose serious validators. Validators still influence consensus, day-to-day governance defaults, upgrades, and public credibility.\n\n## Developer note\n\nGovernance interfaces should show:\n\n- validator vote and delegator override state\n- proposal status and deadlines\n- quorum, threshold, and veto progress\n- deposit status\n- proposal type\n- executable messages where available\n- external discussion links\n- warnings for expedited or high-impact proposals\n\nGood governance tooling reduces voter confusion and makes validator accountability visible.\n",
+    "previousSlug": "staking-protocol/risks-and-unstaking",
+    "nextSlug": "staking-protocol/validator-responsibilities"
+  },
+  {
+    "slug": "staking-protocol/validator-responsibilities",
+    "path": "/staking-protocol/validator-responsibilities/",
+    "sourceFile": "content/docs/staking-protocol/validator-responsibilities.md",
+    "group": "Staking Protocol",
+    "navTitle": "Validator responsibilities",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 25,
+    "title": "Validator responsibilities",
+    "description": "What responsible Terra Classic validators should provide to delegators, developers, governance participants, and the wider network.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/validator-responsibilities.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Minimum responsibility",
+        "id": "minimum-responsibility"
+      },
+      {
+        "depth": 2,
+        "title": "Infrastructure",
+        "id": "infrastructure"
+      },
+      {
+        "depth": 2,
+        "title": "Governance participation",
+        "id": "governance-participation"
+      },
+      {
+        "depth": 2,
+        "title": "Commission discipline",
+        "id": "commission-discipline"
+      },
+      {
+        "depth": 2,
+        "title": "Delegator communication",
+        "id": "delegator-communication"
+      },
+      {
+        "depth": 2,
+        "title": "Security and conflicts",
+        "id": "security-and-conflicts"
+      },
+      {
+        "depth": 2,
+        "title": "Support for developers",
+        "id": "support-for-developers"
+      },
+      {
+        "depth": 2,
+        "title": "Becoming or running a validator",
+        "id": "becoming-or-running-a-validator"
+      },
+      {
+        "depth": 2,
+        "title": "Validator accountability",
+        "id": "validator-accountability"
+      }
+    ],
+    "body": "Validators are not only reward recipients. They are infrastructure operators, security participants, governance actors, and public trust signals for Terra Classic.\n\nStaking Protocol works only if validators take that role seriously.\n\n## Minimum responsibility\n\nA responsible validator should:\n\n- maintain reliable block-signing infrastructure\n- monitor uptime and jailed status\n- keep validator keys secure\n- prepare for software upgrades\n- vote on governance proposals\n- explain votes on important proposals\n- communicate incidents\n- keep commission behavior transparent\n- avoid misleading delegators\n- maintain a useful validator profile\n\nThis is the baseline, not an exceptional contribution.\n\n## Infrastructure\n\nValidators should operate with production discipline:\n\n- hardened servers\n- monitoring and alerting\n- secure key management\n- backup and recovery procedures\n- sentry or network-protection architecture where appropriate\n- tested upgrade procedures\n- clear operational ownership\n- incident response channels\n\nValidators that treat node operation as passive income create risk for their delegators and for the network.\n\n## Governance participation\n\nValidators should vote consistently.\n\nThey should also explain important votes, especially when proposals affect:\n\n- L1 upgrades\n- tax and fee parameters\n- community pool spending\n- validator economics\n- oracle behavior\n- market or swap modules\n- security-critical changes\n- ecosystem funding\n\nNon-voting is still a governance action. A validator that repeatedly skips proposals is effectively asking delegators to provide voting power without representation.\n\n## Commission discipline\n\nCommission should be understandable and sustainable.\n\nA validator should disclose:\n\n- current commission\n- maximum commission\n- maximum daily change rate\n- why the rate is appropriate\n- whether delegators should expect changes\n\nBait-rate behavior damages trust. Sustainable commission is acceptable when paired with reliable operation and real contribution.\n\n## Delegator communication\n\nValidators should provide delegators with:\n\n- official website or profile link\n- contact channel\n- incident updates\n- upgrade readiness notices\n- governance vote rationale\n- known risks\n- service changes\n\nSilence is costly. Delegators cannot evaluate risk if validators do not communicate.\n\n## Security and conflicts\n\nValidators should disclose material conflicts where relevant.\n\nExamples include:\n\n- operating major infrastructure on multiple competing chains\n- running services that may benefit from specific governance outcomes\n- receiving funding from projects affected by proposals\n- operating validator and application businesses with overlapping incentives\n\nConflicts are not automatically disqualifying. Hidden conflicts are the problem.\n\n## Support for developers\n\nValidators can strengthen Terra Classic by supporting builders.\n\nUseful validator contributions include:\n\n- public RPC, LCD, gRPC, or archival infrastructure\n- reliable endpoint status pages\n- testnet support\n- upgrade coordination\n- technical documentation\n- open-source tooling\n- analytics and observability\n- developer support during incidents\n\nIf public endpoints are provided, validators should document limits and reliability expectations.\n\n## Becoming or running a validator\n\nFor node and validator operation, use the full-node guides:\n\n- [Full node overview](/full-node/overview/)\n- [Set up production](/full-node/run-a-full-terra-node/set-up-production/)\n- [Validate on columbus-5](/full-node/run-a-full-terra-node/validator-columbus-5/)\n- [Sync](/full-node/run-a-full-terra-node/sync/)\n- [Reset and troubleshooting](/full-node/run-a-full-terra-node/troubleshoot/)\n\nStaking Protocol docs explain the product and participation layer. The full-node section explains the operational path.\n\n## Validator accountability\n\nDelegators should expect validators to earn trust continuously.\n\nGood validators make Terra Classic easier to trust. Poor validators make the chain look fragile even when the protocol keeps running. Delegation is the mechanism that lets the community reward the first group and remove power from the second.\n",
+    "previousSlug": "staking-protocol/governance",
+    "nextSlug": "staking-protocol/developer-reference"
+  },
+  {
+    "slug": "staking-protocol/developer-reference",
+    "path": "/staking-protocol/developer-reference/",
+    "sourceFile": "content/docs/staking-protocol/developer-reference.md",
+    "group": "Staking Protocol",
+    "navTitle": "Developer reference",
+    "navDepth": 0,
+    "navParent": null,
+    "navHasChildren": false,
+    "navOrder": 26,
+    "title": "Developer reference",
+    "description": "Modules, messages, queries, endpoints, CLI examples, and integration notes for building Terra Classic staking and governance tooling.",
+    "status": "draft",
+    "reviewed": false,
+    "sourceTitle": "Terra Classic Docs Staking Protocol section",
+    "sourceSite": "https://docs.terra-classic.money",
+    "sourceRepo": "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main",
+    "sourceCommit": "staking-protocol-section-2026-06-01",
+    "sourcePath": "content/docs/staking-protocol/developer-reference.md",
+    "sourceDate": "2026-06-01",
+    "tocDepth": 2,
+    "headings": [
+      {
+        "depth": 2,
+        "title": "Core modules",
+        "id": "core-modules"
+      },
+      {
+        "depth": 2,
+        "title": "Common messages",
+        "id": "common-messages"
+      },
+      {
+        "depth": 2,
+        "title": "Useful LCD queries",
+        "id": "useful-lcd-queries"
+      },
+      {
+        "depth": 2,
+        "title": "CLI examples",
+        "id": "cli-examples"
+      },
+      {
+        "depth": 2,
+        "title": "Integration requirements",
+        "id": "integration-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "APR calculator requirements",
+        "id": "apr-calculator-requirements"
+      },
+      {
+        "depth": 2,
+        "title": "Error states to handle",
+        "id": "error-states-to-handle"
+      },
+      {
+        "depth": 2,
+        "title": "Terra Classic-specific notes",
+        "id": "terra-classic-specific-notes"
+      },
+      {
+        "depth": 2,
+        "title": "Source references",
+        "id": "source-references"
+      }
+    ],
+    "body": "Use this page when building wallets, dashboards, staking calculators, validator analytics, governance tools, portfolio trackers, or backend automation around Staking Protocol.\n\n## Core modules\n\nStaking Protocol spans several modules.\n\n| Module | Role | Module spec |\n| --- | --- | --- |\n| `x/staking` | Validators, delegations, redelegations, unbonding, staking params. | [Staking module](/develop/module-specifications/spec-staking/) |\n| `x/distribution` | Reward accounting, delegator reward withdrawals, validator commission. | [Distribution module](/develop/module-specifications/spec-distribution/) |\n| `x/slashing` | Downtime and double-signing penalties, jailed state, signing info. | [Slashing module](/develop/module-specifications/spec-slashing/) |\n| `x/gov` | Proposal lifecycle, votes, deposits, governance params. | [Governance module](/develop/module-specifications/spec-governance/) |\n\nTerra Classic inherits Cosmos SDK module behavior with Terra Classic-specific params and customizations. Always verify live chain behavior against current node endpoints and the running Terra Classic version.\n\n## Common messages\n\n| Action | Message |\n| --- | --- |\n| Delegate LUNC | `MsgDelegate` |\n| Redelegate LUNC | `MsgBeginRedelegate` |\n| Undelegate LUNC | `MsgUndelegate` |\n| Claim delegator rewards | `MsgWithdrawDelegatorReward` |\n| Claim validator commission | `MsgWithdrawValidatorCommission` |\n| Set reward withdrawal address | `MsgSetWithdrawAddress` |\n| Vote on proposal | `MsgVote` |\n| Submit proposal | `MsgSubmitProposal` |\n| Deposit on proposal | `MsgDeposit` |\n\nWallets should make the action label obvious before signing. Users should not need to inspect raw protobuf messages to understand whether they are delegating, redelegating, undelegating, claiming, voting, or changing a withdrawal address.\n\n## Useful LCD queries\n\nMainnet LCD example:\n\n```text\nhttps://terra-classic-lcd.publicnode.com\n```\n\nStaking:\n\n```text\n/cosmos/staking/v1beta1/params\n/cosmos/staking/v1beta1/pool\n/cosmos/staking/v1beta1/validators\n/cosmos/staking/v1beta1/validators/{validator_address}\n/cosmos/staking/v1beta1/delegations/{delegator_address}\n/cosmos/staking/v1beta1/validators/{validator_address}/delegations/{delegator_address}\n/cosmos/staking/v1beta1/delegators/{delegator_address}/redelegations\n/cosmos/staking/v1beta1/delegators/{delegator_address}/unbonding_delegations\n```\n\nDistribution:\n\n```text\n/cosmos/distribution/v1beta1/params\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}\n/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address\n/cosmos/distribution/v1beta1/validators/{validator_address}/commission\n/cosmos/distribution/v1beta1/community_pool\n```\n\nSlashing:\n\n```text\n/cosmos/slashing/v1beta1/params\n/cosmos/slashing/v1beta1/signing_infos\n/cosmos/slashing/v1beta1/signing_infos/{cons_address}\n```\n\nGovernance:\n\n```text\n/cosmos/gov/v1/proposals\n/cosmos/gov/v1/proposals/{proposal_id}\n/cosmos/gov/v1/proposals/{proposal_id}/votes\n/cosmos/gov/v1/proposals/{proposal_id}/votes/{voter}\n/cosmos/gov/v1/params/voting\n```\n\nFor production systems, do not rely on a single public endpoint. Use endpoint failover, timeouts, retries, health checks, and clear error states.\n\n## CLI examples\n\nThe examples below are shapes, not copy-paste production commands. Replace addresses, amounts, gas, chain ID, key names, and endpoints with current values.\n\nDelegate:\n\n```bash\nterrad tx staking delegate terravaloper1... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nRedelegate:\n\n```bash\nterrad tx staking redelegate terravaloper1source... terravaloper1dest... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nUndelegate:\n\n```bash\nterrad tx staking unbond terravaloper1... 1000000uluna \\\n  --from my-wallet \\\n  --chain-id columbus-5 \\\n  --gas auto \\\n  --gas-adjustment 1.4 \\\n  --fees 10000uluna\n```\n\nQuery staking params:\n\n```bash\nterrad query staking params --node https://terra-classic-rpc.publicnode.com:443\n```\n\nQuery delegator rewards:\n\n```bash\nterrad query distribution rewards terra1... --node https://terra-classic-rpc.publicnode.com:443\n```\n\n## Integration requirements\n\nStaking interfaces should show:\n\n- liquid balance\n- delegated balance by validator\n- pending rewards\n- validator commission\n- validator voting power\n- jailed status\n- unbonding entries and completion times\n- redelegation entries and completion times\n- governance vote override state\n- transaction fee estimate\n- tax or fee behavior where relevant\n- clear warning before undelegation\n\n## APR calculator requirements\n\nA credible APR calculator should disclose:\n\n- data source\n- time window\n- reward source assumptions\n- bonded-token denominator\n- validator commission treatment\n- community-tax treatment\n- compounding assumption\n- whether fiat conversion is used\n- refresh time\n\nAvoid displaying APR with false precision. If the calculation is an estimate, label it as an estimate.\n\n## Error states to handle\n\nStaking tooling should handle:\n\n- insufficient liquid LUNC for fees\n- validator not found\n- validator jailed\n- invalid `terravaloper` address\n- redelegation cooldown\n- max unbonding or redelegation entries reached\n- endpoint timeout\n- stale endpoint data\n- wallet rejection\n- chain ID mismatch\n- tax or fee estimation failure\n- transaction included but UI cache not refreshed\n\nUser-facing errors should explain the next action in plain language.\n\n## Terra Classic-specific notes\n\n- Chain ID: `columbus-5`\n- Account prefix: `terra`\n- Validator operator prefix: `terravaloper`\n- Staking denomination: `uluna`\n- Display unit: `LUNC`\n- 1 LUNC: `1000000uluna`\n- Market swap mint/burn paths are disabled on Classic; do not assume historical Terra swap behavior is active.\n- Burn tax, distribution, governance, and staking parameters should be queried live.\n- Terra Classic has a custom validator voting-power cap documented in the staking module spec.\n\n## Source references\n\nUse current Terra Classic endpoints for live params and upstream Cosmos SDK docs for module behavior:\n\n- [Cosmos SDK staking module](https://docs.cosmos.network/sdk/latest/modules/staking/README)\n- [Cosmos SDK distribution module](https://docs.cosmos.network/sdk/v0.50/build/modules/distribution/README)\n- [Cosmos SDK slashing module](https://docs.cosmos.network/sdk/latest/modules/slashing/README)\n- [Cosmos SDK governance module](https://docs.cosmos.network/sdk/latest/modules/gov/README)\n",
+    "previousSlug": "staking-protocol/validator-responsibilities",
     "nextSlug": "develop/quick-start-guide"
   },
   {
@@ -691,7 +1287,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 19,
+    "navOrder": 27,
     "title": "Quick start guide",
     "description": "A practical first pass for building on Terra Classic: networks, endpoints, transactions, SDKs, localnet, smart contracts, and production checks.",
     "status": "draft",
@@ -991,7 +1587,7 @@ export const docsPages = [
       }
     ],
     "body": "This guide gives developers a fast, practical overview of how to build on Terra Classic without reading the full documentation first.\n\nUse it to understand the network, choose a development path, connect to endpoints, build transactions, test locally, deploy smart contracts, and avoid the most common Terra Classic-specific mistakes.\n\n> **Important**\n>\n> Terra Classic is a community-maintained blockchain. Public infrastructure, tools, SDKs, wallets, and documentation can change over time. Always verify current chain parameters, endpoint health, tax behavior, and wallet support before deploying production applications.\n\n## What you can build on Terra Classic\n\nTerra Classic is a Cosmos SDK / CometBFT blockchain with CosmWasm smart contract support, IBC connectivity, staking, governance, oracle infrastructure, and Terra Classic-specific modules such as burn tax, tax exemptions, and dynamic validator commission.\n\nDevelopers can build:\n\n- dApps using CosmWasm smart contracts\n- wallets and portfolio tools\n- dashboards and analytics products\n- DEX frontends and routing tools\n- staking and governance interfaces\n- payment and transfer flows\n- bots, scripts, and backend services\n- CW20 token tools\n- IBC-aware applications\n- integrations with Terra Classic wallets and infrastructure\n\nTerra Classic is not an EVM chain. If you are coming from Ethereum, the closest mental model is:\n\n| Ethereum-style concept | Terra Classic equivalent |\n| --- | --- |\n| Solidity smart contract | CosmWasm smart contract written mostly in Rust |\n| ERC20 token | CW20 token |\n| MetaMask | Keplr, Galaxy Station, Orbitar, Cosmostation, LUNC Dash |\n| Web3.js / ethers.js | CosmES, Terra Classic SDK, LCD/RPC/gRPC APIs |\n| Ganache / local chain | Terra Classic localnet |\n| Contract deployment | Store WASM code, then instantiate contract |\n| Contract call | `MsgExecuteContract` |\n| Native token transfer | `MsgSend` |\n| Cross-chain transfer | IBC transfer |\n\n## The three main developer paths\n\nMost Terra Classic builders fall into one of three paths.\n\n### 1. Frontend dApp developer\n\nChoose this path if you want users to connect a wallet, read balances, sign transactions, interact with contracts, or use Terra Classic dApps in a browser.\n\nRecommended stack:\n\n- TypeScript\n- CosmES SDK\n- Keplr and/or Galaxy Station\n- RPC endpoint\n- LCD endpoint for tax and chain queries\n- FCD endpoint for gas prices\n\nUse this path for wallets, dashboards, staking pages, DEX interfaces, governance interfaces, and consumer-facing dApps.\n\n### 2. Smart contract developer\n\nChoose this path if you want to write on-chain logic.\n\nRecommended stack:\n\n- Rust\n- CosmWasm\n- Terra Classic localnet\n- `terrad`\n- Docker\n- CosmWasm optimizer\n- CW20 / CW721 standards where needed\n\nUse this path for DeFi protocols, vaults, token contracts, routing contracts, escrow systems, gaming logic, governance tooling, and on-chain automation primitives.\n\n### 3. Backend / automation developer\n\nChoose this path if you want to build bots, indexers, backend services, scripts, monitoring tools, integrations, or transaction automation.\n\nRecommended stack:\n\n- Python with `terra-classic-sdk`\n- or TypeScript with CosmES\n- private or dedicated RPC/LCD infrastructure\n- secure secret management\n- transaction simulation\n- retries and monitoring\n\nUse this path for analytics, alerts, scheduled jobs, treasury automation, validator tooling, integrations, and backend services.\n\n## Network basics\n\nTerra Classic mainnet is:\n\n```text\nChain ID: columbus-5\nAddress prefix: terra\nNative staking / governance asset: LUNC\nOn-chain micro-denom: uluna\n```\n\nAmounts are usually represented in micro-denominations on-chain.\n\n```text\n1 LUNC = 1,000,000 uluna\n```\n\nFor example:\n\n```text\n1000000uluna = 1 LUNC\n```\n\nThe main Terra Classic testnet used in the docs is:\n\n```text\nChain ID: rebel-2\n```\n\nLocal development usually runs on:\n\n```text\nlocalterra\n```\n\nor another local chain ID shown by your localnet output.\n\n## Public endpoints\n\nPublic endpoints are useful for development, testing, and light workloads. Do not depend on public endpoints for production systems that need uptime, rate-limit control, or predictable latency.\n\n### Mainnet: columbus-5\n\n```text\nLCD:\nhttps://terra-classic-lcd.publicnode.com\nhttps://api-lunc-lcd.binodes.com\nhttps://lcd.terra-classic.hexxagon.io\n\nRPC:\nhttps://terra-classic-rpc.publicnode.com\nhttps://api-lunc-rpc.binodes.com\nhttps://rpc.terra-classic.hexxagon.io\n\nFCD:\nhttps://terra-classic-fcd.publicnode.com\n\nGas prices:\nhttps://terra-classic-fcd.publicnode.com/v1/txs/gas_prices\n\ngRPC:\ngrpc+https://terra-classic-grpc.publicnode.com\ngrpc+https://grpc.terra-classic.hexxagon.io\n```\n\n### Testnet: rebel-2\n\n```text\nLCD:\nhttps://lcd.luncblaze.com\nhttps://lcd.terra-classic.hexxagon.dev\n\nRPC:\nhttps://rpc.luncblaze.com\nhttps://rpc.terra-classic.hexxagon.dev\n\nFCD:\nhttps://fcd.luncblaze.com\n\ngRPC:\ngrpc+https://grpc.terra-classic.hexxagon.dev\n```\n\nFor the maintained endpoint list, see [Public Network Endpoints](/develop/endpoints/). For production, run your own node or use a dedicated infrastructure provider.\n\n## Terra Classic-specific behavior developers must understand\n\nTerra Classic follows standard Cosmos transaction patterns, but it has several chain-specific behaviors that can break integrations if ignored.\n\n### 1. Burn tax can affect transfers\n\nTerra Classic uses the `x/tax` module to apply burn tax to many taxable transfers.\n\nThis means:\n\n- the receiver may receive less than the sender entered\n- tax behavior can depend on transaction type\n- some routes can use Tax2Gas / reverse-charge handling\n- governance can change tax parameters\n- apps should not hardcode tax assumptions forever\n\nFor basic transfers, the chain handles deduction. For good UX, your app should query current parameters and show the user an estimated received amount before confirmation.\n\nUseful endpoints:\n\n```text\nTax params:\nhttps://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/params\n\nCurrent burn tax rate:\nhttps://terra-classic-lcd.publicnode.com/terra/tax/v1beta1/burn_tax_rate\n```\n\n### 2. Some addresses can be tax-exempt\n\nTerra Classic has a tax exemption registry. Some addresses or zones can be exempt from burn tax.\n\nThis matters for:\n\n- exchanges\n- custody flows\n- treasury wallets\n- smart contract workflows\n- service wallets\n- internal app transfers\n\nUseful endpoints:\n\n```text\nZones:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/zones\n\nZone addresses:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/{zonename}/addresses\n\nTaxable check:\nhttps://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{to}\n```\n\nIf your UX shows exact fees or exact received amounts, check taxability before the final confirmation screen.\n\n### 3. Legacy market swaps are disabled\n\nDo not build new app flows that depend on legacy protocol-level market swaps.\n\nAvoid assuming that these old flows are active:\n\n- native stablecoin to LUNC market swaps\n- stablecoin to stablecoin market swaps\n- algorithmic mint/burn swap behavior\n- pre-2022 Terra Classic market-module assumptions\n\nThe market module still exists for compatibility and historical logic, but new applications should use active DEX contracts and current liquidity venues instead of legacy market swap paths.\n\nFor swaps, build against DEX contracts and always include slippage protection such as `max_spread` or `minimum_receive`.\n\n### 4. Contract calls with attached funds behave differently from simple transfers\n\nSending funds to a contract is not always the same as a wallet-to-wallet bank transfer.\n\nIf your app sends funds into a CosmWasm contract, treat that flow separately in your fee and tax UX. Simulate transactions and verify actual chain behavior before showing users final cost or received-amount estimates.\n\n### 5. Public infrastructure is for development, not production\n\nPublic RPC/LCD/FCD endpoints are helpful, but production systems should not depend on a single public endpoint.\n\nBackend services should:\n\n- use retries with exponential backoff\n- support multiple endpoints\n- monitor endpoint failures\n- log transaction hashes, raw logs, gas used, and error codes\n- alert on repeated failed broadcasts\n- run dedicated infrastructure when reliability matters\n\n## Recommended quick transaction flow\n\nA safe Terra Classic transaction flow looks like this:\n\n1. Choose the correct network: `columbus-5` for mainnet, `rebel-2` for testnet, or `localterra`/the local chain ID shown by localnet.\n2. Fetch gas prices.\n3. Fetch current tax parameters if your UX depends on fees or received amounts.\n4. Check tax exemption status if the sender or recipient may be exempt.\n5. Build the unsigned transaction.\n6. Simulate the transaction.\n7. Apply a gas adjustment margin.\n8. Show the user an estimated cost and expected result.\n9. Ask the wallet to sign.\n10. Broadcast.\n11. Poll or subscribe for confirmation.\n12. Store the transaction hash and raw logs for debugging.\n\n## Build with TypeScript and CosmES\n\nCosmES is the recommended modern TypeScript SDK path for many Terra Classic frontend and integration projects.\n\nInstall it:\n\n```bash\nyarn add @goblinhunt/cosmes\n```\n\nRecommended TypeScript config:\n\n```json\n{\n  \"compilerOptions\": {\n    \"moduleResolution\": \"bundler\"\n  }\n}\n```\n\nIf you use Vite and need WalletConnect compatibility, add:\n\n```ts\n// vite.config.ts\nimport { defineConfig } from \"vite\";\n\nexport default defineConfig({\n  define: { global: \"window\" },\n});\n```\n\n### Connect Keplr\n\n```ts\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function connectKeplr(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n  console.log(\"Connected address:\", connected?.address);\n}\n```\n\n### Query native balances\n\n```ts\nimport { getNativeBalances } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function readBalances(): Promise<void> {\n  const balances = await getNativeBalances(RPC, {\n    address: \"terra1...\",\n  });\n\n  console.log(balances);\n}\n```\n\n### Send LUNC\n\n```ts\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\nimport { KeplrController, WalletType } from \"@goblinhunt/cosmes/wallet\";\n\nconst CHAIN_ID = \"columbus-5\";\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\n\nasync function sendLunc(): Promise<void> {\n  const controller = new KeplrController(\"<YOUR_WC_PROJECT_ID>\");\n\n  const wallets = await controller.connect(WalletType.EXTENSION, [\n    {\n      chainId: CHAIN_ID,\n      rpc: RPC,\n      gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n    },\n  ]);\n\n  const connected = wallets.get(CHAIN_ID);\n\n  if (!connected) {\n    throw new Error(\"Failed to connect wallet\");\n  }\n\n  const msg = new MsgSend({\n    fromAddress: connected.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"1000000\" }],\n  });\n\n  const unsigned = {\n    msgs: [msg],\n    memo: \"hello from Terra Classic\",\n  };\n\n  const fee = await connected.estimateFee(unsigned, 1.2);\n  const txHash = await connected.broadcastTx(unsigned, fee);\n\n  console.log(\"txhash:\", txHash);\n}\n```\n\n## Use a mnemonic wallet for scripts and backends\n\nFor scripts, automated jobs, tests, or backend services, use a programmatic wallet.\n\nNever commit mnemonics. Never log mnemonics. Use environment variables or a secure secret manager.\n\n```ts\nimport { MnemonicWallet } from \"@goblinhunt/cosmes/wallet\";\nimport { MsgSend } from \"@goblinhunt/cosmes/client\";\n\nconst wallet = new MnemonicWallet({\n  mnemonic: process.env.MNEMONIC ?? \"\",\n  bech32Prefix: \"terra\",\n  chainId: \"columbus-5\",\n  rpc: \"https://terra-classic-rpc.publicnode.com\",\n  gasPrice: { denom: \"uluna\", amount: \"28.325\" },\n  coinType: 330,\n  index: 0,\n});\n\nasync function sendFromBackend(): Promise<void> {\n  const msg = new MsgSend({\n    fromAddress: wallet.address,\n    toAddress: \"terra1...\",\n    amount: [{ denom: \"uluna\", amount: \"1000000\" }],\n  });\n\n  const unsigned = {\n    msgs: [msg],\n    memo: \"backend send\",\n  };\n\n  const fee = await wallet.estimateFee(unsigned, 1.2);\n  const txHash = await wallet.broadcastTx(unsigned, fee);\n\n  console.log(\"txhash:\", txHash);\n}\n```\n\n## Build with Python\n\nFor Python scripts and backends, use the Terra Classic SDK package.\n\nSet up a virtual environment:\n\n```bash\npython3 -m venv .venv\nsource .venv/bin/activate\npython -m pip install --upgrade pip\npip install --upgrade terra-classic-sdk\n```\n\nConnect to mainnet:\n\n```python\nfrom terra_classic_sdk.client.lcd import LCDClient\nfrom terra_classic_sdk.key.mnemonic import MnemonicKey\n\nLCD_URL = \"https://terra-classic-lcd.publicnode.com\"\nCHAIN_ID = \"columbus-5\"\nMNEMONIC = \"<STORE THIS SECURELY>\"\n\nterra = LCDClient(url=LCD_URL, chain_id=CHAIN_ID)\nwallet = terra.wallet(MnemonicKey(mnemonic=MNEMONIC))\n\nprint(wallet.key.acc_address)\n```\n\nFetch gas prices:\n\n```python\nfrom typing import Dict\nimport requests\n\nGAS_PRICE_ENDPOINT = \"https://terra-classic-fcd.publicnode.com/v1/txs/gas_prices\"\n\ndef fetch_gas_prices(endpoint: str = GAS_PRICE_ENDPOINT) -> Dict[str, str]:\n    response = requests.get(endpoint, timeout=10)\n    response.raise_for_status()\n    return response.json()\n\ngas_prices = fetch_gas_prices()\nprint(gas_prices[\"uluna\"])\n```\n\nSend LUNC:\n\n```python\nfrom typing import Dict\nfrom terra_classic_sdk.client.lcd import LCDClient\nfrom terra_classic_sdk.client.lcd.api.tx import CreateTxOptions\nfrom terra_classic_sdk.core import Coins, Coin\nfrom terra_classic_sdk.core.bank import MsgSend\nfrom terra_classic_sdk.key.mnemonic import MnemonicKey\n\nlcd = LCDClient(\n    url=\"https://terra-classic-lcd.publicnode.com\",\n    chain_id=\"columbus-5\",\n)\n\nwallet = lcd.wallet(MnemonicKey(mnemonic=\"<SECURE MNEMONIC>\"))\ngas_prices: Dict[str, str] = fetch_gas_prices()\n\nmsg = MsgSend(\n    from_address=wallet.key.acc_address,\n    to_address=\"terra1...\",\n    amount=Coins([Coin(\"uluna\", 1_000_000)]),\n)\n\ntx = wallet.create_and_sign_tx(\n    options=CreateTxOptions(\n        msgs=[msg],\n        gas=\"auto\",\n        gas_prices=Coins(gas_prices),\n        fee_denoms=\"uluna\",\n        gas_adjustment=1.4,\n    )\n)\n\nresult = lcd.tx.broadcast(tx)\nprint(result.txhash)\n```\n\nPython is especially useful for:\n\n- analytics\n- bots\n- scheduled jobs\n- monitoring tools\n- indexer support\n- treasury operations\n- backend integrations\n\n## Run a local Terra Classic network\n\nUse localnet when you want a private chain that you can reset, test against, and break safely.\n\nPrerequisites:\n\n- git\n- make\n- Docker\n- Docker Compose\n- 16-32 GB RAM recommended\n\nClone Terra Classic Core:\n\n```bash\ngit clone https://github.com/classic-terra/core.git terra-core\ncd terra-core\n```\n\nStart localnet:\n\n```bash\nmake localnet-start\n```\n\nTypical local endpoints:\n\n```text\nRPC:  http://localhost:26657\nLCD:  http://localhost:1317\ngRPC: http://localhost:9090\n```\n\nTypical local chain ID:\n\n```text\nlocalterra\n```\n\nor:\n\n```text\nlocalnet\n```\n\nCheck your terminal output and use the exact chain ID shown by your local setup.\n\nUse localnet for:\n\n- contract development\n- integration testing\n- frontend testing\n- transaction simulation\n- module experiments\n- demos\n- reproducible QA\n\nFor the dedicated walkthrough, see [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/).\n\n## Build CosmWasm smart contracts\n\nTerra Classic supports CosmWasm smart contracts.\n\nA CosmWasm contract usually has three core entry points:\n\n```text\ninstantiate()\nexecute()\nquery()\n```\n\nOptionally, upgradeable contracts can also implement:\n\n```text\nmigrate()\n```\n\n### Install Rust and tooling\n\nInstall Rust, then add the WASM target:\n\n```bash\nrustup default 1.82.0\nrustup target add wasm32-unknown-unknown\n```\n\nInstall `cargo-generate`:\n\n```bash\ncargo install cargo-generate --features vendored-openssl\n```\n\nInstall `wasm-opt`:\n\n```bash\ncargo install wasm-opt\n```\n\n### Start from a CosmWasm template\n\n```bash\ncargo generate --git https://github.com/CosmWasm/cw-template.git --branch 1.5 --name my-first-contract\ncd my-first-contract\n```\n\nThe basic contract structure includes:\n\n```text\nsrc/contract.rs\nsrc/msg.rs\nsrc/state.rs\n```\n\nCommon message types:\n\n```text\nInstantiateMsg\nExecuteMsg\nQueryMsg\n```\n\nCommon contract state helpers:\n\n```text\nItem\nMap\n```\n\n### Build the contract\n\n```bash\ncargo wasm\n```\n\nOptimize it:\n\n```bash\ndocker run --rm -v \"$(pwd)\":/code \\\n  --mount type=volume,source=\"$(basename \"$(pwd)\")_cache\",target=/code/target \\\n  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \\\n  cosmwasm/workspace-optimizer:0.14.0\n```\n\nFor ARM machines:\n\n```bash\ndocker run --rm -v \"$(pwd)\":/code \\\n  --mount type=volume,source=\"$(basename \"$(pwd)\")_cache\",target=/code/target \\\n  --mount type=volume,source=registry_cache,target=/usr/local/cargo/registry \\\n  cosmwasm/workspace-optimizer-arm64:0.14.0\n```\n\nThis creates an optimized `.wasm` artifact that can be uploaded to the chain.\n\n## Upload, instantiate, execute, and query a contract\n\nOnce localnet is running and your optimized `.wasm` file is ready, use `terrad`.\n\n### 1. Add or recover a local key\n\n```bash\nterrad keys add test1 --recover\n```\n\n### 2. Store contract code\n\n```bash\nterrad tx wasm store artifacts/my_first_contract.wasm \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --gas=auto \\\n  --gas-prices=28.325uluna \\\n  --broadcast-mode=sync\n```\n\nThe result includes a `code_id`.\n\n### 3. Instantiate the contract\n\n```bash\nterrad tx wasm instantiate 1 '{\"count\":0}' \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --fees=28.325uluna \\\n  --gas=auto \\\n  --broadcast-mode=sync\n```\n\nThe result includes a `contract_address`.\n\n### 4. Execute the contract\n\n```bash\nterrad tx wasm execute terra1... '{\"increment\":{}}' \\\n  --from test1 \\\n  --chain-id=localterra \\\n  --gas=auto \\\n  --fees=28.325uluna \\\n  --broadcast-mode=sync\n```\n\n### 5. Query the contract\n\n```bash\nterrad query wasm contract-store terra1... '{\"get_count\":{}}'\n```\n\n## Interact with CW20 tokens\n\nCW20 is the CosmWasm fungible token standard, broadly similar to ERC20.\n\n### Query CW20 balance with CosmES\n\n```ts\nimport { getCw20Balance } from \"@goblinhunt/cosmes/client\";\n\nconst RPC = \"https://terra-classic-rpc.publicnode.com\";\nconst token = \"<tokenContractAddress>\";\nconst wallet = \"<walletAddress>\";\n\nconst balance = await getCw20Balance(RPC, {\n  address: wallet,\n  token,\n});\n\nconsole.log(balance.toString());\n```\n\n### Transfer CW20 tokens\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst execMsg = {\n  transfer: {\n    recipient: \"terra1...\",\n    amount: \"1000000\",\n  },\n};\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"<tokenContractAddress>\",\n  msg: execMsg,\n  funds: [],\n});\n\nconst unsigned = {\n  msgs: [msg],\n  memo: \"cw20 transfer\",\n};\n\nconst fee = await connected.estimateFee(unsigned, 1.2);\nconst txHash = await connected.broadcastTx(unsigned, fee);\n```\n\nUse `transfer` when moving CW20 balance to a wallet.\n\nUse `send` when sending CW20 tokens to another contract and triggering a message on that receiving contract.\n\n## Build DEX and swap integrations carefully\n\nTerra Classic legacy market swaps are disabled. For active swaps, use DEX smart contracts.\n\nA typical DEX swap is a `MsgExecuteContract` against a pair or router contract.\n\nExample shape:\n\n```ts\nimport { MsgExecuteContract } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgExecuteContract({\n  sender: connected.address,\n  contract: \"terra1...pair\",\n  msg: {\n    swap: {\n      offer_asset: {\n        info: { native_token: { denom: \"uluna\" } },\n        amount: \"1000000\",\n      },\n      belief_price: \"0.000123\",\n      max_spread: \"0.005\",\n      to: connected.address,\n    },\n  },\n  funds: [{ denom: \"uluna\", amount: \"1000000\" }],\n});\n```\n\nAlways:\n\n- use the DEX's published schemas\n- verify contract addresses\n- query factory contracts for pair addresses\n- set `max_spread` or `minimum_receive`\n- simulate before broadcasting\n- show clear slippage and received-amount estimates\n- never assume liquidity depth\n\n## Use IBC only with known channels and relayer assumptions\n\nTerra Classic supports IBC routing. IBC can be used for cross-chain transfers and integrations with other Cosmos ecosystems.\n\nA typical IBC transfer uses `MsgIbcTransfer`.\n\n```ts\nimport { MsgIbcTransfer } from \"@goblinhunt/cosmes/client\";\n\nconst msg = new MsgIbcTransfer({\n  sourcePort: \"transfer\",\n  sourceChannel: \"channel-XXXX\",\n  token: { denom: \"uluna\", amount: \"1000000\" },\n  sender: connected.address,\n  receiver: \"cosmos1...dest\",\n  timeoutHeight: { revisionNumber: \"0\", revisionHeight: \"0\" },\n  timeoutTimestamp: \"0\",\n});\n```\n\nBefore shipping IBC flows:\n\n- verify the channel\n- verify the destination chain\n- verify relayer activity\n- show timeout and recovery information\n- test on testnet or with small amounts first\n- do not assume every historical channel is active\n\n## Terra Classic module map for developers\n\nYou do not need to understand every module before building. But you should know where to look.\n\n| Module | Why it matters |\n| --- | --- |\n| `x/auth` | Accounts, signatures, ante-handler, fees, memo limits, burn-tax integration |\n| `x/bank` | Native token balances and transfers |\n| `x/wasm` | CosmWasm smart contract upload, instantiate, execute, query, migrate |\n| `x/tax` | Burn tax, gas price floor, tax splits |\n| `x/taxexemption` | Tax-exempt zones and addresses |\n| `x/staking` | Validators, delegations, validator set |\n| `x/distribution` | Rewards, commissions, community pool flows |\n| `x/gov` | Proposals, voting, parameter changes |\n| `x/oracle` | Exchange-rate voting and oracle slashing |\n| `x/market` | Legacy market logic; swaps disabled on current Terra Classic |\n| `x/ibc` / `x/transfer` | Cross-chain packet routing and token transfer |\n| `ibc-hooks` | Contract callbacks on IBC packets |\n| `x/authz` | Delegated message execution |\n| `x/feegrant` | Fee allowances |\n| `x/dyncomm` | Dynamic validator commission logic |\n| `x/upgrade` | Coordinated chain upgrades |\n\nMost application builders will mainly interact with:\n\n```text\nx/bank\nx/wasm\nx/tax\nx/taxexemption\nx/gov\nx/staking\nx/ibc\n```\n\n## Production checklist\n\nBefore deploying a Terra Classic app to production, confirm the following.\n\n### Network and infrastructure\n\n- You use the correct chain ID.\n- You have backup RPC/LCD endpoints.\n- You do not depend on one public endpoint.\n- You monitor endpoint health.\n- You log tx hashes, raw logs, gas used, and errors.\n- You have retry and timeout handling.\n\n### Transactions\n\n- You fetch live gas prices.\n- You simulate before broadcast.\n- You apply a gas adjustment margin.\n- You handle wallet rejection separately from broadcast failure.\n- You handle out-of-gas and insufficient-fee errors.\n- You do not hardcode long-term tax behavior.\n\n### Burn tax and fees\n\n- You query current tax parameters when UX accuracy matters.\n- You check tax exemption status when needed.\n- You show estimated received amounts clearly.\n- You understand that governance can change parameters.\n\n### Smart contracts\n\n- You test locally.\n- You test on testnet if possible.\n- You optimize WASM before upload.\n- You generate and publish schemas.\n- You verify contract addresses.\n- You document admin / migration permissions.\n- You audit or peer-review contract logic before mainnet.\n\n### Wallet UX\n\n- You support at least one widely used wallet.\n- You show the network clearly.\n- You display amounts in LUNC but sign microunits.\n- You warn users before mainnet transactions.\n- You avoid confusing legacy stablecoin behavior with current active behavior.\n\n### Security\n\n- You never expose mnemonics.\n- You use environment variables or secret managers.\n- You use hardware wallets for treasury or validator funds.\n- You limit backend hot-wallet balances.\n- You monitor suspicious failures and unexpected parameter changes.\n- You treat third-party contracts, endpoints, and dApps as external dependencies.\n\n## Common mistakes\n\n### Treating Terra Classic like old Terra Classic documentation\n\nSome old materials describe legacy behavior that is not active today. Always verify current Terra Classic behavior before building.\n\nMost importantly: legacy market swaps are disabled.\n\n### Hardcoding gas prices\n\nGas prices can change. Fetch live gas prices or maintain a controlled production configuration that you update deliberately.\n\n### Ignoring burn tax\n\nIf your app shows transfer previews, balances after transfer, accounting data, or received amounts, you must understand burn tax behavior.\n\n### Assuming every transfer behaves the same\n\nWallet-to-wallet transfers, contract executions with funds, CW20 transfers, DEX swaps, IBC transfers, and tax-exempt routes can behave differently.\n\n### Trusting public infrastructure for production\n\nPublic endpoints are useful for development. Production apps need redundancy, monitoring, and preferably dedicated infrastructure.\n\n### Broadcasting without simulation\n\nSimulation catches many gas, fee, message, and contract errors before the user signs or before the backend submits a transaction.\n\n### Forgetting that Terra Classic is governance-controlled\n\nMany important parameters can change through governance. Build apps that can adapt to current chain state instead of assuming fixed behavior.\n\n## Recommended build path for a first Terra Classic dApp\n\nIf you are new to Terra Classic, follow this order:\n\n1. Install a supported wallet such as Keplr or Galaxy Station.\n2. Connect to `columbus-5` with CosmES and read a wallet balance.\n3. Send a small test transaction.\n4. Query tax parameters and gas prices.\n5. Run localnet.\n6. Create a simple CosmWasm contract from the template.\n7. Build and optimize the contract.\n8. Store and instantiate it on localnet.\n9. Query and execute it from the CLI.\n10. Connect a TypeScript frontend to the contract.\n11. Add transaction simulation and error handling.\n12. Test with testnet or small mainnet amounts.\n13. Replace public endpoints with production-grade infrastructure.\n14. Publish your contract addresses, schemas, assumptions, and risks.\n\n## Minimal mental model\n\nTerra Classic development becomes much easier once you remember this:\n\n- Use `columbus-5` for mainnet.\n- Use `uluna` for on-chain LUNC amounts.\n- Use CosmES for TypeScript apps.\n- Use `terra-classic-sdk` for Python scripts.\n- Use Rust and CosmWasm for smart contracts.\n- Use localnet before mainnet.\n- Use DEX contracts, not legacy market swaps.\n- Simulate transactions before broadcasting.\n- Check gas, tax, and tax exemptions when UX accuracy matters.\n- Do not rely on public endpoints for serious production workloads.\n- Expect governance-controlled parameters to change over time.\n\nTerra Classic already has the core pieces a developer needs: a running Cosmos-based chain, smart contracts, wallets, public endpoints, IBC, staking, governance, and community-maintained tooling. The opportunity is to turn those pieces into clear, useful products that people can actually use.\n\n## Related docs\n\n- [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/)\n- [Tx best practices](/develop/classic-transaction-behavior/)\n- [Builder tooling](/learn/builder-tooling/)\n- [CosmES SDK](/develop/cosmes/cosmes/)\n- [Smart contracts](/develop/smart-contracts/overview/)\n- [Module specifications](/develop/module-specifications/module-specifications/)\n- [Public Network Endpoints](/develop/endpoints/)\n",
-    "previousSlug": "learn/fees",
+    "previousSlug": "staking-protocol/developer-reference",
     "nextSlug": "develop/how-to/localnet/terra-core-localnet"
   },
   {
@@ -1003,7 +1599,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 20,
+    "navOrder": 28,
     "title": "Run Terra Classic localnet",
     "description": "Spin up a multi-validator Terra Classic Core network locally with `make localnet-start`.",
     "status": "draft",
@@ -1050,7 +1646,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 21,
+    "navOrder": 29,
     "title": "Tx best practices",
     "description": "Practical guidance for burn tax, Tax2Gas, tax-free contract funding, and safe Terra Classic transaction flows.",
     "status": "draft",
@@ -1177,7 +1773,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 22,
+    "navOrder": 30,
     "title": "Builder tooling",
     "description": "Essential SDKs and references for building Terra Classic dApps with modern tooling.",
     "status": "draft",
@@ -1209,7 +1805,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": true,
-    "navOrder": 23,
+    "navOrder": 31,
     "title": "CosmES SDK",
     "description": "Use @goblinhunt/cosmes for Terra Classic TypeScript apps.",
     "status": "draft",
@@ -1261,7 +1857,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 24,
+    "navOrder": 32,
     "title": "Get started",
     "description": "Install the SDK, configure TypeScript, and connect wallets.",
     "status": "draft",
@@ -1328,7 +1924,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 25,
+    "navOrder": 33,
     "title": "Query data",
     "description": "Read balances and contract state via CosmES client helpers.",
     "status": "draft",
@@ -1370,7 +1966,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 26,
+    "navOrder": 34,
     "title": "Programmatic wallet",
     "description": "Use `MnemonicWallet` to sign transactions from backends or scripts.",
     "status": "draft",
@@ -1407,7 +2003,7 @@ export const docsPages = [
     "navDepth": 2,
     "navParent": "develop/cosmes/cosmes",
     "navHasChildren": false,
-    "navOrder": 27,
+    "navOrder": 35,
     "title": "Transactions",
     "description": "Compose and broadcast Common Terra Classic messages.",
     "status": "draft",
@@ -1474,7 +2070,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "learn/builder-tooling",
     "navHasChildren": false,
-    "navOrder": 28,
+    "navOrder": 36,
     "title": "Terra.py on Terra Classic",
     "description": "Install terra_sdk, connect to trusted endpoints, and broadcast Python transactions.",
     "status": "draft",
@@ -1561,7 +2157,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 29,
+    "navOrder": 37,
     "title": "Smart contracts",
     "description": "End-to-end tutorials for building and deploying CosmWasm dApps on Terra Classic.",
     "status": "draft",
@@ -1623,7 +2219,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 30,
+    "navOrder": 38,
     "title": "Build a Terra Classic dApp",
     "description": "Overview of the CosmWasm template workflow from idea to deployment.",
     "status": "draft",
@@ -1655,7 +2251,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 31,
+    "navOrder": 39,
     "title": "Set up local environment",
     "description": "Install toolchains and prepare LocalTerra for contract development.",
     "status": "draft",
@@ -1692,7 +2288,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 32,
+    "navOrder": 40,
     "title": "Write smart contract",
     "description": "Author and test CosmWasm contracts with entry points and state management.",
     "status": "draft",
@@ -1819,7 +2415,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 33,
+    "navOrder": 41,
     "title": "Interact with contracts",
     "description": "Store, instantiate, execute, and query contracts using `terrad`.",
     "status": "draft",
@@ -1886,7 +2482,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/smart-contracts/overview",
     "navHasChildren": false,
-    "navOrder": 34,
+    "navOrder": 42,
     "title": "Manage CW20 tokens",
     "description": "Deploy and operate CW20 token contracts on Terra Classic.",
     "status": "draft",
@@ -1933,7 +2529,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 35,
+    "navOrder": 43,
     "title": "Module specifications",
     "description": "Explore Terra Classic Core modules, parameters, and Classic-specific behaviour.",
     "status": "draft",
@@ -1995,7 +2591,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 36,
+    "navOrder": 44,
     "title": "Auth module (x/auth)",
     "description": "Ante handler, vesting accounts, and transaction gas parameters.",
     "status": "draft",
@@ -2047,7 +2643,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 37,
+    "navOrder": 45,
     "title": "Authz module (x/authz)",
     "description": "Delegate message execution permissions with fine-grained controls.",
     "status": "draft",
@@ -2104,7 +2700,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 38,
+    "navOrder": 46,
     "title": "Bank module (x/bank)",
     "description": "Account balances, token transfers, and supply tracking.",
     "status": "draft",
@@ -2171,7 +2767,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 39,
+    "navOrder": 47,
     "title": "Capability module (x/capability)",
     "description": "Capability keeper for isolating inter-module access rights.",
     "status": "draft",
@@ -2218,7 +2814,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 40,
+    "navOrder": 48,
     "title": "Consensus params module (x/consensus)",
     "description": "Governance-controlled Tendermint parameter updates.",
     "status": "draft",
@@ -2244,7 +2840,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 41,
+    "navOrder": 49,
     "title": "Crisis module (x/crisis)",
     "description": "Invariant checks and chain-halting safeguards.",
     "status": "draft",
@@ -2270,7 +2866,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 42,
+    "navOrder": 50,
     "title": "Distribution module (x/distribution)",
     "description": "Reward distribution to validators, delegators, and the community pool.",
     "status": "draft",
@@ -2304,7 +2900,7 @@ export const docsPages = [
         "id": "messages-used-on-classic"
       }
     ],
-    "body": "> **Note**\n>\n> Terra Classic keeps the Cosmos SDK distribution module but relies on burn-tax inflows instead of inflation or seigniorage. Rewards are passively accumulated and must be withdrawn by validators and delegators.\n\n## Classic overview\n\n- **Burn-tax inflow.** `custom/auth/ante/fee_tax.go` forwards the burn-tax portion of every transaction to the fee collector. `x/distribution` allocates that balance at end block using the standard global split.\n- **Community pool.** `CommunityTax` is set to `0.5`, so the community pool grows with every transaction. Governance or users can still call `MsgFundCommunityPool` to deposit additional funds.\n- **Manual withdrawals.** Validators use `MsgWithdrawValidatorCommission`;delegators use `MsgWithdrawDelegatorReward`. Nothing auto-claims.\n\n## Parameters (subspace `distribution`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `CommunityTax` | Percentage of collected fees sent to community pool. | `0` |\n| `BaseProposerReward` | Fixed proposer reward share. | `0.01` |\n| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0.04` |\n| `WithdrawAddrEnabled` | Allow custom withdrawal addresses. | `true` |\n\n## Reward flow\n\n1. Fees and burn-tax proceeds accumulate in the fee collector module account.\n2. During `EndBlock`, the distribution keeper pays proposer rewards (`base + bonus`).\n3. Any configured community tax is transferred to the community pool (no-op on Classic).\n4. Remaining coins are recorded in `FeePool` for future delegator withdrawals and oracle ballot rewards.\n\n## Messages used on Classic\n\n- **`MsgSetWithdrawAddress`** — update the account receiving staking rewards.\n- **`MsgWithdrawDelegatorReward`** — claim rewards for a specific validator/delegator pair.\n- **`MsgWithdrawValidatorCommission`** — withdraw accumulated validator commission.\n- **`MsgFundCommunityPool`** — manually deposit funds into the community pool when governance approved spending budgets.\n\nSee the upstream Cosmos SDK documentation for full protobuf definitions and CLI usage examples.\n",
+    "body": "> **Note**\n>\n> Terra Classic keeps the Cosmos SDK distribution module but relies on burn-tax inflows instead of inflation or seigniorage. Rewards are passively accumulated and must be withdrawn by validators and delegators.\n\n## Classic overview\n\n- **Burn-tax inflow.** `custom/auth/ante/fee_tax.go` forwards the burn-tax portion of every transaction to the fee collector. `x/distribution` allocates that balance at end block using the standard global split.\n- **Community pool.** `CommunityTax` is set to `0.5`, so the community pool grows with every transaction. Governance or users can still call `MsgFundCommunityPool` to deposit additional funds.\n- **Manual withdrawals.** Validators use `MsgWithdrawValidatorCommission`;delegators use `MsgWithdrawDelegatorReward`. Nothing auto-claims.\n\n## Parameters (subspace `distribution`)\n\n| Name | Description | Classic default |\n| --- | --- | --- |\n| `CommunityTax` | Percentage of collected fees sent to community pool. | `0.5` |\n| `BaseProposerReward` | Fixed proposer reward share. | `0` |\n| `BonusProposerReward` | Additional proposer reward scaled by participation. | `0` |\n| `WithdrawAddrEnabled` | Allow custom withdrawal addresses. | `true` |\n\n## Reward flow\n\n1. Fees and burn-tax proceeds accumulate in the fee collector module account.\n2. During `EndBlock`, the distribution keeper pays proposer rewards (`base + bonus`).\n3. Any configured community tax is transferred to the community pool (no-op on Classic).\n4. Remaining coins are recorded in `FeePool` for future delegator withdrawals and oracle ballot rewards.\n\n## Messages used on Classic\n\n- **`MsgSetWithdrawAddress`** — update the account receiving staking rewards.\n- **`MsgWithdrawDelegatorReward`** — claim rewards for a specific validator/delegator pair.\n- **`MsgWithdrawValidatorCommission`** — withdraw accumulated validator commission.\n- **`MsgFundCommunityPool`** — manually deposit funds into the community pool when governance approved spending budgets.\n\nSee the upstream Cosmos SDK documentation for full protobuf definitions and CLI usage examples.\n",
     "previousSlug": "develop/module-specifications/spec-crisis",
     "nextSlug": "develop/module-specifications/spec-dyncomm"
   },
@@ -2317,7 +2913,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 43,
+    "navOrder": 51,
     "title": "DynComm module (x/dyncomm)",
     "description": "Dynamic validator commission band control for Classic staking.",
     "status": "draft",
@@ -2364,7 +2960,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 44,
+    "navOrder": 52,
     "title": "Evidence module (x/evidence)",
     "description": "Evidence handling for consensus faults and slashing workflows.",
     "status": "draft",
@@ -2390,7 +2986,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 45,
+    "navOrder": 53,
     "title": "Feegrant module (x/feegrant)",
     "description": "Allow trusted accounts to pay fees on behalf of other users.",
     "status": "draft",
@@ -2416,7 +3012,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 46,
+    "navOrder": 54,
     "title": "Governance module (x/gov)",
     "description": "Proposal lifecycle, deposits, voting, and parameter control.",
     "status": "draft",
@@ -2442,7 +3038,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 47,
+    "navOrder": 55,
     "title": "IBC core module (x/ibc)",
     "description": "IBC routing, channel management, and light client integration.",
     "status": "draft",
@@ -2468,7 +3064,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 48,
+    "navOrder": 56,
     "title": "IBC fee module (x/ibc-fee)",
     "description": "ICS-29 relayer incentivisation for Classic IBC packets.",
     "status": "draft",
@@ -2494,7 +3090,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 49,
+    "navOrder": 57,
     "title": "IBC hooks module (ibc-hooks)",
     "description": "Middleware for wasm contract callbacks on IBC transfers.",
     "status": "draft",
@@ -2520,7 +3116,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 50,
+    "navOrder": 58,
     "title": "Interchain accounts module (x/ica)",
     "description": "ICS-27 controller and host support on Terra Classic.",
     "status": "draft",
@@ -2546,7 +3142,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 51,
+    "navOrder": 59,
     "title": "Market module (x/market)",
     "description": "Historical swap mechanics and constant-product spread logic.",
     "status": "draft",
@@ -2593,7 +3189,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 52,
+    "navOrder": 60,
     "title": "Mint module (x/mint)",
     "description": "Inflation schedule and distribution handling (legacy on Classic).",
     "status": "draft",
@@ -2619,7 +3215,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 53,
+    "navOrder": 61,
     "title": "Oracle module (x/oracle)",
     "description": "Exchange-rate voting, reward weighting, and oracle slashing.",
     "status": "draft",
@@ -2676,7 +3272,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 54,
+    "navOrder": 62,
     "title": "Params module (x/params)",
     "description": "Parameter subspace management across modules.",
     "status": "draft",
@@ -2702,7 +3298,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 55,
+    "navOrder": 63,
     "title": "Slashing module (x/slashing)",
     "description": "Downtime and double-signing penalties.",
     "status": "draft",
@@ -2728,7 +3324,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 56,
+    "navOrder": 64,
     "title": "Staking module (x/staking)",
     "description": "Validator set management, delegation, and bonding.",
     "status": "draft",
@@ -2754,7 +3350,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 57,
+    "navOrder": 65,
     "title": "Tax module (x/tax)",
     "description": "Burn tax collection, splits, and effective gas price handling.",
     "status": "draft",
@@ -2796,7 +3392,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 58,
+    "navOrder": 66,
     "title": "Tax exemption module (x/taxexemption)",
     "description": "Manage burn-tax exempt address lists for Classic.",
     "status": "draft",
@@ -2853,7 +3449,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 59,
+    "navOrder": 67,
     "title": "Treasury module (x/treasury)",
     "description": "Epoch-based tax rate, reward weight, and seigniorage handling.",
     "status": "draft",
@@ -3055,7 +3651,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 60,
+    "navOrder": 68,
     "title": "IBC transfer module (x/transfer)",
     "description": "ICS-20 fungible token relay with tax integration.",
     "status": "draft",
@@ -3081,7 +3677,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 61,
+    "navOrder": 69,
     "title": "Upgrade module (x/upgrade)",
     "description": "Coordinated chain upgrades and store migrations.",
     "status": "draft",
@@ -3107,7 +3703,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 62,
+    "navOrder": 70,
     "title": "Vesting module (x/vesting)",
     "description": "Legacy vesting account types preserved on Classic.",
     "status": "draft",
@@ -3133,7 +3729,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "develop/module-specifications/module-specifications",
     "navHasChildren": false,
-    "navOrder": 63,
+    "navOrder": 71,
     "title": "Wasm module (x/wasm)",
     "description": "CosmWasm contract execution, message bindings, and migrations.",
     "status": "draft",
@@ -3325,7 +3921,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": true,
-    "navOrder": 64,
+    "navOrder": 72,
     "title": "Overview",
     "description": "Understand hardware expectations, supported platforms, and the lifecycle of running a Terra Classic node.",
     "status": "draft",
@@ -3367,7 +3963,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 65,
+    "navOrder": 73,
     "title": "System configuration",
     "description": "Hardware, OS, and networking prerequisites pulled from the Classic runbook.",
     "status": "draft",
@@ -3414,7 +4010,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 66,
+    "navOrder": 74,
     "title": "Build Terra core",
     "description": "Fetch and compile the latest Terra Classic binaries from source.",
     "status": "draft",
@@ -3446,7 +4042,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 67,
+    "navOrder": 75,
     "title": "Configure general settings",
     "description": "This guide covers the most important configuration files found in `~/.terra/config/`. Review each file and update the defaults to match your infrastructure.",
     "status": "draft",
@@ -3498,7 +4094,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 68,
+    "navOrder": 76,
     "title": "Set up a production environment",
     "description": "Use this checklist to prepare a production-grade Terra Classic node.",
     "status": "draft",
@@ -3555,7 +4151,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 69,
+    "navOrder": 77,
     "title": "Join a network",
     "description": "Use this overview to choose the right walkthrough for connecting a Terra Classic node to the network.",
     "status": "draft",
@@ -3607,7 +4203,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 70,
+    "navOrder": 78,
     "title": "Sync",
     "description": "Snapshots, manual replay, and verification steps.",
     "status": "draft",
@@ -3659,7 +4255,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 71,
+    "navOrder": 79,
     "title": "Validate on columbus-5",
     "description": "End-to-end instructions for running a Terra Classic mainnet validator.",
     "status": "draft",
@@ -3726,7 +4322,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 72,
+    "navOrder": 80,
     "title": "Validate on rebel-2",
     "description": "Spin up a Terra Classic testnet validator and join coordination channels.",
     "status": "draft",
@@ -3793,7 +4389,7 @@ export const docsPages = [
     "navDepth": 1,
     "navParent": "full-node/overview",
     "navHasChildren": false,
-    "navOrder": 73,
+    "navOrder": 81,
     "title": "Reset and troubleshooting",
     "description": "Recover from configuration drift, replace genesis files, and verify node health.",
     "status": "draft",
@@ -3840,7 +4436,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 74,
+    "navOrder": 82,
     "title": "Public Network Endpoints",
     "description": "Public endpoints for Terra Classic infrastructure.",
     "status": "draft",
@@ -3887,7 +4483,7 @@ export const docsPages = [
     "navDepth": 0,
     "navParent": null,
     "navHasChildren": false,
-    "navOrder": 75,
+    "navOrder": 83,
     "title": "Glossary",
     "description": "Terra Classic terminology reference for users, validators, and developers.",
     "status": "draft",

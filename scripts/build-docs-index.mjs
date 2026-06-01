@@ -52,8 +52,21 @@ const navSections = [
           },
         ],
       },
-      { slug: "learn/staking-and-governance", title: "Staking and governance" },
       { slug: "learn/fees", title: "Fees" },
+    ],
+  },
+  {
+    label: "Staking Protocol",
+    items: [
+      { slug: "staking-protocol/overview", title: "Staking Protocol" },
+      { slug: "staking-protocol/how-it-works", title: "How it works" },
+      { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
+      { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
+      { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
+      { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
+      { slug: "staking-protocol/governance", title: "Governance" },
+      { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
+      { slug: "staking-protocol/developer-reference", title: "Developer reference" },
     ],
   },
   {
