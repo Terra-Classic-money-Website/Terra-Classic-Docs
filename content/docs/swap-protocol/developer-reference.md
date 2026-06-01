@@ -144,7 +144,7 @@ It should not show:
 
 Last verified: 2026-06-01
 
-This page describes the Market Module 2.0 source design. It should not be read as proof that a production route is live. Use current Terra Classic releases, governance records, wallets, and explorers to verify future implementation status.
+Market Module 2.0 production availability should be verified through current Terra Classic releases, governance records, wallets, and explorers.
 
 ## Developer caution
 

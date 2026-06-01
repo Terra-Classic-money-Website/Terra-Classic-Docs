@@ -6,7 +6,7 @@ reviewed: true
 sourceTitle: "Terra Classic Market-Module 2.0"
 sourceSite: "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/swap-protocol/implementation-status.md"
 sourceDate: "2025-06-25"
 tocDepth: 2
@@ -30,7 +30,7 @@ If any required evidence is missing, use source-design or proposed-product langu
 
 ## Documentation state
 
-As of this remediation pass, the docs explain the Market Module 2.0 design and add a governance/status guardrail. They should not claim production user availability without the evidence listed above.
+The current documentation explains the Market Module 2.0 design. Production user availability should not be claimed without the evidence listed above.
 
 ## Source and verification
 
@@ -40,4 +40,4 @@ Primary source:
 
 - [Terra Classic Market-Module 2.0](https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38)
 
-Use current Terra Classic releases, governance records, wallet interfaces, and explorers for future production-status verification.
+Verify production status through current Terra Classic releases, governance records, wallet interfaces, and explorers.

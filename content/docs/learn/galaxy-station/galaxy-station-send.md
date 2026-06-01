@@ -41,4 +41,4 @@ Use this page as a practical checklist. Galaxy Station interface labels can chan
 
 Last verified: 2026-06-01
 
-This page was expanded during the docs content-remediation pass to improve practical user guidance. Use Galaxy Station and external explorers for live transaction state.
+Verify live transaction state through Galaxy Station and external explorers.

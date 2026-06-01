@@ -103,4 +103,4 @@ Swap Protocol is designed to restore native swap utility, but it does not remove
 
 Last verified: 2026-06-01
 
-This page is design guidance. It should not be read as confirmation that a live wallet route exists. Use current wallets, releases, governance records, and explorers to verify future availability.
+Verify Swap Protocol wallet availability through current wallets, releases, governance records, and explorers.

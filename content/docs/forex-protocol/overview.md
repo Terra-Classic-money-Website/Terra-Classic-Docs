@@ -135,4 +135,4 @@ Primary source:
 
 - [LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff](https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290)
 
-This page was reviewed during the docs content-remediation pass for status discipline. It describes a proposed governance-accepted product concept, not production availability.
+Forex Protocol is described here as a proposed, governance-accepted product concept. Verify production availability through governance records, release notes, wallet support, and live chain tools before relying on it.

@@ -163,4 +163,4 @@ Primary source:
 
 - [LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff](https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290)
 
-This page was reviewed during the docs content-remediation pass for product-status discipline. It intentionally preserves the distinction between governance acceptance and production deployment.
+Governance acceptance and production deployment are separate. Verify current production status through governance records, release notes, wallet support, and live chain tools before relying on this product.

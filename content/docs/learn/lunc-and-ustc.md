@@ -3,10 +3,10 @@ title: "LUNC and USTC"
 description: "How to understand Terra Classic's native asset LUNC and legacy asset USTC without confusing them with proposed products or old peg assumptions."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/learn/lunc-and-ustc.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -71,4 +71,4 @@ When evaluating any Terra Classic page, ask:
 
 Last verified: 2026-06-01
 
-This page is a conceptual status guide created from the docs content audit. Use explorers, wallets, and current ecosystem tools for live balances, transfers, prices, and liquidity.
+Use explorers, wallets, and current ecosystem tools for live balances, transfers, prices, and liquidity.

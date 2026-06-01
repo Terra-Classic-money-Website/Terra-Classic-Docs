@@ -122,4 +122,4 @@ It cannot guarantee:
 
 Last verified: 2026-06-01
 
-This page describes proposed fee, burn, and liquidity mechanics from the Market Module 2.0 source design. Use external explorers, governance records, releases, and wallets to verify any future production status or live values.
+Verify Market Module 2.0 production status and live values through external explorers, governance records, releases, and wallets.

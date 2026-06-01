@@ -3,10 +3,10 @@ title: "History after the collapse"
 description: "A concise post-May-2022 Terra Classic history guide focused on docs context, product status, and reader trust."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic post-crash timeline and docs audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/learn/history-after-the-collapse.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -59,4 +59,4 @@ When the docs describe live behavior, they should show a source path or point to
 
 Last verified: 2026-06-01
 
-This page summarizes post-collapse context using the project knowledge base, docs audit findings, and existing Terra Classic docs material. It is intended as editorial context, not a complete timeline.
+Verify specific historical events through governance records, release notes, and ecosystem sources.

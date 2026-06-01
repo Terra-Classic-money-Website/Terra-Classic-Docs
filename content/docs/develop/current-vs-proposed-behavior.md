@@ -3,10 +3,10 @@ title: "Current vs proposed behavior"
 description: "How builders should distinguish live Terra Classic behavior from proposed product designs and historical Terra mechanics."
 status: reviewed
 reviewed: true
-sourceTitle: "Terra Classic Docs content audit"
+sourceTitle: "Terra Classic Docs"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/develop/current-vs-proposed-behavior.md"
 sourceDate: "2026-06-01"
 tocDepth: 2
@@ -69,4 +69,4 @@ Before integrating any behavior, ask:
 
 Last verified: 2026-06-01
 
-This page was created from the docs content-remediation pass to give builders a conservative interpretation rule for Terra Classic docs.
+Verify production behavior through current chain state, releases, endpoints, and supported tooling.

@@ -6,7 +6,7 @@ reviewed: true
 sourceTitle: "Terra Classic Market-Module 2.0"
 sourceSite: "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
-sourceCommit: "docs-content-remediation-2026-06-01"
+sourceCommit: "source-review-2026-06-01"
 sourcePath: "content/docs/swap-protocol/governance-and-status.md"
 sourceDate: "2025-06-25"
 tocDepth: 2
@@ -81,10 +81,10 @@ The old algorithmic mint/burn path should be treated as historical unless curren
 
 Last verified: 2026-06-01
 
-This page was added during the docs content-remediation pass after the audit found inconsistent live-product language in Swap Protocol and `spec-market.md`.
+Market Module 2.0 design status and production availability should be treated separately.
 
 Primary source:
 
 - [Terra Classic Market-Module 2.0](https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38)
 
-Use external governance records, Terra Classic core releases, wallet interfaces, and explorers to verify any future production status.
+Verify production status through external governance records, Terra Classic core releases, wallet interfaces, and explorers.

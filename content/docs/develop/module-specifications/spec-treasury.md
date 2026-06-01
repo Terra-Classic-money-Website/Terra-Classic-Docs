@@ -363,4 +363,4 @@ A number of epochs that specifies a time interval for the probationary period.
 
 Last verified: 2026-06-01
 
-This page was reviewed during the docs content-remediation pass to remove repeated status warnings while preserving the technical reference material. The Treasury mechanics described here are historical/reference material for Terra Classic readers unless current chain behavior and governance records show otherwise.
+The Treasury mechanics described here are historical reference material unless current chain behavior and governance records show otherwise.
