@@ -1,6 +1,6 @@
 ---
 title: "Fees"
-description: "Understand gas, burn tax, and legacy swap fees on Terra Classic."
+description: "Understand gas, burn tax, Swap Protocol spread fees, and historical Terra swap fees on Terra Classic."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"
@@ -10,12 +10,12 @@ sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/fees.md"
 sourceDate: "2026-05-27"
 ---
-All Terra Classic transactions consume gas. Some legacy transaction types also reference historical fees such as Tobin and spread taxes; these are currently disabled on Classic. The table below summarises which fees apply.
+All Terra Classic transactions consume gas. Transfers can also be affected by burn tax. Native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/) use a Market Module 2.0 spread fee instead of the normal chain-wide burn tax for that in-module route.
 
 | Transaction type | [Gas](#gas) | [Tobin](#tobin-tax) | [Spread](#spread-fee) | Burn tax |
 | --- | --- | --- | --- | --- |
 | ~~Stablecoin ↔ stablecoin market swap~~ *disabled* | ✓ | ✓ |  |  |
-| ~~Stablecoin ↔ LUNC market swap~~ *disabled* | ✓ |  | ✓ |  |
+| LUNC ↔ USTC Swap Protocol route | ✓ |  | ✓ |  |
 | Wallet-to-wallet transfer | ✓ |  |  | ✓ |
 
 DApps such as DEXes can charge additional protocol fees on top of network fees.
@@ -54,7 +54,7 @@ Some addresses are exempt from burn tax. Query the registry via:
 
 ## Tobin tax
 
-The Tobin tax historically applied to swaps between Terra stablecoins. Governance disabled Classic market swaps, so the rate is unused today, but it remains queryable for reference via the oracle module.
+The Tobin tax historically applied to swaps between Terra stablecoins. Market Module 2.0 disables stable-to-stable routing, so Tobin tax should be treated as historical reference for current Swap Protocol usage.
 
 Discussed rationale: [“On swap fees: the greedy and the wise”](https://medium.com/terra-money/on-swap-fees-the-greedy-and-the-wise-b967f0c8914e).
 
@@ -62,6 +62,8 @@ When active, Tobin tax revenue flowed into the oracle reward pool and was redist
 
 ## Spread fee
 
-Spread fees applied to swaps between Terra stablecoins and LUNC. While disabled on Classic, the [market module](/develop/module-specifications/spec-market/) retains the logic to adjust spread based on pool balances. Historically the minimum spread was 0.5%, increasing during volatility to maintain the [`x*y=k`](/develop/module-specifications/spec-market/#market-making-algorithm) invariant.
+Spread fees apply to native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/). The Market Module 2.0 source design sets the Swap Protocol spread fee at 0.35% of notional, collected in the output asset.
 
-Like Tobin tax, spread revenue previously funded the oracle reward pool.
+Swap Protocol routes spread fees 50% to burn and 50% to the Oracle Pool. See [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/) for the full product-level explanation.
+
+Historical spread logic remains useful context for the [market module](/develop/module-specifications/spec-market/), but applications should not assume pre-2022 mint/burn swap behavior.

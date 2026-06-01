@@ -241,20 +241,19 @@ https://terra-classic-lcd.publicnode.com/terra/taxexemption/v1/taxable/{from}/{t
 
 If your UX shows exact fees or exact received amounts, check taxability before the final confirmation screen.
 
-### 3. Legacy market swaps are disabled
+### 3. Legacy mint/burn market swaps are disabled
 
-Do not build new app flows that depend on legacy protocol-level market swaps.
+Do not build new app flows that depend on pre-2022 algorithmic mint/burn market swaps.
 
 Avoid assuming that these old flows are active:
 
-- native stablecoin to LUNC market swaps
 - stablecoin to stablecoin market swaps
 - algorithmic mint/burn swap behavior
 - pre-2022 Terra Classic market-module assumptions
 
-The market module still exists for compatibility and historical logic, but new applications should use active DEX contracts and current liquidity venues instead of legacy market swap paths.
+Native LUNC and USTC swaps are available through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0. That route uses no-mint protocol liquidity, oracle-aware pricing, finite epoch capacity, and safety controls.
 
-For swaps, build against DEX contracts and always include slippage protection such as `max_spread` or `minimum_receive`.
+For DEX swaps, build against DEX contracts and always include slippage protection such as `max_spread` or `minimum_receive`. For native LUNC and USTC swaps, read the [Swap Protocol developer reference](/swap-protocol/developer-reference/) before integrating.
 
 ### 4. Contract calls with attached funds behave differently from simple transfers
 
@@ -802,7 +801,7 @@ Use `send` when sending CW20 tokens to another contract and triggering a message
 
 ## Build DEX and swap integrations carefully
 
-Terra Classic legacy market swaps are disabled. For active swaps, use DEX smart contracts.
+Terra Classic supports native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/). For general token swaps, CW20 routes, pair contracts, and router behavior, use DEX smart contracts.
 
 A typical DEX swap is a `MsgExecuteContract` against a pair or router contract.
 
@@ -965,7 +964,7 @@ Before deploying a Terra Classic app to production, confirm the following.
 
 Some old materials describe legacy behavior that is not active today. Always verify current Terra Classic behavior before building.
 
-Most importantly: legacy market swaps are disabled.
+Most importantly: legacy mint/burn market swaps are disabled. Swap Protocol is the current native LUNC and USTC route and has different no-mint liquidity, oracle, and safety assumptions.
 
 ### Hardcoding gas prices
 
@@ -1020,7 +1019,7 @@ Terra Classic development becomes much easier once you remember this:
 - Use `terra-classic-sdk` for Python scripts.
 - Use Rust and CosmWasm for smart contracts.
 - Use localnet before mainnet.
-- Use DEX contracts, not legacy market swaps.
+- Use Swap Protocol for native LUNC/USTC market-module swaps; use DEX contracts for general token swap integrations.
 - Simulate transactions before broadcasting.
 - Check gas, tax, and tax exemptions when UX accuracy matters.
 - Do not rely on public endpoints for serious production workloads.

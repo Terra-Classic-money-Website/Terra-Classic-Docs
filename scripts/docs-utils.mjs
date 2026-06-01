@@ -136,6 +136,7 @@ export function groupLabelFromSlug(slug) {
     start: "Start",
     learn: "Learn",
     "staking-protocol": "Staking Protocol",
+    "swap-protocol": "Swap Protocol",
     develop: "Develop",
     "full-node": "Full Node",
   };
