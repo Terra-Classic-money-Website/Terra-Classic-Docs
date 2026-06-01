@@ -219,6 +219,16 @@
   will-change: color;
 }
 
+.docs-nav-label-button {
+  appearance: none;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .docs-nav-link > span {
   min-width: 0;
   color: inherit;
@@ -297,6 +307,10 @@
   font-size: var(--tc-type-link-small-size);
   line-height: var(--tc-type-link-small-line-height);
   font-weight: 600;
+}
+
+.docs-nav-node--depth-2 .docs-nav-row--label {
+  color: var(--color-black);
 }
 
 .docs-nav-node--depth-2 .docs-nav-row--active {

@@ -47,7 +47,37 @@ export type DocsNavGroup = {
   items: DocsNavItem[];
 };
 
-export type DocsNavItem = {
+export type DocsNavPageItem = {
+  type: "page";
   page: DocsPage;
   children: DocsNavItem[];
+};
+
+export type DocsNavLabelItem = {
+  type: "label";
+  id: string;
+  title: string;
+  children: DocsNavItem[];
+};
+
+export type DocsNavItem = DocsNavPageItem | DocsNavLabelItem;
+
+export type DocsNavBlueprintPageItem = {
+  type: "page";
+  slug: string;
+  children: DocsNavBlueprintItem[];
+};
+
+export type DocsNavBlueprintLabelItem = {
+  type: "label";
+  id: string;
+  title: string;
+  children: DocsNavBlueprintItem[];
+};
+
+export type DocsNavBlueprintItem = DocsNavBlueprintPageItem | DocsNavBlueprintLabelItem;
+
+export type DocsNavBlueprintGroup = {
+  label: string;
+  items: DocsNavBlueprintItem[];
 };

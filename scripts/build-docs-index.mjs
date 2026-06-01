@@ -59,14 +59,32 @@ const navSections = [
     label: "Staking Protocol",
     items: [
       { slug: "staking-protocol/overview", title: "Staking Protocol" },
-      { slug: "staking-protocol/how-it-works", title: "How it works" },
-      { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
-      { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
-      { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
-      { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
-      { slug: "staking-protocol/governance", title: "Governance" },
-      { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
-      { slug: "staking-protocol/developer-reference", title: "Developer reference" },
+      {
+        id: "staking-protocol/use-staking-protocol",
+        title: "Use Staking Protocol",
+        children: [
+          { slug: "staking-protocol/how-it-works", title: "How it works" },
+          { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
+          { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
+          { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
+        ],
+      },
+      {
+        id: "staking-protocol/validators-and-governance",
+        title: "Validators and governance",
+        children: [
+          { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
+          { slug: "staking-protocol/governance", title: "Governance" },
+          { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
+        ],
+      },
+      {
+        id: "staking-protocol/technical-reference",
+        title: "Technical reference",
+        children: [
+          { slug: "staking-protocol/developer-reference", title: "Developer reference" },
+        ],
+      },
     ],
   },
   {
@@ -187,19 +205,24 @@ let navIndex = 0;
 
 function registerNavItem(section, item, depth = 0, parentSlug = null) {
   const children = item.children ?? [];
-  navMeta.set(item.slug, {
-    group: section.label,
-    navTitle: item.title,
-    navDepth: depth,
-    navParent: parentSlug,
-    navHasChildren: children.length > 0,
-    navOrder: navIndex,
-  });
+  const itemId = item.slug ?? item.id;
+
+  if (item.slug) {
+    navMeta.set(item.slug, {
+      group: section.label,
+      navTitle: item.title,
+      navDepth: depth,
+      navParent: parentSlug,
+      navHasChildren: children.length > 0,
+      navOrder: navIndex,
+    });
+  }
+
   navIndex += 1;
 
   for (const child of children) {
     const childItem = typeof child === "string" ? { slug: child, title: null } : child;
-    registerNavItem(section, childItem, depth + 1, item.slug);
+    registerNavItem(section, childItem, depth + 1, itemId);
   }
 }
 
@@ -276,10 +299,34 @@ const search = pages.map((page) => ({
     .slice(0, 8000),
 }));
 
+function navBlueprintItem(item) {
+  const children = (item.children ?? []).map((child) => navBlueprintItem(typeof child === "string" ? { slug: child, title: null } : child));
+
+  if (item.slug) {
+    return { type: "page", slug: item.slug, children };
+  }
+
+  return {
+    type: "label",
+    id: item.id,
+    title: item.title,
+    children,
+  };
+}
+
+const navBlueprint = navSections.map((section) => ({
+  label: section.label,
+  items: section.items.map(navBlueprintItem),
+}));
+
 fs.mkdirSync(generatedDir, { recursive: true });
 fs.writeFileSync(
   path.join(generatedDir, "docsManifest.ts"),
   `import type { DocsPage } from "../types";\n\nexport const docsPages = ${JSON.stringify(pages, null, 2)} satisfies DocsPage[];\n`,
+);
+fs.writeFileSync(
+  path.join(generatedDir, "docsNav.ts"),
+  `import type { DocsNavBlueprintGroup } from "../types";\n\nexport const docsNavBlueprint = ${JSON.stringify(navBlueprint, null, 2)} satisfies DocsNavBlueprintGroup[];\n`,
 );
 fs.writeFileSync(
   path.join(generatedDir, "searchIndex.ts"),
