@@ -379,6 +379,77 @@ export const docsNavBlueprint = [
     ]
   },
   {
+    "label": "For Institutions",
+    "items": [
+      {
+        "type": "page",
+        "slug": "institutions/overview",
+        "children": []
+      },
+      {
+        "type": "label",
+        "id": "institutions/use-cases",
+        "title": "Institutional use cases",
+        "children": [
+          {
+            "type": "page",
+            "slug": "institutions/multi-currency-suite",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/payment-gateway",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/requirements-and-contact",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "institutions/product-rails",
+        "title": "Product rails",
+        "children": [
+          {
+            "type": "page",
+            "slug": "institutions/native-assets",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/native-swap-rails",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/collateralized-stable-assets",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
+        "id": "institutions/integration-and-risk",
+        "title": "Integration and risk",
+        "children": [
+          {
+            "type": "page",
+            "slug": "institutions/integration-architecture",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/risk-and-due-diligence",
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
     "label": "Develop",
     "items": [
       {

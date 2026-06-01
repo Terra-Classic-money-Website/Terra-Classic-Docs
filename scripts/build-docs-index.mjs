@@ -182,6 +182,38 @@ const navSections = [
     ],
   },
   {
+    label: "For Institutions",
+    items: [
+      { slug: "institutions/overview", title: "For Institutions" },
+      {
+        id: "institutions/use-cases",
+        title: "Institutional use cases",
+        children: [
+          { slug: "institutions/multi-currency-suite", title: "Multi-currency suite" },
+          { slug: "institutions/payment-gateway", title: "Payment gateway" },
+          { slug: "institutions/requirements-and-contact", title: "Requirements and contact" },
+        ],
+      },
+      {
+        id: "institutions/product-rails",
+        title: "Product rails",
+        children: [
+          { slug: "institutions/native-assets", title: "Native assets" },
+          { slug: "institutions/native-swap-rails", title: "Native swap rails" },
+          { slug: "institutions/collateralized-stable-assets", title: "Collateralized stable assets" },
+        ],
+      },
+      {
+        id: "institutions/integration-and-risk",
+        title: "Integration and risk",
+        children: [
+          { slug: "institutions/integration-architecture", title: "Integration architecture" },
+          { slug: "institutions/risk-and-due-diligence", title: "Risk and due diligence" },
+        ],
+      },
+    ],
+  },
+  {
     label: "Develop",
     items: [
       { slug: "develop/quick-start-guide", title: "Quick start guide" },
