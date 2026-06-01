@@ -4,8 +4,19 @@ import { DocsPage } from "./components/docs/DocsPage";
 import { docsPages } from "./docs/generated/docsManifest";
 import { findPageByPath, pagePath } from "./docs/routing";
 
+const SITE_URL = "https://docs.terra-classic.money";
+const TITLE_SUFFIX = "Independent Documentation for Terra Classic, LUNC & USTC";
+
 function currentPage() {
   return findPageByPath(window.location.pathname) ?? docsPages[0];
+}
+
+function absolutePageUrl(slug: string) {
+  return slug === "start" ? `${SITE_URL}/` : `${SITE_URL}${pagePath(slug)}`;
+}
+
+function setMetaContent(selector: string, content: string) {
+  document.querySelector(selector)?.setAttribute("content", content);
 }
 
 export function App() {
@@ -41,8 +52,17 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    document.title = `${page.title} - Independent Documentation for Terra Classic, LUNC & USTC`;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", page.description);
+    const title = `${page.title} - ${TITLE_SUFFIX}`;
+    const canonicalUrl = absolutePageUrl(page.slug);
+
+    document.title = title;
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonicalUrl);
+    setMetaContent('meta[name="description"]', page.description);
+    setMetaContent('meta[property="og:title"]', title);
+    setMetaContent('meta[property="og:description"]', page.description);
+    setMetaContent('meta[property="og:url"]', canonicalUrl);
+    setMetaContent('meta[name="twitter:title"]', title);
+    setMetaContent('meta[name="twitter:description"]', page.description);
   }, [page]);
 
   return (
