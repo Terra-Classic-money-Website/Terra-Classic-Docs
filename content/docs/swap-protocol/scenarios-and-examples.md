@@ -11,7 +11,7 @@ sourcePath: "content/docs/swap-protocol/scenarios-and-examples.md"
 sourceDate: "2025-06-25"
 tocDepth: 3
 ---
-This page translates the Market Module 2.0 source examples into product behavior.
+This page translates the Market Module 2.0 source examples into possible product behavior.
 
 These are illustrations, not forecasts. Actual outcomes depend on tax proceeds, swap demand, market prices, oracle performance, governance parameters, and user behavior.
 
@@ -21,7 +21,7 @@ If users swap in both directions at roughly balanced value, the pools can end th
 
 Product impact:
 
-- native swap utility exists during the epoch
+- native swap utility could exist during the epoch
 - spread fees are generated when swaps happen
 - fees route 50% to burn and 50% to the Oracle Pool
 - remaining pool balances are burned at the next epoch
@@ -102,4 +102,10 @@ Do not use these scenarios to imply:
 - guaranteed swap availability
 - a target USTC price
 
-The examples exist to show behavioral boundaries. The product remains market-dependent.
+The examples exist to show behavioral boundaries. The product remains market-dependent and implementation-dependent.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+These examples are illustrative and source-derived. They are not live forecasts, live pool data, or production availability proof.

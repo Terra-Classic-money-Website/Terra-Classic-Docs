@@ -11,6 +11,10 @@ sourcePath: "content/docs/swap-protocol/risks-and-limitations.md"
 sourceDate: "2025-06-25"
 tocDepth: 2
 ---
+This page describes risks in the Market Module 2.0 / Swap Protocol design.
+
+Read [Governance and status](/swap-protocol/governance-and-status/) before treating any route as live.
+
 Swap Protocol should be explained with discipline because Terra Classic has already paid the cost of weak market-module assumptions.
 
 The product is useful because it restores native LUNC and USTC swap utility without minting new supply. That does not make it risk-free.

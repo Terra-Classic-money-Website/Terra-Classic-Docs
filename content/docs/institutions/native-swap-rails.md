@@ -1,8 +1,8 @@
 ---
 title: "Native swap rails"
 description: "How institutions should evaluate Swap Protocol and Market Module 2.0 as a native Terra Classic routing layer."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Market-Module 2.0"
 sourceSite: "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -11,11 +11,13 @@ sourcePath: "content/docs/institutions/native-swap-rails.md"
 sourceDate: "2025-06-25"
 tocDepth: 3
 ---
-Native swap rails describe the institutional use of [Swap Protocol](/swap-protocol/overview/).
+Native swap rails describe the potential institutional use of [Swap Protocol](/swap-protocol/overview/).
 
 Swap Protocol is the product name. Market Module 2.0 is the underlying no-mint market-module design.
 
 It is proposed as a native L1 route for LUNC and USTC swaps using prefilled protocol liquidity, oracle-aware pricing, spread fees, burns, and safety controls.
+
+Read [Swap Protocol governance and status](/swap-protocol/governance-and-status/) before treating this as a production route.
 
 ## Institutional value
 
@@ -40,7 +42,7 @@ The proposed design uses:
 
 - no new LUNC or USTC minting during swaps
 - prefilled protocol liquidity pools
-- live oracle-aware pricing
+- oracle-aware pricing
 - finite route capacity
 - 0.35% spread fee
 - 50% spread-fee burn
@@ -67,13 +69,13 @@ Any integration should expose failure states clearly.
 
 ## Payment gateway use
 
-A payment gateway could use Swap Protocol as a routing option after it is live.
+A payment gateway could use Swap Protocol as a routing option only after implementation and production availability are documented.
 
 Example:
 
 1. Merchant creates a USTC-denominated invoice.
 2. User wants to pay with LUNC.
-3. Gateway quotes an estimated LUNC-to-USTC route through Swap Protocol.
+3. Gateway quotes an estimated LUNC-to-USTC route through Swap Protocol if a supported production route exists.
 4. Gateway checks route status, oracle state, pool capacity, and fees.
 5. User signs the transaction.
 6. Gateway confirms settlement and reconciles the invoice.
@@ -100,7 +102,7 @@ Institutional software should model:
 | State | Why it matters |
 | --- | --- |
 | Route enabled | The module route can be attempted. |
-| Route disabled | Governance, safety logic, or implementation state prevents use. |
+| Route disabled or not implemented | Governance, safety logic, or implementation state prevents use. |
 | Insufficient liquidity | The output side cannot satisfy the requested amount. |
 | Oracle quorum failure | Validator price participation is below required threshold. |
 | TWAP sanity failure | Price input is outside the allowed safety range. |
@@ -114,6 +116,8 @@ Bad error handling will make the product look unreliable even when the protocol 
 Before integrating, read:
 
 - [Swap Protocol](/swap-protocol/overview/)
+- [Swap Protocol governance and status](/swap-protocol/governance-and-status/)
+- [Swap Protocol implementation status](/swap-protocol/implementation-status/)
 - [How it works](/swap-protocol/how-it-works/)
 - [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/)
 - [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/)
@@ -124,3 +128,9 @@ Before integrating, read:
 Swap Protocol should be positioned as a native routing layer with hard constraints.
 
 That is a better institutional story than pretending it solves liquidity, repeg, or payment stability by itself.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page describes potential institutional use of the Market Module 2.0 source design. It is not a live-data page and does not prove production route availability. Use current releases, governance records, wallets, explorers, and market tools for future verification.

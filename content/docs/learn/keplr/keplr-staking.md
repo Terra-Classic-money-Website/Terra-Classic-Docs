@@ -1,8 +1,8 @@
 ---
 title: "Keplr Staking"
 description: "Delegate, redelegate, and undelegate LUNC with Keplr."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
@@ -14,8 +14,32 @@ Staking with Keplr is only possible through third-party websites or the [Keplr D
 
 For the full staking lifecycle, validator-selection criteria, rewards model, and unstaking risks, use the [Staking Protocol guide](/staking-protocol/overview/).
 
+## Before staking
+
+- Choose the validator deliberately; APR alone is not enough.
+- Review commission, voting behavior, uptime signals, public communication, and concentration risk.
+- Keep enough liquid LUNC for future transaction fees.
+- Understand that undelegating starts the chain unbonding period.
+- Never give a validator or website your seed phrase.
+
+## Practical flow
+
+1. Open the Keplr Dashboard or a trusted Terra Classic staking interface that supports Keplr.
+2. Connect Keplr and confirm the Terra Classic network.
+3. Browse validators.
+4. Choose a validator and review commission and identity details.
+5. Enter the amount to delegate.
+6. Review the transaction in Keplr.
+7. Sign only if the validator and amount are correct.
+
 > **Tips**
 >
 > - Keep enough LUNC for future fees.
 > - Redelegations avoid the 21-day unbonding period, but each validator pair has a 21-day cooldown between redelegations.
 > - Undelegation requires a 21-day waiting period before funds become liquid.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page was expanded during the docs content-remediation pass. Use wallet interfaces and external staking tools for live validator and delegation data.

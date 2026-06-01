@@ -1,8 +1,8 @@
 ---
-title: "Developer reference"
-description: "Technical reference for building around Swap Protocol and Market Module 2.0."
-status: draft
-reviewed: false
+title: "Swap Protocol developer reference"
+description: "Technical reference for building around the Swap Protocol and Market Module 2.0 design."
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Market-Module 2.0"
 sourceSite: "https://discourse.luncgoblins.com/t/terra-classic-market-module-2-0/38"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -11,9 +11,11 @@ sourcePath: "content/docs/swap-protocol/developer-reference.md"
 sourceDate: "2025-06-25"
 tocDepth: 3
 ---
-This reference is for developers building wallets, explorers, routing interfaces, dashboards, monitoring tools, or analytics around Swap Protocol.
+This reference is for developers evaluating wallets, explorers, routing interfaces, or monitoring tools around the Swap Protocol design.
 
 Swap Protocol is the product name. Market Module 2.0 is the underlying L1 implementation concept.
+
+Read [Swap Protocol governance and status](/swap-protocol/governance-and-status/) before treating this reference as production integration guidance. Product design and production availability are separate.
 
 ## Related modules
 
@@ -88,7 +90,7 @@ The Market Module 2.0 source defines these controls:
 | Stable-to-stable route | Disabled |
 | Epoch length | 30 days |
 
-If live chain parameters differ after governance changes, applications should prefer queried chain state where available.
+If future live chain parameters differ after governance changes, applications should prefer current chain state where available.
 
 ## Pool and epoch model
 
@@ -102,11 +104,11 @@ During each epoch:
 - opposite-direction swaps can replenish the depleted side
 - remaining balances are burned at epoch boundary
 
-Analytics should track LUNC and USTC independently. A single "pool health" number can hide one-sided exhaustion.
+Any external analytics or monitoring tool should track LUNC and USTC independently. A single "pool health" number can hide one-sided exhaustion.
 
 ## Oracle integration
 
-Applications that show Swap Protocol status should read or infer:
+Applications that show future Swap Protocol status should read or infer:
 
 - current exchange rates
 - oracle vote participation
@@ -138,11 +140,17 @@ It should not show:
 - hidden pool exhaustion failures
 - generic errors when the module disabled itself for safety
 
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page describes the Market Module 2.0 source design. It should not be read as proof that a production route is live. Use current Terra Classic releases, governance records, wallets, and explorers to verify future implementation status.
+
 ## Developer caution
 
 Market Module 2.0 is critical L1 behavior. Any integration that touches swap routing should be defensive:
 
-- query live state before quoting
+- query current state before quoting
 - refresh quotes before signing
 - handle failed broadcasts cleanly
 - distinguish protocol failure from wallet failure

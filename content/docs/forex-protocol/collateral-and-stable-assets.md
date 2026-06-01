@@ -135,7 +135,7 @@ For production, the important unresolved questions are:
 - how EUR/USD changes affect minting and redemption
 - whether mint caps change automatically or by governance
 
-See [Oracles and safety controls](/forex-protocol/oracles-and-safety-controls/) for the safety layer.
+See [Forex Protocol oracles and safety](/forex-protocol/oracles-and-safety-controls/) for the safety layer.
 
 ## What users should remember
 

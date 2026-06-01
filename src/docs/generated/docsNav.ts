@@ -21,6 +21,31 @@ export const docsNavBlueprint = [
       },
       {
         "type": "page",
+        "slug": "learn/what-terra-classic-supports-today",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "learn/lunc-and-ustc",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "learn/burns-tax-and-supply",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "learn/history-after-the-collapse",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "learn/what-terra-classic-is-not",
+        "children": []
+      },
+      {
+        "type": "page",
         "slug": "learn/strengths",
         "children": []
       },
@@ -185,6 +210,23 @@ export const docsNavBlueprint = [
       },
       {
         "type": "label",
+        "id": "swap-protocol/status",
+        "title": "Status",
+        "children": [
+          {
+            "type": "page",
+            "slug": "swap-protocol/governance-and-status",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "swap-protocol/implementation-status",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "label",
         "id": "swap-protocol/use-swap-protocol",
         "title": "Use Swap Protocol",
         "children": [
@@ -262,6 +304,16 @@ export const docsNavBlueprint = [
           {
             "type": "page",
             "slug": "forex-protocol/governance-and-status",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/implementation-status",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "forex-protocol/launch-readiness",
             "children": []
           },
           {
@@ -444,6 +496,11 @@ export const docsNavBlueprint = [
             "type": "page",
             "slug": "institutions/risk-and-due-diligence",
             "children": []
+          },
+          {
+            "type": "page",
+            "slug": "institutions/source-and-verification-guide",
+            "children": []
           }
         ]
       }
@@ -455,6 +512,11 @@ export const docsNavBlueprint = [
       {
         "type": "page",
         "slug": "develop/quick-start-guide",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "develop/current-vs-proposed-behavior",
         "children": []
       },
       {
@@ -750,6 +812,11 @@ export const docsNavBlueprint = [
       {
         "type": "page",
         "slug": "appendices/glossary",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "appendices/source-and-review-model",
         "children": []
       }
     ]

@@ -1,8 +1,8 @@
 ---
 title: "Keplr Send"
 description: "Send assets with Keplr on Terra Classic."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
@@ -10,14 +10,34 @@ sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
 sourcePath: "learn/keplr/keplr-send.md"
 sourceDate: "2026-05-27"
 ---
+Use this page as a practical checklist. Keplr interface labels can change, so always verify the network, recipient, amount, memo, and fees in the wallet before signing.
+
+## Before sending
+
+- Confirm the active network is Terra Classic mainnet or the intended testnet.
+- Confirm the recipient address starts with `terra`.
+- Check whether the recipient requires a memo, especially for exchanges.
+- Keep enough LUNC for transaction fees.
+- Send a small test transaction first when the recipient, wallet, or exchange flow is new.
+
+## Basic flow
+
 1. Open the Keplr extension and select the Terra Classic network.
 2. Navigate to **Assets** and choose the token you want to send.
 3. Click **Send**.
 4. Paste the recipient `terra...` address.
 5. Enter the amount and optional memo.
 6. Review fees and confirm with **Approve**.
+7. Confirm the transaction in your wallet history or an external explorer.
 
 > **Tips**
 >
 > - Keep a small `uluna` balance to cover future fees.
 > - For rebel-2, request test tokens from the [faucet](https://t.me/tcrebelfaucet_bot).
+> - If an exchange requires a memo, missing it can delay or break crediting.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page was expanded during the docs content-remediation pass to improve practical user guidance. Use Keplr and external explorers for live transaction state.

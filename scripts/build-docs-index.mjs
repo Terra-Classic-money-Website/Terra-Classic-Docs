@@ -22,6 +22,11 @@ const navSections = [
     label: "Learn Terra Classic",
     items: [
       { slug: "learn/protocol", title: "About Terra Classic" },
+      { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
+      { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
+      { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
+      { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
+      { slug: "learn/what-terra-classic-is-not", title: "What Terra Classic is not" },
       { slug: "learn/strengths", title: "Terra Classic Strengths" },
       {
         slug: "learn/wallets",
@@ -92,6 +97,14 @@ const navSections = [
     items: [
       { slug: "swap-protocol/overview", title: "Swap Protocol" },
       {
+        id: "swap-protocol/status",
+        title: "Status",
+        children: [
+          { slug: "swap-protocol/governance-and-status", title: "Governance and status" },
+          { slug: "swap-protocol/implementation-status", title: "Implementation status" },
+        ],
+      },
+      {
         id: "swap-protocol/use-swap-protocol",
         title: "Use Swap Protocol",
         children: [
@@ -104,7 +117,7 @@ const navSections = [
         title: "Economics and safety",
         children: [
           { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
-          { slug: "swap-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "swap-protocol/oracles-and-safety-controls", title: "Swap oracles and safety" },
           { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
           { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
         ],
@@ -114,7 +127,7 @@ const navSections = [
         title: "Technical reference",
         children: [
           { slug: "swap-protocol/validator-operations", title: "Validator operations" },
-          { slug: "swap-protocol/developer-reference", title: "Developer reference" },
+          { slug: "swap-protocol/developer-reference", title: "Swap developer reference" },
         ],
       },
     ],
@@ -128,6 +141,8 @@ const navSections = [
         title: "Status and model",
         children: [
           { slug: "forex-protocol/governance-and-status", title: "Governance and status" },
+          { slug: "forex-protocol/implementation-status", title: "Implementation status" },
+          { slug: "forex-protocol/launch-readiness", title: "Launch readiness" },
           { slug: "forex-protocol/how-it-is-proposed-to-work", title: "How it is proposed to work" },
         ],
       },
@@ -137,7 +152,7 @@ const navSections = [
         children: [
           { slug: "forex-protocol/collateral-and-stable-assets", title: "Collateral and stable assets" },
           { slug: "forex-protocol/fees-buybacks-and-liquidity", title: "Fees, buybacks, and liquidity" },
-          { slug: "forex-protocol/oracles-and-safety-controls", title: "Oracles and safety controls" },
+          { slug: "forex-protocol/oracles-and-safety-controls", title: "Forex oracles and safety" },
           { slug: "forex-protocol/risks-and-open-questions", title: "Risks and open questions" },
         ],
       },
@@ -145,7 +160,7 @@ const navSections = [
         id: "forex-protocol/technical-reference",
         title: "Technical reference",
         children: [
-          { slug: "forex-protocol/developer-reference", title: "Developer reference" },
+          { slug: "forex-protocol/developer-reference", title: "Forex developer reference" },
         ],
       },
     ],
@@ -209,6 +224,7 @@ const navSections = [
         children: [
           { slug: "institutions/integration-architecture", title: "Integration architecture" },
           { slug: "institutions/risk-and-due-diligence", title: "Risk and due diligence" },
+          { slug: "institutions/source-and-verification-guide", title: "Source and verification" },
         ],
       },
     ],
@@ -217,6 +233,7 @@ const navSections = [
     label: "Develop",
     items: [
       { slug: "develop/quick-start-guide", title: "Quick start guide" },
+      { slug: "develop/current-vs-proposed-behavior", title: "Current vs proposed" },
       { slug: "develop/how-to/localnet/terra-core-localnet", title: "Run Terra Classic localnet" },
       { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
       {
@@ -308,6 +325,7 @@ const navSections = [
     label: "Appendices",
     items: [
       { slug: "appendices/glossary", title: "Glossary" },
+      { slug: "appendices/source-and-review-model", title: "Source and review model" },
     ],
   },
 ];

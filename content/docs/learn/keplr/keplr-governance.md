@@ -1,8 +1,8 @@
 ---
 title: "Keplr Governance"
 description: "How Keplr users should approach Terra Classic governance voting when using supported governance interfaces."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Docs Governance section"
 sourceSite: "https://docs.terra-classic.money"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -15,6 +15,14 @@ Keplr can hold Terra Classic accounts, but governance availability depends on th
 If the active Keplr interface you are using does not expose Terra Classic governance directly, use a supported Terra Classic governance interface that connects to Keplr.
 
 Before voting, read the general [How to vote](/governance/how-to-vote/) guide and the [Vote options](/governance/vote-options/) guide.
+
+## Before voting
+
+- Read the full proposal, not only the title.
+- Check whether the proposal is signaling intent, requesting funds, or changing implementation.
+- Review linked discussion and source material.
+- Understand that your direct vote overrides your validator's vote for that proposal.
+- Keep enough LUNC for transaction fees.
 
 ## Practical flow
 
@@ -32,3 +40,9 @@ Before voting, read the general [How to vote](/governance/how-to-vote/) guide an
 Never enter your Keplr seed phrase into a governance website.
 
 Keplr should ask you to approve a transaction. It should not ask you to reveal your recovery phrase.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+This page was reviewed during the docs content-remediation pass. Use governance interfaces and explorers for live proposal status and final vote results.

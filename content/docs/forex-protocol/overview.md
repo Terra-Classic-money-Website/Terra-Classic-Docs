@@ -1,8 +1,8 @@
 ---
 title: "Forex Protocol"
 description: "The proposed Terra Classic L1 product for collateral-backed, fiat-pegged stable assets, built around the Collateralized Stablecoin Module."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff"
 sourceSite: "https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290"
 sourceRepo: "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs/blob/main"
@@ -108,12 +108,14 @@ Those gaps are not minor details. They are the actual implementation work.
 ## How this section is organized
 
 - [Governance and status](/forex-protocol/governance-and-status/) explains Proposal 12209, the current not-live state, and the open implementation path.
+- [Implementation status](/forex-protocol/implementation-status/) lists the evidence needed before production availability can be claimed.
+- [Launch readiness](/forex-protocol/launch-readiness/) defines the minimum documentation, implementation, collateral, oracle, and risk evidence needed before live language is used.
 - [How it is proposed to work](/forex-protocol/how-it-is-proposed-to-work/) translates the source design into the proposed mint, redeem, reserve, buyback, and liquidity flow.
 - [Collateral and stable assets](/forex-protocol/collateral-and-stable-assets/) explains EUTC, EURC, USDC, premiums, collateral ratios, and vault accounting.
 - [Fees, buybacks, and liquidity](/forex-protocol/fees-buybacks-and-liquidity/) covers 1.5% fees, secondary collateral, DEX routing, LUNC buybacks, and proposed pools.
-- [Oracles and safety controls](/forex-protocol/oracles-and-safety-controls/) covers fiat price inputs, redemption caps, kill switch logic, and rebalancing controls.
+- [Forex Protocol oracles and safety](/forex-protocol/oracles-and-safety-controls/) covers fiat price inputs, redemption caps, kill switch logic, and rebalancing controls.
 - [Risks and open questions](/forex-protocol/risks-and-open-questions/) keeps unresolved issues visible, including vault-vs-burn controversy, demand risk, collateral structure, and implementation risk.
-- [Developer reference](/forex-protocol/developer-reference/) gives builders and validators a technical reference for the implementation work.
+- [Forex Protocol developer reference](/forex-protocol/developer-reference/) gives builders and validators a technical reference for the implementation work.
 
 ## Product discipline
 
@@ -124,3 +126,13 @@ That is a serious claim. It is also a limited claim.
 ## Not financial advice
 
 Forex Protocol documentation explains a proposed product design and governance-approved work direction. It does not tell you whether to buy, sell, hold, stake, mint, redeem, or trade LUNC, USTC, EUTC, EURC, USDC, or any other asset.
+
+## Source and verification
+
+Last verified: 2026-06-01
+
+Primary source:
+
+- [LUNC FOREX - Collateralized Stablecoin Module (CSM) EUTC Kickoff](https://discourse.luncgoblins.com/t/lunc-forex-genesis-eutc-repeg/290)
+
+This page was reviewed during the docs content-remediation pass for status discipline. It describes a proposed governance-accepted product concept, not production availability.

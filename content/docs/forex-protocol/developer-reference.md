@@ -1,5 +1,5 @@
 ---
-title: "Developer reference"
+title: "Forex Protocol developer reference"
 description: "Builder-facing reference for the proposed Forex Protocol and Collateralized Stablecoin Module implementation."
 status: draft
 reviewed: false

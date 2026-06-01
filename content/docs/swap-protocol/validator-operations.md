@@ -11,9 +11,11 @@ sourcePath: "content/docs/swap-protocol/validator-operations.md"
 sourceDate: "2025-06-25"
 tocDepth: 3
 ---
-Validators are part of the Swap Protocol product surface.
+Validators are part of the Swap Protocol product surface if the Market Module 2.0 design is implemented and activated.
 
 Market Module 2.0 depends on current oracle prices. If validators do not operate reliable oracle feeders, swaps can be disabled or unsafe.
+
+This page describes expected responsibilities from the source design. It is not proof that the product is live.
 
 ## Validator role
 
@@ -117,6 +119,7 @@ Bad communication overpromises volume, burns, repeg, or guaranteed availability.
 
 ## Related references
 
-- [Oracles and safety controls](/swap-protocol/oracles-and-safety-controls/)
+- [Swap Protocol governance and status](/swap-protocol/governance-and-status/)
+- [Swap Protocol oracles and safety](/swap-protocol/oracles-and-safety-controls/)
 - [Oracle module spec](/develop/module-specifications/spec-oracle/)
 - [Validator accountability](/governance/validator-accountability/)
