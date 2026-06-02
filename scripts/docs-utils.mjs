@@ -133,13 +133,16 @@ export function slugify(value) {
 export function groupLabelFromSlug(slug) {
   const first = slug.split("/")[0];
   const labels = {
-    start: "Start",
-    learn: "Learn",
-    "staking-protocol": "Staking Protocol",
-    "swap-protocol": "Swap Protocol",
-    "forex-protocol": "Forex Protocol",
-    develop: "Develop",
-    "full-node": "Full Node",
+    start: "Learn Terra Classic",
+    learn: "Learn Terra Classic",
+    "staking-protocol": "L1 Protocols",
+    "swap-protocol": "L1 Protocols",
+    "forex-protocol": "L1 Protocols",
+    governance: "Governance",
+    institutions: "For Institutions",
+    appendices: "Appendices",
+    develop: "Build & Operate",
+    "full-node": "Build & Operate",
   };
   return labels[first] ?? "Reference";
 }

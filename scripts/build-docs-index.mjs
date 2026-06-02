@@ -13,30 +13,45 @@ import {
 
 const navSections = [
   {
-    label: "Welcome",
-    items: [
-      { slug: "start", title: "Terra Classic Documentation" },
-    ],
-  },
-  {
     label: "Learn Terra Classic",
     items: [
-      { slug: "learn/protocol", title: "About Terra Classic" },
+      { slug: "start", title: "Start here" },
       {
-        id: "learn/context-and-status",
-        title: "Context and status",
+        id: "learn/basics",
+        title: "Basics",
         children: [
-          { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
-          { slug: "learn/current-network-status-and-parameters", title: "Current network status" },
-          { slug: "learn/upgrade-history-after-may-2022", title: "Upgrade history" },
-          { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
-          { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
-          { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
+          { slug: "learn/protocol", title: "About Terra Classic" },
+          { slug: "learn/strengths", title: "Terra Classic strengths" },
           { slug: "learn/what-terra-classic-is-not", title: "What Terra Classic is not" },
         ],
       },
-      { slug: "learn/strengths", title: "Terra Classic Strengths" },
-      { slug: "learn/ibc-and-interchain", title: "IBC and interchain" },
+      {
+        id: "learn/status-and-history",
+        title: "Status and history",
+        children: [
+          { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
+          { slug: "learn/current-network-status-and-parameters", title: "Current network status" },
+          { slug: "appendices/product-status-index", title: "Product status index" },
+          { slug: "learn/upgrade-history-after-may-2022", title: "Upgrade history" },
+          { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
+        ],
+      },
+      {
+        id: "learn/assets-and-economics",
+        title: "Assets and economics",
+        children: [
+          { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
+          { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
+          { slug: "learn/fees", title: "Fees" },
+        ],
+      },
+      {
+        id: "learn/interchain",
+        title: "Interchain",
+        children: [
+          { slug: "learn/ibc-and-interchain", title: "IBC and interchain" },
+        ],
+      },
       {
         slug: "learn/wallets",
         title: "Wallets",
@@ -67,109 +82,113 @@ const navSections = [
           },
         ],
       },
-      { slug: "learn/fees", title: "Fees" },
     ],
   },
   {
-    label: "Staking Protocol",
+    label: "L1 Protocols",
     items: [
-      { slug: "staking-protocol/overview", title: "Staking Protocol" },
       {
-        id: "staking-protocol/use-staking-protocol",
-        title: "Use Staking Protocol",
+        slug: "staking-protocol/overview",
+        title: "Staking Protocol",
         children: [
-          { slug: "staking-protocol/how-it-works", title: "How it works" },
-          { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
-          { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
-          { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
+          {
+            id: "staking-protocol/use-staking-protocol",
+            title: "Use Staking Protocol",
+            children: [
+              { slug: "staking-protocol/how-it-works", title: "How it works" },
+              { slug: "staking-protocol/delegate-lunc", title: "Delegate LUNC" },
+              { slug: "staking-protocol/rewards-and-apr", title: "Rewards and APR" },
+              { slug: "staking-protocol/risks-and-unstaking", title: "Risks and unstaking" },
+            ],
+          },
+          {
+            id: "staking-protocol/validators",
+            title: "Validators",
+            children: [
+              { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
+              { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
+            ],
+          },
+          {
+            id: "staking-protocol/technical-reference",
+            title: "Technical reference",
+            children: [
+              { slug: "staking-protocol/developer-reference", title: "Developer reference" },
+            ],
+          },
         ],
       },
       {
-        id: "staking-protocol/validators",
-        title: "Validators",
+        slug: "swap-protocol/overview",
+        title: "Swap Protocol",
         children: [
-          { slug: "staking-protocol/choose-a-validator", title: "Choose a validator" },
-          { slug: "staking-protocol/validator-responsibilities", title: "Validator responsibilities" },
+          {
+            id: "swap-protocol/status",
+            title: "Status",
+            children: [
+              { slug: "swap-protocol/governance-and-status", title: "Governance and status" },
+              { slug: "swap-protocol/implementation-status", title: "Implementation status" },
+            ],
+          },
+          {
+            id: "swap-protocol/understand-swap-protocol",
+            title: "Understand Swap Protocol",
+            children: [
+              { slug: "swap-protocol/how-it-works", title: "How it works" },
+              { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
+            ],
+          },
+          {
+            id: "swap-protocol/economics-and-safety",
+            title: "Economics and safety",
+            children: [
+              { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
+              { slug: "swap-protocol/oracles-and-safety-controls", title: "Swap oracles and safety" },
+              { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
+              { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
+            ],
+          },
+          {
+            id: "swap-protocol/technical-reference",
+            title: "Technical reference",
+            children: [
+              { slug: "swap-protocol/validator-operations", title: "Validator operations" },
+              { slug: "swap-protocol/developer-reference", title: "Swap developer reference" },
+            ],
+          },
         ],
       },
       {
-        id: "staking-protocol/technical-reference",
-        title: "Technical reference",
+        slug: "forex-protocol/overview",
+        title: "Forex Protocol",
         children: [
-          { slug: "staking-protocol/developer-reference", title: "Developer reference" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Swap Protocol",
-    items: [
-      { slug: "swap-protocol/overview", title: "Swap Protocol" },
-      {
-        id: "swap-protocol/status",
-        title: "Status",
-        children: [
-          { slug: "swap-protocol/governance-and-status", title: "Governance and status" },
-          { slug: "swap-protocol/implementation-status", title: "Implementation status" },
-        ],
-      },
-      {
-        id: "swap-protocol/use-swap-protocol",
-        title: "Understand Swap Protocol",
-        children: [
-          { slug: "swap-protocol/how-it-works", title: "How it works" },
-          { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
-        ],
-      },
-      {
-        id: "swap-protocol/economics-and-safety",
-        title: "Economics and safety",
-        children: [
-          { slug: "swap-protocol/fees-burns-and-liquidity", title: "Fees, burns, and liquidity" },
-          { slug: "swap-protocol/oracles-and-safety-controls", title: "Swap oracles and safety" },
-          { slug: "swap-protocol/scenarios-and-examples", title: "Scenarios and examples" },
-          { slug: "swap-protocol/risks-and-limitations", title: "Risks and limitations" },
-        ],
-      },
-      {
-        id: "swap-protocol/technical-reference",
-        title: "Technical reference",
-        children: [
-          { slug: "swap-protocol/validator-operations", title: "Validator operations" },
-          { slug: "swap-protocol/developer-reference", title: "Swap developer reference" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Forex Protocol",
-    items: [
-      { slug: "forex-protocol/overview", title: "Forex Protocol" },
-      {
-        id: "forex-protocol/status-and-model",
-        title: "Status and model",
-        children: [
-          { slug: "forex-protocol/governance-and-status", title: "Governance and status" },
-          { slug: "forex-protocol/implementation-status", title: "Implementation status" },
-          { slug: "forex-protocol/launch-readiness", title: "Launch readiness" },
-          { slug: "forex-protocol/how-it-is-proposed-to-work", title: "How it is proposed to work" },
-        ],
-      },
-      {
-        id: "forex-protocol/collateral-and-safety",
-        title: "Collateral and safety",
-        children: [
-          { slug: "forex-protocol/collateral-and-stable-assets", title: "Collateral and stable assets" },
-          { slug: "forex-protocol/fees-buybacks-and-liquidity", title: "Fees, buybacks, and liquidity" },
-          { slug: "forex-protocol/oracles-and-safety-controls", title: "Forex oracles and safety" },
-          { slug: "forex-protocol/risks-and-open-questions", title: "Risks and open questions" },
-        ],
-      },
-      {
-        id: "forex-protocol/technical-reference",
-        title: "Technical reference",
-        children: [
-          { slug: "forex-protocol/developer-reference", title: "Forex developer reference" },
+          {
+            id: "forex-protocol/status-and-model",
+            title: "Status and model",
+            children: [
+              { slug: "forex-protocol/governance-and-status", title: "Governance and status" },
+              { slug: "forex-protocol/implementation-status", title: "Implementation status" },
+              { slug: "forex-protocol/launch-readiness", title: "Launch readiness" },
+              { slug: "forex-protocol/how-it-is-proposed-to-work", title: "How it is proposed to work" },
+            ],
+          },
+          {
+            id: "forex-protocol/collateral-and-safety",
+            title: "Collateral and safety",
+            children: [
+              { slug: "forex-protocol/collateral-and-stable-assets", title: "Collateral and stable assets" },
+              { slug: "forex-protocol/fees-buybacks-and-liquidity", title: "Fees, buybacks, and liquidity" },
+              { slug: "forex-protocol/oracles-and-safety-controls", title: "Forex oracles and safety" },
+              { slug: "forex-protocol/risks-and-open-questions", title: "Risks and open questions" },
+            ],
+          },
+          {
+            id: "forex-protocol/technical-reference",
+            title: "Technical reference",
+            children: [
+              { slug: "forex-protocol/developer-reference", title: "Forex developer reference" },
+            ],
+          },
         ],
       },
     ],
@@ -239,12 +258,24 @@ const navSections = [
     ],
   },
   {
-    label: "Develop",
+    label: "Build & Operate",
     items: [
-      { slug: "develop/quick-start-guide", title: "Quick start guide" },
-      { slug: "develop/current-vs-proposed-behavior", title: "Current vs proposed" },
-      { slug: "develop/how-to/localnet/terra-core-localnet", title: "Run Terra Classic localnet" },
-      { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
+      {
+        id: "build-operate/start-building",
+        title: "Start building",
+        children: [
+          { slug: "develop/quick-start-guide", title: "Quick start guide" },
+          { slug: "develop/current-vs-proposed-behavior", title: "Current vs proposed" },
+          { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
+        ],
+      },
+      {
+        id: "build-operate/local-development",
+        title: "Local development",
+        children: [
+          { slug: "develop/how-to/localnet/terra-core-localnet", title: "Run Terra Classic localnet" },
+        ],
+      },
       {
         slug: "learn/builder-tooling",
         title: "Builder tooling",
@@ -257,6 +288,7 @@ const navSections = [
               { slug: "develop/cosmes/cosmes-query-data", title: "Query data" },
               { slug: "develop/cosmes/cosmes-mnemonic-wallet", title: "Programmatic wallet" },
               { slug: "develop/cosmes/cosmes-transactions", title: "Transactions" },
+              { slug: "develop/cosmes/cosmes-contracts", title: "Contracts" },
             ],
           },
           { slug: "develop/terra-py/terra-py", title: "Terra.py on Terra Classic" },
@@ -274,66 +306,72 @@ const navSections = [
         ],
       },
       {
-        slug: "develop/module-specifications/module-specifications",
-        title: "Module specifications",
+        id: "build-operate/protocol-reference",
+        title: "Protocol reference",
         children: [
-          { slug: "develop/module-specifications/spec-auth", title: "Auth module (x/auth)" },
-          { slug: "develop/module-specifications/spec-authz", title: "Authz module (x/authz)" },
-          { slug: "develop/module-specifications/spec-bank", title: "Bank module (x/bank)" },
-          { slug: "develop/module-specifications/spec-capability", title: "Capability module (x/capability)" },
-          { slug: "develop/module-specifications/spec-consensus", title: "Consensus params module (x/consensus)" },
-          { slug: "develop/module-specifications/spec-crisis", title: "Crisis module (x/crisis)" },
-          { slug: "develop/module-specifications/spec-distribution", title: "Distribution module (x/distribution)" },
-          { slug: "develop/module-specifications/spec-dyncomm", title: "DynComm module (x/dyncomm)" },
-          { slug: "develop/module-specifications/spec-evidence", title: "Evidence module (x/evidence)" },
-          { slug: "develop/module-specifications/spec-feegrant", title: "Feegrant module (x/feegrant)" },
-          { slug: "develop/module-specifications/spec-governance", title: "Governance module (x/gov)" },
-          { slug: "develop/module-specifications/spec-ibc", title: "IBC core module (x/ibc)" },
-          { slug: "develop/module-specifications/spec-ibc-fee", title: "IBC fee module (x/ibc-fee)" },
-          { slug: "develop/module-specifications/spec-ibc-hooks", title: "IBC hooks module (ibc-hooks)" },
-          { slug: "develop/module-specifications/spec-ica", title: "Interchain accounts module (x/ica)" },
-          { slug: "develop/module-specifications/spec-market", title: "Market module (x/market)" },
-          { slug: "develop/module-specifications/spec-mint", title: "Mint module (x/mint)" },
-          { slug: "develop/module-specifications/spec-oracle", title: "Oracle module (x/oracle)" },
-          { slug: "develop/module-specifications/spec-params", title: "Params module (x/params)" },
-          { slug: "develop/module-specifications/spec-slashing", title: "Slashing module (x/slashing)" },
-          { slug: "develop/module-specifications/spec-staking", title: "Staking module (x/staking)" },
-          { slug: "develop/module-specifications/spec-tax", title: "Tax module (x/tax)" },
-          { slug: "develop/module-specifications/spec-taxexemption", title: "Tax exemption module (x/taxexemption)" },
-          { slug: "develop/module-specifications/spec-treasury", title: "Treasury module (x/treasury)" },
-          { slug: "develop/module-specifications/spec-transfer", title: "IBC transfer module (x/transfer)" },
-          { slug: "develop/module-specifications/spec-upgrade", title: "Upgrade module (x/upgrade)" },
-          { slug: "develop/module-specifications/spec-vesting", title: "Vesting module (x/vesting)" },
-          { slug: "develop/module-specifications/spec-wasm", title: "Wasm module (x/wasm)" },
+          {
+            slug: "develop/module-specifications/module-specifications",
+            title: "Module specifications",
+            children: [
+              { slug: "develop/module-specifications/spec-auth", title: "Auth module (x/auth)" },
+              { slug: "develop/module-specifications/spec-authz", title: "Authz module (x/authz)" },
+              { slug: "develop/module-specifications/spec-bank", title: "Bank module (x/bank)" },
+              { slug: "develop/module-specifications/spec-capability", title: "Capability module (x/capability)" },
+              { slug: "develop/module-specifications/spec-consensus", title: "Consensus params module (x/consensus)" },
+              { slug: "develop/module-specifications/spec-crisis", title: "Crisis module (x/crisis)" },
+              { slug: "develop/module-specifications/spec-distribution", title: "Distribution module (x/distribution)" },
+              { slug: "develop/module-specifications/spec-dyncomm", title: "DynComm module (x/dyncomm)" },
+              { slug: "develop/module-specifications/spec-evidence", title: "Evidence module (x/evidence)" },
+              { slug: "develop/module-specifications/spec-feegrant", title: "Feegrant module (x/feegrant)" },
+              { slug: "develop/module-specifications/spec-governance", title: "Governance module (x/gov)" },
+              { slug: "develop/module-specifications/spec-ibc", title: "IBC core module (x/ibc)" },
+              { slug: "develop/module-specifications/spec-ibc-fee", title: "IBC fee module (x/ibc-fee)" },
+              { slug: "develop/module-specifications/spec-ibc-hooks", title: "IBC hooks module (ibc-hooks)" },
+              { slug: "develop/module-specifications/spec-ica", title: "Interchain accounts module (x/ica)" },
+              { slug: "develop/module-specifications/spec-market", title: "Market module (x/market)" },
+              { slug: "develop/module-specifications/spec-mint", title: "Mint module (x/mint)" },
+              { slug: "develop/module-specifications/spec-oracle", title: "Oracle module (x/oracle)" },
+              { slug: "develop/module-specifications/spec-params", title: "Params module (x/params)" },
+              { slug: "develop/module-specifications/spec-slashing", title: "Slashing module (x/slashing)" },
+              { slug: "develop/module-specifications/spec-staking", title: "Staking module (x/staking)" },
+              { slug: "develop/module-specifications/spec-tax", title: "Tax module (x/tax)" },
+              { slug: "develop/module-specifications/spec-taxexemption", title: "Tax exemption module (x/taxexemption)" },
+              { slug: "develop/module-specifications/spec-treasury", title: "Treasury module (x/treasury)" },
+              { slug: "develop/module-specifications/spec-transfer", title: "IBC transfer module (x/transfer)" },
+              { slug: "develop/module-specifications/spec-upgrade", title: "Upgrade module (x/upgrade)" },
+              { slug: "develop/module-specifications/spec-vesting", title: "Vesting module (x/vesting)" },
+              { slug: "develop/module-specifications/spec-wasm", title: "Wasm module (x/wasm)" },
+            ],
+          },
         ],
       },
-    ],
-  },
-  {
-    label: "Run a Full Node",
-    items: [
       {
-        slug: "full-node/overview",
-        title: "Overview",
+        id: "build-operate/run-infrastructure",
+        title: "Run infrastructure",
         children: [
-          { slug: "full-node/run-a-full-terra-node/system-config", title: "System configuration" },
-          { slug: "full-node/run-a-full-terra-node/build-terra-core", title: "Build Terra Classic Core" },
-          { slug: "full-node/run-a-full-terra-node/configure-general-settings", title: "Configure general settings" },
-          { slug: "full-node/run-a-full-terra-node/set-up-production", title: "Set up a production environment" },
-          { slug: "full-node/run-a-full-terra-node/join-a-network", title: "Join a network" },
-          { slug: "full-node/run-a-full-terra-node/sync", title: "Sync" },
-          { slug: "full-node/run-a-full-terra-node/validator-columbus-5", title: "Validate on columbus-5" },
-          { slug: "full-node/run-a-full-terra-node/validator-rebel-2", title: "Validate on rebel-2" },
-          { slug: "full-node/run-a-full-terra-node/troubleshoot", title: "Reset and troubleshooting" },
+          {
+            slug: "full-node/overview",
+            title: "Full node overview",
+            children: [
+              { slug: "full-node/run-a-full-terra-node/system-config", title: "System configuration" },
+              { slug: "full-node/run-a-full-terra-node/build-terra-core", title: "Build Terra Classic Core" },
+              { slug: "full-node/run-a-full-terra-node/configure-general-settings", title: "Configure general settings" },
+              { slug: "full-node/run-a-full-terra-node/set-up-production", title: "Set up a production environment" },
+              { slug: "full-node/run-a-full-terra-node/join-a-network", title: "Join a network" },
+              { slug: "full-node/run-a-full-terra-node/sync", title: "Sync" },
+              { slug: "full-node/run-a-full-terra-node/validator-columbus-5", title: "Validate on columbus-5" },
+              { slug: "full-node/run-a-full-terra-node/validator-rebel-2", title: "Validate on rebel-2" },
+              { slug: "full-node/run-a-full-terra-node/troubleshoot", title: "Reset and troubleshooting" },
+            ],
+          },
+          { slug: "develop/endpoints", title: "Public Network Endpoints" },
         ],
       },
-      { slug: "develop/endpoints", title: "Public Network Endpoints" },
     ],
   },
   {
     label: "Appendices",
     items: [
-      { slug: "appendices/product-status-index", title: "Product status index" },
       { slug: "appendices/glossary", title: "Glossary" },
       { slug: "appendices/source-and-review-model", title: "Source and review model" },
     ],

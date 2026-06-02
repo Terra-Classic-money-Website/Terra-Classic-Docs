@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T13:07:14.834Z",
+  "generatedAt": "2026-06-02T15:11:34.352Z",
   "source": {
     "name": "Terra Classic PublicNode LCD",
     "endpointBase": "https://terra-classic-lcd.publicnode.com",
@@ -27,7 +27,7 @@
   },
   "freshness": {
     "staleAfterHours": 30,
-    "previousGeneratedAt": "2026-06-02T13:06:50.227Z"
+    "previousGeneratedAt": "2026-06-02T15:05:52.288Z"
   },
   "chain": {
     "chainId": "columbus-5",
@@ -40,8 +40,8 @@
     "cosmosSdkVersion": "v0.53.6",
     "goVersion": "go version go1.24.13 linux/amd64",
     "buildTags": "netgo ledger,",
-    "latestBlockHeight": "28883245",
-    "latestBlockTime": "2026-06-02T13:07:00.993869437Z",
+    "latestBlockHeight": "28884510",
+    "latestBlockTime": "2026-06-02T15:11:21.904388761Z",
     "moduleVersions": [
       {
         "label": "Cosmos SDK",
