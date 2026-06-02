@@ -62,7 +62,7 @@ When active, Tobin tax revenue flowed into the oracle reward pool and was redist
 
 ## Spread fee
 
-Spread fees apply to native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/). The Market Module 2.0 source design sets the Swap Protocol spread fee at 0.35% of notional, collected in the output asset.
+The proposed [Swap Protocol](/swap-protocol/overview/) design includes spread fees for native LUNC and USTC swaps. The Market Module 2.0 source design sets the Swap Protocol spread fee at 0.35% of notional, collected in the output asset, but production availability must be verified separately.
 
 Swap Protocol routes spread fees 50% to burn and 50% to the Oracle Pool. See [Fees, burns, and liquidity](/swap-protocol/fees-burns-and-liquidity/) for the full product-level explanation.
 

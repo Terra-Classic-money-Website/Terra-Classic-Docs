@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "npm run docs:index && vite --host 127.0.0.1",
+    "network:snapshot": "node scripts/write-network-status-snapshot.mjs",
+    "network:validate": "node scripts/validate-network-status-snapshot.mjs",
     "docs:index": "node scripts/build-docs-index.mjs",
     "docs:validate": "node scripts/validate-docs.mjs",
     "docs:routes": "node scripts/write-static-routes.mjs",
-    "docs:check": "npm run docs:index && npm run docs:validate",
+    "docs:check": "npm run network:snapshot && npm run docs:index && npm run docs:validate",
     "seo:validate": "node scripts/validate-static-seo.mjs",
     "typecheck": "tsc -b --pretty",
-    "build": "npm run docs:index && npm run docs:validate && tsc -b && vite build && npm run docs:routes && npm run seo:validate",
+    "build": "npm run network:snapshot && npm run docs:index && npm run docs:validate && tsc -b && vite build && npm run docs:routes && npm run seo:validate",
     "preview": "vite preview --host 127.0.0.1",
     "check": "npm run build"
   },

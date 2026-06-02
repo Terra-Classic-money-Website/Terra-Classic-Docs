@@ -35,6 +35,8 @@ The practical developer constants are:
 | Common testnet | `rebel-2` |
 | Common local chain ID | `localterra` or `localnet` |
 
+Check [Current network status and parameters](/learn/current-network-status-and-parameters/) before production work that depends on current software versions, tax behavior, governance parameters, staking settings, or IBC state.
+
 If you are coming from Ethereum, use this mental model:
 
 | Ethereum-style concept | Terra Classic equivalent |
@@ -59,6 +61,8 @@ Most builders should start with one of these paths.
 | Smart contract | On-chain logic, vaults, token contracts, DeFi primitives, escrow, games, or governance tools | [Smart contracts](/develop/smart-contracts/overview/) |
 | Backend or automation | Bots, scripts, indexers, monitoring, treasury jobs, analytics, or integrations | [Terra Py](/develop/terra-py/terra-py/) |
 | Infrastructure | Nodes, endpoints, validator tooling, local testing, or production-grade RPC/LCD access | [Run a full Terra node](/full-node/overview/) |
+
+For cross-chain work, read [IBC and interchain connectivity](/learn/ibc-and-interchain/) before exposing routes to users.
 
 If you are not sure which path fits, start with a frontend read-only integration. Reading a balance through an RPC endpoint teaches you the network model without risking funds.
 

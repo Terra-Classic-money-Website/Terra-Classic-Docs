@@ -1,5 +1,5 @@
 ---
-title: "1. Download the archive"
+title: "System configuration"
 description: "Hardware, OS, and networking prerequisites pulled from the Classic runbook."
 status: draft
 reviewed: false
@@ -14,7 +14,7 @@ sourceDate: "2026-05-27"
 >
 > This guide has been tested against Ubuntu and Debian Linux distributions only. For production environments, deploy on one of these distributions to ensure consistent tooling and support.
 
-Running a full Terra node is a resource-intensive process that requires a persistent server. If you want to use the Terra Classic blockchain without downloading the entire state, use a [Wallet](/docs/learn/wallets).
+Running a full Terra node is a resource-intensive process that requires a persistent server. If you want to use the Terra Classic blockchain without downloading the entire state, use a [Wallet](/learn/wallets/).
 
 ## Hardware requirements
 
@@ -31,7 +31,7 @@ Minimum specifications for a reliable full node:
 
 ## Prerequisites
 
-- Install [Golang v1.22.12 for Linux/amd64](https://go.dev/dl/go1.22.12.linux-amd64.tar.gz) or a compatible release.
+- Install the Go version required by the Terra Classic Core release you are building. The current PublicNode-reported mainnet binary uses `go1.24.13`, but operators should verify the release notes and current network status before production builds.
 - On Linux, install build tooling with `sudo apt-get install -y build-essential`.
 
 ### Installing Go (macOS & Linux)
@@ -40,13 +40,13 @@ Go release binaries are available at [go.dev/dl](https://go.dev/dl/). Download a
 
 ```bash
 # 1. Download the archive
-wget https://go.dev/dl/go1.22.12.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.24.13.linux-amd64.tar.gz
 
 # Optional: remove previous /go files
 sudo rm -rf /usr/local/go
 
 # 2. Unpack
-sudo tar -C /usr/local -xzf go1.22.12.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.24.13.linux-amd64.tar.gz
 
 # 3. Add Go to your PATH
 export PATH=$PATH:/usr/local/go/bin
@@ -55,7 +55,7 @@ export PATH=$PATH:/usr/local/go/bin
 
 # 4. Verify the installation
 go version
-# go version go1.22.12 linux/amd64
+# go version go1.24.13 linux/amd64
 ```
 
 ## Commonly used ports

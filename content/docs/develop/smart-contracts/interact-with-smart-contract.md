@@ -22,7 +22,7 @@ In a separate terminal, make sure to set up the following mnemonic:
 terrad keys add test1 --recover
 ```
 
-Using the mnemonic from the [LocalNet](/docs/develop/smart-contracts/docs/develop/terra-core-localnet) guide.
+Use a localnet mnemonic from the [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/) guide. Do not use a mainnet mnemonic in local contract tests.
 
 ## Uploading Code
 

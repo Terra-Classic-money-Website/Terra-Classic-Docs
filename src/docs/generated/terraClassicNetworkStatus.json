@@ -1,0 +1,368 @@
+{
+  "generatedAt": "2026-06-02T13:07:14.834Z",
+  "source": {
+    "name": "Terra Classic PublicNode LCD",
+    "endpointBase": "https://terra-classic-lcd.publicnode.com",
+    "endpoints": {
+      "nodeInfo": "/cosmos/base/tendermint/v1beta1/node_info",
+      "latestBlock": "/cosmos/base/tendermint/v1beta1/blocks/latest",
+      "consensusParams": "/cosmos/consensus/v1/params",
+      "stakingParams": "/cosmos/staking/v1beta1/params",
+      "slashingParams": "/cosmos/slashing/v1beta1/params",
+      "govParams": "/cosmos/gov/v1/params/voting",
+      "distributionParams": "/cosmos/distribution/v1beta1/params",
+      "mintParams": "/cosmos/mint/v1beta1/params",
+      "oracleParams": "/terra/oracle/v1beta1/params",
+      "treasuryParams": "/terra/treasury/v1beta1/params",
+      "burnTaxRate": "/terra/tax/v1beta1/burn_tax_rate",
+      "treasuryTaxRate": "/terra/treasury/v1beta1/tax_rate",
+      "taxCaps": "/terra/treasury/v1beta1/tax_caps",
+      "dyncommParams": "/terra/dyncomm/v1beta1/params",
+      "taxParams": "/terra/tax/v1beta1/params",
+      "marketParams": "/terra/market/v1beta1/params",
+      "ibcChannels": "/ibc/core/channel/v1/channels?pagination.limit=1000",
+      "ibcConnections": "/ibc/core/connection/v1/connections?pagination.limit=1000",
+      "ibcClientStates": "/ibc/core/client/v1/client_states?pagination.limit=1000"
+    }
+  },
+  "freshness": {
+    "staleAfterHours": 30,
+    "previousGeneratedAt": "2026-06-02T13:06:50.227Z"
+  },
+  "chain": {
+    "chainId": "columbus-5",
+    "nodeId": "821fa0f7ce74a211c5f5ec93cc6cc301564b92b6",
+    "nodeMoniker": "Tendermint",
+    "coreVersion": "4.0.1",
+    "appName": "terrad",
+    "gitCommit": "9a5ee563874ce3906c3ca7069f0160de51f89c40",
+    "cometBftVersion": "0.38.19",
+    "cosmosSdkVersion": "v0.53.6",
+    "goVersion": "go version go1.24.13 linux/amd64",
+    "buildTags": "netgo ledger,",
+    "latestBlockHeight": "28883245",
+    "latestBlockTime": "2026-06-02T13:07:00.993869437Z",
+    "moduleVersions": [
+      {
+        "label": "Cosmos SDK",
+        "packageName": "github.com/cosmos/cosmos-sdk",
+        "version": "v0.53.6"
+      },
+      {
+        "label": "CometBFT dependency",
+        "packageName": "github.com/cometbft/cometbft",
+        "version": "v0.38.21"
+      },
+      {
+        "label": "IBC-Go",
+        "packageName": "github.com/cosmos/ibc-go/v10",
+        "version": "v10.5.0"
+      },
+      {
+        "label": "IBC hooks",
+        "packageName": "github.com/cosmos/ibc-apps/modules/ibc-hooks/v10",
+        "version": "v10.0.0-20250826214904-d53749a559f6"
+      },
+      {
+        "label": "Wasmd",
+        "packageName": "github.com/CosmWasm/wasmd",
+        "version": "v0.61.8"
+      },
+      {
+        "label": "WasmVM",
+        "packageName": "github.com/CosmWasm/wasmvm/v3",
+        "version": "v3.0.3"
+      }
+    ]
+  },
+  "parameters": {
+    "tax": {
+      "burnTaxRate": "0.005000000000000000",
+      "taxParamsBurnTaxRate": "0.005000000000000000",
+      "treasuryTaxRate": "0.000000000000000000",
+      "taxPolicy": {
+        "rate_min": "0.000000000000000000",
+        "rate_max": "0.000000000000000000",
+        "cap": {
+          "denom": "usdr",
+          "amount": "60000000000000000"
+        },
+        "change_rate_max": "0.000000000000000000"
+      },
+      "taxCapCount": 22,
+      "selectedTaxCaps": [
+        {
+          "denom": "ueur",
+          "tax_cap": "70529792161966598"
+        },
+        {
+          "denom": "usdr",
+          "tax_cap": "1000000"
+        },
+        {
+          "denom": "uusd",
+          "tax_cap": "82125023999999333"
+        }
+      ],
+      "gasPrices": [
+        {
+          "denom": "ueur",
+          "amount": "0.625000000000000000"
+        },
+        {
+          "denom": "ukrw",
+          "amount": "850.000000000000000000"
+        },
+        {
+          "denom": "uluna",
+          "amount": "28.325000000000000000"
+        },
+        {
+          "denom": "usdr",
+          "amount": "0.524690000000000000"
+        },
+        {
+          "denom": "uusd",
+          "amount": "0.750000000000000000"
+        }
+      ]
+    },
+    "dyncomm": {
+      "max_zero": "0.500000000000000000",
+      "slope_base": "2.000000000000000000",
+      "slope_vp_impact": "10.000000000000000000",
+      "cap": "0.200000000000000000"
+    },
+    "staking": {
+      "unbonding_time": "1814400s",
+      "max_validators": 110,
+      "max_entries": 7,
+      "historical_entries": 10000,
+      "bond_denom": "uluna",
+      "min_commission_rate": "0.025000000000000000"
+    },
+    "slashing": {
+      "signed_blocks_window": "100800",
+      "min_signed_per_window": "0.850000000000000000",
+      "downtime_jail_duration": "1800s",
+      "slash_fraction_double_sign": "0.050000000000000000",
+      "slash_fraction_downtime": "0.000100000000000000"
+    },
+    "governance": {
+      "min_deposit": [
+        {
+          "denom": "uluna",
+          "amount": "5000000000000"
+        }
+      ],
+      "max_deposit_period": "1209600s",
+      "voting_period": "604800s",
+      "quorum": "0.400000000000000000",
+      "threshold": "0.500000000000000000",
+      "veto_threshold": "0.334000000000000000",
+      "min_initial_deposit_ratio": "0.000000000000000000",
+      "proposal_cancel_ratio": "0.500000000000000000",
+      "proposal_cancel_dest": "",
+      "expedited_voting_period": "86400s",
+      "expedited_threshold": "0.667000000000000000",
+      "expedited_min_deposit": [
+        {
+          "denom": "stake",
+          "amount": "50000000"
+        }
+      ],
+      "burn_vote_quorum": false,
+      "burn_proposal_deposit_prevote": false,
+      "burn_vote_veto": true,
+      "min_deposit_ratio": "0.010000000000000000"
+    },
+    "distribution": {
+      "community_tax": "0.500000000000000000",
+      "base_proposer_reward": "0.000000000000000000",
+      "bonus_proposer_reward": "0.000000000000000000",
+      "withdraw_addr_enabled": true
+    },
+    "mint": {
+      "mint_denom": "uluna",
+      "inflation_rate_change": "0.000000000000000000",
+      "inflation_max": "0.000000000000000000",
+      "inflation_min": "0.000000000000000000",
+      "goal_bonded": "0.670000000000000000",
+      "blocks_per_year": "6311520"
+    },
+    "oracle": {
+      "vote_period": "5",
+      "vote_threshold": "0.500000000000000000",
+      "reward_band": "0.120000000000000000",
+      "reward_distribution_window": "9400000",
+      "whitelist": [
+        {
+          "name": "ukrw",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "usdr",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uusd",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "umnt",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "ueur",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "ucny",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "ujpy",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "ugbp",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uinr",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "ucad",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uchf",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uhkd",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "usgd",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uaud",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uthb",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "usek",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "udkk",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "unok",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uidr",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "uphp",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "umyr",
+          "tobin_tax": "1.000000000000000000"
+        },
+        {
+          "name": "utwd",
+          "tobin_tax": "1.000000000000000000"
+        }
+      ],
+      "slash_fraction": "0.000100000000000000",
+      "slash_window": "100800",
+      "min_valid_per_window": "0.750000000000000000",
+      "whitelistCount": 22
+    },
+    "treasury": {
+      "tax_policy": {
+        "rate_min": "0.000000000000000000",
+        "rate_max": "0.000000000000000000",
+        "cap": {
+          "denom": "usdr",
+          "amount": "60000000000000000"
+        },
+        "change_rate_max": "0.000000000000000000"
+      },
+      "reward_policy": {
+        "rate_min": "1.000000000000000000",
+        "rate_max": "1.000000000000000000",
+        "cap": {
+          "denom": "unused",
+          "amount": "0"
+        },
+        "change_rate_max": "0.000000000000000000"
+      },
+      "seigniorage_burden_target": "0.670000000000000000",
+      "mining_increment": "1.070000000000000000",
+      "window_short": "4",
+      "window_long": "52",
+      "window_probation": "18",
+      "burn_tax_split": "0.200000000000000000",
+      "min_initial_deposit_ratio": "0.200000000000000000",
+      "oracle_split": "1.000000000000000000"
+    },
+    "market": {
+      "base_pool": "100000000000000.000000000000000000",
+      "pool_recovery_period": "18",
+      "min_stability_spread": "1.000000000000000000"
+    },
+    "consensus": {
+      "block": {
+        "max_bytes": "2000000",
+        "max_gas": "100000000"
+      },
+      "evidence": {
+        "max_age_num_blocks": "100000",
+        "max_age_duration": "172800s",
+        "max_bytes": "50000"
+      },
+      "validator": {
+        "pub_key_types": [
+          "ed25519"
+        ]
+      },
+      "version": null,
+      "abci": null
+    },
+    "cosmwasm": {
+      "paramsEndpoint": "/cosmwasm/wasm/v1/params",
+      "paramsEndpointStatus": "not exposed by the current PublicNode LCD response",
+      "wasmdVersion": "v0.61.8",
+      "wasmVmVersion": "v3.0.3"
+    }
+  },
+  "ibc": {
+    "channelCount": 138,
+    "channelStates": {
+      "STATE_INIT": 13,
+      "STATE_OPEN": 117,
+      "STATE_TRYOPEN": 7,
+      "STATE_CLOSED": 1
+    },
+    "openTransferChannels": 96,
+    "connectionCount": 181,
+    "connectionStates": {
+      "STATE_TRYOPEN": 39,
+      "STATE_INIT": 25,
+      "STATE_OPEN": 117
+    },
+    "clientStateCount": 290
+  }
+}

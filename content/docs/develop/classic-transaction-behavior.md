@@ -37,7 +37,7 @@ Terra Classic integrations usually rely on:
 - FCD for convenience endpoints such as suggested gas prices
 - gRPC for typed service integrations and backend tooling
 
-Use the maintained endpoint list here: [/docs/develop/endpoints](/docs/develop/endpoints)
+Use the maintained endpoint list here: [Public Network Endpoints](/develop/endpoints/)
 
 ## Optional preflight checks
 
@@ -50,7 +50,7 @@ Useful preflight checks include:
 - tax exemption registry lookups from the LCD API
 - suggested gas prices from the FCD gas price endpoint
 
-See the exact endpoints in [/docs/develop/endpoints](/docs/develop/endpoints).
+See the exact endpoints in [Public Network Endpoints](/develop/endpoints/).
 
 Typical optional checks:
 
@@ -75,7 +75,7 @@ For many basic transfers, apps do not need to query taxability before broadcasti
 
 If your app shows transfer previews, present the result as an estimate unless you have just simulated against current chain state.
 
-See also: [/docs/learn/fees](/docs/learn/fees)
+See also: [Fees](/learn/fees/)
 
 ## Tax exemption support
 
@@ -92,7 +92,7 @@ Before treating a transfer as taxable in the UI, query the tax exemption registr
 
 If your app shows fee or received-amount estimates, this check should happen before the final confirmation screen.
 
-For the current registry endpoints and examples, see the [Tax exemption registry](/docs/learn/fees#tax-exemption-registry) section in the fees guide.
+For the current registry endpoints and examples, see the [Tax exemption registry](/learn/fees/#tax-exemption-registry) section in the fees guide.
 
 ## Contract calls with funds
 
@@ -205,8 +205,8 @@ If a transaction fails unexpectedly:
 
 ## Related docs
 
-- [/docs/develop/endpoints](/docs/develop/endpoints)
-- [/docs/learn/fees](/docs/learn/fees)
-- [/docs/develop/module-specifications/auth](/docs/develop/module-specifications/auth)
-- [/docs/develop/module-specifications/taxexemption](/docs/develop/module-specifications/taxexemption)
-- [/docs/develop/module-specifications/feegrant](/docs/develop/module-specifications/feegrant)
+- [Public Network Endpoints](/develop/endpoints/)
+- [Fees](/learn/fees/)
+- [Auth module](/develop/module-specifications/spec-auth/)
+- [Tax exemption module](/develop/module-specifications/spec-taxexemption/)
+- [Feegrant module](/develop/module-specifications/spec-feegrant/)

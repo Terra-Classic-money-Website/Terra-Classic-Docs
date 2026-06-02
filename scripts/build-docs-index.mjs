@@ -27,6 +27,8 @@ const navSections = [
         title: "Context and status",
         children: [
           { slug: "learn/what-terra-classic-supports-today", title: "What is supported today" },
+          { slug: "learn/current-network-status-and-parameters", title: "Current network status" },
+          { slug: "learn/upgrade-history-after-may-2022", title: "Upgrade history" },
           { slug: "learn/lunc-and-ustc", title: "LUNC and USTC" },
           { slug: "learn/burns-tax-and-supply", title: "Burns, tax, and supply" },
           { slug: "learn/history-after-the-collapse", title: "History after the collapse" },
@@ -34,6 +36,7 @@ const navSections = [
         ],
       },
       { slug: "learn/strengths", title: "Terra Classic Strengths" },
+      { slug: "learn/ibc-and-interchain", title: "IBC and interchain" },
       {
         slug: "learn/wallets",
         title: "Wallets",
@@ -112,7 +115,7 @@ const navSections = [
       },
       {
         id: "swap-protocol/use-swap-protocol",
-        title: "Use Swap Protocol",
+        title: "Understand Swap Protocol",
         children: [
           { slug: "swap-protocol/how-it-works", title: "How it works" },
           { slug: "swap-protocol/swap-lunc-and-ustc", title: "Swap LUNC and USTC" },
@@ -314,7 +317,7 @@ const navSections = [
         title: "Overview",
         children: [
           { slug: "full-node/run-a-full-terra-node/system-config", title: "System configuration" },
-          { slug: "full-node/run-a-full-terra-node/build-terra-core", title: "Build Terra core" },
+          { slug: "full-node/run-a-full-terra-node/build-terra-core", title: "Build Terra Classic Core" },
           { slug: "full-node/run-a-full-terra-node/configure-general-settings", title: "Configure general settings" },
           { slug: "full-node/run-a-full-terra-node/set-up-production", title: "Set up a production environment" },
           { slug: "full-node/run-a-full-terra-node/join-a-network", title: "Join a network" },
@@ -330,6 +333,7 @@ const navSections = [
   {
     label: "Appendices",
     items: [
+      { slug: "appendices/product-status-index", title: "Product status index" },
       { slug: "appendices/glossary", title: "Glossary" },
       { slug: "appendices/source-and-review-model", title: "Source and review model" },
     ],

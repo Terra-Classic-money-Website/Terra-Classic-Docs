@@ -19,6 +19,9 @@ It is separate from the main Terra Classic Website. The docs site is built aroun
 ## Main sections
 
 - [Learn](/learn/protocol/) covers user-facing Terra Classic concepts, wallets, and fees.
+- [Current network status](/learn/current-network-status-and-parameters/) shows current chain parameters from Terra Classic PublicNode endpoints.
+- [Product status index](/appendices/product-status-index/) separates live, proposed, governance-accepted, disabled, and historical functionality.
+- [IBC and interchain](/learn/ibc-and-interchain/) explains Terra Classic IBC connectivity and route verification.
 - [Staking Protocol](/staking-protocol/overview/) covers LUNC delegation, rewards, validator selection, unstaking risks, validator responsibilities, and developer integration.
 - [Swap Protocol](/swap-protocol/overview/) covers the proposed no-mint Market Module 2.0 route for native LUNC and USTC swaps, including liquidity design, oracle pricing, fees, burns, validator operations, and implementation-status requirements.
 - [Forex Protocol](/forex-protocol/overview/) covers the proposed Terra Classic L1 stable-asset system, including EUTC, collateral design, minting and redemption model, fees, liquidity, oracle controls, risks, and implementation requirements.

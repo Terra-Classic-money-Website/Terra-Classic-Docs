@@ -1,5 +1,5 @@
 ---
-title: "Example additions to /etc/security/limits.conf"
+title: "Set up a production environment"
 description: "Use this checklist to prepare a production-grade Terra Classic node."
 status: draft
 reviewed: false

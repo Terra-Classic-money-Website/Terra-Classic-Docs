@@ -30,6 +30,7 @@ for (const filePath of markdownFiles) {
   const relativePath = path.relative(contentDir, filePath).replaceAll(path.sep, "/");
   const slug = normalizeSlugFromRelative(relativePath);
   const parsed = parseMarkdownFile(filePath);
+  const body = parsed.body;
 
   if (slugs.has(slug)) errors.push(`${relativePath}: duplicate slug '${slug}' also used by ${slugs.get(slug)}`);
   slugs.set(slug, relativePath);
@@ -49,8 +50,20 @@ for (const filePath of markdownFiles) {
   }
   sourcePaths.add(parsed.metadata.sourcePath);
 
+  if (body.match(/\]\(\/docs\//)) {
+    errors.push(`${relativePath}: body contains old '/docs/...' internal route`);
+  }
+
+  if (body.match(/\b(TODO|TBD|placeholder)\b/i)) {
+    errors.push(`${relativePath}: body contains TODO/TBD/placeholder language`);
+  }
+
+  if (relativePath.startsWith("full-node/") && body.match(/\b(v3\.6\.0|go1\.22\.12)\b/)) {
+    errors.push(`${relativePath}: full-node docs contain stale version example; use current verification language`);
+  }
+
   const headingIds = new Set();
-  for (const line of parsed.body.split(/\r?\n/)) {
+  for (const line of body.split(/\r?\n/)) {
     const heading = line.match(/^(#{2,6})\s+(.+)$/);
     if (!heading) continue;
     const id = slugify(heading[2]);

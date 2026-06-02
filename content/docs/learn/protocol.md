@@ -21,7 +21,7 @@ Terra Classic combines proof-of-stake security and on-chain governance. This ove
 ## Terra and LUNC
 
 - **LUNC** is the staking and governance asset. Validators and delegators stake LUNC to secure the chain, earn rewards, and participate in governance.
-- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC. On Classic, the old mint/burn swap path was disabled after 2022; native LUNC and USTC swaps are now handled through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0's no-mint pool design.
+- **TerraUSD et al.** historically tracked fiat currencies (for example, TerraUSD `uusd`, TerraKRW `ukrw`, TerraSDR `usdr`). Users historically minted Terra by burning LUNC. On Classic, the old mint/burn swap path was disabled after 2022. The proposed [Swap Protocol](/swap-protocol/overview/) design explains a no-mint Market Module 2.0 route, but production availability must be verified separately.
 
 ## Stablecoin mechanics (historical)
 
@@ -31,7 +31,7 @@ Terra was designed around two supply pools—Terra and LUNC. The market module e
 - **Contraction**: When Terra traded below the peg, burning Terra to mint LUNC reduced Terra supply.
 
 > **Important**
-> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset. Native LUNC and USTC swaps now use [Swap Protocol](/swap-protocol/overview/), which avoids minting new supply and prices USTC through oracle-reported market data.
+> Following the 2022 hyperinflation event, Classic governance disabled market swap mint/burn paths. LUNC remains the staking asset. The proposed [Swap Protocol](/swap-protocol/overview/) design avoids minting new supply and prices USTC through oracle-reported market data, but live user availability must be verified separately.
 
 ## Validators and consensus
 
@@ -73,6 +73,6 @@ Common proposal types include parameter changes, community pool spends, software
 
 - **Gas** pays validator compute and storage costs (`x/auth`).
 - **Burn tax** is charged via the `x/tax` module on many transfers; rates are queryable through LCD or RPC endpoints.
-- **Swap Protocol spread fees** apply to native LUNC and USTC swaps through Market Module 2.0. The protocol charges a 0.35% spread fee when swaps are enabled and capacity remains; the fee routes 50% to burn and 50% to the Oracle Pool.
+- **Swap Protocol spread fees** are part of the proposed Market Module 2.0 design for native LUNC and USTC swaps. The source design charges a 0.35% spread fee when swaps are enabled and capacity remains; the fee routes 50% to burn and 50% to the Oracle Pool.
 
 Rewards flow into the distribution module and are split between validators and delegators based on stake and commission. Consult the [Staking Protocol rewards guide](/staking-protocol/rewards-and-apr/), the [Swap Protocol fees guide](/swap-protocol/fees-burns-and-liquidity/), and the [fees guide](/learn/fees/) for related mechanics.

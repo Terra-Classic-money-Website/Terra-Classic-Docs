@@ -42,6 +42,8 @@ This is normal for decentralized chains, but institutions must design around it.
 
 Read [Requirements and contact](/institutions/requirements-and-contact/) before approaching the ecosystem.
 
+Use [Product status index](/appendices/product-status-index/) to distinguish live functionality from proposed or governance-accepted product direction.
+
 ## Governance risk
 
 Terra Classic governance is live and powerful, but governance quality is uneven.
@@ -78,6 +80,7 @@ Institutions should ask:
 - Is there a public bug bounty?
 - Who maintains the module?
 - What testnet coverage exists?
+- Are current chain parameters and software versions verified through [Current network status and parameters](/learn/current-network-status-and-parameters/) or direct endpoints?
 - What happens during failed upgrade or chain halt?
 - Who monitors incidents?
 - Where are known risks documented?

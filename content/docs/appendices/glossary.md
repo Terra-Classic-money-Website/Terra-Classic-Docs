@@ -56,7 +56,7 @@ Korean mobile payments app powered by Terra’s blockchain.
 
 ## Columbus-5
 
-Current Terra Classic mainnet version.
+Terra Classic mainnet chain ID. Do not confuse the chain ID with the current Terra Classic Core software version.
 
 ## Commission
 
@@ -140,12 +140,14 @@ Status applied to misbehaving validators. Jailed validators leave the active set
 
 ## Market swap
 
-Terra Station action routing through the market module to swap between Terra stablecoins or Terra and LUNC. Incurs gas plus Tobin or spread fees when enabled.
+Historical Terra Station action that routed through the old market module to swap between Terra stablecoins or Terra and LUNC. On Terra Classic, the old algorithmic mint/burn market-swap behavior should be treated as historical or disabled unless a current page explicitly proves otherwise.
 
 ### Examples
 
-- Swapping UST for KRT charged gas and Tobin tax.
-- Swapping LUNC for UST charged gas and spread fee.
+- Historical UST to KRT swaps charged gas and Tobin tax.
+- Historical LUNC to UST swaps charged gas and spread fee.
+
+The proposed Market Module 2.0 design is documented separately as [Swap Protocol](/swap-protocol/overview/).
 
 ## Mint
 

@@ -1,12 +1,12 @@
 ---
 title: "Keplr Wallet"
 description: "Set up a new Keplr account or import Station mnemonics."
-status: draft
-reviewed: false
+status: reviewed
+reviewed: true
 sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
-sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
+sourceCommit: "docs-remediation-2026-06-02"
 sourcePath: "learn/keplr/keplr-wallet.md"
 sourceDate: "2026-05-27"
 ---
@@ -18,6 +18,14 @@ sourceDate: "2026-05-27"
 4. Set an account name and password.
 5. Confirm the seed phrase to finish setup.
 
+## Seed phrase rules
+
+- Write the seed phrase offline.
+- Store it where fire, theft, device loss, or cloud compromise will not destroy access.
+- Do not photograph it.
+- Do not paste it into a website, support chat, spreadsheet, password manager, or email.
+- Do not share it with validators, wallet support accounts, community moderators, or airdrop websites.
+
 ## Import an existing Station wallet
 
 1. Open Keplr and select **Import existing account**.
@@ -27,3 +35,18 @@ sourceDate: "2026-05-27"
 
 > **Tip**
 > Keplr supports multiple accounts. Use the account switcher in the extension header to move between wallets.
+
+## After setup
+
+Before sending meaningful funds:
+
+1. Confirm Terra Classic mainnet uses chain ID `columbus-5`.
+2. Send a small test amount to the wallet.
+3. Confirm the test transaction in wallet history or an explorer.
+4. If importing from another wallet, verify all expected balances before deleting the old wallet installation.
+
+## Source and verification
+
+Last verified: 2026-06-02
+
+Verify current Keplr account setup labels inside the wallet before importing seed phrases.
