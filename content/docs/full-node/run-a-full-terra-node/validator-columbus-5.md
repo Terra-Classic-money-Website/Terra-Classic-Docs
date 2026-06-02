@@ -1,6 +1,6 @@
 ---
-title: "Validator Columbus 5"
-description: "End-to-end instructions for running a Terra Classic mainnet validator."
+title: "Validate on columbus-5"
+description: "End-to-end instructions and verification checkpoints for running a Terra Classic mainnet validator."
 status: draft
 reviewed: false
 sourceTitle: "Terra Classic Docs repository"
@@ -14,9 +14,9 @@ sourceDate: "2026-05-27"
 
 | Component | Version |
 | --- | --- |
-| Terra Core | `v3.6.0` |
-| Oracle Feeder | `v3.1.6` |
-| Go | `go1.22.12` |
+| Terra Classic Core | Verify current release before build. PublicNode currently reports `v4.0.1`. |
+| Oracle Feeder | Verify against the current validator operations playbook before production use. |
+| Go | Verify release notes. PublicNode currently reports `go1.24.13` for its node binary. |
 
 | Endpoint | URL |
 | --- | --- |
@@ -38,7 +38,7 @@ sourceDate: "2026-05-27"
 
 ## Install toolchain and build terrad
 
-1. Follow the instructions in [System configuration](/docs/full-node/run-a-full-terra-node/system-config) and [Build Terra Core](/docs/full-node/run-a-full-terra-node/build-terra-core).
+1. Follow the instructions in [System configuration](/full-node/run-a-full-terra-node/system-config/) and [Build Terra Classic Core](/full-node/run-a-full-terra-node/build-terra-core/).
 
 ## Bootstrap chain data
 

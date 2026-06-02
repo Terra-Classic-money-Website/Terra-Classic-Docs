@@ -33,7 +33,7 @@ You can query balance via LCD or using CosmES in JavaScript.
      Host: terra-classic-lcd.publicnode.com
      ```
   
-  - Example (placeholder base64 shown):
+  - Example base64 value:
 
      ```text
      https://terra-classic-lcd.publicnode.com/cosmwasm/wasm/v1/contract/<tokenContractAddress>/smart/eyAiYmFsYW5jZSI6IHsgImFkZHJlc3MiOiAiPHdhbGxldEFkZHJlc3M+IiB9IH0=

@@ -70,7 +70,7 @@ For users, this matters because common actions can settle quickly:
 - governance votes
 - smart-contract interactions
 - DEX transactions
-- future native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/)
+- possible future native LUNC and USTC swaps through [Swap Protocol](/swap-protocol/overview/)
 
 Fast block time is not just a technical vanity metric. It affects product feel.
 
@@ -89,7 +89,7 @@ After the May 2022 collapse, LUNC supply expanded massively. Since then, the eco
 - exchange-supported burns
 - application-level burns from ecosystem activity
 - proposed or active product fees that route part of value to burns
-- [Swap Protocol](/swap-protocol/fees-burns-and-liquidity/) spread fees that route 50% to burn when swaps are enabled
+- proposed [Swap Protocol](/swap-protocol/fees-burns-and-liquidity/) spread fees that route 50% to burn when swaps are implemented, enabled, and used
 
 The strategic value is not that burns alone can fix everything. The knowledge corpus is clear on this point: small burns can be psychologically important but economically limited against trillions of supply. Meaningful long-term impact requires both supply reduction and demand.
 
@@ -214,7 +214,7 @@ Examples of product directions that benefit from interconnectivity:
 
 The caveat is operational. IBC is only valuable when relayers, endpoints, liquidity, and user interfaces are maintained. A channel that exists but has little volume is not a growth strategy by itself.
 
-See [Endpoints](/develop/endpoints/) and [IBC module spec](/develop/module-specifications/spec-ibc/).
+See [IBC and interchain connectivity](/learn/ibc-and-interchain/), [Endpoints](/develop/endpoints/), and [IBC module spec](/develop/module-specifications/spec-ibc/).
 
 ## Revival narrative
 
@@ -266,7 +266,7 @@ The strongest Terra Classic roadmap is not "burn more and hope." It is a product
 - Use deflationary mechanics as a product-aligned fee and scarcity layer, not as a substitute for demand.
 - Use community distribution to attract developers, reviewers, researchers, and operators.
 - Use IBC and Cosmos compatibility to reconnect Terra Classic to multi-chain liquidity.
-- Use Swap Protocol to restore native LUNC and USTC swap utility without returning to uncontrolled minting.
+- Implement Swap Protocol to restore native LUNC and USTC swap utility without returning to uncontrolled minting.
 - Use Forex Protocol research to explore collateral-backed stable assets rather than repeating the old algorithmic failure.
 - Use docs, source attribution, public governance records, and diagnostics to rebuild trust.
 

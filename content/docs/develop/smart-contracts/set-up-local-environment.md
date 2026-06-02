@@ -14,7 +14,7 @@ As a smart contract developer, you will need to write, compile, upload, and test
 
 ## Install Terra Classic Core locally
 
-Visit [run Localnet](docs/develop/terra-core-localnet) to install the latest version of Terra Classic Core to obtain a working version of `terrad`. You will need this to connect to your local Terra Classic test network to work with smart contracts.
+Visit [Run Terra Classic localnet](/develop/how-to/localnet/terra-core-localnet/) to install Terra Classic Core locally and obtain a working version of `terrad`. You will need this to connect to your local Terra Classic test network to work with smart contracts.
 
 In order to work with Terra Classic Smart Contracts, you should have access to a Terra Classic network that includes the WASM integration.
 
@@ -26,9 +26,7 @@ You should now have a local testnet running on your machine, with the following 
 - LCD running on port `1317`
 - Swagger Documentation at [http://localhost:1317/swagger](http://localhost:1317/swagger)
 
-> **TODO**
->
-> This section needs updating to include the information about the keys of the local network validator keys / seeds!
+Use only localnet keys for this workflow. Do not import a mainnet wallet or production validator key into a local smart-contract test environment.
 
 ## Install Rust
 

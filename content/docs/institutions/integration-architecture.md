@@ -46,7 +46,7 @@ A serious integration should include:
 
 Public endpoints are useful, but institutions should avoid making one community endpoint a single point of failure.
 
-See [Public Network Endpoints](/develop/endpoints/) and [Run a Full Node](/full-node/overview/) for baseline infrastructure references.
+See [Public Network Endpoints](/develop/endpoints/), [Current network status and parameters](/learn/current-network-status-and-parameters/), [IBC and interchain connectivity](/learn/ibc-and-interchain/), and [Run a Full Node](/full-node/overview/) for baseline infrastructure references.
 
 ## Payment integration layers
 

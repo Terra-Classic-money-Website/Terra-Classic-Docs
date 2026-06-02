@@ -19,6 +19,8 @@ Swap Protocol exists to describe how Terra Classic could restore native swap uti
 
 Read [Governance and status](/swap-protocol/governance-and-status/) before treating Swap Protocol as a live mainnet route. The design is useful, but design documentation is not the same as production availability.
 
+For site-wide status context, see [Product status index](/appendices/product-status-index/).
+
 Use this section if you are:
 
 - a user who wants to understand the proposed LUNC and USTC swap route before relying on it

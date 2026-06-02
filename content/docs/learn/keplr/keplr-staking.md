@@ -6,7 +6,7 @@ reviewed: true
 sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
-sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
+sourceCommit: "docs-remediation-2026-06-02"
 sourcePath: "learn/keplr/keplr-staking.md"
 sourceDate: "2026-05-27"
 ---
@@ -21,6 +21,8 @@ For the full staking lifecycle, validator-selection criteria, rewards model, and
 - Keep enough liquid LUNC for future transaction fees.
 - Understand that undelegating starts the chain unbonding period.
 - Never give a validator or website your seed phrase.
+- Understand that validator downtime, double-signing, commission changes, and governance behavior affect delegator risk.
+- Consider splitting stake if you want to reduce single-validator exposure.
 
 ## Practical flow
 
@@ -32,6 +34,12 @@ For the full staking lifecycle, validator-selection criteria, rewards model, and
 6. Review the transaction in Keplr.
 7. Sign only if the validator and amount are correct.
 
+## Redelegating and undelegating
+
+Redelegating moves stake from one validator to another without waiting for the full unbonding period, but redelegation cooldown rules apply between the same validator pair.
+
+Undelegating starts the unbonding period. During that time the funds are not liquid, and they do not earn staking rewards.
+
 > **Tips**
 >
 > - Keep enough LUNC for future fees.
@@ -40,6 +48,6 @@ For the full staking lifecycle, validator-selection criteria, rewards model, and
 
 ## Source and verification
 
-Last verified: 2026-06-01
+Last verified: 2026-06-02
 
 Verify live validator and delegation data through wallet interfaces and external staking tools.

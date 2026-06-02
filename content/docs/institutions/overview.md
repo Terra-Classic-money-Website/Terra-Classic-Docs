@@ -19,6 +19,8 @@ Terra Classic is not a company, issuer, foundation, vendor, or contracting count
 
 That operating model is powerful, but it changes how institutions should approach integration.
 
+Before evaluating product claims, use [Product status index](/appendices/product-status-index/) and [Current network status and parameters](/learn/current-network-status-and-parameters/) to separate live chain behavior from proposed product direction.
+
 ## The core institutional idea
 
 Institutions can use Terra Classic in three different ways:

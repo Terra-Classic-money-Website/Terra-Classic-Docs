@@ -38,7 +38,7 @@ Expected output:
 
 ## Change genesis
 
-Delete the old genesis file and fetch a new copy from a trusted source (see [Sync](/docs/full-node/run-a-full-terra-node/sync)).
+Delete the old genesis file and fetch a new copy from a trusted source (see [Sync](/full-node/run-a-full-terra-node/sync/)).
 
 ## Reset personal data
 
@@ -62,4 +62,4 @@ Ensure the following files exist before resuming operations:
 - `~/.terra/config/node_key.json`
 - `~/.terra/config/priv_validator_key.json`
 
-After recovery, resync via the standard process from the [Sync](/docs/full-node/run-a-full-terra-node/sync) guide.
+After recovery, resync via the standard process from the [Sync](/full-node/run-a-full-terra-node/sync/) guide.

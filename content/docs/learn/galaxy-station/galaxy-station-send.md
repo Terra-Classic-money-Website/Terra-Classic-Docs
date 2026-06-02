@@ -6,7 +6,7 @@ reviewed: true
 sourceTitle: "Terra Classic Docs repository"
 sourceSite: "https://terra-classic.io/docs"
 sourceRepo: "https://github.com/terra-classic-io/website/tree/main/src/docs"
-sourceCommit: "e305fbe051de9c218021cc3ff98e2e01db04f6dd"
+sourceCommit: "docs-remediation-2026-06-02"
 sourcePath: "learn/galaxy-station/galaxy-station-send.md"
 sourceDate: "2026-05-27"
 ---
@@ -19,6 +19,7 @@ Use this page as a practical checklist. Galaxy Station interface labels can chan
 - Check whether the recipient requires a memo, especially for exchanges.
 - Keep enough LUNC for transaction fees.
 - Send a small test transaction first when the recipient, wallet, or exchange flow is new.
+- Check whether current tax behavior can affect the received amount.
 
 ## Basic flow
 
@@ -31,6 +32,14 @@ Use this page as a practical checklist. Galaxy Station interface labels can chan
 7. Review fees and confirm.
 8. Confirm the transaction in your wallet history or an external explorer.
 
+## If the transaction fails or looks wrong
+
+- Check whether the transaction was rejected in Galaxy Station or broadcast and failed on-chain.
+- Confirm the chain ID, recipient, memo, amount, and fee.
+- Check that the account still has enough LUNC for fees.
+- Search the transaction hash in an explorer if a hash was produced.
+- Do not repeat a large send until you understand the first failure.
+
 > **Tips**
 >
 > - Keep a small LUNC balance to cover future fees.
@@ -39,6 +48,6 @@ Use this page as a practical checklist. Galaxy Station interface labels can chan
 
 ## Source and verification
 
-Last verified: 2026-06-01
+Last verified: 2026-06-02
 
 Verify live transaction state through Galaxy Station and external explorers.

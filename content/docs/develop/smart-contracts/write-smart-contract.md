@@ -14,7 +14,7 @@ sourceDate: "2026-05-27"
 >
 > To better understand the building blocks of the smart contract you will build in this tutorial, view the [complete contract](https://github.com/CosmWasm/cw-template).
 
-A smart contract can be considered an instance of a singleton object whose internal state is persisted on the blockchain. Users can trigger state changes through sending it JSON messages, and users can also query its state through sending a request formatted as a JSON message. These messages are different than Terra blockchain messages such as `MsgSend` and `MsgSwap`.
+A smart contract can be considered an instance of a singleton object whose internal state is persisted on the blockchain. Users can trigger state changes through sending it JSON messages, and users can also query its state through sending a request formatted as a JSON message. These messages are different from Terra blockchain messages such as `MsgSend`, `MsgDelegate`, or `MsgExecuteContract`.
 
 As a smart contract writer, your job is to define 3 functions that define your smart contract's interface:
 

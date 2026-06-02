@@ -174,31 +174,13 @@ print("broadcasted", tx_hash)
 
 `lcd.tx.broadcast` returns a result object with execution details, logs, and confirmation status. Query the transaction hash to confirm inclusion in a block.
 
-## Swap assets
+## Native swap caution
 
-```python
-from terra_classic_sdk.core.market import MsgSwap
+Do not build Terra Classic integrations around the legacy market-swap example from pre-collapse Terra documentation.
 
-AMOUNT_OFFER: int = 1_000_000
-ASK_DENOM: str = "uusd"
+The old algorithmic market-swap behavior is historical or disabled on Terra Classic. The proposed no-mint replacement is documented separately as [Swap Protocol](/swap-protocol/overview/), and production availability must be verified before any user route or SDK example treats it as live.
 
-swap_options: CreateTxOptions = CreateTxOptions(
-    msgs=[
-        MsgSwap(
-            trader=wallet.key.acc_address,
-            offer_coin=Coin("uluna", AMOUNT_OFFER),
-            ask_denom=ASK_DENOM,
-        )
-    ],
-    gas="auto",
-    gas_prices=Coins(gas_prices),
-    fee_denoms=FEE_DENOMS,
-    gas_adjustment=GAS_ADJUSTMENT,
-)
-swap_tx = wallet.create_and_sign_tx(options=swap_options)
-swap_result = lcd.tx.broadcast(swap_tx)
-print("swap", swap_result.txhash)
-```
+For current asset exchange, use active dApps, explicit liquidity venues, or verified product routes with their own slippage, liquidity, and failure-state handling.
 
 ## Execute a smart contract
 
@@ -227,8 +209,6 @@ execute_options: CreateTxOptions = CreateTxOptions(
 execute_tx = wallet.create_and_sign_tx(options=execute_options)
 execute_result = lcd.tx.broadcast(execute_tx)
 print("execute", execute_result.txhash)
-```
-
 Ensure the contract accepts the execute message and attached funds; otherwise, the transaction fails with a non-zero code.
 
 ## Next steps

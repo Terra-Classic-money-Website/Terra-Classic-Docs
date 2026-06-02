@@ -31,6 +31,16 @@ export const docsNavBlueprint = [
           },
           {
             "type": "page",
+            "slug": "learn/current-network-status-and-parameters",
+            "children": []
+          },
+          {
+            "type": "page",
+            "slug": "learn/upgrade-history-after-may-2022",
+            "children": []
+          },
+          {
+            "type": "page",
             "slug": "learn/lunc-and-ustc",
             "children": []
           },
@@ -54,6 +64,11 @@ export const docsNavBlueprint = [
       {
         "type": "page",
         "slug": "learn/strengths",
+        "children": []
+      },
+      {
+        "type": "page",
+        "slug": "learn/ibc-and-interchain",
         "children": []
       },
       {
@@ -235,7 +250,7 @@ export const docsNavBlueprint = [
       {
         "type": "label",
         "id": "swap-protocol/use-swap-protocol",
-        "title": "Use Swap Protocol",
+        "title": "Understand Swap Protocol",
         "children": [
           {
             "type": "page",
@@ -816,6 +831,11 @@ export const docsNavBlueprint = [
   {
     "label": "Appendices",
     "items": [
+      {
+        "type": "page",
+        "slug": "appendices/product-status-index",
+        "children": []
+      },
       {
         "type": "page",
         "slug": "appendices/glossary",

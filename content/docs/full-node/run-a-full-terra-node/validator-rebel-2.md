@@ -1,5 +1,5 @@
 ---
-title: "Validator Rebel 2"
+title: "Validate on rebel-2"
 description: "Spin up a Terra Classic testnet validator and join coordination channels."
 status: draft
 reviewed: false
@@ -14,9 +14,9 @@ sourceDate: "2026-05-27"
 
 | Component | Version |
 | --- | --- |
-| Terra Core | `v3.6.0-rc.0` |
-| Oracle Feeder | `v3.1.6` |
-| Go | `go1.22.12` |
+| Terra Classic Core | Verify the current rebel-2 release before build. |
+| Oracle Feeder | Verify against current testnet operator guidance. |
+| Go | Verify against the release notes for the chosen testnet build. |
 
 | Endpoint | URL |
 | --- | --- |
@@ -38,7 +38,7 @@ sourceDate: "2026-05-27"
 
 ## Install toolchain and build `terrad`
 
-1. Follow the instructions in [System configuration](/docs/full-node/run-a-full-terra-node/system-config) and [Build Terra Core](/docs/full-node/run-a-full-terra-node/build-terra-core).
+1. Follow the instructions in [System configuration](/full-node/run-a-full-terra-node/system-config/) and [Build Terra Classic Core](/full-node/run-a-full-terra-node/build-terra-core/).
 
 > **Important**
 >

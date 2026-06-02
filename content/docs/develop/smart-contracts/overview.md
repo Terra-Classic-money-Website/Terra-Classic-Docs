@@ -23,8 +23,8 @@ The following table maps commonly-used Ethereum developer tools to their Terra c
 |                    | Terra                                                                                                                 | Ethereum        |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------- | --------------- |
 | Frontend SDK       | [CosmES](https://github.com/goblinhunt/cosmes), [Terra SDK](https://terra-money.github.io/terra.py/) | Web3.js, Web3py |
-| Browser Extension  | Keplr, Cosmostation, Station, see [Wallets](/docs/learn/wallets)                                      | MetaMask, MEW   |
-| Local Testnet      | [Localnet](/docs/develop/how-to/localnet/terra-core-localnet)                                                             | Ganache         |
+| Browser Extension  | Keplr, Cosmostation, Galaxy Station, see [Wallets](/learn/wallets/)                                      | MetaMask, MEW   |
+| Local Testnet      | [Localnet](/develop/how-to/localnet/terra-core-localnet/)                                                             | Ganache         |
 | Contract Language  | [Rust](https://www.rust-lang.org/)                                                                                    | Solidity, Vyper |
 
 ## Why build on Terra Classic?

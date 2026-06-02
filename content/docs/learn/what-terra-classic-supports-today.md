@@ -15,6 +15,8 @@ Terra Classic documentation should separate what users can do today from what th
 
 This page is a documentation-status guide. It is not a live chain dashboard, explorer, staking dashboard, or market-data page. Use Terra Classic ecosystem tools and explorers for live balances, prices, validator data, governance voting, liquidity, and transaction history.
 
+For a compact cross-site status table, see [Product status index](/appendices/product-status-index/). For current chain parameters from PublicNode, see [Current network status and parameters](/learn/current-network-status-and-parameters/).
+
 ## Status language
 
 Use these terms when reading this docs site:
@@ -72,6 +74,8 @@ Use external ecosystem tools for live data:
 - market venues for prices and liquidity
 - wallet interfaces for supported actions
 - public endpoints for developer queries
+- [Current network status and parameters](/learn/current-network-status-and-parameters/) for current chain software and protocol parameters
+- [IBC and interchain connectivity](/learn/ibc-and-interchain/) for route-health discipline
 
 The docs should help you understand what those tools mean. They should not replace them.
 

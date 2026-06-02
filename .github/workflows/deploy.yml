@@ -3,6 +3,8 @@ name: Deploy Terra Classic Docs
 on:
   push:
     branches: ["main"]
+  schedule:
+    - cron: "17 4 * * *"
   workflow_dispatch:
 
 permissions:

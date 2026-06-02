@@ -1,6 +1,7 @@
 import type { DocsPage as DocsPageType } from "../../docs/types";
 import { getPageBySlug } from "../../docs/routing";
 import { MarkdownContent } from "../../docs/markdown";
+import { NetworkStatusPanel } from "./NetworkStatusPanel";
 
 const DOCS_REPOSITORY_URL = "https://github.com/Terra-Classic-money-Website/Terra-Classic-Docs";
 
@@ -20,6 +21,8 @@ export function DocsPage({ page }: { page: DocsPageType }) {
       </header>
 
       <MarkdownContent markdown={page.body} />
+
+      {page.slug === "learn/current-network-status-and-parameters" && <NetworkStatusPanel />}
 
       <footer className="docs-page-footer">
         <a className="docs-edit-link" href={getEditUrl(page)} target="_blank" rel="noopener noreferrer">

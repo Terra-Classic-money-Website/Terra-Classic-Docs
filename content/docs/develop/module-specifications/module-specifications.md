@@ -17,7 +17,7 @@ Terra Classic Core is the Golang implementation of the Terra Classic protocol, b
 Each document starts with the module’s role in the protocol and then dives into state, message handling, and block transitions. Parameter tables at the end highlight defaults and governance-controlled values. The specs are designed to supplement a direct read of the Terra Core source code and help contributors reason about Classic-specific behavior.
 
 > **Note**
-> References to seigniorage and historical market swaps reflect legacy Terra protocol behavior. On Terra Classic, seigniorage is fully burned. Native LUNC and USTC swaps are live through [Swap Protocol](/swap-protocol/overview/), powered by Market Module 2.0's no-mint pool design.
+> References to seigniorage and historical market swaps reflect legacy Terra protocol behavior. On Terra Classic, seigniorage is fully burned. The proposed [Swap Protocol](/swap-protocol/overview/) design explains how Market Module 2.0 could restore native LUNC and USTC swap utility without minting new supply, but production availability must be verified separately.
 
 Many Terra Classic modules are inherited from the Cosmos SDK with Classic-specific parameters and custom hooks.
 
@@ -48,4 +48,4 @@ Many Terra Classic modules are inherited from the Cosmos SDK with Classic-specif
 - LUNC is Terra Classic’s staking and governance asset (`uluna` microunit).
 - All denominations use microunits (`10^-6`) on-chain.
 
-Price discovery relies on the [oracle module](./spec-oracle), while the [market module](./spec-market) powers Swap Protocol for native LUNC and USTC swaps using oracle-aware pricing and bounded liquidity.
+Price discovery relies on the [oracle module](./spec-oracle), while the [market module](./spec-market) documents historical market behavior and the proposed Market Module 2.0 source design for oracle-aware, bounded LUNC and USTC swaps.

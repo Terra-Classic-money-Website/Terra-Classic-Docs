@@ -33,6 +33,8 @@ The current public product framing is:
 
 Do not treat this section as a live user guide. Treat it as product, governance, and implementation documentation for a proposed L1 product.
 
+For site-wide status context, see [Product status index](/appendices/product-status-index/).
+
 ## Product position
 
 Forex Protocol is designed to replace the failed algorithmic stablecoin model with a collateral-backed architecture.
