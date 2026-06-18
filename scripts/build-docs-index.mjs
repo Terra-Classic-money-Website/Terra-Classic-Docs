@@ -266,6 +266,7 @@ const navSections = [
         children: [
           { slug: "develop/quick-start-guide", title: "Quick start guide" },
           { slug: "develop/current-vs-proposed-behavior", title: "Current vs proposed" },
+          { slug: "develop/post-quantum-roadmap-rfc", title: "Post-Quantum Roadmap RFC" },
           { slug: "develop/classic-transaction-behavior", title: "Tx best practices" },
         ],
       },

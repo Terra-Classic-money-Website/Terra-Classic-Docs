@@ -562,6 +562,11 @@ export const docsNavBlueprint = [
           },
           {
             "type": "page",
+            "slug": "develop/post-quantum-roadmap-rfc",
+            "children": []
+          },
+          {
+            "type": "page",
             "slug": "develop/classic-transaction-behavior",
             "children": []
           }

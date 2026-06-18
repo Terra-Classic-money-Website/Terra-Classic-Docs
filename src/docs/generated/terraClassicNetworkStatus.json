@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T15:12:33.563Z",
+  "generatedAt": "2026-06-18T08:22:39.719Z",
   "source": {
     "name": "Terra Classic PublicNode LCD",
     "endpointBase": "https://terra-classic-lcd.publicnode.com",
@@ -27,7 +27,7 @@
   },
   "freshness": {
     "staleAfterHours": 30,
-    "previousGeneratedAt": "2026-06-02T15:11:34.352Z"
+    "previousGeneratedAt": "2026-06-18T08:20:59.619Z"
   },
   "chain": {
     "chainId": "columbus-5",
@@ -40,8 +40,8 @@
     "cosmosSdkVersion": "v0.53.6",
     "goVersion": "go version go1.24.13 linux/amd64",
     "buildTags": "netgo ledger,",
-    "latestBlockHeight": "28884520",
-    "latestBlockTime": "2026-06-02T15:12:20.996616171Z",
+    "latestBlockHeight": "29113258",
+    "latestBlockTime": "2026-06-18T08:22:27.015440489Z",
     "moduleVersions": [
       {
         "label": "Cosmos SDK",
@@ -93,7 +93,7 @@
       "selectedTaxCaps": [
         {
           "denom": "ueur",
-          "tax_cap": "70529792161966598"
+          "tax_cap": "70843412816550212"
         },
         {
           "denom": "usdr",
@@ -101,7 +101,7 @@
         },
         {
           "denom": "uusd",
-          "tax_cap": "82125023999999333"
+          "tax_cap": "81944424000000577"
         }
       ],
       "gasPrices": [
@@ -349,20 +349,20 @@
     }
   },
   "ibc": {
-    "channelCount": 138,
+    "channelCount": 140,
     "channelStates": {
       "STATE_INIT": 13,
-      "STATE_OPEN": 117,
+      "STATE_OPEN": 119,
       "STATE_TRYOPEN": 7,
       "STATE_CLOSED": 1
     },
-    "openTransferChannels": 96,
-    "connectionCount": 181,
+    "openTransferChannels": 97,
+    "connectionCount": 182,
     "connectionStates": {
       "STATE_TRYOPEN": 39,
       "STATE_INIT": 25,
-      "STATE_OPEN": 117
+      "STATE_OPEN": 118
     },
-    "clientStateCount": 290
+    "clientStateCount": 291
   }
 }
